@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-950;
+  @apply bg-neutral-900;
   @apply text-gray-200;
 }

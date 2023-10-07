@@ -4,10 +4,8 @@ import { prisma } from '@/libs/prisma'
 // Get All Task
 export async function GET() {
     const getAllTasks = await prisma.task.findMany()
-    return NextResponse.json({
-        message: 'Todas las tareas',
-        getAllTasks
-    })
+
+    return NextResponse.json(getAllTasks)
 }
 
 // Create New Task
@@ -16,7 +14,7 @@ export async function POST(request: Request) {
     const createTask = await prisma.task.create({ data })
 
     return NextResponse.json({
-        message: 'Tarea creada',
+        message: 'Tarea creada exitosamente',
         createTask
     })
 }

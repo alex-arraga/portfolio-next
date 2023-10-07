@@ -13,6 +13,11 @@ export async function GET(request: Request, { params }: Params) {
             id: Number(params.tasks_id)
         }
     })
+
+    if (getTask === null) {
+        return NextResponse.json({ message: 'No se encontró la tarea' })
+    }
+
     return NextResponse.json(getTask)
 }
 
@@ -25,6 +30,7 @@ export async function PUT(request: Request, { params }: Params) {
         },
         data
     })
+
     return NextResponse.json({
         message: 'Tarea actualizada con exito',
         udpateTask
@@ -38,6 +44,7 @@ export async function DELETE(request: Request, { params }: Params) {
             id: Number(params.tasks_id)
         }
     })
+
     return NextResponse.json({
         message: 'Tarea numero ' + params.tasks_id + ' eliminada con exito'
     })
