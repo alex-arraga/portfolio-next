@@ -15,11 +15,11 @@ function NewTaskPage() {
             body: JSON.stringify(data)
         })
 
-        res.status === 200 ? router.push('/') : ''
+        res.status === 200 ? router.push('/tasks') : ''
     })
 
     return (
-        <section className="flex justify-center items-center h-screen">
+        <section className="flex justify-center items-center h-[calc(100vh-7rem)]">
             <div className=" bg-neutral-800 p-14 rounded-md w-[calc(100vw-20rem)]">
                 <form onSubmit={onSubmit}>
                     <h2 className="text-3xl mb-8">Crear una tarea</h2>
