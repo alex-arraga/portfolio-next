@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/libs/prisma';
 
 // Type
-interface Params {
+export interface Params {
     params: { tasks_id: string }
 }
 
