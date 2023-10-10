@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { ErrorMessage } from '@/components/ErrorMessage';
+import { Label } from '@/components/Label';
 
 function NewTaskPage({ params }: { params: { id: String } }) {
 
@@ -67,19 +69,20 @@ function NewTaskPage({ params }: { params: { id: String } }) {
 
     return (
         <section className="flex justify-center items-center h-[calc(100vh-7rem)]">
-            <div className=" bg-neutral-800 p-14 rounded-md w-[calc(100vw-20rem)]">
+            <div className=" bg-neutral-800 p-8 md:p-14 rounded-md w-[calc(100vw-3rem)] md:w-[calc(100vw-20rem)]">
                 <form onSubmit={onSubmit}>
-                    <h2 className="text-3xl mb-8">
+                    <h2 className="text-2xl md:text-3xl mb-8">
                         {params.id ? 'Editar tarea' : 'Crear una tarea'}
                     </h2>
 
-                    <label className='text-sm text-white'>Titulo</label>
+                    {errors.title && <ErrorMessage>Titulo requerido</ErrorMessage>}
+                    <Label>Titulo</Label>
                     <input type="text" placeholder="Titulo de la tarea" id='title'
                         className="p-2 block my-3 w-full rounded-md bg-zinc-700 "
-                        {...register('title', { required: true })}
-                    />
+                        {...register('title', { required: true })} />
 
-                    <label className='text-sm text-white'>Descripción</label>
+
+                    <Label>Descripción</Label>
                     <textarea rows={5} placeholder="Descripción de la tarea" id='description'
                         className="bg-zinc-700 p-2 block w-full my-3 rounded-md"
                         {...register('description')}>

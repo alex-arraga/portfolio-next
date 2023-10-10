@@ -18,7 +18,7 @@ async function TaskPage() {
                         </h2>
                     </div>
 
-                    : <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+                    : <ul className="grid mx-5 md:mx-2 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                         {tasks.sort((a, b) => b.id - a.id).map(task =>
                             <TaskCard task={task} key={task.id} />
                         )}

@@ -1,22 +1,31 @@
+"use client"
+
 import { privateRoutes } from "./index"
 import Link from "next/link"
+import { useState } from "react"
 
 export function Navbar() {
+    const [path, setPath] = useState(window.location.pathname)
+
+    const modifyCurrentPath = (path: string) => {
+        setPath(path)
+    }
+
     return (
         <nav className="flex justify-between items-center py-5">
             <Link href={'/tasks'} className="cursor-pointer">
-                <h2 className="px-3 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-pink-400">NEXT Tasks</h2>
+                <h2 className="px-5 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-pink-400">NEXT Tasks</h2>
             </Link>
             <ul>
                 <li className="flex">
                     {privateRoutes.map(item =>
-                        <Link href={item.path}>
-                            <div className="flex items-center gap-1 px-3">
+                        <Link onClick={() => modifyCurrentPath(item.path)}
+                            className={`mr-5 md:mr-0 px-3 py-1 ${path === item.path ? 'bg-sky-600 duration-200 rounded-full' : ''}`} href={item.path} key={item.path}>
+                            <div className="flex items-center gap-1">
                                 {item.icon}
                                 <p className="hidden sm:block">{item.name}</p>
                             </div>
                         </Link>
-
                     )}
                 </li>
             </ul>
@@ -25,3 +34,5 @@ export function Navbar() {
 }
 
 export default Navbar
+
+// 'mr-5 md:mr-0 enabled:bg-sky-600 focus:bg-sky-600 px-3 py-1 active:bg-sky-600 duration-200 rounded-full'
