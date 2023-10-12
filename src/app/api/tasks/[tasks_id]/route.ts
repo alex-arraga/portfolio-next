@@ -14,7 +14,7 @@ export async function GET(request: Request, { params }: Params) {
         }
     })
 
-    if (getTask === null) {
+    if (getTask === undefined || null) {
         return NextResponse.json({ message: 'No se encontró la tarea' })
     }
 

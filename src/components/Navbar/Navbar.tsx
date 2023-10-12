@@ -2,14 +2,19 @@
 
 import { privateRoutes } from "./index"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function Navbar() {
-    const [path, setPath] = useState(window.location.pathname)
+    const [path, setPath] = useState('')
 
     const modifyCurrentPath = (path: string) => {
         setPath(path)
     }
+
+    useEffect(() => {
+        const currentPath = window.location.pathname
+        setPath(currentPath)
+    }, [])
 
     return (
         <nav className="flex justify-between items-center py-5">

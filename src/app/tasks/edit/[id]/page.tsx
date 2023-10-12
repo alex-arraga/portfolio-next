@@ -1,2 +1,2 @@
-import NewTaskPage from "@/app/new/page";
-export default NewTaskPage
+import page from '@/app/new/page'
+export default page 
