@@ -8,11 +8,12 @@ import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
 import { App } from '@/components/AppTasks.tsx/AppTasks'
 
-function TasksFormPage({ id }: { id: string | undefined }) {
+export function TasksFormPage({ id }: { id: string | undefined }) {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const router = useRouter()
 
+    // Get info of a task
     const loadTask = async () => {
         const res = fetch(`http://localhost:3000/api/tasks/${id}`, {
             method: 'GET',
@@ -43,6 +44,7 @@ function TasksFormPage({ id }: { id: string | undefined }) {
         }
     }, [])
 
+    // Create & Update tasks
     const onSubmit = handleSubmit(async (data) => {
         // Create new task
         if (!id) {

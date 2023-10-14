@@ -15,7 +15,7 @@ export default function RootLayout({
 }: { children: React.ReactNode | any }) {
   return (
     <html lang="en">
-      <body className={`container mx-auto ${poppinsFont.className}`}>
+      <body className={`container mx-auto mb-10 ${poppinsFont.className}`}>
         {
           children
         }

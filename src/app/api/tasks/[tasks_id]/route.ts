@@ -8,44 +8,61 @@ export interface Params {
 
 // Get a Task
 export async function GET(request: Request, { params }: Params) {
-    const getTask = await prisma.task.findFirst({
-        where: {
-            id: Number(params.tasks_id)
+    try {
+        const getTask = await prisma.task.findFirst({
+            where: {
+                id: Number(params.tasks_id)
+            }
+        })
+        if (getTask === undefined || null) {
+            return NextResponse.json({ message: 'No se encontró la tarea' })
         }
-    })
+        return NextResponse.json(getTask)
 
-    if (getTask === undefined || null) {
-        return NextResponse.json({ message: 'No se encontró la tarea' })
+    } catch (error) {
+        return NextResponse.json({
+            Error_Message: error
+        })
     }
-
-    return NextResponse.json(getTask)
 }
 
 // Update Task
 export async function PUT(request: Request, { params }: Params) {
-    const data = await request.json()
-    const udpateTask = await prisma.task.update({
-        where: {
-            id: Number(params.tasks_id)
-        },
-        data
-    })
+    try {
+        const data = await request.json()
+        const udpateTask = await prisma.task.update({
+            where: {
+                id: Number(params.tasks_id)
+            },
+            data
+        })
+        return NextResponse.json({
+            message: 'Tarea actualizada con exito',
+            udpateTask
+        })
 
-    return NextResponse.json({
-        message: 'Tarea actualizada con exito',
-        udpateTask
-    })
+    } catch (error) {
+        return NextResponse.json({
+            Error_Message: error
+        })
+    }
 }
 
 // Delete Task
 export async function DELETE(request: Request, { params }: Params) {
-    const deleteTask = await prisma.task.delete({
-        where: {
-            id: Number(params.tasks_id)
-        }
-    })
+    try {
+        await prisma.task.delete({
+            where: {
+                id: Number(params.tasks_id)
+            }
+        })
+        return NextResponse.json({
+            message: 'Tarea numero ' + params.tasks_id + ' eliminada con exito'
+        })
 
-    return NextResponse.json({
-        message: 'Tarea numero ' + params.tasks_id + ' eliminada con exito'
-    })
+    } catch (error) {
+        return NextResponse.json({
+            Error_Message: error
+        })
+    }
 }
