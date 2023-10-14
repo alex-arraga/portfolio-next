@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
-import { App } from '@/components/AppTasks.tsx/AppTasks'
+import { App } from '@/components/tasks-components/AppTasks.tsx/AppTasks'
+import { toast } from 'sonner';
 
 export function TasksFormPage({ id }: { id: string | undefined }) {
 
@@ -15,7 +16,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
 
     // Get info of a task
     const loadTask = async () => {
-        const res = fetch(`http://localhost:3000/api/tasks/${id}`, {
+        const res = fetch(`http://localhost:3000/api/projects/tasks/${id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -48,21 +49,33 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
     const onSubmit = handleSubmit(async (data) => {
         // Create new task
         if (!id) {
-            const createTask = await fetch('http://localhost:3000/api/tasks', {
-                method: 'POST',
-                credentials: 'include',
-                body: JSON.stringify(data)
-            })
-            createTask.status === 200 ? router.push('/tasks') : ''
+            try {
+                const createTask = await fetch('http://localhost:3000/api/projects/tasks', {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                })
+                createTask.status === 200 ? router.push('/tasks') : ''
+                toast.success('Tarea creada con éxito')
+            } catch (error) {
+                console.log(error)
+                toast.error('No se ha podido crear la tarea')
+            }
         }
         // Update task
         else {
-            const updateTask = await fetch(`http://localhost:3000/api/tasks/${id}`, {
-                method: 'PUT',
-                credentials: 'include',
-                body: JSON.stringify(data)
-            })
-            updateTask.status === 200 ? router.push('/tasks') : ''
+            try {
+                const updateTask = await fetch(`http://localhost:3000/api/projects/tasks/${id}`, {
+                    method: 'PUT',
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                })
+                updateTask.status === 200 ? router.push('/tasks') : ''
+                toast.success('Tarea editada exitosamente')
+            } catch (error) {
+                console.log(error)
+                toast.error('No se ha podido editar la tarea')
+            }
         }
 
         // When the form has been submitted, refresh the page to see the changes

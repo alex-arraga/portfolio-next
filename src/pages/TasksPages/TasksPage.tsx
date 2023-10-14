@@ -1,6 +1,6 @@
 import { prisma } from "@/libs/prisma"
-import TaskCard from "@/components/TaskCard"
-import { App } from '@/components/AppTasks.tsx/AppTasks'
+import TaskCard from "@/components/tasks-components/TaskCard"
+import { App } from '@/components/tasks-components/AppTasks.tsx/AppTasks'
 
 const loadTasks = async () => {
     const loadAllTasks = await prisma.task.findMany()

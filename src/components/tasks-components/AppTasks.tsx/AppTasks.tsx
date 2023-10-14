@@ -1,6 +1,6 @@
 "use client"
 
-import { Navbar } from '@/components/Navbar/Navbar'
+import { Navbar } from '@/components/tasks-components/Navbar/Navbar'
 
 export function App({ params, children }: { params: { id: string | undefined }; children: React.ReactNode | any }) {
     return (

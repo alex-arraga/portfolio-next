@@ -1,2 +1,2 @@
-import page from '@/app/new/page'
+import page from '@/app/tasks/new/page'
 export default page 

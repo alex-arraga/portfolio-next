@@ -1,4 +1,4 @@
-import TasksPage from "@/pages/TasksPage";
+import TasksPage from "@/pages/TasksPages/TasksPage";
 
 function page({ params }: { params: { id: string }, typePage: string }) {
     return (

@@ -15,7 +15,7 @@ export const privateRoutes = [
     },
     {
         name: 'Crear tarea',
-        path: '/new',
+        path: '/tasks/new',
         icon: <MdPostAdd className='text-white' />
     },
 ]
