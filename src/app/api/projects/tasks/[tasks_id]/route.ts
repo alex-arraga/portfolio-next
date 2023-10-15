@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/libs/prisma';
+import { TasksParams } from '@/interfaces/api';
 
-// Type
-export interface Params {
-    params: { tasks_id: string }
-}
 
 // Get a Task
-export async function GET(request: Request, { params }: Params) {
+export async function GET(request: Request, { params }: TasksParams) {
     try {
         const getTask = await prisma.task.findFirst({
             where: {
@@ -27,7 +24,7 @@ export async function GET(request: Request, { params }: Params) {
 }
 
 // Update Task
-export async function PUT(request: Request, { params }: Params) {
+export async function PUT(request: Request, { params }: TasksParams) {
     try {
         const data = await request.json()
         const udpateTask = await prisma.task.update({
@@ -49,7 +46,7 @@ export async function PUT(request: Request, { params }: Params) {
 }
 
 // Delete Task
-export async function DELETE(request: Request, { params }: Params) {
+export async function DELETE(request: Request, { params }: TasksParams) {
     try {
         await prisma.task.delete({
             where: {

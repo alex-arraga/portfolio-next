@@ -1,8 +1,8 @@
 import { prisma } from '@/libs/prisma'
-import { Params } from '../../[tasks_id]/route'
+import { TasksParams } from '@/interfaces/api'
 import { NextResponse } from 'next/server'
 
-export const DELETE = async (request: Request, { params }: Params) => {
+export const DELETE = async (request: Request, { params }: TasksParams) => {
     try {
         await prisma.taskCompleted.delete({
             where: {
