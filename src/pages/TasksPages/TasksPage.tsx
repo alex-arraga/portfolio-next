@@ -5,16 +5,16 @@ import { App } from '@/components/tasks-components/AppTasks.tsx/AppTasks'
 const loadTasks = async () => {
     const loadAllTasks = await prisma.task.findMany()
     return loadAllTasks
-}
+};
 
 const loadCompletedTasks = async () => {
     const loadAllCompletedTasks = await prisma.taskCompleted.findMany()
     return loadAllCompletedTasks
-}
+};
 
 async function TasksPage({ params, typePage }: { params: { id: string | undefined }, typePage?: string }) {
-    const tasksPendient = await loadTasks()
-    const tasksCompleted = await loadCompletedTasks()
+    const tasksPendient = await loadTasks();
+    const tasksCompleted = await loadCompletedTasks();
 
     return (
         <App params={params}>

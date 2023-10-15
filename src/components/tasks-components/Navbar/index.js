@@ -5,17 +5,17 @@ import { BsClipboardCheck } from 'react-icons/bs'
 export const privateRoutes = [
     {
         name: 'Tareas',
-        path: '/tasks',
+        path: '/projects/tasks',
         icon: <HiOutlineClipboardDocumentList className='text-white' />
     },
     {
         name: 'Completadas',
-        path: '/tasks/completed',
+        path: '/projects/tasks/completed',
         icon: <BsClipboardCheck className='text-white' />
     },
     {
         name: 'Crear tarea',
-        path: '/tasks/new',
+        path: '/projects/tasks/new',
         icon: <MdPostAdd className='text-white' />
     },
 ]

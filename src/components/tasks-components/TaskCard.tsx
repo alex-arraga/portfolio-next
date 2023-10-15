@@ -7,6 +7,7 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { BsCheck2Circle } from 'react-icons/bs';
 import { toast } from "sonner";
 import { Card } from "./Card";
+import { baseURL } from "@/libs/baseURL";
 
 interface Props {
     task: Task
@@ -14,14 +15,13 @@ interface Props {
 }
 
 export function TaskCard({ task, typePage }: Props) {
-    const router = useRouter()
-    const baseURL = 'http://localhost:3000/api/projects'
+    const router = useRouter();
 
     const deleteTask = async (e: MouseEvent) => {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea?')) {
-                await fetch(`http://localhost:3000/api/projects/tasks/${task.id}`, {
+                await fetch(`${baseURL}/tasks/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -32,27 +32,27 @@ export function TaskCard({ task, typePage }: Props) {
             toast.error('No se ha podido eliminar la tarea')
         }
         router.refresh()
-    }
+    };
 
     const deleteCompletedTask = async (e: MouseEvent) => {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea completada?')) {
-                await fetch(`http://localhost:3000/api/projects/tasks/completed/${task.id}`, {
+                await fetch(`${baseURL}/tasks/completed/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
             }
-            toast.success('Tarea completada eliminada')
+            toast.success('Se ha eliminado la tarea completada')
         } catch (error) {
             console.log(error)
             toast.error('No se ha podido eliminar la tarea')
         }
         router.refresh()
-    }
+    };
 
     const loadTask = async () => {
-        const res = fetch(`http://localhost:3000/api/projects/tasks/${task.id}`, {
+        const res = fetch(`${baseURL}/tasks/${task.id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -68,7 +68,7 @@ export function TaskCard({ task, typePage }: Props) {
                 console.log(err)
             })
         return res
-    }
+    };
 
     const createCompletedTask = async (e: MouseEvent, task: Task) => {
         e.stopPropagation()
@@ -77,13 +77,13 @@ export function TaskCard({ task, typePage }: Props) {
             const data = await loadTask()
             console.log(data)
 
-            const newCompletedTask = await fetch('http://localhost:3000/api/projects/tasks/completed', {
+            const newCompletedTask = await fetch(`${baseURL}/tasks/completed`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include'
             })
 
-            const deleteTask = await fetch(`http://localhost:3000/api/projects/tasks/${task.id}`, {
+            const deleteTask = await fetch(`${baseURL}/tasks/${task.id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })
@@ -94,7 +94,7 @@ export function TaskCard({ task, typePage }: Props) {
         }
 
         router.refresh()
-    }
+    };
 
 
     return (
@@ -112,7 +112,7 @@ export function TaskCard({ task, typePage }: Props) {
                         <p className="font-light text-sm md:text-base">{task.description}</p>
                     </Card>
 
-                    : <Card key={task.id} onClick={() => router.push(`/tasks/edit/${task.id}`)} className="bg-slate-800 p-7 border-b-2 border-pink-600 hover:border-pink-400 rounded-md hover:bg-sky-900 duration-300 cursor-pointer">
+                    : <Card key={task.id} onClick={() => router.push(`/projects/tasks/edit/${task.id}`)} className="bg-slate-800 p-7 border-b-2 border-pink-600 hover:border-pink-400 rounded-md hover:bg-sky-900 duration-300 cursor-pointer">
                         <div className="flex justify-between items-start">
                             <h3 className="text-xl md:text-2xl font-medium mb-2">{task.title}</h3>
                             <div className="flex gap-1.5">

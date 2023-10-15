@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { baseURL } from '@/libs/baseURL';
 
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
@@ -16,7 +17,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
 
     // Get info of a task
     const loadTask = async () => {
-        const res = fetch(`http://localhost:3000/api/projects/tasks/${id}`, {
+        const res = fetch(`${baseURL}/tasks/${id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -50,12 +51,12 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
         // Create new task
         if (!id) {
             try {
-                const createTask = await fetch('http://localhost:3000/api/projects/tasks', {
+                const createTask = await fetch(`${baseURL}/tasks`, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(data)
                 })
-                createTask.status === 200 ? router.push('/tasks') : ''
+                createTask.status === 200 ? router.push('/projects/tasks') : ''
                 toast.success('Tarea creada con éxito')
             } catch (error) {
                 console.log(error)
@@ -65,12 +66,12 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
         // Update task
         else {
             try {
-                const updateTask = await fetch(`http://localhost:3000/api/projects/tasks/${id}`, {
+                const updateTask = await fetch(`${baseURL}/tasks/${id}`, {
                     method: 'PUT',
                     credentials: 'include',
                     body: JSON.stringify(data)
                 })
-                updateTask.status === 200 ? router.push('/tasks') : ''
+                updateTask.status === 200 ? router.push('/projects/tasks') : ''
                 toast.success('Tarea editada exitosamente')
             } catch (error) {
                 console.log(error)
