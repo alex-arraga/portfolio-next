@@ -9,12 +9,10 @@ import { toast } from "sonner";
 import { Card } from "./Card";
 import { baseURL } from "@/libs/baseURL";
 
-interface Props {
-    task: Task
-    typePage?: string
-}
+import { PropsTaskCard } from "@/interfaces/tasks";
 
-export function TaskCard({ task, typePage }: Props) {
+
+export function TaskCard({ task, typePage }: PropsTaskCard) {
     const router = useRouter();
 
     const deleteTask = async (e: MouseEvent) => {

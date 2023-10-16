@@ -1,11 +1,5 @@
 import React, { Key } from "react"
-
-interface PropsCard {
-    children: React.ReactNode,
-    className: string,
-    key: Key,
-    onClick?: (() => void)
-}
+import { PropsCard } from "@/interfaces/tasks"
 
 export function Card({ children, className, key, onClick }: PropsCard): React.ReactElement {
     return (
