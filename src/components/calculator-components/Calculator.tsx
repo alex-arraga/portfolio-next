@@ -4,23 +4,124 @@ import React from 'react'
 import { Button } from './Button'
 import { Screen } from './Screen'
 import { Rows } from './Rows'
+import { Container } from './Container'
+import { FiDelete } from 'react-icons/fi';
+
+import imgRaiz from '@/images/calculator/raiz-cuadrada.svg'
+import imgPotencia from '@/images/calculator/potencia.svg'
 
 import { useEffect, useState } from 'react'
 
 export function Calculator() {
-    const [valueScreen, setValueScreen] = useState('0')
+    const [valueScreen, setValueScreen] = useState('');
+    const [history, setHistory] = useState([]);
+    const [operationNumber, setOperationNumber] = useState(1);
+    const [lastResult, setLastResult] = useState([]);
+
+    // Reg Exp
+    const operators = /[+\-%^*,/]|[x÷√!]/;
+    const emptyBrackets = /\(\)|[\(\)]/;
+    const validExpression = /^[0-9+\-*/^()%x÷√!lnlog,]+$/.test(valueScreen);
+    const comma = /[,]/;
+
+
+    // Validations
+    const lastCharacter = valueScreen.slice(-1);
+    const expressionInBrackets = emptyBrackets.test(valueScreen.slice(1, -1));
+    const hasEmptyBrackets = emptyBrackets.test(valueScreen);
+    const endsOperator = operators.test(lastCharacter);
+    const endsComma = comma.test(lastCharacter);
+
+
+    // Show in the screen
+    const showValue = (value: string) => {
+        const valueIsOperator = operators.test(value);
+        if (typeof valueScreen === "string") {
+            if (endsOperator && valueIsOperator) {
+                setValueScreen(valueScreen.slice(0, -1) + value)
+            } else {
+                setValueScreen(valueScreen + value);
+            }
+        }
+    };
+
+    // Special keys 'Backspace' y 'r'
+    const deleteAValue = () => {
+        setValueScreen(() => valueScreen.slice(0, -1))
+        if (valueScreen == 'Error') {
+            setValueScreen('')
+        }
+    }
+
+    // Ultimo Resultado 'ANS'
+    const getLastResult = () => {
+        setValueScreen(valueScreen + lastResult)
+    };
+
 
     return (
-        <div className='flex-col justify-center items-center rounded-md w-96 h-2/3 bg-gray-500'>
-            <Screen value={valueScreen} />
+        <main className='flex justify-center items-center h-screen'>
 
-            <Rows>
-                <Button>1</Button>
-                <Button>2</Button>
-                <Button>3</Button>
-                <Button>4</Button>
-            </Rows>
-        </div>
+            <Container>
+                <Screen value={valueScreen} />
+
+                <Rows>
+                    <Button onClick={() => showValue('ln(')}>ln</Button>
+                    <Button onClick={() => showValue('log(')}>log</Button>
+                    <Button onClick={() => deleteAValue()}>
+                        <FiDelete></FiDelete>
+                    </Button>
+                    <Button onClick={() => getLastResult()}>AC</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('cos(')}>cos</Button>
+                    <Button onClick={() => showValue('sin(')}>sin</Button>
+                    <Button onClick={() => showValue('tan(')}>tan</Button>
+                    <Button onClick={() => showValue('-')}>ANS</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('𝜋')}>𝜋</Button>
+                    <Button onClick={() => showValue('e')}>e</Button>
+                    <Button onClick={() => showValue('√(')}>
+                        √
+                    </Button>
+                    <Button onClick={() => showValue('^')}>
+                        ^
+                    </Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('(')}>(</Button>
+                    <Button onClick={() => showValue(')')}>)</Button>
+                    <Button onClick={() => showValue('%')}>%</Button>
+                    <Button onClick={() => showValue('÷')}>÷</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('7')}>7</Button>
+                    <Button onClick={() => showValue('8')}>8</Button>
+                    <Button onClick={() => showValue('9')}>9</Button>
+                    <Button onClick={() => showValue('x')}>x</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('4')}>4</Button>
+                    <Button onClick={() => showValue('5')}>5</Button>
+                    <Button onClick={() => showValue('6')}>6</Button>
+                    <Button onClick={() => showValue('-')}>-</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('1')}>1</Button>
+                    <Button onClick={() => showValue('2')}>2</Button>
+                    <Button onClick={() => showValue('3')}>3</Button>
+                    <Button onClick={() => showValue('+')}>+</Button>
+                </Rows>
+                <Rows>
+                    <Button onClick={() => showValue('convert')}>+/-</Button>
+                    <Button onClick={() => showValue('0')}>0</Button>
+                    <Button onClick={() => showValue(',')}>,</Button>
+                    <Button onClick={() => showValue('=')}>=</Button>
+                </Rows>
+
+            </Container>
+        </main>
     )
 }
 
@@ -30,67 +131,7 @@ export default Calculator
 
 
 /*
-
-        <div className='calculadora'>
-            <Pantalla input={valorPantalla} manejarEnvio={calcularResultado} />
-            <div className='filas'>
-                <Boton accionClick={() => mostrar('ln(')}>ln</Boton>
-                <Boton accionClick={() => mostrar('log(')}>log</Boton>
-                <Boton accionClick={borrarUnValor}>
-                    <FiDelete></FiDelete>
-                </Boton>
-                <Boton accionClick={() => setValorPantalla('')}>AC</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={() => mostrar('cos(')}>cos</Boton>
-                <Boton accionClick={() => mostrar('sin(')}>sin</Boton>
-                <Boton accionClick={() => mostrar('tan(')}>tan</Boton>
-                <Boton accionClick={() => recuperarUltimoResultado()}>ANS</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={mostrar}>𝜋</Boton>
-                <Boton accionClick={mostrar}>e</Boton>
-                <Boton accionClick={() => mostrar('√(')}>
-                    <img className='img-raiz' src={imagenRaiz} alt='Raiz cuadrada' />
-                </Boton>
-                <Boton accionClick={() => mostrar('^')}>
-                    <img className="img-potencia" src={imgPotencia} alt="potencia" />
-                </Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={mostrar}>(</Boton>
-                <Boton accionClick={mostrar}>)</Boton>
-                <Boton accionClick={mostrar}>%</Boton>
-                <Boton accionClick={mostrar}>÷</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={mostrar}>7</Boton>
-                <Boton accionClick={mostrar}>8</Boton>
-                <Boton accionClick={mostrar}>9</Boton>
-                <Boton accionClick={mostrar}>x</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={mostrar}>4</Boton>
-                <Boton accionClick={mostrar}>5</Boton>
-                <Boton accionClick={mostrar}>6</Boton>
-                <Boton accionClick={mostrar}>-</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={mostrar}>1</Boton>
-                <Boton accionClick={mostrar}>2</Boton>
-                <Boton accionClick={mostrar}>3</Boton>
-                <Boton accionClick={mostrar}>+</Boton>
-            </div>
-            <div className='filas'>
-                <Boton accionClick={convertirTipoNumero}>
-                    <img className="img-conversion-num" src={imgConversionNumero} alt="positivo-negativo" />
-                </Boton>
-                <Boton accionClick={mostrar}>0</Boton>
-                <Boton accionClick={mostrar}>,</Boton>
-                <Boton accionClick={calcularResultado}>=</Boton>
-            </div>
-
-            
+           
             <div className='historial'>
                 <Historial
                     historial={historial}
