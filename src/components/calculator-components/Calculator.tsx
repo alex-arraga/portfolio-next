@@ -1,5 +1,6 @@
 "use client"
 
+import math from 'mathjs'
 import { evaluate } from 'mathjs'
 
 import React from 'react'
@@ -15,13 +16,7 @@ export function Calculator() {
     const [valueScreen, setValueScreen] = useState('');
     const [history, setHistory] = useState<Array<Record<string, any>>>([]);
     const [operationNumber, setOperationNumber] = useState(1);
-
-
-
     const [lastResult, setLastResult] = useState('');
-
-
-
 
     // Reg Exp
     const operators = /[+\-%^*,/]|[x÷√!]/;
@@ -67,6 +62,7 @@ export function Calculator() {
         }
     };
 
+
     // Special keys 'Backspace' y 'r'
     const deleteAValue = () => {
         setValueScreen(() => valueScreen.slice(0, -1))
@@ -75,8 +71,12 @@ export function Calculator() {
         }
     }
 
+
     // Ultimo Resultado 'ANS'
     const getLastResult = () => {
+        if (lastResult === '') {
+            alert('Sin registros de un último resultado')
+        }
         setValueScreen(valueScreen + lastResult)
     };
 
@@ -93,52 +93,89 @@ export function Calculator() {
         setHistory([...history, newRegister]);
     };
 
+    // Convierte simbolos especiales a operadores legibles por 'Math.js', asi puede evaluar el resultado
+    const convertExpression = () => {
+        let convertValue = valueScreen;
+
+        // ExpReg
+        const expSquare = /√\(([^)]+)\)/g;
+        const expLog = /log\((-?\d+(\.\d+)?)\)/g;
+        const expLn = /ln\((-?\d+(\.\d+)?)\)/g;
+        const expTan = /tan\((-?\d+(\.\d+)?)\)/g;
+        const expCos = /cos\((-?\d+(\.\d+)?)\)/g;
+        const expSin = /sin\((-?\d+(\.\d+)?)\)/g;
+
+        // Valores fijos
+        convertValue = convertValue.replace(/\./g, '');
+        convertValue = convertValue.replace(/,/g, '.');
+        convertValue = convertValue.replace(/x/g, '*');
+        convertValue = convertValue.replace(/÷/g, '/');
+        convertValue = convertValue.replace(/𝜋/g, Math.PI.toString());
+        convertValue = convertValue.replace(/e/g, Math.E.toString());
+
+        // Operaciones dinamicas
+        convertValue = convertValue.replace(expSquare, (_, value) => {
+            return Math.sqrt(evaluate(value)).toString();
+        });
+
+        convertValue = convertValue.replace(expLog, (_, value) => {
+            return Math.log10(evaluate(value)).toString();
+        });
+
+        convertValue = convertValue.replace(expLn, (_, value) => {
+            return Math.log(evaluate(value)).toString();
+        });
+
+        convertValue = convertValue.replace(expTan, (_, value) => {
+            return Math.tan(evaluate(value)).toString();
+        });
+
+        convertValue = convertValue.replace(expCos, (_, value) => {
+            return Math.cos(evaluate(value)).toString();
+        });
+
+        convertValue = convertValue.replace(expSin, (_, value) => {
+            return Math.sin(evaluate(value)).toString();
+        });
+
+        return convertValue
+    };
+
 
     // Evaluar resultados
     const calc = () => {
         if ((valueScreen || expressionInBrackets && validExpression && !hasEmptyBrackets))
             if (!endsOperator && !endsComma) {
                 try {
-                    // Historial: Suma 1 a N°
+                    // History: add 1 a n
                     const nOperation = () => {
                         setOperationNumber(() => operationNumber + 1);
                         return operationNumber
                     };
 
-                    const result = evaluate(valueScreen);
+                    // Evaluates the expression and transforms it again to a string
+                    const result = evaluate(convertExpression()).toString();
 
-                    // Convierte el resultado en string nuevamente
-                    const stringResult = result.toString();
-
-                    const formatResult = stringResult.replace('.', ',');
-                    const deleteCero = /,0$/.test(formatResult);
+                    const formatResult = result.replace('.', ',');
                     const finalResult = formatResult;
 
+                    // Show the result of expression
+                    setValueScreen(finalResult)
+
+                    // Save the last result (ANS)
                     setLastResult(finalResult)
 
+                    // Send arguments to create a 'new register' object
+                    saveHistoy(nOperation(), valueScreen, finalResult)
 
-                    if (deleteCero) {
-                        // Si termina en ',0' lo elimina y redondea
+                    const endsCero = /,0$/.test(finalResult);
+
+                    if (endsCero) {
                         const roundedResult = finalResult.slice(0, -2);
 
-                        // Muestro el resultado de la expresion
                         setValueScreen(roundedResult)
-
-                        // Almacena el ultimo resultado (ANS)
                         setLastResult(roundedResult)
-
-                        // Pasa argumentos al objeto 'nuevoRegistro'
                         saveHistoy(nOperation(), valueScreen, roundedResult);
-
-                    } else {
-                        // Muestro el resultado de la expresion
-                        setValueScreen(finalResult);
-
-                        // Almacena el ultimo resultado (ANS)
-                        setValueScreen(finalResult);
-
-                        // Pasa argumentos al objeto 'nuevoRegistro'
-                        saveHistoy(nOperation(), valueScreen, finalResult);
                     }
                 } catch {
                     setValueScreen('Error');
@@ -147,11 +184,13 @@ export function Calculator() {
             }
             else {
                 setValueScreen('Error')
+                alert('La expresión no puede terminar en un operador o en una coma')
             }
         else {
             alert('Ingrese una expresión')
         }
     };
+
 
     // Keyboard
     useEffect(() => {
@@ -229,13 +268,13 @@ export function Calculator() {
                     <Button onClick={() => showValue('(')}>(</Button>
                     <Button onClick={() => showValue(')')}>)</Button>
                     <Button onClick={() => showValue('%')}>%</Button>
-                    <Button onClick={() => showValue('/')}>÷</Button>
+                    <Button onClick={() => showValue('÷')}>÷</Button>
                 </Rows>
                 <Rows>
                     <Button onClick={() => showValue('7')}>7</Button>
                     <Button onClick={() => showValue('8')}>8</Button>
                     <Button onClick={() => showValue('9')}>9</Button>
-                    <Button onClick={() => showValue('*')}>x</Button>
+                    <Button onClick={() => showValue('x')}>x</Button>
                 </Rows>
                 <Rows>
                     <Button onClick={() => showValue('4')}>4</Button>
