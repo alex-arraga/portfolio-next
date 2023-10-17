@@ -15,7 +15,13 @@ export function Calculator() {
     const [valueScreen, setValueScreen] = useState('');
     const [history, setHistory] = useState<Array<Record<string, any>>>([]);
     const [operationNumber, setOperationNumber] = useState(1);
-    const [lastResult, setLastResult] = useState([]);
+
+
+
+    const [lastResult, setLastResult] = useState('');
+
+
+
 
     // Reg Exp
     const operators = /[+\-%^*,/]|[x÷√!]/;
@@ -29,6 +35,24 @@ export function Calculator() {
     const hasEmptyBrackets = emptyBrackets.test(valueScreen);
     const endsOperator = operators.test(lastCharacter);
     const endsComma = comma.test(lastCharacter);
+
+    // Agrega '.' cada 3 numeros
+    useEffect(() => {
+        // ExpReg para agregar puntos cada tres dígitos
+        const colocarPuntos = /\B(?=(\d{3})+(?!\d))/g;
+        const fotmatingScreen = valueScreen
+            // Elimina los puntos existentes antes de hacer el proximo reemplazo
+            .replace(/\./g, '')
+            // Agrega los puntos siempre que la condicion se cumpla
+            .replace(colocarPuntos, '.');
+
+        // Actualizar el estado solo si es necesario (evitar bucle infinito)
+        if (fotmatingScreen !== valueScreen) {
+            if ((!/,\d{3,}/.test(valueScreen))) {
+                setTimeout(() => setValueScreen(fotmatingScreen), 100)
+            }
+        }
+    }, [valueScreen]);
 
 
     // Show in the screen
@@ -58,13 +82,14 @@ export function Calculator() {
 
 
     // Almacena una lista de objetos como registros en Historial
-    const saveHistoy = (operationNumber: number, expression: string, result: number) => {
+    const saveHistoy = (id_operation: number, expression: string, result: number) => {
         const newRegister = {
-            operationNumber,
+            id_operation,
             expression,
             result
         }
         // Recorre el array 'historial' y añade un nuevo registro al final
+        console.log(newRegister)
         setHistory([...history, newRegister]);
     };
 
@@ -75,41 +100,45 @@ export function Calculator() {
             if (!endsOperator && !endsComma) {
                 try {
                     // Historial: Suma 1 a N°
-                    const nOperacion = () => {
+                    const nOperation = () => {
                         setOperationNumber(() => operationNumber + 1);
                         return operationNumber
                     };
 
-                    const resultado = evaluate(valueScreen);
-                    // const redondearDecimales = resultado.toFixed(1);
-                    // const resultadoString = redondearDecimales.toString();
+                    const result = evaluate(valueScreen);
 
-                    // No redondea decimales
-                    const resultadoString = resultado.toString();
+                    // Convierte el resultado en string nuevamente
+                    const stringResult = result.toString();
 
-                    const resultadoFormateado = resultadoString.replace('.', ',');
-                    const eliminarCeroFinal = /,0$/.test(resultadoFormateado);
-                    const resFinal = resultadoFormateado;
+                    const formatResult = stringResult.replace('.', ',');
+                    const deleteCero = /,0$/.test(formatResult);
+                    const finalResult = formatResult;
 
-                    if (eliminarCeroFinal) {
+                    setLastResult(finalResult)
+
+
+                    if (deleteCero) {
                         // Si termina en ',0' lo elimina y redondea
-                        const resFinalDecimal = resFinal.slice(0, -2);
+                        const roundedResult = finalResult.slice(0, -2);
 
                         // Muestro el resultado de la expresion
-                        setValueScreen(resFinalDecimal);
+                        setValueScreen(roundedResult)
 
                         // Almacena el ultimo resultado (ANS)
-                        setLastResult(resFinalDecimal);
+                        setLastResult(roundedResult)
+
                         // Pasa argumentos al objeto 'nuevoRegistro'
-                        saveHistoy(nOperacion(), valueScreen, resFinalDecimal);
+                        saveHistoy(nOperation(), valueScreen, roundedResult);
+
                     } else {
                         // Muestro el resultado de la expresion
-                        setValueScreen(resFinal);
+                        setValueScreen(finalResult);
 
                         // Almacena el ultimo resultado (ANS)
-                        setValueScreen(resFinal);
+                        setValueScreen(finalResult);
+
                         // Pasa argumentos al objeto 'nuevoRegistro'
-                        saveHistoy(nOperacion(), valueScreen, resFinal);
+                        saveHistoy(nOperation(), valueScreen, finalResult);
                     }
                 } catch {
                     setValueScreen('Error');
@@ -123,6 +152,47 @@ export function Calculator() {
             alert('Ingrese una expresión')
         }
     };
+
+    // Keyboard
+    useEffect(() => {
+        window.onkeydown = eventKey => {
+            const key = eventKey.key
+            const validarNum = Number(eventKey.key) >= 0 && Number(eventKey.key) <= 9;
+            if (validarNum) {
+                setValueScreen(valueScreen + key)
+            } else if (key) {
+                switch (key) {
+                    case '(':
+                    case ')':
+                    case '+':
+                    case '-':
+                    case ',':
+                    case '%':
+                    case '^':
+                        showValue(key)
+                        break;
+                    case '*':
+                        showValue(key.replace(/\*/g, 'x'));
+                        break;
+                    case '/':
+                        showValue(key.replace(/\//g, '÷'));
+                        break;
+                    case 'Enter':
+                        calc()
+                        break;
+                    case 'Backspace':
+                        deleteAValue()
+                        break;
+                    case 'r':
+                    case 'R':
+                        getLastResult()
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+    }, [])
 
 
     return (
