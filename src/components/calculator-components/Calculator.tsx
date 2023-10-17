@@ -1,16 +1,20 @@
 "use client"
 
-import math from 'mathjs'
 import { evaluate } from 'mathjs'
 
-import React from 'react'
 import { Button } from './Button'
 import { Screen } from './Screen'
 import { Rows } from './Rows'
 import { Container } from './Container'
 import { FiDelete } from 'react-icons/fi';
 
+import React from 'react'
 import { useEffect, useState } from 'react'
+
+import Powers from '@/assets/icons/calculator/Powers'
+import PlusMinus from '@/assets/icons/calculator/PlusMinus'
+import SquareRoot from '@/assets/icons/calculator/SquareRoot'
+
 
 export function Calculator() {
     const [valueScreen, setValueScreen] = useState('');
@@ -79,6 +83,21 @@ export function Calculator() {
         }
         setValueScreen(valueScreen + lastResult)
     };
+
+
+    // Convert positive number to negative and reverse
+    const changeSymbol = () => {
+        const firstCharacter = valueScreen.slice(0, 1);
+        const negativeNumber = /-/.test(firstCharacter);
+
+        if (valueScreen && !negativeNumber && !endsOperator && !endsComma) {
+            setValueScreen('-' + valueScreen)
+        } else if (negativeNumber) {
+            setValueScreen(valueScreen.replace('-', ''))
+        } else if (endsOperator || endsComma) {
+            return
+        } else { setValueScreen(valueScreen) }
+    }
 
 
     // Almacena una lista de objetos como registros en Historial
@@ -258,10 +277,10 @@ export function Calculator() {
                     <Button onClick={() => showValue('𝜋')}>𝜋</Button>
                     <Button onClick={() => showValue('e')}>e</Button>
                     <Button onClick={() => showValue('√(')}>
-                        √
+                        <SquareRoot />
                     </Button>
                     <Button onClick={() => showValue('^')}>
-                        ^
+                        <Powers />
                     </Button>
                 </Rows>
                 <Rows>
@@ -289,7 +308,9 @@ export function Calculator() {
                     <Button onClick={() => showValue('+')}>+</Button>
                 </Rows>
                 <Rows>
-                    <Button onClick={() => showValue('convert')}>+/-</Button>
+                    <Button onClick={() => changeSymbol()}>
+                        <PlusMinus />
+                    </Button>
                     <Button onClick={() => showValue('0')}>0</Button>
                     <Button onClick={() => showValue(',')}>,</Button>
                     <Button onClick={() => calc()}>=</Button>
