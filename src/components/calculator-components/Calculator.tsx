@@ -1,7 +1,9 @@
 "use client"
 
 import { evaluate } from 'mathjs';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { baseURL } from '@/libs/baseURL';
 
 import { Button } from './Button';
 import { Screen } from './Screen';
@@ -9,19 +11,15 @@ import { Rows } from './Rows';
 import { CalcContainer } from './CalcContainer';
 import { FiDelete } from 'react-icons/fi';
 
-import React from 'react'
-import { useEffect, useState } from 'react';
-
 import Powers from '@/assets/icons/calculator/Powers';
 import PlusMinus from '@/assets/icons/calculator/PlusMinus';
 import SquareRoot from '@/assets/icons/calculator/SquareRoot';
-import { baseURL } from '@/libs/baseURL';
 
 
 export function Calculator() {
     const [valueScreen, setValueScreen] = useState('');
-    // const [operationNumber, setOperationNumber] = useState(1);
     const [lastResult, setLastResult] = useState('');
+    const [doAOperation, setDoAOperation] = useState(false)
     const router = useRouter()
 
     // Reg Exp
@@ -37,7 +35,8 @@ export function Calculator() {
     const endsOperator = operators.test(lastCharacter);
     const endsComma = comma.test(lastCharacter);
 
-    // Agrega '.' cada 3 numeros
+
+    // Add '.' every 3 numbers
     useEffect(() => {
         // ExpReg para agregar puntos cada tres dígitos
         const colocarPuntos = /\B(?=(\d{3})+(?!\d))/g;
@@ -54,6 +53,55 @@ export function Calculator() {
             }
         }
     }, [valueScreen]);
+
+
+    // Keyboard
+    useEffect(() => {
+        window.onkeydown = eventKey => {
+            const key = eventKey.key
+            const numbers = Number(key) >= 0 && Number(key) <= 9;
+            if (numbers) {
+                setValueScreen(valueScreen + key)
+            } else if (key) {
+                switch (key) {
+                    case '(':
+                    case ')':
+                    case '+':
+                    case '-':
+                    case ',':
+                    case '%':
+                    case '^':
+                        showValue(key)
+                        break;
+                    case '*':
+                        showValue(key.replace(/\*/g, 'x'));
+                        break;
+                    case '/':
+                        showValue(key.replace(/\//g, '÷'));
+                        break;
+                    case 'Enter':
+                        calc()
+                        break;
+                    case 'Backspace':
+                        deleteAValue()
+                        break;
+                    case 'r':
+                    case 'R':
+                        getLastResult()
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+    }, [])
+
+
+    // Refresh the History
+    useEffect(() => {
+        router.refresh()
+        setDoAOperation(false)
+    }, [doAOperation])
 
 
     // Show in the screen
@@ -78,7 +126,7 @@ export function Calculator() {
     }
 
 
-    // Ultimo Resultado 'ANS'
+    // Last result 'ANS'
     const getLastResult = () => {
         if (lastResult === '') {
             alert('Sin registros de un último resultado')
@@ -102,7 +150,7 @@ export function Calculator() {
     }
 
 
-    // Convierte simbolos especiales a operadores legibles por 'Math.js', asi puede evaluar el resultado
+    // Convert special symbols to operators readable by 'Math.js', so you can evaluate the result
     const convertExpression = () => {
         let convertValue = valueScreen;
 
@@ -151,8 +199,8 @@ export function Calculator() {
     };
 
 
-    // Evaluar resultados
-    const calc = () => {
+    // Eval results
+    const calc = async () => {
         if ((valueScreen || expressionInBrackets && validExpression && !hasEmptyBrackets))
             if (!endsOperator && !endsComma) {
                 try {
@@ -162,24 +210,15 @@ export function Calculator() {
                     const finalResult = formatResult;
                     const endsCero = /,0$/.test(finalResult);
 
-                    // Show the result of expression
                     setValueScreen(finalResult)
-
-                    // Save the last result (ANS)
                     setLastResult(finalResult)
-
-                    // Send arguments to create a 'new register' object
                     saveOperation(valueScreen, finalResult)
-
-                    router.refresh()
 
                     if (endsCero) {
                         const roundedResult = finalResult.slice(0, -2);
-
                         setValueScreen(roundedResult)
                         setLastResult(roundedResult)
                         saveOperation(valueScreen, roundedResult);
-                        router.refresh()
                     }
                 } catch {
                     setValueScreen('Error');
@@ -196,49 +235,7 @@ export function Calculator() {
     };
 
 
-    // Keyboard
-    useEffect(() => {
-        window.onkeydown = eventKey => {
-            const key = eventKey.key
-            const validarNum = Number(eventKey.key) >= 0 && Number(eventKey.key) <= 9;
-            if (validarNum) {
-                setValueScreen(valueScreen + key)
-            } else if (key) {
-                switch (key) {
-                    case '(':
-                    case ')':
-                    case '+':
-                    case '-':
-                    case ',':
-                    case '%':
-                    case '^':
-                        showValue(key)
-                        break;
-                    case '*':
-                        showValue(key.replace(/\*/g, 'x'));
-                        break;
-                    case '/':
-                        showValue(key.replace(/\//g, '÷'));
-                        break;
-                    case 'Enter':
-                        calc()
-                        break;
-                    case 'Backspace':
-                        deleteAValue()
-                        break;
-                    case 'r':
-                    case 'R':
-                        getLastResult()
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-    }, [])
-
-
-    // Almacena una lista de objetos como registros en Historial
+    // Stores a list of objects as records in History
     const saveOperation = async (expression: string, result: number) => {
         try {
             const data = {
@@ -251,10 +248,13 @@ export function Calculator() {
                 body: JSON.stringify(data),
                 credentials: 'include'
             })
+
+            setDoAOperation(true)
         } catch (error) {
             console.log(error)
         }
     };
+
 
     return (
         <section className='flex justify-center items-center h-screen'>

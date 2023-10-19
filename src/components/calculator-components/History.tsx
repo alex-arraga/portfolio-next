@@ -25,7 +25,7 @@ async function History({ params }: { params: { id: string | number } }) {
 
                     :
                     operations.sort((a, b) => b.id - a.id).map(operation =>
-                        <div key={operation.id} className='bg-sky-900 w-full h-28 rounded-md p-3  mb-5'>
+                        <div key={operation.id} className='bg-sky-900 w-full h-28 rounded-md p-3 mb-5'>
                             <div className='flex justify-between items-center'>
                                 <p className='text-xs text-gray-200'>{operation.created_at.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                                 <AiOutlineCloseCircle className='text-red-300 cursor-pointer hover:text-red-500 duration-300' />
@@ -36,7 +36,8 @@ async function History({ params }: { params: { id: string | number } }) {
                             <h4 className='text-sm mb-1'><span className='font-semibold cursor-pointer hover:text-fuchsia-300 hover:underline duration-300'>Exp: </span>{operation.expression}</h4>
                             <h4 className='text-sm'><span className='font-semibold cursor-pointer hover:text-fuchsia-300 hover:underline duration-300'>Res: </span>{operation.result}</h4>
                         </div>
-                    )}
+                    )
+            }
         </HistoryContainer>
 
     )
