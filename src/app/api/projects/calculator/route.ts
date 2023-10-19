@@ -20,7 +20,6 @@ export async function POST(request: Request) {
         const newOperation = await prisma.calculator.create({ data })
 
         return NextResponse.json({
-            message: 'Se ha creado una nueva operación',
             newOperation
         })
     } catch (error) {

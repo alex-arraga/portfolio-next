@@ -1,26 +1,28 @@
 "use client"
 
-import { evaluate } from 'mathjs'
+import { evaluate } from 'mathjs';
+import { useRouter } from 'next/navigation';
 
-import { Button } from './Button'
-import { Screen } from './Screen'
-import { Rows } from './Rows'
-import { Container } from './Container'
+import { Button } from './Button';
+import { Screen } from './Screen';
+import { Rows } from './Rows';
+import { CalcContainer } from './CalcContainer';
 import { FiDelete } from 'react-icons/fi';
 
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import Powers from '@/assets/icons/calculator/Powers'
-import PlusMinus from '@/assets/icons/calculator/PlusMinus'
-import SquareRoot from '@/assets/icons/calculator/SquareRoot'
+import Powers from '@/assets/icons/calculator/Powers';
+import PlusMinus from '@/assets/icons/calculator/PlusMinus';
+import SquareRoot from '@/assets/icons/calculator/SquareRoot';
+import { baseURL } from '@/libs/baseURL';
 
 
 export function Calculator() {
     const [valueScreen, setValueScreen] = useState('');
-    const [history, setHistory] = useState<Array<Record<string, any>>>([]);
-    const [operationNumber, setOperationNumber] = useState(1);
+    // const [operationNumber, setOperationNumber] = useState(1);
     const [lastResult, setLastResult] = useState('');
+    const router = useRouter()
 
     // Reg Exp
     const operators = /[+\-%^*,/]|[x÷√!]/;
@@ -100,18 +102,6 @@ export function Calculator() {
     }
 
 
-    // Almacena una lista de objetos como registros en Historial
-    const saveHistoy = (id_operation: number, expression: string, result: number) => {
-        const newRegister = {
-            id_operation,
-            expression,
-            result
-        }
-        // Recorre el array 'historial' y añade un nuevo registro al final
-        console.log(newRegister)
-        setHistory([...history, newRegister]);
-    };
-
     // Convierte simbolos especiales a operadores legibles por 'Math.js', asi puede evaluar el resultado
     const convertExpression = () => {
         let convertValue = valueScreen;
@@ -166,17 +156,11 @@ export function Calculator() {
         if ((valueScreen || expressionInBrackets && validExpression && !hasEmptyBrackets))
             if (!endsOperator && !endsComma) {
                 try {
-                    // History: add 1 a n
-                    const nOperation = () => {
-                        setOperationNumber(() => operationNumber + 1);
-                        return operationNumber
-                    };
-
                     // Evaluates the expression and transforms it again to a string
                     const result = evaluate(convertExpression()).toString();
-
                     const formatResult = result.replace('.', ',');
                     const finalResult = formatResult;
+                    const endsCero = /,0$/.test(finalResult);
 
                     // Show the result of expression
                     setValueScreen(finalResult)
@@ -185,16 +169,17 @@ export function Calculator() {
                     setLastResult(finalResult)
 
                     // Send arguments to create a 'new register' object
-                    saveHistoy(nOperation(), valueScreen, finalResult)
+                    saveOperation(valueScreen, finalResult)
 
-                    const endsCero = /,0$/.test(finalResult);
+                    router.refresh()
 
                     if (endsCero) {
                         const roundedResult = finalResult.slice(0, -2);
 
                         setValueScreen(roundedResult)
                         setLastResult(roundedResult)
-                        saveHistoy(nOperation(), valueScreen, roundedResult);
+                        saveOperation(valueScreen, roundedResult);
+                        router.refresh()
                     }
                 } catch {
                     setValueScreen('Error');
@@ -253,10 +238,27 @@ export function Calculator() {
     }, [])
 
 
-    return (
-        <main className='flex justify-center items-center h-screen'>
+    // Almacena una lista de objetos como registros en Historial
+    const saveOperation = async (expression: string, result: number) => {
+        try {
+            const data = {
+                expression,
+                result
+            }
 
-            <Container>
+            const response = await fetch(`${baseURL}/calculator`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                credentials: 'include'
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    return (
+        <section className='flex justify-center items-center h-screen'>
+            <CalcContainer>
                 <Screen value={valueScreen} />
 
                 <Rows>
@@ -316,27 +318,9 @@ export function Calculator() {
                     <Button onClick={() => calc()}>=</Button>
                 </Rows>
 
-            </Container>
-        </main>
+            </CalcContainer>
+        </section>
     )
 }
 
 export default Calculator
-
-
-
-
-/*
-           
-            <div className='historial'>
-                <Historial
-                    historial={historial}
-                    setHistorial={setHistorial}
-                    numeroOperacion={numeroOperacion}
-                    setNumeroOperacion={setNumeroOperacion}
-                    setValorPantalla={setValorPantalla}
-                />
-            </div>
-        </div>
-
-*/

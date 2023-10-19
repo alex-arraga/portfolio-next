@@ -7,7 +7,7 @@ import { baseURL } from '@/libs/baseURL';
 
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
-import { App } from '@/components/tasks-components/AppTasks.tsx/AppTasks'
+import { AppTasks } from '@/components/tasks-components/AppTasks/AppTasks'
 import { toast } from 'sonner';
 
 export function TasksFormPage({ id }: { id: string | undefined }) {
@@ -84,7 +84,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
     })
 
     return (
-        <App params={{ id }}>
+        <AppTasks params={{ id }}>
 
             <section className="flex justify-center items-center h-[calc(100vh-7rem)]">
                 <div className=" bg-neutral-800 p-8 md:p-14 rounded-md w-[calc(100vw-3rem)] md:w-[calc(100vw-20rem)]">
@@ -116,7 +116,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
                 </div>
             </section>
 
-        </App>
+        </AppTasks>
     )
 }
 

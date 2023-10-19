@@ -1,8 +1,8 @@
-import Calculator from "@/components/calculator-components/Calculator"
+import AppCalculator from "@/components/calculator-components/AppCalculator/AppCalculator"
 
 function page() {
     return (
-        <Calculator />
+        <AppCalculator />
     )
 }
 

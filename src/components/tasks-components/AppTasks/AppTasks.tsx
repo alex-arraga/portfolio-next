@@ -2,7 +2,7 @@
 
 import { Navbar } from '@/components/tasks-components/Navbar/Navbar'
 
-export function App({ params, children }: { params: { id: string | undefined }; children: React.ReactNode | any }) {
+export function AppTasks({ params, children }: { params: { id: string | undefined }; children: React.ReactNode | any }) {
     return (
         <div className='container mx-auto mb-10'>
             <Navbar />
@@ -11,5 +11,5 @@ export function App({ params, children }: { params: { id: string | undefined }; 
     )
 }
 
-export default App
+export default AppTasks
 

@@ -1,6 +1,6 @@
 import { prisma } from "@/libs/prisma"
 import TaskCard from "@/components/tasks-components/TaskCard"
-import { App } from '@/components/tasks-components/AppTasks.tsx/AppTasks'
+import { AppTasks } from '@/components/tasks-components/AppTasks/AppTasks'
 
 const loadTasks = async () => {
     const loadAllTasks = await prisma.task.findMany()
@@ -17,7 +17,7 @@ async function TasksPage({ params, typePage }: { params: { id: string | undefine
     const tasksCompleted = await loadCompletedTasks();
 
     return (
-        <App params={params}>
+        <AppTasks params={params}>
             <main className="mt-10">
                 {
                     typePage === 'completed' ?
@@ -56,7 +56,7 @@ async function TasksPage({ params, typePage }: { params: { id: string | undefine
 
                 }
             </main>
-        </App>
+        </AppTasks>
 
     )
 }
