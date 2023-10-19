@@ -8,7 +8,7 @@ import { baseURL } from '@/libs/baseURL';
 import { Button } from './Button';
 import { Screen } from './Screen';
 import { Rows } from './Rows';
-import { CalcContainer } from './CalcContainer';
+import { CalculatorContainer } from './CalculatorContainer';
 import { FiDelete } from 'react-icons/fi';
 
 import Powers from '@/assets/icons/calculator/Powers';
@@ -258,7 +258,7 @@ export function Calculator() {
 
     return (
         <section className='flex justify-center items-center h-screen'>
-            <CalcContainer>
+            <CalculatorContainer>
                 <Screen value={valueScreen} />
 
                 <Rows>
@@ -318,7 +318,7 @@ export function Calculator() {
                     <Button onClick={() => calc()}>=</Button>
                 </Rows>
 
-            </CalcContainer>
+            </CalculatorContainer>
         </section>
     )
 }
