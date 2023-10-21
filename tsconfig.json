@@ -34,7 +34,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/assets/icons/calculator/Powers.js",
-    "src/components/tasks-components/AppTasks"
+    "src/components/tasks-components/AppTasks",
+    "src/components/calculator-components/AppCalculator/AppCalculator.tsx",
+    "src/components/calculator-components/History/History.tsx"
   ],
   "exclude": [
     "node_modules"
