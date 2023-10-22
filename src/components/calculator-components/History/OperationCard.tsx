@@ -2,57 +2,21 @@
 
 import { CSSTransition } from 'react-transition-group';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import { useEffect, useRef, useState } from 'react'
 import '@/css/transition.css'
+import { useEffect, useRef, useState } from 'react'
+
 import { Operation } from '@/interfaces/calculator'
-import { baseURL } from '@/libs/baseURL';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+import { useCalculatorContext } from '@/context/CalculatorContext';
 
 
 export function OperationCard({ operation }: { operation: Operation }) {
     const [isAnimationEnabled, setIsAnimationEnabled] = useState(false);
     const nodeRef = useRef(null);
-    const router = useRouter()
-
+    const { deleteOperation, getExpression, getResult } = useCalculatorContext()
 
     useEffect(() => {
         setIsAnimationEnabled(true);
     }, []);
-
-
-    const deleteOperation = async (id: number) => {
-        try {
-            if (window.confirm('Confirma que quiere eliminar la operación')) {
-                await fetch(`${baseURL}/calculator/${id}`, {
-                    method: 'DELETE',
-                    credentials: 'include'
-                })
-                router.refresh()
-                toast.success('Se ha eliminado la operación')
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-
-    const getExpression = async (id: number) => {
-        try {
-            const response = await fetch(`${baseURL}/calculator/${id}`, {
-                method: 'GET',
-                credentials: 'include'
-            })
-
-            const data = await response.json()
-            const expression = data.getOperation.expression
-
-            console.log(expression)
-            return expression
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
 
     return (
@@ -71,7 +35,7 @@ export function OperationCard({ operation }: { operation: Operation }) {
                 <hr className='my-3 bg-slate-900' />
 
                 <h4 onClick={() => getExpression(operation.id)} className='text-sm mb-1'><span className='font-semibold cursor-pointer hover:text-fuchsia-300 hover:underline duration-300'>Exp: </span>{operation.expression}</h4>
-                <h4 className='text-sm'><span className='font-semibold cursor-pointer hover:text-fuchsia-300 hover:underline duration-300'>Res: </span>{operation.result}</h4>
+                <h4 onClick={() => getResult(operation.id)} className='text-sm'><span className='font-semibold cursor-pointer hover:text-fuchsia-300 hover:underline duration-300'>Res: </span>{operation.result}</h4>
             </div>
         </CSSTransition>
     )

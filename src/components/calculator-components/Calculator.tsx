@@ -2,8 +2,6 @@
 
 import { evaluate } from 'mathjs';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { baseURL } from '@/libs/baseURL';
 
 import { Button } from './Button';
 import { Screen } from './Screen';
@@ -15,12 +13,14 @@ import Powers from '@/assets/icons/calculator/Powers';
 import PlusMinus from '@/assets/icons/calculator/PlusMinus';
 import SquareRoot from '@/assets/icons/calculator/SquareRoot';
 
+import { useCalculatorContext } from '@/context/CalculatorContext';
+
 
 export function Calculator() {
+    const { saveOperation, recoverExpression, recoverResult } = useCalculatorContext();
+
     const [valueScreen, setValueScreen] = useState('');
     const [lastResult, setLastResult] = useState('');
-    const [doAOperation, setDoAOperation] = useState(false)
-    const router = useRouter()
 
     // Reg Exp
     const operators = /[+\-%^*,/]|[x÷√!]/;
@@ -34,6 +34,16 @@ export function Calculator() {
     const hasEmptyBrackets = emptyBrackets.test(valueScreen);
     const endsOperator = operators.test(lastCharacter);
     const endsComma = comma.test(lastCharacter);
+
+
+    // Get expression and result
+    useEffect(() => {
+        setValueScreen(recoverExpression)
+    }, [recoverExpression]);
+
+    useEffect(() => {
+        setValueScreen(recoverResult)
+    }, [recoverResult]);
 
 
     // Add '.' every 3 numbers
@@ -94,14 +104,7 @@ export function Calculator() {
                 }
             }
         };
-    }, [])
-
-
-    // Refresh the History
-    useEffect(() => {
-        router.refresh()
-        setDoAOperation(false)
-    }, [doAOperation])
+    }, []);
 
 
     // Show in the screen
@@ -123,7 +126,7 @@ export function Calculator() {
         if (valueScreen == 'Error') {
             setValueScreen('')
         }
-    }
+    };
 
 
     // Last result 'ANS'
@@ -147,7 +150,7 @@ export function Calculator() {
         } else if (endsOperator || endsComma) {
             return
         } else { setValueScreen(valueScreen) }
-    }
+    };
 
 
     // Convert special symbols to operators readable by 'Math.js', so you can evaluate the result
@@ -200,7 +203,7 @@ export function Calculator() {
 
 
     // Eval results
-    const calc = async () => {
+    const calc = () => {
         if ((valueScreen || expressionInBrackets && validExpression && !hasEmptyBrackets))
             if (!endsOperator && !endsComma) {
                 try {
@@ -231,27 +234,6 @@ export function Calculator() {
             }
         else {
             alert('Ingrese una expresión')
-        }
-    };
-
-
-    // Stores a list of objects as records in History
-    const saveOperation = async (expression: string, result: number) => {
-        try {
-            const data = {
-                expression,
-                result
-            }
-
-            const response = await fetch(`${baseURL}/calculator`, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                credentials: 'include'
-            })
-
-            setDoAOperation(true)
-        } catch (error) {
-            console.log(error)
         }
     };
 
