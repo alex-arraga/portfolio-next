@@ -23,7 +23,7 @@ export function Calculator() {
     const [lastResult, setLastResult] = useState('');
 
     // Reg Exp
-    const operators = /[+\-%^*,/]|[x÷√!]/;
+    const operators = /[+\-%^*,/]|[x÷!\√]/;
     const emptyBrackets = /\(\)|[\(\)]/;
     const validExpression = /^[0-9+\-*/^()%x÷√!lnlog,]+$/.test(valueScreen);
     const comma = /[,]/;
@@ -48,18 +48,14 @@ export function Calculator() {
 
     // Add '.' every 3 numbers
     useEffect(() => {
-        // ExpReg para agregar puntos cada tres dígitos
-        const colocarPuntos = /\B(?=(\d{3})+(?!\d))/g;
+        const addPoints = /\B(?=(\d{3})+(?!\d))/g;
         const fotmatingScreen = valueScreen
-            // Elimina los puntos existentes antes de hacer el proximo reemplazo
             .replace(/\./g, '')
-            // Agrega los puntos siempre que la condicion se cumpla
-            .replace(colocarPuntos, '.');
+            .replace(addPoints, '.');
 
-        // Actualizar el estado solo si es necesario (evitar bucle infinito)
         if (fotmatingScreen !== valueScreen) {
             if ((!/,\d{3,}/.test(valueScreen))) {
-                setTimeout(() => setValueScreen(fotmatingScreen), 100)
+                setValueScreen(fotmatingScreen)
             }
         }
     }, [valueScreen]);
@@ -70,9 +66,9 @@ export function Calculator() {
         window.onkeydown = eventKey => {
             const key = eventKey.key
             const numbers = Number(key) >= 0 && Number(key) <= 9;
-            if (numbers) {
-                setValueScreen(valueScreen + key)
-            } else if (key) {
+            if (numbers === true) {
+                showValue(key)
+            } else {
                 switch (key) {
                     case '(':
                     case ')':
@@ -103,17 +99,21 @@ export function Calculator() {
                         break;
                 }
             }
-        };
-    }, []);
+        }
+    }, [valueScreen]);
 
 
     // Show in the screen
     const showValue = (value: string) => {
         const valueIsOperator = operators.test(value);
+
         if (typeof valueScreen === "string") {
             if (endsOperator && valueIsOperator) {
                 setValueScreen(valueScreen.slice(0, -1) + value)
-            } else {
+            } else if (valueScreen === 'Error' && value) {
+                setValueScreen(value)
+            }
+            else {
                 setValueScreen(valueScreen + value);
             }
         }
