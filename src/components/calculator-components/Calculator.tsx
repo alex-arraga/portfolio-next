@@ -9,9 +9,9 @@ import { Rows } from './Rows';
 import { CalculatorContainer } from './CalculatorContainer';
 import { FiDelete } from 'react-icons/fi';
 
-import Powers from '@/assets/icons/calculator/Powers';
-import PlusMinus from '@/assets/icons/calculator/PlusMinus';
-import SquareRoot from '@/assets/icons/calculator/SquareRoot';
+import Powers from '@/assets/calculator/Powers';
+import PlusMinus from '@/assets/calculator/PlusMinus';
+import SquareRoot from '@/assets/calculator/SquareRoot';
 
 import { useCalculatorContext } from '@/context/CalculatorContext';
 

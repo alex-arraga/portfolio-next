@@ -1,10 +1,16 @@
 import '@/css/cars-store.css'
-import { Hero } from "@/components"
+import {
+    Hero,
+    Footer,
+    Navbar
+} from "@/components"
 
 function page() {
     return (
         <main className='body-store overflow-hidden'>
+            <Navbar />
             <Hero />
+            <Footer />
         </main>
     )
 }

@@ -1,5 +1,9 @@
 "use client"
 
+import '@/css/cars-store.css'
+import HeroPng from '@/assets/cars-store/hero.png';
+import HeroBgPng from '@/assets/cars-store/hero-bg.png';
+
 import Image from "next/image"
 import { CustomButton } from ".."
 
@@ -26,6 +30,21 @@ function Hero() {
                     handleClick={handleScroll}
                 />
 
+                <div className="hero__image-container">
+                    <div className="hero__image">
+                        <Image src={HeroPng}
+                            alt='hero'
+                            fill
+                            className='object-contain'
+                        />
+
+                        <Image alt='hero_bg'
+                            src={HeroBgPng}
+                            fill
+                            className='hero__image-overlay'
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     )
