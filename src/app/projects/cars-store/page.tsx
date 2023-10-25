@@ -7,7 +7,7 @@ import {
 
 function page() {
     return (
-        <main className='body-store overflow-hidden'>
+        <main className='overflow-hidden'>
             <Navbar />
             <Hero />
             <Footer />
