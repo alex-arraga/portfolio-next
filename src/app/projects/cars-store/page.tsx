@@ -2,7 +2,8 @@ import '@/css/cars-store.css'
 import {
     Hero,
     Footer,
-    Navbar
+    Navbar,
+    Home
 } from "@/components"
 
 function page() {
@@ -10,6 +11,7 @@ function page() {
         <main className='overflow-hidden'>
             <Navbar />
             <Hero />
+            <Home />
             <Footer />
         </main>
     )

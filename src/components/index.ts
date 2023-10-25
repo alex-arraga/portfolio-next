@@ -2,10 +2,18 @@ import Hero from './cars-store-components/Hero'
 import CustomButton from './cars-store-components/CustomButton'
 import Footer from './cars-store-components/Footer'
 import Navbar from './cars-store-components/Navbar'
+import Home from './cars-store-components/Home'
+import SearchBar from './cars-store-components/SearchBar'
+import CustomFilter from './cars-store-components/CustomFilter'
+import SearchManufacturer from './cars-store-components/SearchManufacturer'
 
 export {
     Hero,
     CustomButton,
     Footer,
-    Navbar
+    Navbar,
+    Home,
+    SearchBar,
+    CustomFilter,
+    SearchManufacturer
 }
