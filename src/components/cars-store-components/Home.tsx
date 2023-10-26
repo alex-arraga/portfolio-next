@@ -1,8 +1,13 @@
-import React from 'react'
-import { CustomFilter, SearchBar } from '..'
+import { CustomFilter, SearchBar, CarCard } from '..'
+import { fetchCarsAPI } from '@/app/utils'
 
 
-function Home() {
+export async function Home() {
+    const allCars = await fetchCarsAPI()
+
+    const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+
+
     return (
         <div className='mt-12 padding-x padding-y max-width' id='discover'>
 
@@ -18,6 +23,24 @@ function Home() {
                     <CustomFilter title="fuel" />
                     <CustomFilter title="year" />
                 </div>
+
+                {
+                    !isDataEmpty ? (
+                        <section>
+                            <div className='home__cars-wrapper w-screen'>
+                                {allCars?.map((car) =>
+                                    <CarCard car={car} />
+                                )}
+                            </div>
+                        </section>
+                    ) : (
+                        <section className='home__error-container'>
+                            <h2 className='text-black text-xl'>Oops no results</h2>
+                            <p>{allCars.message}</p>
+                        </section>
+                    )
+                }
+
 
             </div>
         </div>

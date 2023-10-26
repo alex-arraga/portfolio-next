@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Card } from "./Card";
 import { baseURL } from "@/libs/baseURL";
 
-import { PropsTaskCard } from "@/interfaces/tasks";
+import { PropsTaskCard } from "@/types/tasks";
 
 
 export function TaskCard({ task, typePage }: PropsTaskCard) {

@@ -1,5 +1,5 @@
 import React, { Key } from "react"
-import { PropsCard } from "@/interfaces/tasks"
+import { PropsCard } from "@/types/tasks"
 
 export function Card({ children, className, key, onClick }: PropsCard): React.ReactElement {
     return (

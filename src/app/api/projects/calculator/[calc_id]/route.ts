@@ -1,4 +1,4 @@
-import { CalculatorParams } from "@/interfaces/api";
+import { CalculatorParams } from "@/types/api";
 import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
 

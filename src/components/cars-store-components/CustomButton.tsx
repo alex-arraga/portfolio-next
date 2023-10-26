@@ -1,8 +1,9 @@
 "use client"
 
-import { CustomButtonProps } from "@/interfaces/cars-store"
+import { CustomButtonProps } from "@/types/cars-store"
+import Image from "next/image"
 
-function CustomButton({ title, containerStyle, handleClick, btnType }: CustomButtonProps) {
+function CustomButton({ title, containerStyle, textStyle, handleClick, btnType, rightIcon }: CustomButtonProps) {
     return (
         <button
             disabled={false}
@@ -10,9 +11,19 @@ function CustomButton({ title, containerStyle, handleClick, btnType }: CustomBut
             className={`custom-btn ${containerStyle}`}
             onClick={() => { }}
         >
-            <span className="flex-1">
+            <span className={`flex-1 ${textStyle}`}>
                 {title}
             </span>
+            {rightIcon && (
+                <div className="relative w-6 h-6">
+                    <Image
+                        src={rightIcon}
+                        alt="right icon"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+            )}
         </button>
     )
 }

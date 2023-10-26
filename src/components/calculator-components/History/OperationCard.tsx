@@ -5,7 +5,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import '@/css/transition.css'
 import { useEffect, useRef, useState } from 'react'
 
-import { Operation } from '@/interfaces/calculator'
+import { Operation } from '@/types/calculator'
 import { useCalculatorContext } from '@/context/CalculatorContext';
 
 
