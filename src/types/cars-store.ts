@@ -33,5 +33,5 @@ export interface CarCardProps {
 export interface CarDetailsProps {
     isOpen: boolean,
     closeModal: () => void,
-    car: CarCardProps
+    car: CarCardProps,
 }

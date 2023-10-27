@@ -19,8 +19,8 @@ function CarCard({ car }: CarProps) {
     return (
         <div className="car-card group">
             <div className="car-card__content">
-                <h2 className="car-card__content-title">
-                    {make}{model}
+                <h2 className="car-card__content-title capitalize">
+                    {make} {model}
                 </h2>
 
                 <p className="flex mt-6 text-[32px]">
