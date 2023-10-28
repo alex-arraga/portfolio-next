@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { CarCardProps } from "@/types/cars-store"
 import { useState } from 'react'
-import { calculateCarRent } from "@/app/utils"
+import { calculateCarRent, generateCarImageAPI } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
 
 interface CarProps {
@@ -34,7 +34,7 @@ function CarCard({ car }: CarProps) {
                 </p>
 
                 <div className="relative w-full h-40 my-3 object-contain">
-                    <Image src="/hero.png"
+                    <Image src={generateCarImageAPI(car)}
                         fill
                         alt="cars"
                         className="object-contain"

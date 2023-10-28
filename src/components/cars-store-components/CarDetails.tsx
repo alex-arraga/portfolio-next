@@ -1,10 +1,13 @@
 "use client"
 
+import '@/css/cars-store.css'
+
 import { CarDetailsProps } from "@/types/cars-store"
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
+import { generateCarImageAPI } from "@/app/utils"
+
 import Image from "next/image"
-import '@/css/modal-scrollbar.css'
 
 function CarDetails({ car, isOpen, closeModal }: CarDetailsProps) {
   return (
@@ -52,7 +55,7 @@ function CarDetails({ car, isOpen, closeModal }: CarDetailsProps) {
                       {/* Main image */}
                       <div className="flex flex-col gap-3">
                         <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                          <Image src="/hero.png"
+                          <Image src={generateCarImageAPI(car)}
                             fill
                             alt="cars"
                             className="object-contain"
@@ -62,21 +65,21 @@ function CarDetails({ car, isOpen, closeModal }: CarDetailsProps) {
                         {/* 3 more images of the car, in different angles */}
                         <div className="flex gap-3">
                           <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                            <Image src="/hero.png"
+                            <Image src={generateCarImageAPI(car, '29')}
                               fill
                               alt="cars"
                               className="object-contain"
                             />
                           </div>
                           <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                            <Image src="/hero.png"
+                            <Image src={generateCarImageAPI(car)}
                               fill
                               alt="cars"
                               className="object-contain"
                             />
                           </div>
                           <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                            <Image src="/hero.png"
+                            <Image src={generateCarImageAPI(car, '13')}
                               fill
                               alt="cars"
                               className="object-contain"
@@ -94,8 +97,15 @@ function CarDetails({ car, isOpen, closeModal }: CarDetailsProps) {
                       <div className="mt-3 flex flex-wrap gap-4">
                         {Object.entries(car).map(([key, value]) => (
                           <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                            <h4 className="capitalize text-gray-400">{key.split("_").join(" ")}</h4>
-                            <p className="font-medium text-black-100">{value}</p>
+                            <h4 className="capitalize text-gray-400">{
+                              key === 'year' ? key = 'Year Launched'
+                                : key.split("_").join(" ")
+                            }</h4>
+                            <p className="font-medium text-black-100 capitalize">{
+                              value === 'm' ? value = 'Manual'
+                                : value === 'a' ? value = 'Automatic'
+                                  : value
+                            }</p>
                           </div>
                         ))}
                       </div>
