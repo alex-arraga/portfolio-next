@@ -15,27 +15,28 @@ function Hero() {
             <div className="flex-1 pt-36 padding-x">
 
                 <h1 className="hero__title">
-                    Encontrá, rentá o comprá el auto de tus sueños - Rápido y al mejor precio
+                    Buy the car of your dreams
                 </h1>
 
-                <p className="hero_subtitle">
-                    Agilizá tu experiencia alquilando o comprando los mejoes coches con nuestro sencillo proceso de reserva sin esfuerzo.
+                <p className="hero__subtitle">
+                    Speed up your experience by buying the car you have always dreamed of, and visualize your next destination.
                 </p>
 
                 <CustomButton
-                    title="Explorar autos"
+                    title="Explore cars"
                     containerStyle="bg-primary-blue text-white rounded-full mt-10"
                     handleClick={handleScroll}
                 />
 
-                <div className="hero__image-container">
-                    <div className="hero__image">
-                        <Image src="/hero.png" alt="hero" fill className="object-contain" />
-                        <Image src="/hero-bg.png" alt='hero-bg' fill className='hero__image-overlay' />
-                    </div>
-                </div>
-
             </div>
+
+            <div className="hero__image-container">
+                <div className="hero__image">
+                    <Image src="/hero.png" alt="hero" fill className="object-contain" />
+                </div>
+                <div className="hero__image-overlay" />
+            </div>
+
         </div>
     )
 }

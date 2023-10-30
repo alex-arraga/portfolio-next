@@ -6,12 +6,12 @@ import {
     Home
 } from "@/components"
 
-function page() {
+function page({ searchParams }: any) {
     return (
         <main className='overflow-hidden'>
             <Navbar />
             <Hero />
-            <Home />
+            <Home searchParams={searchParams} />
             <Footer />
         </main>
     )

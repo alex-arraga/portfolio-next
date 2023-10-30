@@ -68,7 +68,7 @@ body {
 }
 
 .hero__subtitle {
-    @apply text-[27px] text-black-100 font-light mt-5;
+    @apply md:text-[27px] text-[20px] text-black-100 font-light mt-5;
 }
 
 .hero__image-container {

@@ -2,8 +2,13 @@ import { CustomFilter, SearchBar, CarCard } from '..'
 import { fetchCarsAPI } from '@/app/utils'
 
 
-export async function Home() {
-    const allCars = await fetchCarsAPI()
+export async function Home({ searchParams }: { searchParams: any }) {
+    const allCars = await fetchCarsAPI({
+        manufacturer: searchParams.manufacturer || '',
+        model: searchParams.model || '',
+        year: searchParams.year || 2022,
+        limit: searchParams.limit || 10
+    })
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
