@@ -5,14 +5,13 @@
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: #fff;
     color: #2B2C35;
     position: relative;
 }
 
-.scroll::-webkit-scrollbar {
-    width: 5px;
-}
+/* 
+No work yet
 
 .scroll::-webkit-scrollbar-thumb {
     height: auto;
@@ -22,12 +21,12 @@ body {
 
 .scroll::-webkit-scrollbar {
     background-color: rgb(32, 32, 32);
+    width: 5px;
 }
 
-.scroll::-webkit-scrollbar-thumb {
-    /* background-color: rgb(186 230 253); */
+.scroll::scrollbar-thumb {
     background-color: rgb(186, 202, 253);
-}
+} */
 
 /* START: General styles */
 
@@ -72,15 +71,15 @@ body {
 }
 
 .hero__image-container {
-    @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-full;
+    @apply xl:flex-[1.5] relative flex justify-end items-end w-full xl:h-full;
 }
 
 .hero__image {
-    @apply relative xl:w-[100vw-10rem] w-[80%] xl:h-screen h-[400px] z-0;
+    @apply relative w-full h-[200px] md:h-[350px] xl:h-screen z-0 mt-10 md:mt-5;
 }
 
 .hero__image-overlay {
-    @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[400px] overflow-hidden;
+    @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full h-[280px] xl:h-screen md:h-[400px] md:w-[700px] xl:w-[1100px] 2xl:w-[1500px] overflow-hidden;
 }
 
 /* END: Hero styles */
