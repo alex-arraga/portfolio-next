@@ -1,19 +1,19 @@
 import { fuels, yearsOfProduction } from '@/constants';
-import { CustomFilter, SearchBar, CarCard } from '..'
+import { CustomFilter, SearchBar, CarCard, ShowMore } from '..'
 import { fetchCarsAPI } from '@/app/utils'
+import { HomeProps } from '@/types/cars-store';
 
+export async function Home({ searchParams }: HomeProps) {
 
-export async function Home({ searchParams }: { searchParams: any }) {
     const allCars = await fetchCarsAPI({
         manufacturer: searchParams.manufacturer || '',
         model: searchParams.model || '',
         year: searchParams.year || 2022,
-        limit: searchParams.limit || 10,
-        fuel: searchParams.fuel || ''
-    })
+        limit: searchParams.limit || 9,
+        fuel: searchParams.fuel || '',
+    });
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
-
 
     return (
         <div className='mt-8 padding-x padding-y max-width' id='discover'>
@@ -39,6 +39,11 @@ export async function Home({ searchParams }: { searchParams: any }) {
                                     <CarCard car={car} />
                                 )}
                             </div>
+
+                            <ShowMore
+                                pageNumber={(searchParams.limit || 9) / 9}
+                                isNext={(searchParams.limit || 9) > allCars.length}
+                            />
                         </section>
                     ) : (
                         <section className='home__error-container'>

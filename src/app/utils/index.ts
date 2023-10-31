@@ -8,7 +8,7 @@ export async function fetchCarsAPI(filters: FilterProps) {
         'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
     }
 
-    const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}`;
+    let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}`;
     const response = await fetch(url, {
         headers: headers
     })
@@ -47,9 +47,9 @@ export const generateCarImageAPI = (car: CarCardProps, angle?: string) => {
     return `${url}`;
 }
 
-export const updateSearchParams = (typeFuel: string, value: string) => {
+export const updateSearchParams = (type: string, value: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set(typeFuel, value)
+    searchParams.set(type, value)
 
     const newPathName = `${window.location.pathname}?${searchParams.toString()}`
 
