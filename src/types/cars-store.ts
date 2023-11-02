@@ -1,5 +1,13 @@
 import { MouseEventHandler } from "react";
 
+export interface NavBarProps {
+    otherClasses?: string
+}
+
+export interface FooterProps {
+    otherClasses?: string
+}
+
 export interface CustomButtonProps {
     title: string,
     containerStyle?: string,
@@ -36,11 +44,11 @@ export interface CarDetailsProps {
 }
 
 export interface FilterProps {
-    manufacturer?: string,
-    model?: string,
-    limit?: number,
-    year?: number,
-    fuel?: string,
+    manufacturer?: string | null,
+    model?: string | null,
+    limit?: number | null,
+    year?: number | null,
+    fuel?: string | null,
 }
 
 export interface HomeProps {
@@ -60,4 +68,13 @@ export interface CustomFilterProps {
 export interface ShowMoreProps {
     pageNumber: number,
     isNext: boolean
+}
+
+export interface AgeFilterProps {
+    yearCars: string[]
+}
+
+export interface PriceFilterProps {
+    minAutonomy: number,
+    maxAutonomy: number
 }

@@ -65,13 +65,15 @@ function SearchBar() {
                 />
                 <SearchButton otherClasses="sm:hidden" />
             </div>
+
+            {/* Search Model */}
             <div className="searchbar__item">
                 <Image
                     src='/model-icon.png'
                     alt="car model"
                     width={25}
                     height={25}
-                    className="absolute w-[20px] h-[20px] ml-4"
+                    className="absolute ml-4"
                 />
                 <input type="text"
                     name="model"

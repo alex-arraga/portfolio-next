@@ -4,11 +4,10 @@ import '@/css/cars-store.css'
 
 import Image from "next/image"
 import { CustomButton } from ".."
+import { useRouter } from 'next/navigation'
 
 function Hero() {
-    const handleScroll = () => {
-
-    }
+    const router = useRouter()
 
     return (
         <div className="hero">
@@ -25,7 +24,7 @@ function Hero() {
                 <CustomButton
                     title="Explore cars"
                     containerStyle="bg-primary-blue text-white rounded-full mt-10"
-                    handleClick={handleScroll}
+                    handleClick={() => router.push('/projects/cars-store/dashboard')}
                 />
 
             </div>

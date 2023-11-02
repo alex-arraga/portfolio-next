@@ -10,10 +10,10 @@ import {
 function page({ searchParams }: any) {
     return (
         <main className='overflow-hidden'>
-            <Navbar />
+            <Navbar otherClasses='absolute ' />
             <Hero />
             <Home searchParams={searchParams} />
-            <Footer />
+            <Footer otherClasses='mt-5' />
         </main>
     )
 }

@@ -9,6 +9,9 @@ import SearchManufacturer from './cars-store-components/SearchManufacturer'
 import CarCard from './cars-store-components/CarCard'
 import CarDetails from './cars-store-components/CarDetails'
 import ShowMore from './cars-store-components/ShowMore'
+import AsideFilters from './cars-store-components/dashboard/AsideFilters'
+import AgeFilter from './cars-store-components/dashboard/AgeFilter'
+import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
 
 export {
     Hero,
@@ -21,5 +24,8 @@ export {
     SearchManufacturer,
     CarCard,
     CarDetails,
-    ShowMore
+    ShowMore,
+    AsideFilters,
+    AgeFilter,
+    PriceRangeFilter
 }
