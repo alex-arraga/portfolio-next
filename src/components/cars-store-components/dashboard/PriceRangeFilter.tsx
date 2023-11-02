@@ -12,15 +12,13 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
     }
 
     return (
-        <div className="relative w-full mt-10">
-            <h2 className="text-gray-400 uppercase font-medium text-[12px]">Price</h2>
-
+        <>
             <div className="flex justify-center items-center gap-4 mt-5">
                 <div className="flex flex-col w-full gap-2 items-start">
                     <label htmlFor="min-mpg" className="text-sky-400 uppercase font-medium text-[12px]">
                         Min / mpg
                     </label>
-                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 border-gray-200 text-sm">
+                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-sm">
                         <p>{`$${minAutonomy}`}</p>
                     </div>
                 </div>
@@ -29,7 +27,7 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
                     <label htmlFor="max-mpg" className="text-sky-400 uppercase font-medium text-[12px]">
                         Max / mpg
                     </label>
-                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 border-gray-200 text-sm">
+                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-sm">
                         <p>{`$${maxAutonomy}`}</p>
                     </div>
                 </div>
@@ -53,7 +51,7 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
                 </div>
             </div>
 
-        </div>
+        </>
     )
 }
 

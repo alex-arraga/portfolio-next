@@ -1,12 +1,11 @@
 "use client"
 
 import { useState, Fragment, useEffect } from 'react'
-import { Combobox, Transition, Listbox } from '@headlessui/react'
-import { AgeFilterProps } from '@/types/cars-store'
+import { Transition, Listbox } from '@headlessui/react'
 import { yearsOfProduction } from '@/constants'
 import Image from 'next/image'
 
-export function AgeFilter({ yearCars }: AgeFilterProps) {
+export function YearFilter() {
     const [selected, setSelected] = useState('2015')
 
     return (
@@ -59,9 +58,8 @@ export function AgeFilter({ yearCars }: AgeFilterProps) {
                 </Listbox>
             </div>
 
-
         </div>
     )
 }
 
-export default AgeFilter
+export default YearFilter

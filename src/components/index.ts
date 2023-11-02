@@ -1,3 +1,4 @@
+// Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
 import CustomButton from './cars-store-components/CustomButton'
 import Footer from './cars-store-components/Footer'
@@ -9,9 +10,14 @@ import SearchManufacturer from './cars-store-components/SearchManufacturer'
 import CarCard from './cars-store-components/CarCard'
 import CarDetails from './cars-store-components/CarDetails'
 import ShowMore from './cars-store-components/ShowMore'
+
+// Cars-Store: Dashboard
 import AsideFilters from './cars-store-components/dashboard/AsideFilters'
-import AgeFilter from './cars-store-components/dashboard/AgeFilter'
+import YearFilter from './cars-store-components/dashboard/YearFilter'
 import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
+import SearchBarDashboard from './cars-store-components/dashboard/SearchBarDashboard'
+import TypesCars from './cars-store-components/dashboard/TypesCars'
+import Dashboard from './cars-store-components/dashboard/Dashboard'
 
 export {
     Hero,
@@ -26,6 +32,9 @@ export {
     CarDetails,
     ShowMore,
     AsideFilters,
-    AgeFilter,
-    PriceRangeFilter
+    YearFilter,
+    PriceRangeFilter,
+    SearchBarDashboard,
+    TypesCars,
+    Dashboard
 }

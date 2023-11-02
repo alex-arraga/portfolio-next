@@ -70,11 +70,18 @@ export interface ShowMoreProps {
     isNext: boolean
 }
 
-export interface AgeFilterProps {
-    yearCars: string[]
-}
+// export interface YearFilterProps {
+//     yearCars: string[]
+// }
 
 export interface PriceFilterProps {
     minAutonomy: number,
     maxAutonomy: number
+}
+
+export interface TypesCars {
+    classCars: string,
+    classCounter: {
+        [classes: string]: number
+    }
 }
