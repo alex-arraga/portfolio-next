@@ -7,7 +7,7 @@ function TypesCars({ classCars, classCounter }: TypesCars) {
         <div key={Math.random()} className="flex gap-2 items-center">
             <input type="checkbox" className={'checked:accent-sky-600 w-4 h-4 rounded-sm'} />
 
-            <h2 className="capitalize text-gray-500 font-light py-1">
+            <h2 className="capitalize text-gray-400 py-1">
                 {classCars} <span className="text-sm font-medium opacity-50">({classCounter[classCars]})</span>
             </h2>
         </div>

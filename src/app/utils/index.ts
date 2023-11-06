@@ -32,7 +32,7 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
     return rentalRatePerDay.toFixed(0);
 };
 
-export const generateCarImageAPI = (car: CarCardProps, angle?: string) => {
+export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
     const url = new URL("https://cdn.imagin.studio/getimage");
     const { make, model, year } = car;
 
@@ -41,11 +41,12 @@ export const generateCarImageAPI = (car: CarCardProps, angle?: string) => {
     url.searchParams.append('modelFamily', model.split(" ")[0]);
     url.searchParams.append('zoomType', 'fullscreen');
     url.searchParams.append('modelYear', `${year}`);
-    // url.searchParams.append('zoomLevel', zoomLevel);
     url.searchParams.append('angle', `${angle}`);
+    url.searchParams.append('color', `${color}`);
 
     return `${url}`;
 };
+
 
 export const updateSearchParams = (type: string, value: string) => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -55,3 +56,30 @@ export const updateSearchParams = (type: string, value: string) => {
 
     return newPathName
 };
+
+export const renameClasses = (nameClass: string) => {
+    // An array of objects with equivalencies
+    const classEquivalences = [
+        { original: 'subcompact car', renamed: 'Sport' },
+        { original: 'compact car', renamed: 'Hatchback' },
+        { original: 'minicompact car', renamed: 'Hatchback' },
+        { original: 'midsize station wagon', renamed: 'Hatchback' },
+        { original: 'minivan', renamed: 'MPV' },
+        { original: 'two seater', renamed: 'Sport' },
+        { original: 'small station wagon', renamed: 'Sedan' },
+        { original: 'midsize car', renamed: 'Sedan' },
+        { original: 'large car', renamed: 'Sedan' },
+        { original: 'small sport utility vehicle', renamed: 'SUV' },
+        { original: 'standard sport utility vehicle', renamed: 'SUV' },
+        { original: 'standard pickup truck', renamed: 'Pickup' },
+        { original: 'small pickup truck', renamed: 'Pickup' }
+    ];
+
+    // Search the equivalency
+    const equivalency = classEquivalences.find(item => item.original === nameClass);
+
+    // If an equivalence is found, the renamed name is returned; otherwise, the original name is returned.
+    const result = equivalency ? equivalency.renamed : nameClass;
+
+    return result
+}
