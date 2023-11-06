@@ -14,8 +14,8 @@ async function Dashboard() {
 
     return (
         <main className='relative max-h-screen'>
-            <div className='absolute right-0 h-screen overflow-y-auto w-3/4'>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-10 mb-20">
+            <div className='h-screen overflow-y-auto w-full'>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-10 py-0 mb-20">
                     {allCars.map((car: CarCardProps) => (
                         <div className="">
                             <CarCard car={car} styleCard="dashboard" />

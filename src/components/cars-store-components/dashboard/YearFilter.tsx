@@ -40,7 +40,7 @@ export function YearFilter() {
                         leaveTo="opacity-0"
                     >
 
-                        <Listbox.Options className={'absolute z-10 w-full top-10 bg-white'}>
+                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white cursor-pointer'}>
                             {
                                 yearsOfProduction.map((year) => (
                                     <Listbox.Option

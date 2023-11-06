@@ -12,11 +12,11 @@ import CarDetails from './cars-store-components/CarDetails'
 import ShowMore from './cars-store-components/ShowMore'
 
 // Cars-Store: Dashboard
-import AsideFilters from './cars-store-components/dashboard/AsideFilters'
+import Aside from './cars-store-components/dashboard/Aside'
 import YearFilter from './cars-store-components/dashboard/YearFilter'
 import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
 import SearchBarDashboard from './cars-store-components/dashboard/SearchBarDashboard'
-import TypesCars from './cars-store-components/dashboard/TypesCars'
+import TypesCarsFilter from './cars-store-components/dashboard/TypesCarsFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
 
 export {
@@ -31,10 +31,10 @@ export {
     CarCard,
     CarDetails,
     ShowMore,
-    AsideFilters,
+    Aside,
     YearFilter,
     PriceRangeFilter,
     SearchBarDashboard,
-    TypesCars,
+    TypesCarsFilter,
     Dashboard
 }

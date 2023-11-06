@@ -70,10 +70,6 @@ export interface ShowMoreProps {
     isNext: boolean
 }
 
-// export interface YearFilterProps {
-//     yearCars: string[]
-// }
-
 export interface PriceFilterProps {
     minAutonomy: number,
     maxAutonomy: number
@@ -84,4 +80,9 @@ export interface TypesCars {
     classCounter: {
         [classes: string]: number
     }
+}
+
+export interface AsideComponentProps {
+    allCars: any,
+
 }
