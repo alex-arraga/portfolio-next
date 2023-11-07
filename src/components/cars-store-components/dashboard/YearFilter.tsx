@@ -3,10 +3,20 @@
 import { useState, Fragment, useEffect } from 'react'
 import { Transition, Listbox } from '@headlessui/react'
 import { yearsOfProduction } from '@/constants'
+import { updateSearchParams } from "@/app/utils";
+
+
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 export function YearFilter() {
     const [selected, setSelected] = useState('2015')
+    const router = useRouter()
+
+    useEffect(() => {
+        const newYear = updateSearchParams('year', selected)
+        router.push(newYear)
+    }, [selected])
 
     return (
         <div className='mt-5'>

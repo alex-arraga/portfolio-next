@@ -19,7 +19,8 @@ export interface CustomButtonProps {
 
 export interface SearchManufacturerProps {
     manufacturer: string,
-    setManufacturer: (manufacturer: string) => void
+    setManufacturer: (manufacturer: string) => void,
+    styleSearchbar?: string
 }
 
 export interface CarCardProps {
@@ -49,6 +50,9 @@ export interface FilterProps {
     limit?: number | null,
     year?: number | null,
     fuel?: string | null,
+    city_mpg?: number | null,
+    highway_mpg?: number | null,
+    transmission?: string | null,
 }
 
 export interface HomeProps {
@@ -80,9 +84,14 @@ export interface TypesCars {
     classCounter: {
         [classes: string]: number
     }
+    originalNameClasses?: string
 }
 
 export interface AsideComponentProps {
     allCars: any,
+    searchParams: any
+}
 
+export interface searchBarProps {
+    styleSearchbar?: string
 }

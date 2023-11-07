@@ -1,14 +1,14 @@
 import { CarCardProps, FilterProps } from "@/types/cars-store";
 
 export async function fetchCarsAPI(filters: FilterProps) {
-    const { manufacturer, model, year, limit, fuel } = filters;
+    const { manufacturer, model, year, limit, fuel, city_mpg, highway_mpg, transmission } = filters;
 
     const headers = {
         'X-RapidAPI-Key': '3b4b358bf2mshf289aeb92c2bd64p1bfa8ejsnabef8d470799',
         'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
     }
 
-    let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}`;
+    let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}&min_city_mpg=${city_mpg}&max_hwy_mpg=${highway_mpg}transmission=${transmission}`;
     const response = await fetch(url, {
         headers: headers
     })
@@ -82,4 +82,31 @@ export const renameClasses = (nameClass: string) => {
     const result = equivalency ? equivalency.renamed : nameClass;
 
     return result
+}
+
+export const getOriginalClasses = (nameClass: string) => {
+    // An array of objects with equivalencies
+    const classEquivalences = [
+        { original: 'subcompact car', renamed: 'Sport' },
+        { original: 'compact car', renamed: 'Hatchback' },
+        { original: 'minicompact car', renamed: 'Hatchback' },
+        { original: 'midsize station wagon', renamed: 'Hatchback' },
+        { original: 'minivan', renamed: 'MPV' },
+        { original: 'two seater', renamed: 'Sport' },
+        { original: 'small station wagon', renamed: 'Sedan' },
+        { original: 'midsize car', renamed: 'Sedan' },
+        { original: 'large car', renamed: 'Sedan' },
+        { original: 'small sport utility vehicle', renamed: 'SUV' },
+        { original: 'standard sport utility vehicle', renamed: 'SUV' },
+        { original: 'standard pickup truck', renamed: 'Pickup' },
+        { original: 'small pickup truck', renamed: 'Pickup' }
+    ];
+
+    // Search the equivalency
+    const equivalency = classEquivalences.find(item => item.original === nameClass);
+
+    // If an equivalence is found, the renamed name is returned; otherwise, the original name is returned.
+    // const result = equivalency ? equivalency.original : nameClass;
+
+    return equivalency
 }

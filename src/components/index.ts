@@ -15,9 +15,9 @@ import ShowMore from './cars-store-components/ShowMore'
 import Aside from './cars-store-components/dashboard/Aside'
 import YearFilter from './cars-store-components/dashboard/YearFilter'
 import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
-import SearchBarDashboard from './cars-store-components/dashboard/SearchBarDashboard'
 import TypesCarsFilter from './cars-store-components/dashboard/TypesCarsFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
+import TransmissionFilter from './cars-store-components/dashboard/TransmissionFilter'
 
 export {
     Hero,
@@ -34,7 +34,7 @@ export {
     Aside,
     YearFilter,
     PriceRangeFilter,
-    SearchBarDashboard,
     TypesCarsFilter,
-    Dashboard
+    Dashboard,
+    TransmissionFilter
 }

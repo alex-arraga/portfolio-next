@@ -4,8 +4,9 @@ import { SearchManufacturer } from ".."
 import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { searchBarProps } from "@/types/cars-store"
 
-function SearchBar() {
+function SearchBar({ styleSearchbar }: searchBarProps) {
     const [manufacturer, setManufacturer] = useState('')
     const [model, setModel] = useState('')
     const router = useRouter()
@@ -43,49 +44,105 @@ function SearchBar() {
 
     const SearchButton = ({ otherClasses }: { otherClasses: string }) => {
         return (
-            <div className="relative">
-                <button type="submit" className={`ml-3 z-10 ${otherClasses}`}>
-                    <Image
-                        src='/magnifying-glass.svg'
-                        alt="magnifiying glass"
-                        width={40}
-                        height={40}
-                        className="object-contain" />
-                </button>
-            </div>
+            <>
+                {
+                    otherClasses === 'aside-btn' ?
+                        <div className="relative">
+                            <button type="submit" className={`flex items-center justify-center w-full h-full ${otherClasses}`}>
+                                <Image
+                                    src='/magnifying-glass.svg'
+                                    alt="magnifiying glass"
+                                    width={90}
+                                    height={90}
+                                    className="object-contain bg-sky-100 p-1 rounded-full" />
+                            </button>
+                        </div>
+
+                        :
+
+                        <div className="relative">
+                            <button type="submit" className={`ml-3 z-10 ${otherClasses}`}>
+                                <Image
+                                    src='/magnifying-glass.svg'
+                                    alt="magnifiying glass"
+                                    width={40}
+                                    height={40}
+                                    className="object-contain" />
+                            </button>
+                        </div>
+                }
+            </>
         )
     }
 
     return (
-        <form className='searchbar' onSubmit={handleSearch}>
-            <div className="searchbar__item">
-                <SearchManufacturer
-                    manufacturer={manufacturer}
-                    setManufacturer={setManufacturer}
-                />
-                <SearchButton otherClasses="sm:hidden" />
-            </div>
+        <>
+            {
+                styleSearchbar === 'aside-filters' ?
 
-            {/* Search Model */}
-            <div className="searchbar__item">
-                <Image
-                    src='/model-icon.png'
-                    alt="car model"
-                    width={25}
-                    height={25}
-                    className="absolute ml-4"
-                />
-                <input type="text"
-                    name="model"
-                    value={model}
-                    onChange={(e) => setModel(e.target.value)}
-                    placeholder="Tiguan"
-                    className="searchbar__input"
-                />
-                <SearchButton otherClasses="sm:hidden" />
-            </div>
-            <SearchButton otherClasses="max-sm:hidden" />
-        </form>
+                    <form className='relative' onSubmit={handleSearch}>
+                        <div className="flex flex-1 w-full gap-2 justify-between items-center">
+                            <SearchManufacturer
+                                manufacturer={manufacturer}
+                                setManufacturer={setManufacturer}
+                                styleSearchbar='aside-filters'
+                            />
+
+                            <SearchButton otherClasses="aside-btn" />
+
+                            {/* Search Model */}
+                            <div className="flex relative items-center w-full">
+                                <Image src={'/model-icon.png'}
+                                    alt="magnifyng glass"
+                                    width={20}
+                                    height={20}
+                                    className="absolute ml-4 opacity-50"
+                                />
+                                <input type="text"
+                                    name="model"
+                                    value={model}
+                                    onChange={(e) => setModel(e.target.value)}
+                                    placeholder="Corolla"
+                                    className="bg-gray-100 w-full h-8 rounded-full text-[12px] font-light px-12"
+                                />
+                            </div>
+                        </div>
+
+                    </form>
+
+                    :
+
+                    <form className='searchbar' onSubmit={handleSearch}>
+                        <div className="searchbar__item">
+                            <SearchManufacturer
+                                manufacturer={manufacturer}
+                                setManufacturer={setManufacturer}
+                            />
+                            <SearchButton otherClasses="sm:hidden" />
+                        </div>
+
+                        {/* Search Model */}
+                        <div className="searchbar__item">
+                            <Image
+                                src='/model-icon.png'
+                                alt="car model"
+                                width={25}
+                                height={25}
+                                className="absolute ml-4"
+                            />
+                            <input type="text"
+                                name="model"
+                                value={model}
+                                onChange={(e) => setModel(e.target.value)}
+                                placeholder="Tiguan"
+                                className="searchbar__input"
+                            />
+                            <SearchButton otherClasses="sm:hidden" />
+                        </div>
+                        <SearchButton otherClasses="max-sm:hidden" />
+                    </form>
+            }
+        </>
     )
 }
 

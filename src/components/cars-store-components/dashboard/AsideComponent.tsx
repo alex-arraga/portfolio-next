@@ -4,44 +4,44 @@ import { renameClasses } from "@/app/utils";
 import { AsideComponentProps, CarCardProps } from "@/types/cars-store";
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { Fragment, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Dialog, Transition } from '@headlessui/react'
 
 import {
     YearFilter,
     PriceRangeFilter,
-    SearchBarDashboard,
+    SearchBar,
     TypesCarsFilter,
-    Dashboard,
+    TransmissionFilter
 } from "@/components/index";
 
-export function AsideComponent({ allCars }: AsideComponentProps) {
+export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
     const [isOpen, setIsOpen] = useState(false)
-    const { year } = allCars
 
-    const classCounter: { [classes: string]: number } = {};
+    // Classes
+    // const classCounter: { [classes: string]: number } = {};
 
-    const cityAutonomy = allCars.map((car: CarCardProps) => car.city_mpg)
-    const combinationAutonomy = allCars.map((car: CarCardProps) => car.combination_mpg)
+    // const cityAutonomy = allCars.map((car: CarCardProps) => car.city_mpg)
+    // const highwayAutonomy = allCars.map((car: CarCardProps) => car.highway_mpg)
 
-    const minAutonomy = cityAutonomy.reduce((a: number, b: number) => Math.min(a, b))
-    const maxAutonomy = combinationAutonomy.reduce((a: number, b: number) => Math.max(a, b))
+    // const minAutonomy = cityAutonomy.reduce((a: number, b: number) => Math.min(a, b))
+    // const maxAutonomy = highwayAutonomy.reduce((a: number, b: number) => Math.max(a, b))
 
     // Counts the number of times the same "car class" appears.
-    allCars.forEach((car: CarCardProps) => {
-        let classCar = car.class;
-        let finalClass = renameClasses(classCar)
+    // allCars.forEach((car: CarCardProps) => {
+    //     let classCar = car.class;
+    //     let finalClass = renameClasses(classCar)
 
-        if (!classCounter[finalClass]) {
-            classCounter[finalClass] = 1;
-        } else {
-            classCounter[finalClass]++;
-        }
-    });
+    //     if (!classCounter[finalClass]) {
+    //         classCounter[finalClass] = 1;
+    //     } else {
+    //         classCounter[finalClass]++;
+    //     }
+    // });
 
-    // Avoid repetition of 'class' properties
-    const uniqueCarClasses = Object.keys(classCounter);
+    // // Avoid repetition of 'class' properties
+    // const uniqueCarClasses = Object.keys(classCounter);
 
+    // Modal
     function closeModal() {
         setIsOpen(false)
     }
@@ -52,7 +52,7 @@ export function AsideComponent({ allCars }: AsideComponentProps) {
 
     return (
         <>
-            <div className="relative flex justify-center items-center mx-10 my-6 h-8 w-full">
+            <div className="relative flex justify-center items-center mx-10 my-6 h-0 w-full">
                 <HiMenuAlt1
                     onClick={() => openModal()}
                     className={`h-4 w-4 md:h-8 md:w-8 cursor-pointer`}
@@ -61,13 +61,35 @@ export function AsideComponent({ allCars }: AsideComponentProps) {
                 <div className="relative items-cente w-full">
                     <ul className="flex justify-evenly rounded-full">
                         <li className="px-2 border-b-2 border-sky-100">
-                            Year: <span className="font-semibold">2015</span>
+                            Year: <span className="font-semibold">
+                                {
+                                    !searchParams.year ? '2015' : searchParams.year
+                                }
+                            </span>
+                        </li>
+                        {/* <li className="px-2 border-b-2 border-sky-100">
+                            Type: <span className="font-semibold">{searchParams.class}</span>
+                        </li> */}
+                        <li className="px-2 border-b-2 border-sky-100">
+                            Make by: <span className="font-semibold capitalize">
+                                {
+                                    !searchParams.manufacturer ? 'All Brands' : searchParams.manufacturer
+                                }
+                            </span>
                         </li>
                         <li className="px-2 border-b-2 border-sky-100">
-                            Type: <span className="font-semibold">Sedan</span>
+                            Model: <span className="font-semibold capitalize">
+                                {
+                                    !searchParams.model ? 'All Models' : searchParams.model
+                                }
+                            </span>
                         </li>
                         <li className="px-2 border-b-2 border-sky-100">
-                            Price: <span className="font-semibold">USD$ 16</span>
+                            Transmission: <span className="font-semibold capitalize">
+                                {
+                                    !searchParams.transmission ? 'M/A' : searchParams.transmission === 'm' ? 'Manual' : 'Automatic'
+                                }
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -106,7 +128,7 @@ export function AsideComponent({ allCars }: AsideComponentProps) {
                                             <div className="relative w-full">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Search</h2>
                                                 <div className="flex items-center w-full relative mt-5">
-                                                    <SearchBarDashboard />
+                                                    <SearchBar styleSearchbar='aside-filters' />
                                                 </div>
                                             </div>
 
@@ -116,21 +138,35 @@ export function AsideComponent({ allCars }: AsideComponentProps) {
                                                 <YearFilter />
                                             </div>
 
-                                            {/* Price range */}
+                                            {/* Price range
                                             <div className="relative w-full mt-10">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Price</h2>
                                                 <PriceRangeFilter maxAutonomy={maxAutonomy} minAutonomy={minAutonomy} />
-                                            </div>
+                                            </div> */}
 
-                                            {/* Types */}
+
+                                            {/* Types
                                             <div className="mt-10">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Type</h2>
                                                 <div className="mt-5 mb-20">
                                                     {uniqueCarClasses.map((classCars) => (
-                                                        <TypesCarsFilter classCars={classCars} classCounter={classCounter} />
+                                                        <TypesCarsFilter
+                                                            key={Math.random()}
+                                                            classCars={classCars}
+                                                            classCounter={classCounter}
+
+                                                        />
                                                     ))}
                                                 </div>
+                                            </div> */}
+
+                                            <div className="w-full mt-10">
+                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Transmission</h2>
+                                                <div className="flex justify-center items-center w-full mt-5">
+                                                    <TransmissionFilter />
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </Dialog.Panel>

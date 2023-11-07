@@ -4,16 +4,18 @@ import { HomeProps } from "@/types/cars-store";
 
 export async function Aside({ searchParams }: HomeProps) {
     const allCars = await fetchCarsAPI({
-        manufacturer: '',
-        model: '',
-        year: 2020,
+        manufacturer: searchParams.manufacturer || '',
+        model: searchParams.model || '',
+        year: searchParams.year || 2015,
         limit: 500,
-        fuel: '',
+        fuel: searchParams.fuel || '',
+        city_mpg: searchParams.city_mpg,
+        transmission: searchParams.transmission || ''
     });
 
     return (
         <>
-            <AsideComponent allCars={allCars} />
+            <AsideComponent allCars={allCars} searchParams={searchParams} />
         </>
     )
 }

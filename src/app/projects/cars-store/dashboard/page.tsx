@@ -6,7 +6,7 @@ function page({ searchParams }: HomeProps) {
         <div className='max-h-screen overflow-hidden'>
             <Navbar otherClasses='bg-white relative border-b-2 border-gray-200' />
             <Aside searchParams={searchParams} />
-            <Dashboard />
+            <Dashboard searchParams={searchParams} />
         </div>
     )
 }

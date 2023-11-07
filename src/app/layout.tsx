@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { Toaster } from 'sonner';
 import { CalculatorProvider } from '@/context/CalculatorContext'
+import { CarsProvider } from '@/context/CarsContext'
 
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppinsFont.className}`}>
         <CalculatorProvider>
-          {children}
+          <CarsProvider>
+            {children}
+          </CarsProvider>
         </CalculatorProvider>
         <Toaster richColors />
       </body>

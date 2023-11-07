@@ -2,14 +2,34 @@
 
 import { PriceFilterProps } from '@/types/cars-store'
 import { useEffect, useState } from 'react'
+import { updateSearchParams } from '@/app/utils'
+import { useRouter } from 'next/navigation'
 
 
 export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps) {
-    const [minPrice, setMinPrice] = useState(0)
+    const [minPrice, setMinPrice] = useState(minAutonomy)
+    const [maxPrice, setMaxPrice] = useState(maxAutonomy)
+    const router = useRouter()
 
-    const handleRange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    useEffect(() => {
+        const searchCityAutonomy = updateSearchParams('min_city_mpg', `${minPrice}`)
+        router.push(searchCityAutonomy)
+    }, [minPrice])
+
+    useEffect(() => {
+        const searchHwyAutonomy = updateSearchParams('max_hwy_mpg', `${maxPrice}`)
+        router.push(searchHwyAutonomy)
+    }, [maxPrice])
+
+
+    const handleMinRange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMinPrice(parseInt(e.target.value))
     }
+
+    const handleMaxRange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxPrice(parseInt(e.target.value))
+    }
+
 
     return (
         <>
@@ -33,20 +53,35 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
                 </div>
             </div>
 
-            <div className=''>
-                <input type="range"
+            <div>
+                <input
+                    type="range"
                     min={minAutonomy}
                     max={maxAutonomy}
                     value={minPrice}
-                    onChange={handleRange}
-                    onInput={(e: React.ChangeEvent<HTMLInputElement>) => setMinPrice(parseInt(e.target.value))}
+                    onChange={handleMinRange}
+                    onInput={handleMinRange}
                     className="mt-5 w-full appearance-none bg-sky-300 h-1.5 rounded-full"
                 />
 
-                <div className='flex items-center justify-start mt-5'>
+                <input
+                    type="range"
+                    min={minAutonomy}
+                    max={maxAutonomy}
+                    value={maxPrice}
+                    onChange={handleMaxRange}
+                    onInput={handleMaxRange}
+                    className="mt-5 w-full appearance-none bg-sky-300 h-1.5 rounded-full"
+                />
+
+                <div className='flex items-center gap-2 justify-start mt-5'>
                     <output id='output-price-mpg'
-                        className={`flex items-center px-2 bg-sky-200 w-1/2 h-8 rounded-md text-sm font-medium text-gray-700`}>
-                        USD$ {minPrice}
+                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-sm text-gray-700`}>
+                        Min USD: ${minPrice}
+                    </output>
+                    <output id='output-price-mpg'
+                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-sm text-gray-700`}>
+                        Max USD: ${maxPrice}
                     </output>
                 </div>
             </div>
