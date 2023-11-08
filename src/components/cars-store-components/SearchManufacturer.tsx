@@ -8,7 +8,9 @@ import { manufacturers } from "@/constants"
 
 
 function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: SearchManufacturerProps) {
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState('');
+    const searchParams = new URLSearchParams(window.location.search);
+    const hasManufacturer = searchParams.get('manufacturer')
 
     const filterManufacturers = query === '' ? manufacturers : manufacturers.filter((item) => (
         item.toLocaleLowerCase()
@@ -34,10 +36,10 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                     />
 
                                     <Combobox.Input
-                                        className="bg-gray-100 w-full h-8 rounded-full text-[12px] font-light px-12"
-                                        placeholder="Toyota"
+                                        placeholder={hasManufacturer ? 'Last search: ' + hasManufacturer : 'Toyota'}
                                         displayValue={(manufacturer: string) => manufacturer}
                                         onChange={(e) => setQuery(e.target.value)}
+                                        className="bg-gray-100 w-full h-8 capitalize rounded-full text-[12px] font-light px-12"
                                     />
                                 </div>
 

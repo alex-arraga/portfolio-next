@@ -5,27 +5,27 @@ import { NavBarProps } from "@/types/cars-store"
 function Navbar({ otherClasses }: NavBarProps) {
     return (
         <header className={`w-full z-10 ${otherClasses}`}>
-            <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 py-4 md:pl-6 md:py-6">
+            <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 h-14 sm:h-16">
 
                 <Link href={"/projects/cars-store"} className="flex justify-center items-center">
-
                     <Image
                         src="/logo.svg"
                         alt="app logo"
-                        width={118}
+                        width={116}
                         height={18}
-                        className="object-contain"
+                        className="object-contain w-[90px] h-[16px] md:w-[116px] md:h-[18px]"
                     />
 
                 </Link>
 
                 <div className="relative flex items-center justify-center pr-4 gap-3 md:gap-6">
 
-                    <Link href={'/projects/cars-store/dashboard'} className=" bg-gray-100 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300">
+                    <Link href={'/projects/cars-store/dashboard'} className=" bg-gray-50 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300">
                         <Image src='/car-icon.svg'
                             alt="dashboard"
                             height={25}
                             width={25}
+                            className="w-[20px] h-[20px] md:h-[25px] md:w-[25px]"
                         />
                     </Link>
 
@@ -34,6 +34,7 @@ function Navbar({ otherClasses }: NavBarProps) {
                             alt="shopping cart"
                             height={25}
                             width={25}
+                            className="w-[20px] h-[20px] md:h-[25px] md:w-[25px]"
                         />
                     </Link>
 
@@ -42,6 +43,7 @@ function Navbar({ otherClasses }: NavBarProps) {
                             alt="profile icon"
                             height={25}
                             width={25}
+                            className="w-[20px] h-[20px] md:h-[25px] md:w-[25px]"
                         />
                     </Link>
 

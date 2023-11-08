@@ -10,23 +10,39 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 
 export function YearFilter() {
-    const [selected, setSelected] = useState('2015')
+    const [selected, setSelected] = useState('')
+    const [yearInput, setYearInput] = useState('')
+
     const router = useRouter()
+    const searchParams = new URLSearchParams(window.location.search)
+    const hasYearParam = searchParams.get('year')
 
     useEffect(() => {
-        const newYear = updateSearchParams('year', selected)
+        console.log(selected)
+    }, [])
+
+    const setYearParam = (yearSelected: string) => {
+        setSelected(yearSelected)
+
+        const newYear = updateSearchParams('year', yearSelected)
         router.push(newYear)
-    }, [selected])
+    }
 
     return (
         <div className='mt-5'>
 
             <div className={'flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-[12px] font-light text-gray-400'}>
-                <span className='pl-12'>{selected}</span>
+                <span className='pl-12'>
+                    {
+                        hasYearParam ? selected || hasYearParam
+                            : !selected || selected === '' ? '2015'
+                                : selected
+                    }
+                </span>
 
                 <Listbox
                     value={selected}
-                    onChange={setSelected}
+                    onChange={setYearParam}
                 >
                     <Image src={'/calendar-search.svg'}
                         alt='year car'
@@ -56,7 +72,7 @@ export function YearFilter() {
                                     <Listbox.Option
                                         key={Math.random()}
                                         value={year.value}
-                                        onChange={() => setSelected(year.value)}
+                                        onChange={() => setYearParam(year.value)}
                                         className={({ active }) => `search-manufacturer__option flex justify-end text-sm ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
                                     >
                                         <p>{year.value}</p>

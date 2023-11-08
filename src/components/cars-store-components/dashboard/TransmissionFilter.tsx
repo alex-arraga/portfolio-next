@@ -2,44 +2,41 @@
 
 import { updateSearchParams } from "@/app/utils"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
 
 function TransmissionFilter() {
-    const [transmission, setTransmission] = useState('')
     const router = useRouter()
     const searchParams = new URLSearchParams(window.location.search);
 
-    useEffect(() => {
-        const newTransmission = updateSearchParams('transmission', transmission)
-        router.push(newTransmission)
-    }, [transmission])
-
-    useEffect(() => {
-        if (transmission) {
-            searchParams.set('transmission', transmission)
-        } else {
+    const clearSearch = () => {
+        let hasParam = searchParams.get('transmission')
+        if (hasParam === 'a' || hasParam === 'm') {
             searchParams.delete('transmission')
-        }
 
-        const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-        router.push(newPathName)
-    }, [])
+            const clearPathName = `${window.location.pathname}?${searchParams.toString()}`
+            router.push(clearPathName)
+        }
+    }
+
+    const setTransmissionParam = (type: string) => {
+        const newTransmission = updateSearchParams('transmission', type)
+        router.push(newTransmission)
+    }
 
     return (
-        <div className='relative flex justify-center items-center gap-2 w-full h-10'>
+        <div className='relative grid grid-cols-1 gap-4 md:grid-cols-3 w-full h-full text-[12px] md:text-[14px]'>
             <button
-                onClick={() => searchParams.delete('transmission')}
-                className='flex items-center hover:bg-gray-300 duration-200 justify-center bg-gray-200 w-full h-full rounded-xl'>
+                onClick={() => clearSearch()}
+                className='flex items-center hover:bg-gray-300 duration-200 justify-center bg-gray-200 w-full h-[24px] md:h-[32px] xl:h-[40px] rounded-md md:rounded-xl'>
                 Any
             </button>
             <button
-                onClick={() => setTransmission('m')}
-                className='flex items-center justify-center hover:bg-sky-300 duration-200 bg-sky-200 w-full h-full rounded-xl'>
+                onClick={() => setTransmissionParam("m")}
+                className='flex items-center justify-center hover:bg-sky-300 duration-200 bg-sky-200 w-full h-[24px] md:h-[32px] xl:h-[40px] rounded-md md:rounded-xl'>
                 Manual
             </button>
             <button
-                onClick={() => setTransmission('a')}
-                className='flex items-center hover:bg-sky-300 duration-200 justify-center bg-sky-200 w-full h-full rounded-xl'>
+                onClick={() => setTransmissionParam("a")}
+                className='flex items-center hover:bg-sky-300 duration-200 justify-center bg-sky-200 w-full h-[24px] md:h-[32px] xl:h-[40px] rounded-md md:rounded-xl'>
                 Automatic
             </button>
         </div>

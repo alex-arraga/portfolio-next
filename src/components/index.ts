@@ -18,6 +18,7 @@ import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter
 import TypesCarsFilter from './cars-store-components/dashboard/TypesCarsFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
 import TransmissionFilter from './cars-store-components/dashboard/TransmissionFilter'
+import ResetAllFilters from './cars-store-components/dashboard/ResetAllFilters'
 
 export {
     Hero,
@@ -36,5 +37,6 @@ export {
     PriceRangeFilter,
     TypesCarsFilter,
     Dashboard,
-    TransmissionFilter
+    TransmissionFilter,
+    ResetAllFilters
 }

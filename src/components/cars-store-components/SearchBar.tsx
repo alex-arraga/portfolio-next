@@ -5,16 +5,20 @@ import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { searchBarProps } from "@/types/cars-store"
+import { toast } from "sonner"
 
 function SearchBar({ styleSearchbar }: searchBarProps) {
     const [manufacturer, setManufacturer] = useState('')
     const [model, setModel] = useState('')
     const router = useRouter()
 
+    const searchParams = new URLSearchParams(window.location.search);
+    const hasModel = searchParams.get('model')
+
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (manufacturer === '' && model === '') {
-            return alert('Please fill in the search bar')
+            return toast.error('Error: You are required to fill in the field in the search bar in order to complete the search.')
         }
 
         updateSearchParams(
@@ -23,8 +27,6 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
     }
 
     const updateSearchParams = (model: string, manufacturer: string) => {
-        const searchParams = new URLSearchParams(window.location.search);
-
         if (model) {
             searchParams.set('model', model)
         } else {
@@ -52,9 +54,9 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                 <Image
                                     src='/magnifying-glass.svg'
                                     alt="magnifiying glass"
-                                    width={90}
-                                    height={90}
-                                    className="object-contain bg-sky-100 p-1 rounded-full" />
+                                    width={40}
+                                    height={40}
+                                    className="object-contain bg-sky-100 rounded-full" />
                             </button>
                         </div>
 
@@ -80,18 +82,17 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
             {
                 styleSearchbar === 'aside-filters' ?
 
-                    <form className='relative' onSubmit={handleSearch}>
-                        <div className="flex flex-1 w-full gap-2 justify-between items-center">
+                    <form className='relative w-full h-full' onSubmit={handleSearch}>
+                        <div className="flex flex-col md:flex-1 w-full gap-4 justify-between items-center">
                             <SearchManufacturer
                                 manufacturer={manufacturer}
                                 setManufacturer={setManufacturer}
                                 styleSearchbar='aside-filters'
                             />
 
-                            <SearchButton otherClasses="aside-btn" />
 
                             {/* Search Model */}
-                            <div className="flex relative items-center w-full">
+                            <div className="flex relative flex-1 items-center w-full">
                                 <Image src={'/model-icon.png'}
                                     alt="magnifyng glass"
                                     width={20}
@@ -102,9 +103,16 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                     name="model"
                                     value={model}
                                     onChange={(e) => setModel(e.target.value)}
-                                    placeholder="Corolla"
-                                    className="bg-gray-100 w-full h-8 rounded-full text-[12px] font-light px-12"
+                                    placeholder={hasModel ? 'Last search: ' + hasModel : 'Corolla'}
+                                    className="bg-gray-100 w-full h-8 rounded-full capitalize text-[12px] font-light px-12"
                                 />
+                            </div>
+
+                            <div className="flex justify-start w-full items-center mt-4 h-10">
+                                <div className="flex justify-between items-center w-1/2 px-4 border-2 rounded-full text-[12px] text-gray-400 border-indigo-200 border-opacity-50 h-full">
+                                    <p>Search!</p>
+                                    <SearchButton otherClasses="aside-btn w-[26px] p-1 rounded-full bg-sky-200 h-[26px]" />
+                                </div>
                             </div>
                         </div>
 
