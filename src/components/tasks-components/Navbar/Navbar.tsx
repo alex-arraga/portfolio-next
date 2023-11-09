@@ -7,10 +7,6 @@ import { useState, useEffect } from "react"
 export function Navbar() {
     const [path, setPath] = useState('')
 
-    const modifyCurrentPath = (path: string) => {
-        setPath(path)
-    }
-
     useEffect(() => {
         const currentPath = window.location.pathname
         setPath(currentPath)
@@ -24,7 +20,7 @@ export function Navbar() {
             <ul>
                 <li className="flex">
                     {privateRoutes.map(item =>
-                        <Link onClick={() => modifyCurrentPath(item.path)}
+                        <Link onClick={() => setPath(item.path)}
                             className={`mr-5 md:mr-0 px-3 py-1 ${path === item.path ? 'bg-sky-600 duration-200 rounded-full' : ''}`} href={item.path} key={item.path}>
                             <div className="flex items-center gap-1">
                                 {item.icon}

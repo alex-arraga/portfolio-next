@@ -19,6 +19,7 @@ import TypesCarsFilter from './cars-store-components/dashboard/TypesCarsFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
 import TransmissionFilter from './cars-store-components/dashboard/TransmissionFilter'
 import ResetAllFilters from './cars-store-components/dashboard/ResetAllFilters'
+import HamburgerMenuBar from './cars-store-components/HamburgerMenuBar'
 
 export {
     Hero,
@@ -38,5 +39,6 @@ export {
     TypesCarsFilter,
     Dashboard,
     TransmissionFilter,
-    ResetAllFilters
+    ResetAllFilters,
+    HamburgerMenuBar
 }

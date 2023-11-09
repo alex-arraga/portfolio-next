@@ -41,7 +41,8 @@ export interface CarCardProps {
 export interface CarDetailsProps {
     isOpen: boolean,
     closeModal: () => void,
-    car: CarCardProps
+    car: CarCardProps,
+    styleDetails?: string
 }
 
 export interface FilterProps {
@@ -94,4 +95,14 @@ export interface AsideComponentProps {
 
 export interface searchBarProps {
     styleSearchbar?: string
+}
+
+export interface HamburgerMenuBarProps {
+    handleClick: () => void,
+    searchParams: {
+        year: number | string,
+        manufacturer: string,
+        model: string,
+        transmission: string
+    }
 }

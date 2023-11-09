@@ -1,18 +1,18 @@
 "use client"
 
-import { renameClasses } from "@/app/utils";
-import { AsideComponentProps, CarCardProps } from "@/types/cars-store";
-import { HiMenuAlt1 } from 'react-icons/hi';
+// import { renameClasses } from "@/app/utils";
+import { AsideComponentProps } from "@/types/cars-store";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 
 import {
-    YearFilter,
     PriceRangeFilter,
-    SearchBar,
     TypesCarsFilter,
+    YearFilter,
+    SearchBar,
     TransmissionFilter,
-    ResetAllFilters
+    ResetAllFilters,
+    HamburgerMenuBar
 } from "@/components/index";
 
 
@@ -54,54 +54,7 @@ export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
 
     return (
         <>
-            <div className="relative flex justify-start items-center mx-4 sm:mx-6 md:mx-10 my-6 h-0 w-full">
-                <HiMenuAlt1
-                    onClick={() => openModal()}
-                    className={`h-6 w-6 md:h-8 md:w-8 cursor-pointer`}
-                />
-
-                <div className="relative justify-start items-center w-full hidden sm:block text-[12px] sm:text-[14px] md:text-[14px]">
-                    <ul className="flex flex-1 justify-center gap-x-[calc(2%)] w-full rounded-full">
-                        <li className="px-2 border-b-2 border-sky-100">
-                            Year: <span className="font-semibold">
-                                {
-                                    !searchParams.year ? '2015' : searchParams.year
-                                }
-                            </span>
-                        </li>
-
-                        {/* <li className="px-2 border-b-2 border-sky-100">
-                            Type: <span className="font-semibold">
-                                {
-                                    searchParams.class
-                                }
-                            </span>
-                        </li> */}
-
-                        <li className="px-2 border-b-2 border-sky-100">
-                            Make by: <span className="font-semibold capitalize">
-                                {
-                                    !searchParams.manufacturer ? 'All Brands' : searchParams.manufacturer
-                                }
-                            </span>
-                        </li>
-                        <li className="px-2 border-b-2 border-sky-100">
-                            Model: <span className="font-semibold capitalize">
-                                {
-                                    !searchParams.model ? 'All Models' : searchParams.model
-                                }
-                            </span>
-                        </li>
-                        <li className="px-2 border-b-2 border-sky-100">
-                            Transmission: <span className="font-semibold capitalize">
-                                {
-                                    !searchParams.transmission ? 'M/A' : searchParams.transmission === 'm' ? 'Manual' : 'Automatic'
-                                }
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <HamburgerMenuBar searchParams={searchParams} handleClick={openModal} />
 
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -129,10 +82,11 @@ export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
                                 leaveTo="opacity-0 scale-95 transform:translateX(-100px)"
                             >
                                 <Dialog.Panel className="relative w-[calc(85vw)] md:w-1/2 xl:w-1/3 overflow-y-auto rounded-2xl bg-white text-left align-middle shadow-xl">
+
                                     <div className="w-full h-screen border-r-2 border-gray-200 overflow-y-auto">
                                         <div className="flex flex-col justify-start items-start p-10">
 
-                                            {/* Search bar */}
+                                            {/* Search Bar - Model and Manufacturer filter */}
                                             <div className="relative w-full">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Search</h2>
                                                 <div className="flex items-center w-full relative mt-5">
@@ -168,6 +122,7 @@ export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
                                                 </div>
                                             </div> */}
 
+                                            {/* Transmission Filter */}
                                             <div className="w-full mt-10">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Transmission</h2>
                                                 <div className="flex justify-center items-center w-full mt-5">
@@ -175,23 +130,22 @@ export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
                                                 </div>
                                             </div>
 
+                                            {/* Reset All Filters */}
                                             <div className="w-full mt-10">
                                                 <h2 className="text-gray-400 uppercase font-medium text-[12px]">Show all cars</h2>
                                                 <div className="flex justify-center items-center w-full mt-5">
                                                     <ResetAllFilters />
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
+
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
                     </div>
                 </Dialog>
             </Transition>
-
-
         </>
     )
 }

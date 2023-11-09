@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { CarCardProps } from "@/types/cars-store"
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
@@ -17,7 +17,7 @@ function CarCard({ car, styleCard }: CarProps) {
     const [like, setLike] = useState(false)
     const { city_mpg, year, make, model, transmission, drive, cylinders } = car
 
-
+    const id = useId()
     const carRent = calculateCarRent(city_mpg, year)
 
     return (
@@ -27,10 +27,17 @@ function CarCard({ car, styleCard }: CarProps) {
                     <div className="car-card group">
                         <div className="car-card__content">
                             <div className="flex justify-between items-center">
+
+                                {/* Car name */}
                                 <h2 className="car-card__content-title capitalize">
                                     {make} {model}
                                 </h2>
 
+                                {/* <h6 className="text-red-500 font-medium">
+                                    {id}
+                                </h6> */}
+
+                                {/* Like */}
                                 <div className="cursor-pointer">
                                     {
                                         !like ? (
@@ -95,6 +102,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                 </div>
                             </div>
 
+                            {/* Price rent */}
                             <div className="flex w-full justify-between items-center max-h-8 mt-6">
                                 <p className="flex justify-start items-center  w-full  text-base">
                                     <span className="font-semibold text-[20px]">${carRent} /</span>day
@@ -107,9 +115,9 @@ function CarCard({ car, styleCard }: CarProps) {
                                 />
                             </div>
 
-
+                            {/* Details car modal */}
                             <div>
-                                <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+                                <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} styleDetails='rent' />
                             </div>
 
                         </div>
@@ -119,10 +127,13 @@ function CarCard({ car, styleCard }: CarProps) {
 
                     <div className="car-card group">
                         <div className="car-card__content">
+
+                            {/* Car name */}
                             <h2 className="car-card__content-title capitalize">
                                 {make} {model}
                             </h2>
 
+                            {/* Price rent */}
                             <p className="flex mt-6 text-[32px]">
                                 <span className="self-start text-[14px] font-semibold">
                                     $
@@ -133,6 +144,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                 </span>
                             </p>
 
+                            {/* Main image */}
                             <div className="relative w-full h-40 my-3 object-contain">
                                 <Image src={generateCarImageAPI(car)}
                                     fill
@@ -141,6 +153,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                 />
                             </div>
 
+                            {/* Icons */}
                             <div className="relative flex w-full mt-6 md:mt-8">
                                 <div className="flex group-hover:invisible w-full justify-between text-gray">
 
@@ -178,6 +191,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                     </div>
                                 </div>
 
+                                {/* View more btn */}
                                 <div className="car-card__btn-container">
                                     <CustomButton
                                         title="View more"
@@ -189,6 +203,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                 </div>
                             </div>
 
+                            {/* Details car modal */}
                             <div>
                                 <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
                             </div>

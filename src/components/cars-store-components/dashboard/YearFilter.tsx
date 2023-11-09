@@ -11,15 +11,10 @@ import { useRouter } from 'next/navigation';
 
 export function YearFilter() {
     const [selected, setSelected] = useState('')
-    const [yearInput, setYearInput] = useState('')
 
     const router = useRouter()
     const searchParams = new URLSearchParams(window.location.search)
     const hasYearParam = searchParams.get('year')
-
-    useEffect(() => {
-        console.log(selected)
-    }, [])
 
     const setYearParam = (yearSelected: string) => {
         setSelected(yearSelected)
