@@ -3,16 +3,18 @@
 import '@/css/cars-store.css'
 
 import { CarDetailsProps } from "@/types/cars-store"
-import { Fragment, useId } from "react"
+import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { generateCarImageAPI, calculateCarRent } from "@/app/utils"
 
+import { useCarsContext } from '@/context/CarsContext'
 import Image from "next/image"
 import Link from 'next/link'
 
 function CarDetails({ car, isOpen, closeModal, styleDetails }: CarDetailsProps) {
   const carRent = calculateCarRent(car.city_mpg, car.year)
   const baseUrlRent = 'http://localhost:3000/projects/cars-store/rents'
+
 
   return (
     <>
@@ -85,14 +87,14 @@ function CarDetails({ car, isOpen, closeModal, styleDetails }: CarDetailsProps) 
                                   </div>
 
                                   {/* button pay */}
-                                  <Link
-                                    href={baseUrlRent}
+                                  <div
                                     className='flex justify-center h-10 absolute bottom-5 bg-opacity-50 w-full'>
                                     <button
+                                      onClick={() => console.log('pay')}
                                       className='flex justify-center items-center rounded-md w-1/2 bg-white hover:bg-primary-blue hover:text-white duration-300 cursor-pointer'>
                                       Pay rent car
                                     </button>
-                                  </Link>
+                                  </div>
                                 </section>
 
                               </section>

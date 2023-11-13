@@ -21,6 +21,11 @@ import TransmissionFilter from './cars-store-components/dashboard/TransmissionFi
 import ResetAllFilters from './cars-store-components/dashboard/ResetAllFilters'
 import HamburgerMenuBar from './cars-store-components/HamburgerMenuBar'
 
+// Cars-Store: Rents
+import HomeRented from './cars-store-components/rents/HomeRented'
+import RentedCarCard from './cars-store-components/rents/RentedCarCard'
+import NavSelect from './cars-store-components/rents/NavSelect'
+
 export {
     Hero,
     CustomButton,
@@ -40,5 +45,8 @@ export {
     Dashboard,
     TransmissionFilter,
     ResetAllFilters,
-    HamburgerMenuBar
+    HamburgerMenuBar,
+    HomeRented,
+    RentedCarCard,
+    NavSelect
 }

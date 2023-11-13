@@ -21,12 +21,12 @@ async function Dashboard({ searchParams }: HomeProps) {
             <div className='h-screen overflow-y-auto w-screen bg-indigo-100'>
                 {
                     !isDataEmpty ? (
-                        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 min-h-screen overflow-y-auto mb-[calc(20vh)]">
-                            {allCars?.map((car: CarCardProps) =>
+                        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 min-h-screen overflow-y-auto mb-[calc(18vh)]">
+                            {allCars?.map((car: CarCardProps) => (
                                 <div className="h-full w-full overflow-hidden">
                                     <CarCard car={car} styleCard="dashboard" />
                                 </div>
-                            )}
+                            ))}
                         </section>
 
                     ) : (

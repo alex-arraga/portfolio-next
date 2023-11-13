@@ -39,3 +39,24 @@ model Calculator {
   result     String
   created_at DateTime @default(now())
 }
+
+model Cars {
+  id              Int      @id @default(autoincrement())
+  city_mpg        Int
+  class           String
+  combination_mpg Int
+  cylinders       Int
+  displacement    Float
+  drive           String
+  fuel_type       String
+  highway_mpg     Int
+  make            String
+  model           String
+  transmission    String
+  year            Int
+  rented          Boolean
+  liked           Boolean
+  pay_method      String?
+  duration_rented String?
+  created_at      DateTime @default(now())
+}

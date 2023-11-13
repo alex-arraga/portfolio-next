@@ -1,5 +1,6 @@
 "use client"
 
+import { baseURL } from "@/libs/baseURL";
 import { createContext, useContext } from "react";
 
 const CarsContext = createContext()
@@ -12,19 +13,21 @@ export const useCarsContext = () => {
 
 export const CarsProvider = ({ children }) => {
 
-    const filterTypes = ({ typesCars }) => {
-        if (typesCars) {
-            const types = [...typesCars]
-            return console.log(types)
-
-        } else {
-            console.log('No hay types')
+    const getAllCars = async () => {
+        try {
+            const response = await fetch(`${baseURL}/cars-store`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            const data = await response.json()
+            return data.getAllCars
+        } catch (error) {
+            console.log(error)
         }
-
     }
 
     return <CarsContext.Provider value={{
-        filterTypes
+        getAllCars
     }}>
         {children}
     </CarsContext.Provider>

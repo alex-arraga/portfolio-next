@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { CarCardProps } from "@/types/cars-store"
-import { useState, useId } from 'react'
+import { CarCardProps, RentedCarCardProps } from "@/types/cars-store"
+import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
@@ -17,7 +17,6 @@ function CarCard({ car, styleCard }: CarProps) {
     const [like, setLike] = useState(false)
     const { city_mpg, year, make, model, transmission, drive, cylinders } = car
 
-    const id = useId()
     const carRent = calculateCarRent(city_mpg, year)
 
     return (
@@ -29,13 +28,9 @@ function CarCard({ car, styleCard }: CarProps) {
                             <div className="flex justify-between items-center">
 
                                 {/* Car name */}
-                                <h2 className="car-card__content-title capitalize">
+                                <h1 className="car-card__content-title capitalize">
                                     {make} {model}
-                                </h2>
-
-                                {/* <h6 className="text-red-500 font-medium">
-                                    {id}
-                                </h6> */}
+                                </h1>
 
                                 {/* Like */}
                                 <div className="cursor-pointer">
@@ -64,9 +59,9 @@ function CarCard({ car, styleCard }: CarProps) {
                             </div>
 
                             {/* Class */}
-                            <p className="mt-1 capitalize text-gray-500">
+                            <h2 className="mt-1 capitalize text-gray-500">
                                 {renameClasses(car.class)}
-                            </p>
+                            </h2>
 
                             {/* Main image */}
                             <div className="relative w-full h-40 my-2 object-contain">
@@ -104,9 +99,9 @@ function CarCard({ car, styleCard }: CarProps) {
 
                             {/* Price rent */}
                             <div className="flex w-full justify-between items-center max-h-8 mt-6">
-                                <p className="flex justify-start items-center  w-full  text-base">
+                                <h3 className="flex justify-start items-center  w-full  text-base">
                                     <span className="font-semibold text-[20px]">${carRent} /</span>day
-                                </p>
+                                </h3>
 
                                 <CustomButton
                                     title="Rent car"

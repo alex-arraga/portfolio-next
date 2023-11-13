@@ -54,7 +54,7 @@ export function AsideComponent({ allCars, searchParams }: AsideComponentProps) {
 
     return (
         <>
-            <HamburgerMenuBar searchParams={searchParams} handleClick={openModal} />
+            <HamburgerMenuBar searchParams={searchParams} handleClick={openModal} styleMenu='dashboard' />
 
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>

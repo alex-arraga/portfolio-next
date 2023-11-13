@@ -1,8 +1,12 @@
-import React from 'react'
+import { Footer, HomeRented, Navbar } from '@/components'
 
-function page() {
+async function page() {
     return (
-        <div>Rents</div>
+        <div className='relative min-h-screen overflow-hidden'>
+            <Navbar />
+            <HomeRented />
+            <Footer />
+        </div>
     )
 }
 
