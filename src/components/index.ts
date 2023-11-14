@@ -25,6 +25,8 @@ import HamburgerMenuBar from './cars-store-components/HamburgerMenuBar'
 import HomeRented from './cars-store-components/rents/HomeRented'
 import RentedCarCard from './cars-store-components/rents/RentedCarCard'
 import NavSelect from './cars-store-components/rents/NavSelect'
+import SectionsMyCars from './cars-store-components/rents/SectionsMyCars'
+import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 
 export {
     Hero,
@@ -48,5 +50,7 @@ export {
     HamburgerMenuBar,
     HomeRented,
     RentedCarCard,
-    NavSelect
+    NavSelect,
+    SectionsMyCars,
+    EmptyDataMessage
 }

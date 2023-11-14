@@ -1,9 +1,9 @@
 "use client"
 
 import { baseURL } from "@/libs/baseURL";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const CarsContext = createContext()
+export const CarsContext = createContext()
 
 export const useCarsContext = () => {
     const context = useContext(CarsContext)
@@ -12,22 +12,11 @@ export const useCarsContext = () => {
 }
 
 export const CarsProvider = ({ children }) => {
-
-    const getAllCars = async () => {
-        try {
-            const response = await fetch(`${baseURL}/cars-store`, {
-                method: 'GET',
-                credentials: 'include'
-            })
-            const data = await response.json()
-            return data.getAllCars
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const [sectionLikes, setSectionLikes] = useState(false)
 
     return <CarsContext.Provider value={{
-        getAllCars
+        sectionLikes,
+        setSectionLikes,
     }}>
         {children}
     </CarsContext.Provider>

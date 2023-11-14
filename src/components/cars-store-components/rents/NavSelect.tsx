@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from 'react'
 import Image from "next/image"
+import { useCarsContext } from '@/context/CarsContext'
 
 function NavSelect() {
-    const [sectionLikes, setSectionLikes] = useState(false)
+    const { sectionLikes, setSectionLikes } = useCarsContext()
 
     return (
         <div className={`flex justify-center items-center bg-white border-2 border-gray-200 gap-2 sm:gap-4 md:gap-6 xl:gap-8 h-16`}>

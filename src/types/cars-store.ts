@@ -131,3 +131,12 @@ export interface RentedCarCardProps {
     duration_rented: string | null
     created_at: string | Date;
 }
+
+export interface SectionsMyCarsProps {
+    carsRented: RentedCarCardProps[]
+}
+
+export interface EmptyDataMessageProps {
+    searchParams?: FilterProps
+    styleMessage?: string
+}
