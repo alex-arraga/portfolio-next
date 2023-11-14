@@ -28,27 +28,26 @@ function RentedCarCard({ car }: RentedCar) {
                     </h1>
 
                     {/* Like */}
-                    <div className="cursor-pointer">
+                    <div>
                         {
-                            !like ? (
-                                <Image
-                                    onClick={() => setLike(true)}
-                                    src={'/heart-outline.svg'}
-                                    width={22}
-                                    height={22}
-                                    alt="like icon"
-                                    className="heart-icon duration-200"
-                                />
-                            ) : (
+                            car.liked ?
                                 <Image
                                     onClick={() => setLike(false)}
                                     src={'/heart-filled.svg'}
                                     width={22}
                                     height={22}
                                     alt="like icon"
-                                    className="heart-icon duration-200"
                                 />
-                            )
+
+                                :
+
+                                <Image
+                                    onClick={() => setLike(true)}
+                                    src={'/heart-outline.svg'}
+                                    width={22}
+                                    height={22}
+                                    alt="like icon"
+                                />
                         }
                     </div>
                 </div>
@@ -65,33 +64,46 @@ function RentedCarCard({ car }: RentedCar) {
                         alt="cars"
                         className="object-contain"
                     />
-
                 </div>
 
-
-
+                {/* Info */}
                 <div className="flex flex-col justify-start items-start w-full h-full rounded-md">
                     <h3 className="mb-4 text-[12px] sm:text-[14px] md:text-[16px] text-gray-700">
                         Cost: <span className="font-semibold text-black-100">${carRent} /</span>day
                     </h3>
 
-                    <ul className="flex justify-between w-full gap-2 sm:gap-4 md:gap-6 mb-6 text-[10px] sm:text-[12px] md:text-[14px]">
-                        <li className="flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md">
+                    <ul className="flex justify-between w-full gap-2 sm:gap-4 md:gap-6 mb-4 text-[10px] sm:text-[12px] md:text-[14px]">
+                        <li className={`${!car.rented ? 'flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
+                            This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
+                        </li>
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             Rented<span className="font-semibold capitalize">{carDate.slice(0, 10)}</span>
                         </li>
-                        <li className="flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md">
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             Hour<span className="font-semibold capitalize">{carDate.slice(11)}</span>
                         </li>
-                        <li className="flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md">
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             Rented for<span className="font-semibold capitalize">{car.duration_rented}</span>
                         </li>
                     </ul>
 
-                    <CustomButton
-                        title="View payment"
-                        handleClick={() => setIsOpen(true)}
-                        containerStyle="max-h-8 w-full bg-gray-700 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md hover:bg-primary-blue text-white hover:bg-primary-blue duration-300"
-                    />
+                    {/* Buttons */}
+                    {
+                        car.rented ?
+                            <CustomButton
+                                title="View payment"
+                                handleClick={() => setIsOpen(true)}
+                                containerStyle="max-h-8 w-full bg-gray-700 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
+                            />
+
+                            :
+
+                            <CustomButton
+                                title="Rent car now"
+                                handleClick={() => setIsOpen(true)}
+                                containerStyle="max-h-8 w-full bg-blue-900 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
+                            />
+                    }
                 </div>
 
 

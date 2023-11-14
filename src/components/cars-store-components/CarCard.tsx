@@ -1,11 +1,12 @@
 "use client"
 
 import Image from "next/image"
-import { CarCardProps, RentedCarCardProps } from "@/types/cars-store"
+import { CarCardProps } from "@/types/cars-store"
 import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
+// import { useCarsContext } from "@/context/CarsContext"
 
 interface CarProps {
     car: CarCardProps,
@@ -13,11 +14,12 @@ interface CarProps {
 }
 
 function CarCard({ car, styleCard }: CarProps) {
-    const [isOpen, setIsOpen] = useState(false)
-    const [like, setLike] = useState(false)
-    const { city_mpg, year, make, model, transmission, drive, cylinders } = car
+    const [isOpen, setIsOpen] = useState(false);
+    const [like, setLike] = useState(false);
+    const { city_mpg, year, make, model, transmission, drive, cylinders } = car;
+    const carRent = calculateCarRent(city_mpg, year);
 
-    const carRent = calculateCarRent(city_mpg, year)
+    // const { newCar } = useCarsContext();
 
     return (
         <>
