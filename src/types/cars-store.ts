@@ -37,6 +37,9 @@ export interface CarCardProps {
     model: string,
     transmission: string,
     year: number
+
+    rented?: boolean;
+    liked?: boolean;
 };
 
 export interface CarDetailsProps {

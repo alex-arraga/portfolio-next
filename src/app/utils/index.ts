@@ -1,6 +1,7 @@
 import { CarCardProps, FilterProps } from "@/types/cars-store";
 
 export async function fetchCarsAPI(filters: FilterProps) {
+    let time = performance.now()
     const { manufacturer, model, year, limit, fuel, city_mpg, highway_mpg, transmission } = filters;
 
     const headers = {
@@ -14,6 +15,7 @@ export async function fetchCarsAPI(filters: FilterProps) {
     })
 
     const result = await response.json()
+    console.log('😸', performance.now() - time)
     return result
 };
 

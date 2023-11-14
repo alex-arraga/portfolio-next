@@ -2,7 +2,6 @@
 
 import { baseURL } from "@/libs/baseURL";
 import { createContext, useContext, useState } from "react";
-import { RentedCarCardProps } from "@/types/cars-store";
 
 export const CarsContext = createContext()
 
@@ -34,7 +33,7 @@ export const CarsProvider = ({ children }) => {
     return <CarsContext.Provider value={{
         sectionLikes,
         setSectionLikes,
-        newCar
+        newCar,
     }}>
         {children}
     </CarsContext.Provider>

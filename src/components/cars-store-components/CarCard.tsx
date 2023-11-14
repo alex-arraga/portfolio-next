@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
-// import { useCarsContext } from "@/context/CarsContext"
+import { useCarsContext } from "@/context/CarsContext"
 
 interface CarProps {
     car: CarCardProps,
@@ -16,10 +16,33 @@ interface CarProps {
 function CarCard({ car, styleCard }: CarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [like, setLike] = useState(false);
+
     const { city_mpg, year, make, model, transmission, drive, cylinders } = car;
     const carRent = calculateCarRent(city_mpg, year);
 
-    // const { newCar } = useCarsContext();
+    const { newCar } = useCarsContext();
+
+    const newCarLiked = (car: CarCardProps) => {
+        const data = {
+            city_mpg: car.city_mpg,
+            class: car.class,
+            combination_mpg: car.combination_mpg,
+            cylinders: car.cylinders,
+            displacement: car.displacement,
+            drive: car.drive,
+            fuel_type: car.fuel_type,
+            highway_mpg: car.highway_mpg,
+            make: car.make,
+            model: car.model,
+            transmission: car.transmission,
+            year: car.year,
+            liked: car.liked = true,
+            rented: car.rented = false
+        }
+
+        setLike(true)
+        newCar(data);
+    }
 
     return (
         <>
@@ -39,7 +62,7 @@ function CarCard({ car, styleCard }: CarProps) {
                                     {
                                         !like ? (
                                             <Image
-                                                onClick={() => setLike(true)}
+                                                onClick={() => newCarLiked(car)}
                                                 src={'/heart-outline.svg'}
                                                 width={22}
                                                 height={22}
