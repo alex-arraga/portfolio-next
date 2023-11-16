@@ -28,6 +28,9 @@ import NavSelect from './cars-store-components/rents/NavSelect'
 import SectionsMyCars from './cars-store-components/rents/SectionsMyCars'
 import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 
+// Payment Components
+import PlansCard from './payment-components/PlansCard'
+
 export {
     Hero,
     CustomButton,
@@ -52,5 +55,6 @@ export {
     RentedCarCard,
     NavSelect,
     SectionsMyCars,
-    EmptyDataMessage
+    EmptyDataMessage,
+    PlansCard,
 }

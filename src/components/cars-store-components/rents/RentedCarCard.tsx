@@ -1,19 +1,38 @@
 "use client"
 
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
+import { Price } from "@/types/payment"
 import { RentedCarCardProps } from "@/types/cars-store"
+import { useState } from 'react'
+import { CarDetails } from "../../index"
+
 import Image from "next/image"
 import CustomButton from "../CustomButton"
-import { useState } from 'react'
-import CarDetails from "../CarDetails"
 
 interface RentedCar {
-    car: RentedCarCardProps
+    rentedCars: RentedCarCardProps
+    stripePrices: Price[]
 }
 
-function RentedCarCard({ car }: RentedCar) {
-    const [isOpen, setIsOpen] = useState(false)
+function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
+    const [paymentIsOpen, setPaymentIsOpen] = useState(false)
+    const [rentIsOpen, setRentIsOpen] = useState(false)
     const [like, setLike] = useState(false)
+
+    const dataCarAPI = {
+        city_mpg: car.city_mpg,
+        class: car.class,
+        combination_mpg: car.combination_mpg,
+        cylinders: car.cylinders,
+        displacement: car.displacement,
+        drive: car.drive,
+        fuel_type: car.fuel_type,
+        highway_mpg: car.highway_mpg,
+        make: car.make,
+        model: car.model,
+        transmission: car.transmission,
+        year: car.year,
+    }
 
     const carRent = calculateCarRent(car.city_mpg, car.year)
     const carDate = car.created_at.toLocaleString()
@@ -92,7 +111,7 @@ function RentedCarCard({ car }: RentedCar) {
                         car.rented ?
                             <CustomButton
                                 title="View payment"
-                                handleClick={() => setIsOpen(true)}
+                                handleClick={() => setPaymentIsOpen(true)}
                                 containerStyle="max-h-8 w-full bg-gray-700 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
                             />
 
@@ -100,16 +119,24 @@ function RentedCarCard({ car }: RentedCar) {
 
                             <CustomButton
                                 title="Rent car now"
-                                handleClick={() => setIsOpen(true)}
+                                handleClick={() => setRentIsOpen(true)}
                                 containerStyle="max-h-8 w-full bg-blue-900 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
                             />
                     }
-                </div>
 
+                    <div>
+                        <CarDetails
+                            isOpen={rentIsOpen}
+                            closeModal={() => setRentIsOpen(false)}
+                            car={dataCarAPI}
+                            styleDetails='rent'
+                            stripePrices={stripePrices}
+                        />
+                    </div>
 
-                {/* Details car modal */}
-                <div>
-                    <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} styleDetails='rent' />
+                    {/* <div>
+                        <PaymentComprobant />
+                    </div> */}
                 </div>
 
             </div>

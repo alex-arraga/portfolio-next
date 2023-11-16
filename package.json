@@ -18,7 +18,8 @@
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-transition-group": "^4.4.5",
-    "sonner": "^1.0.3"
+    "sonner": "^1.0.3",
+    "stripe": "^14.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",

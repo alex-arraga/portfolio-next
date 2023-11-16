@@ -1,5 +1,5 @@
-import { Decimal } from "@prisma/client/runtime/library";
 import { MouseEventHandler } from "react";
+import { Price } from "./payment";
 
 export interface NavBarProps {
     otherClasses?: string
@@ -46,7 +46,8 @@ export interface CarDetailsProps {
     isOpen: boolean,
     closeModal: () => void,
     car: CarCardProps,
-    styleDetails?: string
+    styleDetails?: string,
+    stripePrices: Price[]
 }
 
 export interface FilterProps {
@@ -136,7 +137,8 @@ export interface RentedCarCardProps {
 }
 
 export interface SectionsMyCarsProps {
-    carsRented: RentedCarCardProps[]
+    rentedCars: RentedCarCardProps[]
+    stripePrices: Price[]
 }
 
 export interface EmptyDataMessageProps {
