@@ -74,7 +74,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 </p>
                               </div>
 
-                              <h3 className='flex justify-center text-[16px] my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
+                              <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
                               <p className='text-[14px] pb-6'>
                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
                               </p>
@@ -84,7 +84,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Section to pay - Mercado Pago */}
                           <section>
-                            <h3 className='flex justify-center text-[16px] my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
+                            <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
                             <p className='text-[14px] pb-6'>
                               Experience the freedom of renting cars by the day with secure payments through Mercado Pago. This option gives you absolute flexibility for spontaneous trips or daily plans, with fast and secure transactions. By opting for daily rentals, you will have the freedom to adjust your mobility according to your schedule, without prolonged time ties. With varied and hassle-free payment methods, you can enjoy the convenience of flexible travel planning.
                             </p>
@@ -96,7 +96,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Section to view car dates */}
                           <section>
-                            <h3 className='flex justify-center text-[16px] my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
+                            <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
                             <p className='text-[14px]'>
                               Looking for specific details about the vehicle you are considering for rental? Here's a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
                             </p>
@@ -290,51 +290,3 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 }
 
 export default CarDetails
-
-
-
-/*
-{/* SECCION DERECHA */
-// <section className='flex relative w-1/2 bg-white border-2 border-blue-200 rounded-xl p-4 flex-col flex-wrap h-full'>
-
-//   <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-//     {/* Main image */}
-//     <Image src={generateCarImageAPI(car)}
-//       fill
-//       alt="cars"
-//       className="object-contain pt-6"
-//     />
-//   </div>
-
-{/* Name car and model */ }
-{/* <div className="mt-6 mx-4">
-                                  <h2 className="font-semibold capitalize">
-                                    Data Sheet
-                                  </h2>
-                                </div > */}
-
-{/* Show properties and values of object 'car' */ }
-{/* <div className="mt-4 mx-4 flex flex-wrap gap-2">
-                                  {Object.entries(car)
-                                    .filter(([key]) => key !== 'model' && key !== 'make')
-                                    .map(([key, value]) => (
-                                      <div className="flex justify-between w-full text-right" key={key}>
-                                        <h4 className="capitalize text-gray-400 text-[14px]">
-                                          {
-                                            key === 'year' ? key = 'Year Launched'
-                                              : key.split("_").join(" ")
-                                          }
-                                        </h4>
-                                        <p className="font-medium text-black-100 text-[14px] capitalize">
-                                          {
-                                            value === 'm' ? value = 'Manual'
-                                              : value === 'a' ? value = 'Automatic'
-                                                : value
-                                          }
-                                        </p>
-                                      </div>
-                                    ))}
-                                </div>
-
-                              </section> */}
-

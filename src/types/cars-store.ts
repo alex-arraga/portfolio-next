@@ -15,7 +15,10 @@ export interface CustomButtonProps {
     textStyle?: string,
     handleClick?: MouseEventHandler<HTMLButtonElement>
     btnType?: 'button' | 'submit',
-    rightIcon?: string
+    rightIcon?: string,
+    priceId?: string,
+    isPayButton?: boolean,
+    urlPayAPI?: string
 };
 
 export interface SearchManufacturerProps {

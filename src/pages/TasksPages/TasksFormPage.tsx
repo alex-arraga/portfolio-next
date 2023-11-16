@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { baseURL } from '@/libs/baseURL';
+import { baseAPIURL } from '@/libs/baseURL';
 
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
@@ -17,7 +17,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
 
     // Get info of a task
     const loadTask = async () => {
-        const res = fetch(`${baseURL}/tasks/${id}`, {
+        const res = fetch(`${baseAPIURL}/tasks/${id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -51,7 +51,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
         // Create new task
         if (!id) {
             try {
-                const createTask = await fetch(`${baseURL}/tasks`, {
+                const createTask = await fetch(`${baseAPIURL}/tasks`, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(data)
@@ -66,7 +66,7 @@ export function TasksFormPage({ id }: { id: string | undefined }) {
         // Update task
         else {
             try {
-                const updateTask = await fetch(`${baseURL}/tasks/${id}`, {
+                const updateTask = await fetch(`${baseAPIURL}/tasks/${id}`, {
                     method: 'PUT',
                     credentials: 'include',
                     body: JSON.stringify(data)

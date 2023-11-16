@@ -1,6 +1,6 @@
 "use client"
 
-import { baseURL } from "@/libs/baseURL";
+import { baseAPIURL } from "@/libs/baseURL";
 import { createContext, useContext, useState } from "react";
 
 export const CarsContext = createContext()
@@ -16,7 +16,7 @@ export const CarsProvider = ({ children }) => {
 
     const newCar = async (car) => {
         try {
-            const response = await fetch(`${baseURL}/cars-store`, {
+            const response = await fetch(`${baseAPIURL}/cars-store`, {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(car)
