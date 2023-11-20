@@ -1,3 +1,10 @@
+// Home Components
+import { Box } from './home-components/Box'
+import ContainerBoxes from './home-components/ContainerBoxes'
+import AboutMe from './home-components/AboutMe'
+import SocialNetworks from './home-components/SocialNetworks'
+import Skills from './home-components/Skills'
+
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
 import CustomButton from './cars-store-components/CustomButton'
@@ -32,6 +39,11 @@ import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 import PlansCard from './payment-components/PlansCard'
 
 export {
+    Box,
+    ContainerBoxes,
+    AboutMe,
+    SocialNetworks,
+    Skills,
     Hero,
     CustomButton,
     Footer,
@@ -56,5 +68,5 @@ export {
     NavSelect,
     SectionsMyCars,
     EmptyDataMessage,
-    PlansCard,
+    PlansCard
 }

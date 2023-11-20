@@ -17,7 +17,7 @@ export default function RootLayout({
 }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${poppinsFont.className}`}>
+      <body className={`${poppinsFont.className} overflow-x-hidden overflow-y-auto`}>
         <CalculatorProvider>
           <CarsProvider>
             {children}
