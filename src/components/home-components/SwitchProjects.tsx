@@ -12,7 +12,7 @@ function SwitchProjects() {
     }, [codeProjects])
 
     return (
-        <div className='relative box-switch rounded-2xl w-full h-full p-10 px-20'>
+        <div className='relative box-switch rounded-2xl w-full mb-10 h-full p-10 px-20'>
             <div className='flex items-center justify-center w-full gap-6 mb-6'>
                 <Image
                     src={'/arrow-switch.svg'}

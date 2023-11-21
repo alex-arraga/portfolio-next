@@ -8,6 +8,7 @@ import WorkExperience from './home-components/WorkExperience'
 import Certificates from './home-components/Certificates'
 import MyAge from './home-components/MyAge'
 import SwitchProjects from './home-components/SwitchProjects'
+import MyProjects from './home-components/MyProjects'
 
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
@@ -52,6 +53,7 @@ export {
     MyAge,
     Skills,
     SwitchProjects,
+    MyProjects,
     Hero,
     CustomButton,
     Footer,

@@ -12,6 +12,11 @@ export interface PillsProps {
     className?: string
     styleImage?: string
     urlClick?: string
+    type?: string
+    urlIcon?: string
+    altIcon?: string
+    styleIcon?: string
+    relevantDescription?: string
 }
 
 export interface ContainerBoxesProps {
