@@ -44,3 +44,67 @@ body {
       #4A001A,
       #4A0855)
 }
+
+.box-work_experience {
+  border: 2px solid #AD5A5A;
+  background-image: linear-gradient(to bottom,
+      #4A001A,
+      #4A0855)
+}
+
+.box-age {
+  border: 2px solid #0092C3;
+  background-image: linear-gradient(to bottom,
+      #006686,
+      rgba(74, 74, 74, 0))
+}
+
+.box-proyects {
+  border: 2px solid #005686;
+  background-image: linear-gradient(to bottom,
+      #003E51,
+      rgba(56, 0, 82, .5));
+}
+
+.box-proyects__pills-design {
+  background-image: linear-gradient(to right,
+      #005E47,
+      #73AA5F)
+}
+
+.box-proyects__pills-code {
+  background-image: linear-gradient(to right,
+      #752568,
+      #8C7A17)
+}
+
+.box-proyects__pills-design:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+  transition-duration: 300ms;
+}
+
+.box-proyects__pills-code:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+  transition-duration: 300ms;
+}
+
+.btn-projects {
+  background-image: linear-gradient(to right,
+      #FF8BF3,
+      #7342FF)
+}
+
+.btn-projects:disabled {
+  cursor: pointer;
+  filter: saturate(10%);
+  opacity: 50%;
+}
+
+.box-switch {
+  border: 2px solid #005686;
+  background-image: linear-gradient(to bottom,
+      #003E51,
+      rgba(56, 0, 82, .5));
+}

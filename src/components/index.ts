@@ -4,6 +4,10 @@ import ContainerBoxes from './home-components/ContainerBoxes'
 import AboutMe from './home-components/AboutMe'
 import SocialNetworks from './home-components/SocialNetworks'
 import Skills from './home-components/Skills'
+import WorkExperience from './home-components/WorkExperience'
+import Certificates from './home-components/Certificates'
+import MyAge from './home-components/MyAge'
+import SwitchProjects from './home-components/SwitchProjects'
 
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
@@ -43,7 +47,11 @@ export {
     ContainerBoxes,
     AboutMe,
     SocialNetworks,
+    WorkExperience,
+    Certificates,
+    MyAge,
     Skills,
+    SwitchProjects,
     Hero,
     CustomButton,
     Footer,

@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import { Toaster } from 'sonner';
 import { CalculatorProvider } from '@/context/CalculatorContext'
 import { CarsProvider } from '@/context/CarsContext'
+import { HomeProvider } from '@/context/HomeContext'
 
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
@@ -18,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppinsFont.className} overflow-x-hidden overflow-y-auto`}>
-        <CalculatorProvider>
-          <CarsProvider>
-            {children}
-          </CarsProvider>
-        </CalculatorProvider>
+        <HomeProvider>
+          <CalculatorProvider>
+            <CarsProvider>
+              {children}
+            </CarsProvider>
+          </CalculatorProvider>
+        </HomeProvider>
         <Toaster richColors />
       </body>
     </html>

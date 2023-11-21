@@ -3,7 +3,16 @@
 import { CustomButtonProps } from "@/types/cars-store"
 import Image from "next/image"
 
-function CustomButton({ title, containerStyle, textStyle, handleClick, btnType, rightIcon, priceId, isPayButton, urlPayAPI }: CustomButtonProps) {
+function CustomButton({ title,
+    containerStyle,
+    textStyle,
+    handleClick,
+    btnType,
+    rightIcon,
+    priceId,
+    isPayButton,
+    urlPayAPI }: CustomButtonProps) {
+
     return (
         <>
             {
