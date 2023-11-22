@@ -22,7 +22,7 @@ function Pills({ className,
         <>
             {type === 'projects' ?
 
-                <div onClick={() => router.push(`${urlClick}`)} className={`relative flex justify-between items-center w-full h-full p-8 border-2 border-gray-300 bg-gray-900 rounded-2xl cursor-pointer hover:brightness-125 duration-300 ${className}`}>
+                <div onClick={() => window.open(`${urlClick}`)} className={`relative flex justify-between items-center w-full h-full p-8 border-2 border-gray-300 bg-gray-900 bg-opacity-70 rounded-2xl cursor-pointer hover:brightness-125 duration-300 ${className}`}>
 
                     <div className="flex flex-col w-3/4 gap-6">
                         <div className="flex items-center justify-start gap-4 w-full">
@@ -36,8 +36,8 @@ function Pills({ className,
                             <h3 className="text-3xl font-medium text-white">{title}</h3>
                         </div>
 
-                        <p className="text-gray-200 mb-4">{text}</p>
-                        <p className="text-white font-semibold">{relevantDescription}</p>
+                        <p className="text-gray-300 mb-4">{text}</p>
+                        <p className="text-white font-medium">{relevantDescription}</p>
                     </div>
                     <div className="absolute right-0 w-1/4 h-full bg-emerald-200 rounded-2xl">
                         <Image
