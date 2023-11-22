@@ -1,7 +1,7 @@
 "use client"
 
 import { useHomeContext } from "@/context/HomeContext"
-import { baseClientURL } from "@/libs/baseURL"
+import { baseClientProjectsURL } from "@/libs/baseURL"
 import Pills from "./Pills"
 
 function MyProjects() {
@@ -61,7 +61,7 @@ function MyProjects() {
                             relevantDescription="Trabajamos con todos los medios de pago y te brindamos la posibilidad de alquilar autos por día o suscribirte a uno de nuestros planes mensuales, y con el cambiá de coche hasta 3 veces por mes a un coste mucho menor"
                             urlImage="/carhub.png"
                             altImage="carhub"
-                            urlClick={`${baseClientURL}/cars-store`}
+                            urlClick={`${baseClientProjectsURL}/cars-store`}
                         />
                         <Pills type="projects"
                             urlIcon="/calculator-icon.png"
@@ -70,7 +70,7 @@ function MyProjects() {
                             relevantDescription="¡Podes recuperar las operaciones cuando vos quieras, tanto las expresiones como sus resultados!"
                             urlImage="/calculator.png"
                             altImage="calculator"
-                            urlClick={`${baseClientURL}/calculator`}
+                            urlClick={`${baseClientProjectsURL}/calculator`}
                         />
                         <Pills type="projects"
                             urlIcon="/tasks-icon.png"
@@ -79,7 +79,7 @@ function MyProjects() {
                             relevantDescription='¡Utiliza una Base de Datos relacional para almacenar cada tarea y además permite realizar un check a cada una, guardandolas en una nueva sección llamada "completadas"!'
                             urlImage="/to-do.png"
                             altImage="tasks"
-                            urlClick={`${baseClientURL}/tasks`}
+                            urlClick={`${baseClientProjectsURL}/tasks`}
                         />
                     </div>
             }

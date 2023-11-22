@@ -9,6 +9,7 @@ import Certificates from './home-components/Certificates'
 import MyAge from './home-components/MyAge'
 import SwitchProjects from './home-components/SwitchProjects'
 import MyProjects from './home-components/MyProjects'
+import Diplomas from './home-components/Diplomas'
 
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
@@ -54,6 +55,7 @@ export {
     Skills,
     SwitchProjects,
     MyProjects,
+    Diplomas,
     Hero,
     CustomButton,
     Footer,

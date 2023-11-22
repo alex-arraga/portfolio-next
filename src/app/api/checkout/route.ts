@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Stripe } from 'stripe'
-import { baseClientURL } from "@/libs/baseURL";
+import { baseClientProjectsURL } from "@/libs/baseURL";
 
 export async function POST(request: Request) {
     const { priceId } = await request.json()
@@ -16,8 +16,8 @@ export async function POST(request: Request) {
                     quantity: 1
                 }
             ],
-            success_url: `${baseClientURL}/cars-store/rents`,
-            cancel_url: `${baseClientURL}/cars-store/dashboard`
+            success_url: `${baseClientProjectsURL}/cars-store/rents`,
+            cancel_url: `${baseClientProjectsURL}/cars-store/dashboard`
         })
 
         return NextResponse.json({ url: session.url })
