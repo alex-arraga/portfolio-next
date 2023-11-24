@@ -17,10 +17,15 @@ export interface PillsProps {
     altIcon?: string
     styleIcon?: string
     relevantDescription?: string
+    section?: boolean
 }
 
 export interface ContainerBoxesProps {
     children: React.ReactNode
     className?: string
     type?: string
+}
+
+export interface ShowImages {
+    image: string
 }

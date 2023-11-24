@@ -1,11 +1,12 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 function SocialNetworks() {
     return (
         <>
-            <div className="box-social_networks__github hover:bg-gray-700 cursor-pointer duration-300 border-2 border-white border-opacity-20 flex items-center rounded-xl w-full h-full max-h-[160px]">
+            <Link href={'https://github.com/alex-arraga'} target="_blank" className="bg-gradient-to-b from-slate-900 to-transparent hover:brightness-150 cursor-pointer duration-300 flex items-center rounded-xl w-full h-full max-h-[160px]">
                 <div className="relative w-full h-full max-h-[calc(60%)]">
                     <Image
                         src={'/github-white.svg'}
@@ -14,8 +15,8 @@ function SocialNetworks() {
                         className="object-contain"
                     />
                 </div>
-            </div>
-            <div className="box-social_networks__linkedin hover:bg-blue-700 cursor-pointer duration-300 border-2 border-sky-500 border-opacity-20  flex items-center rounded-xl w-full h-full max-h-[160px]">
+            </Link>
+            <Link href={'https://www.linkedin.com/in/alexarraga/'} target="_blank" className="bg-gradient-to-b from-blue-900 to-transparent hover:brightness-150 cursor-pointer duration-300 flex items-center rounded-xl w-full h-full max-h-[160px]">
                 <div className="relative w-full h-full max-h-[calc(60%)]">
                     <Image
                         src={'/linkedin.svg'}
@@ -24,8 +25,8 @@ function SocialNetworks() {
                         className="object-contain"
                     />
                 </div>
-            </div>
-            <div className="box-social_networks__email hover:bg-red-700 cursor-pointer duration-300 border-2 border-red-500 border-opacity-20  flex items-center rounded-xl w-full h-full max-h-[160px]">
+            </Link>
+            <Link href={'mailto:arraga.alex@gmail.com'} target="_blank" className="bg-gradient-to-b from-red-900 to-transparent hover:brightness-150 cursor-pointer duration-300 flex items-center rounded-xl w-full h-full max-h-[160px]">
                 <div className="relative w-full h-full max-h-[calc(60%)]">
                     <Image
                         src={'/email.svg'}
@@ -34,8 +35,8 @@ function SocialNetworks() {
                         className="object-contain max-h-[calc(100%)]"
                     />
                 </div>
-            </div>
-            <div className="box-social_networks__wsp hover:bg-emerald-700 cursor-pointer duration-300 border-2 border-emerald-500 border-opacity-20 flex items-center rounded-xl w-full h-full max-h-[160px]">
+            </Link>
+            <Link href={'https://api.whatsapp.com/send/?phone=543482314388'} target="_blank" className="bg-gradient-to-b from-emerald-900 to-transparent hover:brightness-150 cursor-pointer duration-300 flex items-center rounded-xl w-full h-full max-h-[160px]">
                 <div className="relative w-full h-full max-h-[calc(60%)]">
                     <Image
                         src={'/wsp.svg'}
@@ -44,7 +45,7 @@ function SocialNetworks() {
                         className="object-contain"
                     />
                 </div>
-            </div>
+            </Link>
         </>
     )
 }

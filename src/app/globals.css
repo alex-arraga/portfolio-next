@@ -22,22 +22,6 @@ body {
       rgba(56, 0, 82, .5));
 }
 
-.box-social_networks__github {
-  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.00) 100%);
-}
-
-.box-social_networks__linkedin {
-  background: linear-gradient(180deg, #00478A 0%, rgba(0, 71, 138, 0.00) 100%);
-}
-
-.box-social_networks__email {
-  background: linear-gradient(180deg, #860000 0%, rgba(134, 0, 0, 0.00) 100%)
-}
-
-.box-social_networks__wsp {
-  background: linear-gradient(180deg, #006127 0%, rgba(0, 97, 39, 0.00) 100%);
-}
-
 .box-skills {
   border: 2px solid #AD5A5A;
   background-image: linear-gradient(to bottom,

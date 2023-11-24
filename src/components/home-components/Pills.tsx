@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { PillsProps } from "@/types/home"
 import Image from "next/image"
+import { useHomeContext } from "@/context/HomeContext"
 
 function Pills({ className,
     urlImage,
@@ -15,8 +16,16 @@ function Pills({ className,
     altIcon,
     styleIcon,
     urlIcon,
-    relevantDescription }: PillsProps) {
-    const router = useRouter()
+    relevantDescription,
+    section }: PillsProps) {
+
+    const router = useRouter();
+    const { setCodeProjects } = useHomeContext();
+
+    const handleSection = () => {
+        setCodeProjects(section)
+        router.push(`${urlClick}`)
+    }
 
     return (
         <>
@@ -51,7 +60,7 @@ function Pills({ className,
 
                 :
 
-                <div onClick={() => router.push(`${urlClick}`)}
+                <div onClick={() => handleSection()}
                     className={`relative flex justify-between items-center w-full h-full p-8 rounded-2xl ${className}`}>
                     <div className="flex flex-col gap-6">
                         <h3 className="text-xl font-semibold text-gray-200">{title}</h3>

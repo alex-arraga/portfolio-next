@@ -1,3 +1,137 @@
+export const diplomas = [
+    {
+        name: "basic-code",
+        src: "/basic-code.jpg",
+        alt: "Code - Platzi",
+    },
+    {
+        name: "design-figma",
+        src: "/design-figma.jpg",
+        alt: "Figma Design - Udemy",
+    },
+    {
+        name: "design-interfaces",
+        src: "/design-interfaces.jpg",
+        alt: "Figma Design Interfaces - Udemy",
+    },
+    {
+        name: "design-systems",
+        src: "/design-systems.jpg",
+        alt: "Design Systems - Domestika",
+    },
+    {
+        name: "photoshop",
+        src: "/photoshop.jpg",
+        alt: "Photoshop - Domestika",
+    },
+    {
+        name: "ilustrator",
+        src: "/ilustrator.jpg",
+        alt: "Illustrator - Domestika",
+    },
+    {
+        name: "after-effects",
+        src: "/after-effects.jpg",
+        alt: "After Effects - Domestika",
+    },
+];
+
+export const backendSkills = [
+    {
+        name: 'node.js',
+        img: '/node.png',
+        alt: 'node icon'
+    },
+    {
+        name: 'npm',
+        img: '/npm.png',
+        alt: 'node icon'
+    },
+    {
+        name: 'terminal',
+        img: '/terminal.png',
+        alt: 'terminal icon'
+    },
+    {
+        name: 'git',
+        img: '/git.png',
+        alt: 'git icon'
+    },
+    {
+        name: 'github',
+        img: '/github-white.svg',
+        alt: 'github icon'
+    },
+    {
+        name: 'next.js',
+        img: '/next-js-white.svg',
+        alt: 'next icon'
+    }
+]
+export const frontendSkills = [
+    {
+        name: 'html',
+        img: '/html.png',
+        alt: 'html icon'
+    },
+    {
+        name: 'css',
+        img: '/css.png',
+        alt: 'css icon'
+    },
+    {
+        name: 'javascript',
+        img: '/js.png',
+        alt: 'javascript icon'
+    },
+    {
+        name: 'react',
+        img: '/react.png',
+        alt: 'react icon'
+    },
+    {
+        name: 'tailwind',
+        img: '/tailwind.png',
+        alt: 'tailwind icon'
+    },
+    {
+        name: 'vite.js',
+        img: '/vite.png',
+        alt: 'vite icon'
+    }
+]
+
+export const databasesSkills = [
+    {
+        name: 'postgres',
+        img: '/postgres.png',
+        alt: 'postgres icon'
+    },
+    {
+        name: 'mongo db',
+        img: '/mongodb.png',
+        alt: 'mongo db icon'
+    }
+]
+
+export const designSkills = [
+    {
+        name: 'photoshop',
+        img: '/photoshop.png',
+        alt: 'photoshop icon'
+    },
+    {
+        name: 'figma',
+        img: '/figma.png',
+        alt: 'figma icon'
+    },
+    {
+        name: 'whimsical',
+        img: '/whimsical.png',
+        alt: 'whimsical icon'
+    }
+]
+
 export const manufacturers = [
     "Acura",
     "Alfa Romeo",

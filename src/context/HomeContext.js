@@ -12,11 +12,14 @@ export const useHomeContext = () => {
 }
 
 export function HomeProvider({ children }) {
-    const [codeProjects, setCodeProjects] = useState(true)
+    const [codeProjects, setCodeProjects] = useState(true);
+    const [image, setImage] = useState('');
 
     return <HomeContext.Provider value={{
         codeProjects,
-        setCodeProjects
+        setCodeProjects,
+        image,
+        setImage
     }}>
         {children}
     </HomeContext.Provider>
