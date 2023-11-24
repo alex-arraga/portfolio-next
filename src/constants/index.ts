@@ -38,16 +38,6 @@ export const diplomas = [
 
 export const backendSkills = [
     {
-        name: 'node.js',
-        img: '/node.png',
-        alt: 'node icon'
-    },
-    {
-        name: 'npm',
-        img: '/npm.png',
-        alt: 'node icon'
-    },
-    {
         name: 'terminal',
         img: '/terminal.png',
         alt: 'terminal icon'
@@ -66,6 +56,16 @@ export const backendSkills = [
         name: 'next.js',
         img: '/next-js-white.svg',
         alt: 'next icon'
+    },
+    {
+        name: 'node.js',
+        img: '/node.png',
+        alt: 'node icon'
+    },
+    {
+        name: 'typescript',
+        img: '/typescript.png',
+        alt: 'typescript icon'
     }
 ]
 export const frontendSkills = [
@@ -111,6 +111,11 @@ export const databasesSkills = [
         name: 'mongo db',
         img: '/mongodb.png',
         alt: 'mongo db icon'
+    },
+    {
+        name: 'prisma orm',
+        img: '/prisma.svg',
+        alt: 'prisma orm icon'
     }
 ]
 

@@ -10,6 +10,8 @@ import MyAge from './home-components/MyAge'
 import SwitchProjects from './home-components/SwitchProjects'
 import MyProjects from './home-components/MyProjects'
 import Diplomas from './home-components/Diplomas'
+import MyEnglish from './home-components/MyEnglish'
+import Personality from './home-components/Personality'
 
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
@@ -52,7 +54,9 @@ export {
     WorkExperience,
     Certificates,
     MyAge,
+    MyEnglish,
     Skills,
+    Personality,
     SwitchProjects,
     MyProjects,
     Diplomas,

@@ -36,10 +36,31 @@ body {
       #4A0855)
 }
 
+.box-work_experience {
+  border: 2px solid rgb(3, 120, 128);
+  background-image: linear-gradient(to bottom,
+      #005753,
+      #002332)
+}
+
+.box-personality {
+  border: 2px solid #616161;
+  background-image: linear-gradient(to bottom,
+      #2b2b2b,
+      #050505)
+}
+
 .box-age {
   border: 2px solid #0092C3;
   background-image: linear-gradient(to bottom,
       #006686,
+      rgba(74, 74, 74, 0))
+}
+
+.box-english {
+  border: 2px solid rgb(125, 105, 6);
+  background-image: linear-gradient(to bottom,
+      #a05908,
       rgba(74, 74, 74, 0))
 }
 

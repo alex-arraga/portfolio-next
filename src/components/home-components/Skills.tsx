@@ -4,65 +4,79 @@ import { backendSkills, frontendSkills, databasesSkills, designSkills } from "@/
 function Skills() {
     return (
         <>
-            <h2 className="text-2xl font-medium text-gray-200">Habilidades</h2>
-            <p className="mt-6 mb-2 text-gray-200">Backend</p>
-            <div className="flex relative gap-4 items-center justify-center bg-slate-950 bg-opacity-80 h-16 w-full rounded-lg">
+            <div className="flex justify-between items-center">
+                <h2 className="text-[20px] md:text-[30px] xl:text-[36px] font-medium text-gray-200">Habilidades</h2>
+                <Image
+                    src={'/dev.png'}
+                    alt="developer"
+                    width={500}
+                    height={500}
+                    className="object-contain h-[40px] w-[40px] md:h-[60px] md:w-[60px]"
+                />
+            </div>
+
+            {/* Backend */}
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-200">Backend</p>
+            <div className="flex relative gap-2 py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     backendSkills.map((skill) => (
-                        <div className="relative w-full h-full max-h-14" key={skill.name}>
+                        <div className="relative w-full h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
                             <Image
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
-                                className="object-contain py-2"
+                                className="object-contain"
                             />
                         </div>
                     ))
                 }
             </div>
 
-            <p className="mt-6 mb-2 text-gray-200">Bases de Datos</p>
-            <div className="flex relative gap-4 items-center justify-start bg-slate-950 bg-opacity-80 h-16 w-full rounded-lg">
+            {/* DB y ORM */}
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-200">Bases de Datos</p>
+            <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     databasesSkills.map((skill) => (
-                        <div className="relative w-20 h-full max-h-14" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
                             <Image
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
-                                className="object-contain py-2"
+                                className="object-contain"
                             />
                         </div>
                     ))
                 }
             </div>
 
-            <p className="mt-6 mb-2 text-gray-200">Frontend</p>
-            <div className="flex relative gap-4 items-center justify-center bg-slate-950 bg-opacity-80 h-16 w-full rounded-lg">
+            {/* Frontend */}
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-200">Frontend</p>
+            <div className="flex relative gap-2 py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frontendSkills.map((skill) => (
-                        <div className="relative w-full h-full max-h-14" key={skill.name}>
+                        <div className="relative w-full h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
                             <Image
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
-                                className="object-contain py-2"
+                                className="object-contain"
                             />
                         </div>
                     ))
                 }
             </div>
 
-            <p className="mt-6 mb-2 text-gray-200">Diseño UX/UI</p>
-            <div className="flex relative gap-4 items-center justify-start bg-slate-950 bg-opacity-80 h-16 w-full rounded-lg">
+            {/* Design */}
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-200">Diseño UX/UI</p>
+            <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     designSkills.map((skill) => (
-                        <div className="relative flex w-20 h-full max-h-14" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
                             <Image
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
-                                className="object-contain py-2"
+                                className="object-contain"
                             />
                         </div>
                     ))
