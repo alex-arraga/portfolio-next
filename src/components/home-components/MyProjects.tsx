@@ -11,14 +11,14 @@ function MyProjects() {
         <div className="w-full h-full">
             {
                 codeProjects === false ?
-                    <div className="flex flex-col h-full gap-6">
+                    <div className="flex flex-col h-full gap-4 xl:gap-6">
                         <Pills type="projects"
                             urlIcon="/patagonia-icon.png"
                             title="Patagonia Argentina"
                             text="Una dinamica app que te brinda la posilibidad de elegir entre pedir delivery, o comer el plato en el propio restaurante. Pensada para ahorrarle trabajo a los mozos y hacer vistoso un menu lleno de platos exisitos, además cuenta con un sistema de pago rapido y seguro, haciendo que la tarea de pagar el menu no conlleve a retrasos inesperados."
                             relevantDescription="¿Necesitas pagar en efectivo estando en el restaurante? ¡No te preocupes, podes llamar al mozo solo con apretar un boton!"
                             urlImage="/patagonia.png"
-                            altImage="pataonia"
+                            altImage="patagonia"
                             urlClick="https://www.behance.net/gallery/149060887/Patagonia-Argentina"
                         />
                         <Pills type="projects"
@@ -52,7 +52,7 @@ function MyProjects() {
 
                     :
 
-                    <div className="flex flex-col h-full gap-6">
+                    <div className="flex flex-col h-full gap-4 xl:gap-6">
                         <Pills type="projects"
                             urlIcon="/car-icon-project.png"
                             styleIcon=""
