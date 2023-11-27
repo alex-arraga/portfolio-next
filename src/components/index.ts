@@ -12,6 +12,9 @@ import MyProjects from './home-components/MyProjects'
 import Diplomas from './home-components/Diplomas'
 import MyEnglish from './home-components/MyEnglish'
 import Personality from './home-components/Personality'
+import ProjectCard from './home-components/ProjectCard'
+import Projects from './home-components/Projects'
+import Header from './home-components/Header'
 
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
@@ -50,6 +53,7 @@ export {
     Box,
     ContainerBoxes,
     AboutMe,
+    Header,
     SocialNetworks,
     WorkExperience,
     Certificates,
@@ -57,6 +61,8 @@ export {
     MyEnglish,
     Skills,
     Personality,
+    Projects,
+    ProjectCard,
     SwitchProjects,
     MyProjects,
     Diplomas,

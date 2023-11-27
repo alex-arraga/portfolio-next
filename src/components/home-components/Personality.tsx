@@ -7,7 +7,7 @@ function Personality() {
             {/* Personality */}
             <section className="flex-col rounded-xl">
                 <div className='flex justify-between items-center mb-6'>
-                    <h2 className="text-[20px] md:text-[30px] xl:text-[36px] font-medium text-gray-200">
+                    <h2 className="text-[20px] md:text-[30px] xl:text-[36px] font-medium text-gray-100">
                         Personalidad
                     </h2>
                     <Image
@@ -24,7 +24,7 @@ function Personality() {
                         alt="diamond"
                         width={20}
                         height={20}
-                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px]"
+                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
                     <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
                         Perseguidor de la excelencia
@@ -36,7 +36,7 @@ function Personality() {
                         alt="diamond"
                         width={20}
                         height={20}
-                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px]"
+                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
                     <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
                         Busco consenso en equipo sobre posibles alternativas
@@ -48,7 +48,7 @@ function Personality() {
                         alt="diamond"
                         width={20}
                         height={20}
-                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px]"
+                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
                     <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
                         Cauteloso y racional tomando decisiones
@@ -60,7 +60,7 @@ function Personality() {
                         alt="diamond"
                         width={20}
                         height={20}
-                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px]"
+                        className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
                     <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
                         Me gusta indagar y estar en constante aprendizaje

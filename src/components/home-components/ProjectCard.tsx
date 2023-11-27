@@ -1,11 +1,11 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { PillsProps } from "@/types/home"
+import { ProjectsCardProps } from "@/types/home"
 import Image from "next/image"
 import { useHomeContext } from "@/context/HomeContext"
 
-function Pills({ className,
+function ProjectCard({ className,
     urlImage,
     altImage,
     styleImage,
@@ -17,7 +17,7 @@ function Pills({ className,
     styleIcon,
     urlIcon,
     relevantDescription,
-    section }: PillsProps) {
+    section }: ProjectsCardProps) {
 
     const router = useRouter();
     const { setCodeProjects } = useHomeContext();
@@ -63,7 +63,7 @@ function Pills({ className,
                 <div onClick={() => handleSection()}
                     className={`relative flex justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 rounded-2xl ${className}`}>
                     <div className="flex flex-col gap-2 sm:gap-4">
-                        <h3 className="text-[14px] md:text-[16px] xl:text-[24px] font-medium text-gray-200">{title}</h3>
+                        <h3 className="text-[14px] md:text-[16px] xl:text-[24px] font-medium text-gray-100">{title}</h3>
                         <p className="text-[10px] md:text-[14px] xl:text-[16px] text-gray-300">{text}</p>
                     </div>
                     <Image
@@ -79,4 +79,4 @@ function Pills({ className,
     )
 }
 
-export default Pills
+export default ProjectCard

@@ -36,7 +36,9 @@
     "src/assets/calculator/Powers.js",
     "src/components/tasks-components/AppTasks",
     "src/components/calculator-components/AppCalculator/AppCalculator.tsx",
-    "src/components/calculator-components/History/History.tsx"
+    "src/components/calculator-components/History/History.tsx",
+    "src/app/not-found.js",
+    "src/pages/NotFoundPage.js"
   ],
   "exclude": [
     "node_modules"

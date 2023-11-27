@@ -1,5 +1,6 @@
 "use client"
 
+import { Price } from "@/types/payment"
 import Image from "next/image"
 import { CarCardProps } from "@/types/cars-store"
 import { useState } from 'react'
@@ -7,13 +8,15 @@ import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/util
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
 import { useCarsContext } from "@/context/CarsContext"
+import { toast } from "sonner"
 
 interface CarProps {
     car: CarCardProps,
     styleCard?: string,
+    stripePrices: Price[]
 }
 
-function CarCard({ car, styleCard }: CarProps) {
+function CarCard({ car, styleCard, stripePrices }: CarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [like, setLike] = useState(false);
 
@@ -23,25 +26,30 @@ function CarCard({ car, styleCard }: CarProps) {
     const { newCar } = useCarsContext();
 
     const newCarLiked = (car: CarCardProps) => {
-        const data = {
-            city_mpg: car.city_mpg,
-            class: car.class,
-            combination_mpg: car.combination_mpg,
-            cylinders: car.cylinders,
-            displacement: car.displacement,
-            drive: car.drive,
-            fuel_type: car.fuel_type,
-            highway_mpg: car.highway_mpg,
-            make: car.make,
-            model: car.model,
-            transmission: car.transmission,
-            year: car.year,
-            liked: car.liked = true,
-            rented: car.rented = false
-        }
+        try {
+            const data = {
+                city_mpg: car.city_mpg,
+                class: car.class,
+                combination_mpg: car.combination_mpg,
+                cylinders: car.cylinders,
+                displacement: car.displacement,
+                drive: car.drive,
+                fuel_type: car.fuel_type,
+                highway_mpg: car.highway_mpg,
+                make: car.make,
+                model: car.model,
+                transmission: car.transmission,
+                year: car.year,
+                liked: car.liked = true,
+                rented: car.rented = false
+            }
 
-        setLike(true)
-        newCar(data);
+            setLike(true);
+            newCar(data);
+            toast.success(`This car was added to the section 'The cars I Liked'`)
+        } catch (error) {
+            toast.error('Oops...Could not add a like, please try again')
+        }
     }
 
     return (
@@ -137,7 +145,7 @@ function CarCard({ car, styleCard }: CarProps) {
 
                             {/* Details car modal */}
                             <div>
-                                <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} styleDetails='rent' />
+                                <CarDetails stripePrices={stripePrices} isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} styleDetails='rent' />
                             </div>
 
                         </div>

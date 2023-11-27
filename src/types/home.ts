@@ -4,7 +4,7 @@ export interface BoxProps {
     type?: string
 }
 
-export interface PillsProps {
+export interface ProjectsCardProps {
     urlImage: string
     title: string
     text: string
