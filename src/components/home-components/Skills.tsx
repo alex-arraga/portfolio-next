@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { backendSkills, frontendSkills, databasesSkills, designSkills } from "@/constants"
+import { backendSkills, frontendSkills, databasesSkills, designSkills, skillsToLearn } from "@/constants"
 
 function Skills() {
     return (
@@ -71,6 +71,22 @@ function Skills() {
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     designSkills.map((skill) => (
+                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
+                            <Image
+                                src={skill.img}
+                                alt={skill.alt}
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Proximos a aprender</p>
+            <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+                {
+                    skillsToLearn.map((skill) => (
                         <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14" key={skill.name}>
                             <Image
                                 src={skill.img}

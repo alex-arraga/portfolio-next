@@ -7,6 +7,12 @@ body {
   @apply text-gray-200;
 }
 
+.btn-login {
+  background-image: linear-gradient(to right,
+      #FF8BF3,
+      #7342FF);
+}
+
 .bg-home {
   background-image: linear-gradient(0deg,
       #000000 0%,

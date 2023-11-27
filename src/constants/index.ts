@@ -137,6 +137,19 @@ export const designSkills = [
     }
 ]
 
+export const skillsToLearn = [
+    {
+        name: 'go',
+        img: '/go.png',
+        alt: 'go icon'
+    },
+    {
+        name: 'docker',
+        img: '/docker.png',
+        alt: 'docker icon'
+    }
+]
+
 export const manufacturers = [
     "Acura",
     "Alfa Romeo",

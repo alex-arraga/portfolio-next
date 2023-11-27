@@ -1,4 +1,5 @@
 // Home Components
+import Login from './home-components/Login'
 import { Box } from './home-components/Box'
 import ContainerBoxes from './home-components/ContainerBoxes'
 import AboutMe from './home-components/AboutMe'
@@ -50,6 +51,7 @@ import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 import PlansCard from './payment-components/PlansCard'
 
 export {
+    Login,
     Box,
     ContainerBoxes,
     AboutMe,
