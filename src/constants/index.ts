@@ -53,11 +53,6 @@ export const backendSkills = [
         alt: 'github icon'
     },
     {
-        name: 'next.js',
-        img: '/next-js-white.svg',
-        alt: 'next icon'
-    },
-    {
         name: 'node.js',
         img: '/node.png',
         alt: 'node icon'
@@ -68,6 +63,7 @@ export const backendSkills = [
         alt: 'typescript icon'
     }
 ]
+
 export const frontendSkills = [
     {
         name: 'html',
@@ -147,6 +143,19 @@ export const skillsToLearn = [
         name: 'docker',
         img: '/docker.png',
         alt: 'docker icon'
+    }
+]
+
+export const frameworksSkills = [
+    {
+        name: 'next.js',
+        img: '/next-js-white.svg',
+        alt: 'next icon'
+    },
+    {
+        name: 'express',
+        img: '/express.png',
+        alt: 'express icon'
     }
 ]
 

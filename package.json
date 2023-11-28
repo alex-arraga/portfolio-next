@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.27.2",
+    "@clerk/themes": "^1.7.9",
     "@headlessui/react": "^1.7.17",
     "@prisma/client": "^5.4.1",
     "mathjs": "^11.11.2",

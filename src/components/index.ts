@@ -51,7 +51,7 @@ import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 import PlansCard from './payment-components/PlansCard'
 
 export {
-    Login,
+    Login as Login,
     Box,
     ContainerBoxes,
     AboutMe,

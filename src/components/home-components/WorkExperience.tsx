@@ -17,13 +17,29 @@ function WorkExperience() {
             </div>
             <ul className="flex flex-col gap-6 text-[10px] md:text-[14px] xl:text-[16px] text-gray-300">
                 <li>
-                    <span className="font-semibold text-gray-100">1 año:</span> Freelance, Diseñador UX/UI.
+                    <span className="font-semibold text-gray-100">1 año - Freelance, Diseñador UX/UI.</span>
+                    <span className="text-[10px] md:text-[12px] xl:text-[14px]">
+                        <br /> - Research y comprensión de las necesidades de los usuarios.
+                        <br /> - Desarrollo de interfaces utilizando Figma, Whimsical y Adobe Photoshop.
+                        <br /> - Proyecto de redesign en coparticipación con Wordpress Dev. para Hotel Yacanto - Cordoba
+                    </span>
                 </li>
                 <li>
-                    <span className="font-semibold text-gray-100">4 años:</span> Vendedor de autos usados y 0km, asesor de créditos prendarios.
+                    <span className="font-semibold text-gray-100">4 años - Vendedor de Automoviles</span>
+                    <span className="text-[10px] md:text-[12px] xl:text-[14px]">
+                        <br /> - Venta de automóviles usados y 0km.
+                        <br /> - Asesoramiento a clientes sobre las características y beneficios de los vehículos.
+                        <br /> - Negociación de precios y condiciones de venta.
+                        <br /> - Tramitación de créditos prendarios.
+                    </span>
                 </li>
                 <li>
-                    <span className="font-semibold text-gray-100">1 año:</span> Atención comercial en perfumeria
+                    <span className="font-semibold text-gray-100">1 año - Atención comercial en Perfumería</span>
+                    <span className="text-[10px] md:text-[12px] xl:text-[14px]">
+                        <br /> - Venta y asesoramiento sobre productos de la tienda.
+                        <br /> - Manejo de caja y facturación cuando los encargados se ausentaban.
+                        <br /> - Reposición de stock.
+                    </span>
                 </li>
             </ul>
         </section>

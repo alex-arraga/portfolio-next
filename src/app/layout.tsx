@@ -5,6 +5,7 @@ import { Toaster } from 'sonner';
 import { CalculatorProvider } from '@/context/CalculatorContext'
 import { CarsProvider } from '@/context/CarsContext'
 import { HomeProvider } from '@/context/HomeContext'
+import { ClerkProvider } from '@clerk/nextjs'
 
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
@@ -19,14 +20,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppinsFont.className} overflow-x-hidden overflow-y-auto`}>
-        <HomeProvider>
-          <CalculatorProvider>
-            <CarsProvider>
-              {children}
-            </CarsProvider>
-          </CalculatorProvider>
-        </HomeProvider>
-        <Toaster richColors />
+        <ClerkProvider appearance={{
+          variables: {
+            colorBackground: 'rgba(255, 255, 255, .9)',
+            colorPrimary: '#6432CF',
+            colorText: 'black',
+            colorTextSecondary: '#4279CC',
+            colorInputBackground: 'rgba(255, 255, 255, .5)',
+            colorInputText: 'black',
+          }
+        }}>
+          <HomeProvider>
+            <CalculatorProvider>
+              <CarsProvider>
+                {children}
+              </CarsProvider>
+            </CalculatorProvider>
+          </HomeProvider>
+          <Toaster richColors />
+        </ClerkProvider>
       </body>
     </html>
   )
