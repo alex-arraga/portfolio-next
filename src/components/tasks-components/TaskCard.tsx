@@ -7,7 +7,7 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { BsCheck2Circle } from 'react-icons/bs';
 import { toast } from "sonner";
 import { Card } from "./Card";
-import { baseAPIURL } from "@/libs/baseURL";
+import { baseAPIProjectsURL } from "@/libs/baseURL";
 
 import { PropsTaskCard } from "@/types/tasks";
 
@@ -19,7 +19,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea?')) {
-                await fetch(`${baseAPIURL}/tasks/${task.id}`, {
+                await fetch(`${baseAPIProjectsURL}/tasks/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -36,7 +36,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea completada?')) {
-                await fetch(`${baseAPIURL}/tasks/completed/${task.id}`, {
+                await fetch(`${baseAPIProjectsURL}/tasks/completed/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -50,7 +50,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
     };
 
     const loadTask = async () => {
-        const res = fetch(`${baseAPIURL}/tasks/${task.id}`, {
+        const res = fetch(`${baseAPIProjectsURL}/tasks/${task.id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -75,13 +75,13 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
             const data = await loadTask()
             console.log(data)
 
-            const newCompletedTask = await fetch(`${baseAPIURL}/tasks/completed`, {
+            const newCompletedTask = await fetch(`${baseAPIProjectsURL}/tasks/completed`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include'
             })
 
-            const deleteTask = await fetch(`${baseAPIURL}/tasks/${task.id}`, {
+            const deleteTask = await fetch(`${baseAPIProjectsURL}/tasks/${task.id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })

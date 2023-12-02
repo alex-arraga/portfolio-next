@@ -50,7 +50,7 @@ export interface CarDetailsProps {
     closeModal: () => void,
     car: CarCardProps,
     styleDetails?: string,
-    stripePrices: Price[]
+    stripePrices?: Price[]
 }
 
 export interface FilterProps {

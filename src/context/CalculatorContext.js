@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { baseAPIURL } from '@/libs/baseURL';
+import { baseAPIProjectsURL } from '@/libs/baseURL';
 import { useState, useEffect } from 'react'
 
 
@@ -42,7 +42,7 @@ export const CalculatorProvider = ({ children }) => {
                 result
             }
 
-            const response = await fetch(`${baseAPIURL}/calculator`, {
+            const response = await fetch(`${baseAPIProjectsURL}/calculator`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include'
@@ -57,7 +57,7 @@ export const CalculatorProvider = ({ children }) => {
 
     const getExpression = async (id) => {
         try {
-            const response = await fetch(`${baseAPIURL}/calculator/${id}`, {
+            const response = await fetch(`${baseAPIProjectsURL}/calculator/${id}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -73,7 +73,7 @@ export const CalculatorProvider = ({ children }) => {
 
     const getResult = async (id) => {
         try {
-            const response = await fetch(`${baseAPIURL}/calculator/${id}`, {
+            const response = await fetch(`${baseAPIProjectsURL}/calculator/${id}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -89,7 +89,7 @@ export const CalculatorProvider = ({ children }) => {
 
     const deleteAllOperations = async () => {
         try {
-            await fetch(`${baseAPIURL}/calculator`, {
+            await fetch(`${baseAPIProjectsURL}/calculator`, {
                 method: 'DELETE',
                 credentials: 'include'
             })
@@ -103,7 +103,7 @@ export const CalculatorProvider = ({ children }) => {
     const deleteOperation = async (id) => {
         try {
             if (window.confirm('¿Confirma que quiere eliminar la operación?')) {
-                await fetch(`${baseAPIURL}/calculator/${id}`, {
+                await fetch(`${baseAPIProjectsURL}/calculator/${id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })

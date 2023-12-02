@@ -47,7 +47,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           {/* Button 'x' to close modal */}
                           <button type="button"
                             onClick={closeModal}
-                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full"
+                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 hover:bg-sky-200 duration-200 rounded-full"
                           >
                             <Image
                               src={"/close.svg"}
@@ -78,7 +78,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <p className='text-[14px] pb-6'>
                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
                               </p>
-                              <PlansCard stripePrices={stripePrices} />
+                              <PlansCard stripePrices={stripePrices ? stripePrices : []} />
                             </section>
                           </div>
 
@@ -203,7 +203,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           <button type="button"
                             onClick={closeModal}
-                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full"
+                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 hover:bg-sky-200 duration-200 rounded-full"
                           >
                             <Image
                               src={"/close.svg"}
