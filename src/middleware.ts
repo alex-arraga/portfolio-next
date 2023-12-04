@@ -6,8 +6,10 @@ export default authMiddleware({
         '/api',
         '/api/create_user',
         '/api/projects/calculator',
+        '/api/projects/calculator/calcs',
         '/api/projects/cars-store',
-        '/api/projects/tasks'
+        '/api/projects/tasks',
+        '/projects/calculator'
     ]
 });
 

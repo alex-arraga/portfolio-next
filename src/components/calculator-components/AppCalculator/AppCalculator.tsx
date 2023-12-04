@@ -1,5 +1,6 @@
 import Calculator from "../Calculator"
 import History from "../History/History"
+import { UserButton } from "@clerk/nextjs"
 
 function AppCalculator() {
     return (
@@ -8,6 +9,9 @@ function AppCalculator() {
                 <History />
             </aside>
             <Calculator />
+            <div className="absolute right-5 top-3 p-1 bg-gray-400 cursor-pointer rounded-full hover:bg-sky-200 active:bg-indigo-200 duration-200">
+                <UserButton afterSignOutUrl="/sign-in" />
+            </div>
         </main>
 
     )

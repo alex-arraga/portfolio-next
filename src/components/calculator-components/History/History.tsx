@@ -1,14 +1,23 @@
 import HistoryContainer from './HistoryContainer'
-import { prisma } from '@/libs/prisma';
 import { OperationCard } from './OperationCard';
+import { currentUser } from '@clerk/nextjs';
+import { prisma } from '@/libs/prisma';
 
-const loadOperations = async () => {
-    const response = await prisma.calculator.findMany()
-    return response
-}
 
 async function History() {
-    const operations = await loadOperations();
+    const user = await currentUser();
+
+    const loadOperations = async () => {
+        const response = await prisma.calculator.findMany({
+            where: {
+                user_clerk: user?.id
+            }
+        })
+
+        return response
+    }
+
+    const operations = await loadOperations()
 
     return (
         <HistoryContainer>

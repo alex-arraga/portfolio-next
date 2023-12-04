@@ -37,6 +37,25 @@ export function HomeProvider({ children }) {
     }, [user])
 
 
+    const getUserId = async () => {
+        const userId = dataUser()?.id_clerk;
+        if (loadPage === true && userId !== undefined) {
+            const userDB = await fetch(`${baseAPI}/create_user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            const data = await userDB.json()
+            const id = data?.id
+            console.log(id)
+
+            return id
+        }
+    }
+
+
     const dataUser = () => {
         if (user.user !== undefined && loadPage === true) {
             const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0].provider === 'github' ? true : false;
@@ -58,7 +77,6 @@ export function HomeProvider({ children }) {
                 created_at: user.user?.createdAt
             }
 
-            console.log('dataUser result:', data)
             return data
         }
     }
@@ -83,7 +101,6 @@ export function HomeProvider({ children }) {
         if (loadPage === true) {
             const data = await getUserDB()
             if (!data) {
-                console.log('User not exist, registerUser will be execute')
                 return false
             } else {
                 const hasUser = data.id_clerk === user.user?.id ? true : false
@@ -99,7 +116,6 @@ export function HomeProvider({ children }) {
             try {
 
                 const data = dataUser()
-                console.log('Llego al fetch', data)
                 await fetch(`${baseAPI}/create_user`, {
                     method: 'POST',
                     body: JSON.stringify(data)
@@ -107,8 +123,6 @@ export function HomeProvider({ children }) {
             } catch (error) {
                 console.log('Fetch error on register a new user', error)
             }
-        } else {
-            console.log('User exist in DB, not will be register')
         }
     }
 
@@ -123,7 +137,8 @@ export function HomeProvider({ children }) {
         image,
         setImage,
         loadPage,
-        dataUser
+        dataUser,
+        getUserId
     }}>
         {children}
     </HomeContext.Provider>

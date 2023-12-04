@@ -12,7 +12,6 @@ import { useCalculatorContext } from '@/context/CalculatorContext'
 
 function HistoryContainer({ children }: { children: React.ReactNode }) {
     const [isVisible, setIsVisible] = useState(false)
-    const date = new Date().toLocaleDateString()
     const nodeRef = useRef<HTMLDivElement | null>(null);
     const { deleteAllOperations } = useCalculatorContext()
 
@@ -40,7 +39,6 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
                         <button onClick={() => deleteAllOperations()}
                             className='flex justify-center w-full py-1.5 rounded-xl sticky cursor-pointer mb-5 bg-slate-800 hover:bg-slate-700 duration-300 select-none'>Borrar Historial</button>
                         <hr className='mb-5 opacity-50' />
-                        <h3 className='flex w-full justify-center items-center pb-5 text-sm opacity-50'>{date}</h3>
                     </div>
 
                     {children}

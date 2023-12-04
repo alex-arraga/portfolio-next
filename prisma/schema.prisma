@@ -8,16 +8,18 @@ datasource db {
 }
 
 model User {
-  id                 Int      @id @default(autoincrement())
-  id_clerk           String   @unique
+  id                 Int          @id @default(autoincrement())
+  id_clerk           String       @unique
   username           String?
   name               String?
   lastname           String?
-  has_google_account Boolean  @default(false)
+  has_google_account Boolean      @default(false)
   google_email       String?
-  has_github_account Boolean  @default(false)
+  has_github_account Boolean      @default(false)
   github_email       String?
-  created_at         DateTime @default(now())
+  created_at         DateTime     @default(now())
+  calcs_idUser       Calculator[] @relation("calcs_userId")
+  calcs_idClerk      Calculator[] @relation("calcs_userClerk")
 }
 
 model Task {
@@ -39,6 +41,10 @@ model Calculator {
   expression String
   result     String
   created_at DateTime @default(now())
+  user_id    Int
+  user_clerk String
+  user       User     @relation("calcs_userId", fields: [user_id], references: [id])
+  userClerk  User     @relation("calcs_userClerk", fields: [user_clerk], references: [id_clerk])
 }
 
 model Cars {
