@@ -1,10 +1,10 @@
-import React, { Key } from "react"
+import React from "react"
 import { PropsCard } from "@/types/tasks"
 
-export function Card({ children, className, key, onClick }: PropsCard): React.ReactElement {
+export function Card({ children, className, onClick }: PropsCard): React.ReactElement {
     return (
         <React.Fragment>
-            <div className={`${className}`} key={key} onClick={onClick} >
+            <div className={`${className}`} onClick={onClick} >
                 {children}
             </div>
         </React.Fragment >

@@ -1,20 +1,32 @@
 import { prisma } from "@/libs/prisma"
 import TaskCard from "@/components/tasks-components/TaskCard"
 import { AppTasks } from '@/components/tasks-components/AppTasks/AppTasks'
+import { currentUser } from "@clerk/nextjs/server";
 
-const loadTasks = async () => {
-    const loadAllTasks = await prisma.task.findMany()
-    return loadAllTasks
-};
-
-const loadCompletedTasks = async () => {
-    const loadAllCompletedTasks = await prisma.taskCompleted.findMany()
-    return loadAllCompletedTasks
-};
 
 async function TasksPage({ params, typePage }: { params: { id: string | undefined }, typePage?: string }) {
-    const tasksPendient = await loadTasks();
-    const tasksCompleted = await loadCompletedTasks();
+    const user = await currentUser()
+
+    const getTasks = async () => {
+        const loadAllTasks = await prisma.task.findMany({
+            where: {
+                user_clerk: user?.id
+            }
+        })
+        return loadAllTasks
+    };
+
+    const getCompletedTasks = async () => {
+        const loadAllCompletedTasks = await prisma.taskCompleted.findMany({
+            where: {
+                user_clerk: user?.id
+            }
+        })
+        return loadAllCompletedTasks
+    };
+
+    const tasksPendient = await getTasks();
+    const tasksCompleted = await getCompletedTasks();
 
     return (
         <AppTasks params={params}>

@@ -1,5 +1,5 @@
 import { Task } from "@prisma/client"
-import React, { Key } from "react"
+import React from "react"
 
 export interface PropsTaskCard {
     task: Task
@@ -9,6 +9,5 @@ export interface PropsTaskCard {
 export interface PropsCard {
     children: React.ReactNode,
     className: string,
-    key: Key,
     onClick?: (() => void)
 }
