@@ -65,7 +65,7 @@ export interface FilterProps {
 }
 
 export interface HomeProps {
-    searchParams: FilterProps
+    searchParams: FilterProps,
 }
 
 export interface OptionProps {
@@ -96,9 +96,13 @@ export interface TypesCars {
     originalNameClasses?: string
 }
 
-export interface AsideComponentProps {
-    allCars: any,
-    searchParams: any
+export interface AsideProps {
+    searchParams: FilterProps
+}
+
+export interface DashboardProps {
+    allCars: CarCardProps[],
+    searchParams: FilterProps
 }
 
 export interface searchBarProps {
@@ -109,10 +113,10 @@ export interface HamburgerMenuBarProps {
     handleClick: () => void,
     styleMenu?: string
     searchParams?: {
-        year: number | string,
-        manufacturer: string,
-        model: string,
-        transmission: string
+        year: number | null | undefined,
+        manufacturer: string | null | undefined,
+        model: string | null | undefined,
+        transmission: string | null | undefined
     }
 }
 

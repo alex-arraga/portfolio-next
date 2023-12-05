@@ -5,18 +5,24 @@ import Link from "next/link"
 import { NavBarProps } from "@/types/cars-store"
 import { useEffect, useState } from "react"
 import { UserButton } from "@clerk/nextjs"
+import { usePathname } from 'next/navigation'
+
 
 function Navbar({ otherClasses }: NavBarProps) {
-    const [path, setPath] = useState('')
+    const pathname = usePathname();
+    const [path, setPath] = useState('');
 
+    const pathHome = '/projects/cars-store';
     const pathDashboard = '/projects/cars-store/dashboard';
     const pathRents = '/projects/cars-store/rents';
-    const pathProfile = '/projects/cars-store/profile';
+
 
     useEffect(() => {
-        const currentPath = window.location.pathname
-        setPath(currentPath)
-    }, [])
+        if (pathname !== null) {
+            setPath(pathname)
+        }
+    }, [pathname])
+
 
     return (
         <header className={`w-full z-10 ${otherClasses}`}>
@@ -57,7 +63,7 @@ function Navbar({ otherClasses }: NavBarProps) {
                         />
                     </Link>
 
-                    <div className="p-1 bg-gray-100 hover:bg-sky-200 rounded-full active:bg-indigo-200 duration-200">
+                    <div className={`p-1 ${path === pathHome ? 'bg-gray-100' : ''} hover:bg-sky-200 rounded-full active:bg-indigo-200 duration-200`}>
                         <UserButton afterSignOutUrl="/sign-in" />
                     </div>
                 </div>

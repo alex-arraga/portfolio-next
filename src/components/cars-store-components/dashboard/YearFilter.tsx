@@ -13,7 +13,7 @@ export function YearFilter() {
     const [selected, setSelected] = useState('')
 
     const router = useRouter()
-    const searchParams = new URLSearchParams(window.location.search)
+    const searchParams = new URLSearchParams(window.location.href)
     const hasYearParam = searchParams.get('year')
 
     const setYearParam = (yearSelected: string) => {

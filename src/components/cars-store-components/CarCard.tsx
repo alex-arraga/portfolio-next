@@ -8,7 +8,6 @@ import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/util
 import { CustomButton, CarDetails } from ".."
 import { PiEngine } from 'react-icons/pi'
 import { useCarsContext } from "@/context/CarsContext"
-import { toast } from "sonner"
 
 interface CarProps {
     car: CarCardProps,
@@ -23,34 +22,8 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
     const { city_mpg, year, make, model, transmission, drive, cylinders } = car;
     const carRent = calculateCarRent(city_mpg, year);
 
-    const { newCar } = useCarsContext();
+    const { newCarLiked } = useCarsContext();
 
-    const newCarLiked = (car: CarCardProps) => {
-        try {
-            const data = {
-                city_mpg: car.city_mpg,
-                class: car.class,
-                combination_mpg: car.combination_mpg,
-                cylinders: car.cylinders,
-                displacement: car.displacement,
-                drive: car.drive,
-                fuel_type: car.fuel_type,
-                highway_mpg: car.highway_mpg,
-                make: car.make,
-                model: car.model,
-                transmission: car.transmission,
-                year: car.year,
-                liked: car.liked = true,
-                rented: car.rented = false
-            }
-
-            setLike(true);
-            newCar(data);
-            toast.success(`This car was added to the section 'The cars I Liked'`)
-        } catch (error) {
-            toast.error('Oops...Could not add a like, please try again')
-        }
-    }
 
     return (
         <>
@@ -70,7 +43,10 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                     {
                                         !like ? (
                                             <Image
-                                                onClick={() => newCarLiked(car)}
+                                                onClick={() => {
+                                                    setLike(true)
+                                                    newCarLiked(car)
+                                                }}
                                                 src={'/heart-outline.svg'}
                                                 width={22}
                                                 height={22}
@@ -79,7 +55,9 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             />
                                         ) : (
                                             <Image
-                                                onClick={() => setLike(false)}
+                                                onClick={() => {
+                                                    setLike(false)
+                                                }}
                                                 src={'/heart-filled.svg'}
                                                 width={22}
                                                 height={22}

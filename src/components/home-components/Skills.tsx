@@ -33,7 +33,7 @@ function Skills() {
             </div>
 
             {/* Frameworks */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Backend</p>
+            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Frameworks</p>
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frameworksSkills.map((skill) => (

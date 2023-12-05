@@ -27,6 +27,9 @@ model User {
 
   completed_tasks_idUser  TaskCompleted[] @relation("completed_tasks_user_id")
   completed_tasks_idClerk TaskCompleted[] @relation("completed_tasks_user_clerk")
+
+  cars_idUser  Cars[] @relation("cars_user_id")
+  cars_idClerk Cars[] @relation("cars_user_clerk")
 }
 
 model Task {
@@ -80,5 +83,9 @@ model Cars {
   liked           Boolean
   pay_method      String?
   duration_rented String?
+  user_id         Int
+  user_clerk      String
   created_at      DateTime @default(now())
+  user            User     @relation("cars_user_id", fields: [user_id], references: [id])
+  userClerk       User     @relation("cars_user_clerk", fields: [user_clerk], references: [id_clerk])
 }

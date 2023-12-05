@@ -1,6 +1,6 @@
 import { fetchCarsAPI } from "@/app/utils";
 import CarCard from "../CarCard";
-import { CarCardProps, HomeProps } from "@/types/cars-store";
+import { CarCardProps, DashboardProps } from "@/types/cars-store";
 import EmptyDataMessage from "../EmptyDataMessage";
 import { Price } from "@/types/payment";
 import { Stripe } from 'stripe'
@@ -15,19 +15,8 @@ const loadPrices = async (): Promise<Price[]> => {
     }
 };
 
-async function Dashboard({ searchParams }: HomeProps) {
+async function Dashboard({ searchParams, allCars }: DashboardProps) {
     const prices = await loadPrices();
-
-    const allCars = await fetchCarsAPI({
-        manufacturer: searchParams.manufacturer || '',
-        model: searchParams.model || '',
-        year: searchParams.year || 2015,
-        limit: 500,
-        fuel: searchParams.fuel || '',
-        city_mpg: 25,
-        transmission: searchParams.transmission
-    });
-
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
 

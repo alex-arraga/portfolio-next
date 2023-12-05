@@ -3,6 +3,8 @@ import NavSelect from "./NavSelect";
 import SectionsMyCars from "./SectionsMyCars";
 import { Stripe } from 'stripe';
 import { Price } from "@/types/payment";
+import { currentUser } from "@clerk/nextjs";
+
 
 const loadPrices = async (): Promise<Price[]> => {
     if (process.env.STRIPE_SECRET_KEY) {
@@ -15,7 +17,14 @@ const loadPrices = async (): Promise<Price[]> => {
 };
 
 export const HomeRented = async () => {
-    const rentedCars = await prisma.cars.findMany()
+    const user = await currentUser()
+
+    const rentedCars = await prisma.cars.findMany({
+        where: {
+            user_clerk: user?.id
+        }
+    })
+
     const prices = await loadPrices();
 
     return (
