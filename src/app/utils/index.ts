@@ -16,6 +16,7 @@ export async function fetchCarsAPI(filters: FilterProps) {
 
     const result = await response.json()
     console.log('😸', performance.now() - time)
+    // TODO: aca tenemos que tipar esta respuesta, y lo re ideal seria comprobar la estructura esperada con ZOD, esto va a ser un trabajo pero es escencial sobre todo si queres apuntarle al backend porque en lenguajes tipados como java o go esto es algo re comun... puede ser que desde los servicio externos te cambien la estructura de la respuesta, y si no comprobas eso tu app se puede romper de un momento a otro
     return result
 };
 
