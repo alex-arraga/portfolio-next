@@ -25,7 +25,6 @@ export function HomeProvider({ children }) {
     // Clerk user
     const user = useUser();
 
-
     useEffect(() => {
         if (user.isLoaded) {
             dataUser()
@@ -58,11 +57,11 @@ export function HomeProvider({ children }) {
 
     const dataUser = () => {
         if (user.user !== undefined && loadPage === true) {
-            const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0].provider === 'github' ? true : false;
+            const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
             const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
 
             // Validation Google
-            const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1].provider === 'google' ? true : false;
+            const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1]?.provider === 'google' ? true : false;
             const googleEmail = hasGoogleAccount ? user.user?.externalAccounts[1].emailAddress : undefined;
 
             const data = {

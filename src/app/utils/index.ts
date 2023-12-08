@@ -35,10 +35,10 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
-    const url = new URL(process.env.IMAGIN_URL!);
+    const url = new URL(process.env.NEXT_PUBLIC_IMAGIN_URL!);
     const { make, model, year } = car;
 
-    url.searchParams.append('customer', process.env.IMAGIN_SECRET_KEY!);
+    url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_SECRET_KEY!);
     url.searchParams.append('make', make);
     url.searchParams.append('modelFamily', model.split(" ")[0]);
     url.searchParams.append('zoomType', 'fullscreen');
@@ -46,7 +46,7 @@ export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: s
     url.searchParams.append('angle', `${angle}`);
     url.searchParams.append('color', `${color}`);
 
-    return `${url}`;
+    return url.toString();
 };
 
 // I have to check if I am using it, otherwise delete it.
