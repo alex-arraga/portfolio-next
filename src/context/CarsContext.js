@@ -17,12 +17,17 @@ export const useCarsContext = () => {
 export const CarsProvider = ({ children }) => {
     const { dataUser, getUserId } = useHomeContext()
 
+    const isBrowser = !typeof window === undefined
+
     const [sectionLikes, setSectionLikes] = useState(false);
     const router = useRouter()
     const pathname = usePathname()
     const paramsLinkApi = window.location.href.includes('?http');
 
-    const searchParams = new URLSearchParams(window.location.href);
+    let searchParams
+    if (isBrowser) {
+        searchParams = new URLSearchParams(window);
+    }
     const hasManufacturer = searchParams.get('manufacturer')
     const hasModel = searchParams.get('model')
 
@@ -30,6 +35,8 @@ export const CarsProvider = ({ children }) => {
 
 
     const updateSearchParams = (model, manufacturer) => {
+        if (!searchParams) return
+
         if (model) {
             searchParams.set('model', model)
         } else {
@@ -48,6 +55,7 @@ export const CarsProvider = ({ children }) => {
 
 
     const resetAllFilters = () => {
+        if (!searchParams) return
         if (searchParams.keys().next().done) {
             toast.message('No filters have been applied');
         }

@@ -19,12 +19,17 @@ const loadPrices = async (): Promise<Price[]> => {
 export const HomeRented = async () => {
     const user = await currentUser()
 
-    const rentedCars = await prisma.cars.findMany({
-        where: {
-            user_clerk: user?.id
-        }
-    })
+    const loadRentedCars = async () => {
+        const loadRentedCars = await prisma.cars.findMany({
+            where: {
+                user_clerk: user?.id
+            }
+        })
+        await prisma.$disconnect()
+        return loadRentedCars
+    }
 
+    const rentedCars = await loadRentedCars()
     const prices = await loadPrices();
 
     return (

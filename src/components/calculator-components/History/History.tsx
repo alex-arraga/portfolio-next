@@ -8,13 +8,13 @@ async function History() {
     const user = await currentUser();
 
     const loadOperations = async () => {
-        const response = await prisma.calculator.findMany({
+        const allOperations = await prisma.calculator.findMany({
             where: {
                 user_clerk: user?.id
             }
         })
-
-        return response
+        await prisma.$disconnect()
+        return allOperations
     }
 
     const operations = await loadOperations()
