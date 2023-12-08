@@ -85,22 +85,6 @@ export const CarsProvider = ({ children }) => {
     }
 
 
-    // Async functions
-    const loadCars = async () => {
-        try {
-            const response = await fetch(`${baseApiProjectsUrl}/cars-store`, {
-                method: 'GET',
-                credentials: 'include'
-            })
-
-            const cars = await response.json()
-            return cars
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-
     const newCar = async (car) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/cars-store`, {
