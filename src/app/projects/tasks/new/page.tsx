@@ -9,7 +9,7 @@ import { ErrorMessage } from '@/components/ErrorMessage';
 import { Label } from '@/components/Label';
 import { AppTasks } from '@/components/tasks-components/AppTasks/AppTasks'
 
-function page({ params }: { params: { id: string } }) {
+function NewTaskPage({ params }: { params: { id: string } }) {
     const { register, setValue, getValues, formState: { errors } } = useForm()
     const { loadTask, onSubmit, setDescriptionData, setTitleData, setIdParam } = useTasksContext()
     const { id } = params;
@@ -70,4 +70,4 @@ function page({ params }: { params: { id: string } }) {
     )
 }
 
-export default page
+export default NewTaskPage
