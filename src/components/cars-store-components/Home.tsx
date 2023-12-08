@@ -55,7 +55,6 @@ export async function Home({ searchParams }: HomeProps) {
 
                         <section className='home__error-container'>
                             <h2 className='text-black text-xl'>Oops no results</h2>
-                            <p>{allCars.message}</p>
                         </section>
                 }
 

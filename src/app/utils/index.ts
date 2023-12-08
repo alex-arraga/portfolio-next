@@ -1,7 +1,8 @@
+import { CarsResponse, CarsResponseSchema } from "@/types/CarsResponse";
 import { CarCardProps, FilterProps } from "@/types/cars-store";
 
-export async function fetchCarsAPI(filters: FilterProps) {
-    let time = performance.now()
+export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse> {
+
     const { manufacturer, model, year, limit, fuel, city_mpg, highway_mpg, transmission } = filters;
 
     const headers = {
@@ -14,10 +15,21 @@ export async function fetchCarsAPI(filters: FilterProps) {
         headers: headers
     })
 
-    const result = await response.json()
-    console.log('😸', performance.now() - time)
-    // TODO: aca tenemos que tipar esta respuesta, y lo re ideal seria comprobar la estructura esperada con ZOD, esto va a ser un trabajo pero es escencial sobre todo si queres apuntarle al backend porque en lenguajes tipados como java o go esto es algo re comun... puede ser que desde los servicio externos te cambien la estructura de la respuesta, y si no comprobas eso tu app se puede romper de un momento a otro
-    return result
+    // TODO: si queres mejora esto
+    if (!response.ok) {
+        console.error(await response.text())
+        return []
+    }
+
+    const result = await response.json() as CarsResponse
+
+    const check = CarsResponseSchema.safeParse(result)
+    if (check.success) {
+        return result
+    } else {
+        console.log(check.error)
+        return []
+    }
 };
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
