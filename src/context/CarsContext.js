@@ -22,12 +22,17 @@ export const CarsProvider = ({ children }) => {
     const [sectionLikes, setSectionLikes] = useState(false);
     const router = useRouter()
     const pathname = usePathname()
-    const paramsLinkApi = window.location.href.includes('?http');
+
+    let paramsLinkApi
+    if (isBrowser) {
+        paramsLinkApi = window.location.href.includes('?http');
+    }
 
     let searchParams
     if (isBrowser) {
         searchParams = new URLSearchParams(window);
     }
+
     const hasManufacturer = searchParams.get('manufacturer')
     const hasModel = searchParams.get('model')
 
