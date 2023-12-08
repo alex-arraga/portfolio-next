@@ -58,7 +58,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                                     <Combobox.Option
                                                         value={query}
                                                         className={'search-manufacturer__option'}>
-                                                        No results "{query}"
+                                                        No results &#34;{query}&#34;
                                                     </Combobox.Option>
                                                 )
                                                 : (
@@ -116,7 +116,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                                     <Combobox.Option
                                                         value={query}
                                                         className={'search-manufacturer__option'}>
-                                                        No results "{query}"
+                                                        No results &#34;{query}&#34;
                                                     </Combobox.Option>
                                                 )
                                                 : (

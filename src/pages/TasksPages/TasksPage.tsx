@@ -4,7 +4,7 @@ import { AppTasks } from '@/components/tasks-components/AppTasks/AppTasks'
 import { currentUser } from "@clerk/nextjs/server";
 
 
-async function TasksPage({ params, typePage }: { params: { id: string | undefined }, typePage?: string }) {
+async function TasksPage({ params, completedPage }: { params: { id: string | undefined }, completedPage?: boolean }) {
     const user = await currentUser()
 
     const getTasks = async () => {
@@ -32,7 +32,7 @@ async function TasksPage({ params, typePage }: { params: { id: string | undefine
         <AppTasks params={params}>
             <main className="mt-10">
                 {
-                    typePage === 'completed' ?
+                    completedPage ?
                         <>
                             {tasksCompleted.length === 0
                                 ? <div className="flex justify-center items-center h-[calc(100vh-10rem)]">

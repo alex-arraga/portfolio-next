@@ -23,7 +23,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                 </div>
                             </div>
 
-                            <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don't have cars with <span className="font-semibold text-blue-500">likes</span> yet, to like a vehicle <span className="font-semibold text-blue-500">simply click on the heart icon, </span>at the top right of the vehicle's card!</p>
+                            <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don&#39t have cars with <span className="font-semibold text-blue-500">likes</span> yet, to like a vehicle <span className="font-semibold text-blue-500">simply click on the heart icon, </span>at the top right of the vehicle&#39s card!</p>
                         </div>
                     </section>
 
@@ -46,7 +46,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                     </div>
                                 </div>
 
-                                <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don't have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> "Rent Car" </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href={'/projects/cars-store/dashboard'}>dashboard</Link> section!</p>
+                                <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don&#39t have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> &#34;Rent Car&#34; </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href={'/projects/cars-store/dashboard'}>dashboard</Link> section!</p>
                             </div>
                         </section>
 

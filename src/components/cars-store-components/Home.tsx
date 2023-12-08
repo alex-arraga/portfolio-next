@@ -41,7 +41,7 @@ export async function Home({ searchParams }: HomeProps) {
                         <section>
                             <div className='home__cars-wrapper w-screen'>
                                 {allCars?.map((car) =>
-                                    <CarCard car={car} stripePrices={[]} />
+                                    <CarCard car={car} key={Math.random()} stripePrices={[]} />
                                 )}
                             </div>
 

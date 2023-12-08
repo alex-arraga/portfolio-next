@@ -119,7 +119,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           <section>
                             <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
                             <p className='text-[14px]'>
-                              Looking for specific details about the vehicle you are considering for rental? Here's a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
+                              Looking for specific details about the vehicle you are considering for rental? Here&#39s a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
                             </p>
                             <div className='flex relative mt-6 mb-0 w-full bg-white border-2 border-gray-200 rounded-xl p-4 flex-col flex-wrap h-full'>
                               <div className='flex gap-4'>
