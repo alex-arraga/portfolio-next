@@ -80,6 +80,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                 <div className="relative w-full h-32 sm:h-40 md:h-56 mt-4 md:mt-6 object-contain">
                     <Image src={generateCarImageAPI(car, '')}
                         fill
+                        sizes="500px"
                         alt="cars"
                         className="object-contain"
                     />

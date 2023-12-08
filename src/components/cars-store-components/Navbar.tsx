@@ -8,7 +8,7 @@ import { UserButton } from "@clerk/nextjs"
 import { usePathname } from 'next/navigation'
 
 
-function Navbar({ otherClasses }: NavBarProps) {
+function Navbar({ otherClasses, isStatic }: NavBarProps) {
     const pathname = usePathname();
     const [path, setPath] = useState('');
 
@@ -25,9 +25,8 @@ function Navbar({ otherClasses }: NavBarProps) {
 
 
     return (
-        <header className={`w-full z-10 ${otherClasses}`}>
+        <header className={`w-full z-10 ${isStatic ? 'fixed top-0 bg-white border-b-2 border-gray-100' : ''} ${otherClasses}`}>
             <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 h-14 sm:h-16">
-
                 <Link href={"/projects/cars-store"} className="flex justify-center items-center">
                     <Image
                         src="/logo.svg"
@@ -36,12 +35,11 @@ function Navbar({ otherClasses }: NavBarProps) {
                         height={18}
                         className="object-contain w-[90px] h-[16px] md:w-[116px] md:h-[18px]"
                     />
-
                 </Link>
 
                 <div className="relative flex items-center justify-center pr-4 gap-3 md:gap-6">
-
                     <Link href={pathRents}
+                        as={''}
                         onClick={() => setPath(pathRents)}
                         className={`${path === pathRents ? 'bg-indigo-200 p-2 rounded-full' : 'bg-gray-100 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300'}`}>
                         <Image src='/car-icon.svg'
@@ -53,6 +51,7 @@ function Navbar({ otherClasses }: NavBarProps) {
                     </Link>
 
                     <Link href={pathDashboard}
+                        as={''}
                         onClick={() => setPath(pathDashboard)}
                         className={`${path === pathDashboard ? 'bg-indigo-200 p-2 rounded-full' : 'bg-gray-100 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300'}`}>
                         <Image src='/shopping-cart.svg'
@@ -63,11 +62,10 @@ function Navbar({ otherClasses }: NavBarProps) {
                         />
                     </Link>
 
-                    <div className={`p-1 ${path === pathHome ? 'bg-gray-100' : ''} hover:bg-sky-200 rounded-full active:bg-indigo-200 duration-200`}>
+                    <div className={`p-1 hover:bg-sky-200 rounded-full active:bg-indigo-200 duration-200`}>
                         <UserButton afterSignOutUrl="/sign-in" />
                     </div>
                 </div>
-
             </nav>
         </header>
     )

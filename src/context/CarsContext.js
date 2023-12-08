@@ -1,9 +1,10 @@
 "use client"
 
-import { baseAPIProjectsURL } from "@/libs/baseURL";
+import { baseApiProjectsUrl } from "@/libs/baseURL";
 import { createContext, useContext, useState } from "react";
 import { useHomeContext } from "./HomeContext";
 import { toast } from "sonner";
+import { useRouter, usePathname } from "next/navigation"
 
 export const CarsContext = createContext()
 
@@ -14,14 +15,67 @@ export const useCarsContext = () => {
 }
 
 export const CarsProvider = ({ children }) => {
-    const [sectionLikes, setSectionLikes] = useState(false);
-
     const { dataUser, getUserId } = useHomeContext()
 
+    const [sectionLikes, setSectionLikes] = useState(false);
+    const router = useRouter()
+    const pathname = usePathname()
+    const paramsLinkApi = window.location.href.includes('?http');
 
+    const searchParams = new URLSearchParams(window.location.href);
+    const hasManufacturer = searchParams.get('manufacturer')
+    const hasModel = searchParams.get('model')
+
+    const keysToDelete = [];
+
+
+    const updateSearchParams = (model, manufacturer) => {
+        if (model) {
+            searchParams.set('model', model)
+        } else {
+            searchParams.delete('model')
+        }
+
+        if (manufacturer) {
+            searchParams.set('manufacturer', manufacturer)
+        } else {
+            searchParams.delete('manufacturer')
+        }
+
+        const newPathName = `${pathname}?${searchParams.toString()}`
+        router.push(newPathName)
+    }
+
+
+    const resetAllFilters = () => {
+        if (searchParams.keys().next().done) {
+            toast.message('No filters have been applied');
+        }
+        else if (`${paramsLinkApi}`) {
+            router.push(pathname)
+        }
+
+        else {
+            searchParams.forEach((_value, key) => {
+                keysToDelete.push(key);
+            });
+
+            keysToDelete.forEach(key => {
+                searchParams.delete(key);
+            });
+
+            const clearPath = `${window.location.pathname}?${searchParams.toString()}`;
+            router.push(clearPath);
+
+            toast.success('You can see all cars again!');
+        }
+    }
+
+
+    // Async functions
     const loadCars = async () => {
         try {
-            const response = await fetch(`${baseAPIProjectsURL}/cars-store`, {
+            const response = await fetch(`${baseApiProjectsUrl}/cars-store`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -36,7 +90,7 @@ export const CarsProvider = ({ children }) => {
 
     const newCar = async (car) => {
         try {
-            const response = await fetch(`${baseAPIProjectsURL}/cars-store`, {
+            const response = await fetch(`${baseApiProjectsUrl}/cars-store`, {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(car)
@@ -86,7 +140,12 @@ export const CarsProvider = ({ children }) => {
         sectionLikes,
         setSectionLikes,
         newCar,
-        newCarLiked
+        newCarLiked,
+        resetAllFilters,
+        updateSearchParams,
+        searchParams,
+        hasManufacturer,
+        hasModel
     }}>
         {children}
     </CarsContext.Provider>

@@ -1,16 +1,16 @@
 "use client"
 
+import Image from "next/image"
 import { SearchManufacturerProps } from "@/types/cars-store"
 import { Combobox, Transition } from "@headlessui/react"
-import Image from "next/image"
 import { useState, Fragment } from 'react'
 import { manufacturers } from "@/constants"
+import { useCarsContext } from "@/context/CarsContext"
 
 
 function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: SearchManufacturerProps) {
     const [query, setQuery] = useState('');
-    const searchParams = new URLSearchParams(window.location.search);
-    const hasManufacturer = searchParams.get('manufacturer')
+    const { hasManufacturer } = useCarsContext()
 
     const filterManufacturers = query === '' ? manufacturers : manufacturers.filter((item) => (
         item.toLocaleLowerCase()
@@ -97,7 +97,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
 
                                 <Combobox.Input
                                     className={'search-manufacturer__input'}
-                                    placeholder="Volkswagen"
+                                    placeholder={hasManufacturer ? 'Last search: ' + hasManufacturer : 'Volkswagen'}
                                     displayValue={(manufacturer: string) => manufacturer}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />

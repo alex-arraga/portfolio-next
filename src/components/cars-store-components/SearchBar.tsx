@@ -3,17 +3,14 @@
 import { SearchManufacturer } from ".."
 import { useState } from "react"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { searchBarProps } from "@/types/cars-store"
 import { toast } from "sonner"
+import { useCarsContext } from "@/context/CarsContext"
 
 function SearchBar({ styleSearchbar }: searchBarProps) {
     const [manufacturer, setManufacturer] = useState('')
     const [model, setModel] = useState('')
-    const router = useRouter()
-
-    const searchParams = new URLSearchParams(window.location.search);
-    const hasModel = searchParams.get('model')
+    const { updateSearchParams, hasModel } = useCarsContext()
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -26,23 +23,6 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
             manufacturer.toLocaleLowerCase())
     }
 
-    const updateSearchParams = (model: string, manufacturer: string) => {
-        if (model) {
-            searchParams.set('model', model)
-        } else {
-            searchParams.delete('model')
-        }
-
-        if (manufacturer) {
-            searchParams.set('manufacturer', manufacturer)
-        } else {
-            searchParams.delete('manufacturer')
-        }
-
-        const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-
-        router.push(newPathName)
-    }
 
     const SearchButton = ({ otherClasses }: { otherClasses: string }) => {
         return (
@@ -142,7 +122,7 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                 name="model"
                                 value={model}
                                 onChange={(e) => setModel(e.target.value)}
-                                placeholder="Tiguan"
+                                placeholder={hasModel ? 'Last search: ' + hasModel : 'Tiguan'}
                                 className="searchbar__input"
                             />
                             <SearchButton otherClasses="sm:hidden" />

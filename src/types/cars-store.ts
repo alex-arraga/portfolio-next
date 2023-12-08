@@ -3,6 +3,7 @@ import { Price } from "./payment";
 
 export interface NavBarProps {
     otherClasses?: string
+    isStatic?: boolean
 }
 
 export interface FooterProps {
@@ -16,8 +17,18 @@ export interface CustomButtonProps {
     handleClick?: MouseEventHandler<HTMLButtonElement>
     btnType?: 'button' | 'submit',
     rightIcon?: string,
+    leftIcon?: string,
     priceId?: string,
+    preferenceMp?: {
+        id: string,
+        title: string,
+        picture_url: string,
+        description: string,
+        quantity: number,
+        unit_price: number
+    },
     isPayButton?: boolean,
+    isResetButton?: boolean
     urlPayAPI?: string
 };
 

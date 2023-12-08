@@ -27,7 +27,7 @@ function CustomFilter({ title, options }: CustomFilterProps) {
           handleUpdateParams(e);
         }}
       >
-        <div className="relative w-fit z-10">
+        <div className="relative w-fit">
           <Listbox.Button className='custom-filter__btn'>
             <span className="block truncate">{selected.title}</span>
             <Image
@@ -49,7 +49,7 @@ function CustomFilter({ title, options }: CustomFilterProps) {
                   <Listbox.Option
                     key={option.title}
                     value={option}
-                    className={({ active }) => `relative cursor-default select-none py-2 px-4 ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
+                    className={({ active }) => `relative cursor-pointer select-none py-2 px-4 z-10 ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
                   >
                     {({ selected }) => (
                       <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>

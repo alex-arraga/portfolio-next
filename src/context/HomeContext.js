@@ -1,6 +1,6 @@
 "use client"
 
-import { baseAPI } from "@/libs/baseURL";
+import { baseApi } from "@/libs/baseURL";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
@@ -40,7 +40,7 @@ export function HomeProvider({ children }) {
     const getUserId = async () => {
         const userId = dataUser()?.id_clerk;
         if (loadPage === true && userId !== undefined) {
-            const userDB = await fetch(`${baseAPI}/create_user/${userId}`, {
+            const userDB = await fetch(`${baseApi}/create_user/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ export function HomeProvider({ children }) {
 
     const getUserDB = async () => {
         if (loadPage === true && user.user) {
-            const userDB = await fetch(`${baseAPI}/create_user/${user.user.id}`, {
+            const userDB = await fetch(`${baseApi}/create_user/${user.user.id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ export function HomeProvider({ children }) {
             try {
 
                 const data = dataUser()
-                await fetch(`${baseAPI}/create_user`, {
+                await fetch(`${baseApi}/create_user`, {
                     method: 'POST',
                     body: JSON.stringify(data)
                 })

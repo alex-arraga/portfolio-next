@@ -1,5 +1,5 @@
 import { fuels, yearsOfProduction } from '@/constants';
-import { CustomFilter, SearchBar, CarCard, ShowMore } from '..'
+import { CustomFilter, SearchBar, CarCard, ShowMore, CustomButton } from '..'
 import { fetchCarsAPI } from '@/app/utils'
 import { HomeProps } from '@/types/cars-store';
 
@@ -8,7 +8,7 @@ export async function Home({ searchParams }: HomeProps) {
     const allCars = await fetchCarsAPI({
         manufacturer: searchParams.manufacturer || '',
         model: searchParams.model || '',
-        year: searchParams.year || 2022,
+        year: searchParams.year || 2015,
         limit: searchParams.limit || 9,
         fuel: searchParams.fuel || '',
     });
@@ -16,27 +16,32 @@ export async function Home({ searchParams }: HomeProps) {
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
     return (
-        <div className='mt-8 padding-x padding-y max-width' id='discover'>
+        <section className='mt-8 padding-x padding-y max-width' id='discover'>
 
             <div className='home__text-container'>
                 <h1 className='text-4xl font-extrabold'>Car Catalogue</h1>
-                <p>Explore the cars yout might like</p>
+                <p>Explore the cars your might like</p>
             </div>
 
             <div className='home__filters'>
                 <SearchBar />
 
-                <div className='home_filter-container flex gap-3'>
+                <div className='home_filter-container flex items-end gap-3'>
                     <CustomFilter title="fuel" options={fuels} />
                     <CustomFilter title="year" options={yearsOfProduction} />
+                    <CustomButton
+                        title='Reset filters'
+                        containerStyle='flex items-center max-h-[38px] shadow-md rounded-lg bg-indigo-100 hover:bg-indigo-400 hover:text-white duration-200'
+                        isResetButton={true}
+                    />
                 </div>
 
                 {
-                    !isDataEmpty ? (
+                    !isDataEmpty ?
                         <section>
                             <div className='home__cars-wrapper w-screen'>
                                 {allCars?.map((car) =>
-                                    <CarCard car={car} />
+                                    <CarCard car={car} stripePrices={[]} />
                                 )}
                             </div>
 
@@ -45,17 +50,18 @@ export async function Home({ searchParams }: HomeProps) {
                                 isNext={(searchParams.limit || 9) > allCars.length}
                             />
                         </section>
-                    ) : (
+
+                        :
+
                         <section className='home__error-container'>
                             <h2 className='text-black text-xl'>Oops no results</h2>
                             <p>{allCars.message}</p>
                         </section>
-                    )
                 }
 
 
             </div>
-        </div>
+        </section>
     )
 }
 

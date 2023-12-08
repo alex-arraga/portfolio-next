@@ -6,12 +6,14 @@ import { CarDetailsProps } from "@/types/cars-store"
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { generateCarImageAPI, calculateCarRent } from "@/app/utils"
-import { PlansCard } from '..'
+import { CustomButton, PlansCard } from '..'
 
 import Image from "next/image"
+import { baseApiMp } from '@/libs/baseURL'
 
 function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: CarDetailsProps) {
   const carRent = calculateCarRent(car.city_mpg, car.year)
+  const carName = `${car.make} ${car.model}`
 
   return (
     <>
@@ -92,6 +94,25 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                             <div className='flex justify-center items-center w-full max-w-[180px] rounded-md bg-indigo-50 p-2'>
                               <h4 className='font-medium'>Price: <span className='font-semibold text-indigo-500'>${carRent} /day</span></h4>
                             </div>
+
+                            <div className='flex my-6 justify-center items-center'>
+                              <CustomButton
+                                containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 w-full max-w-[350px]'
+                                textStyle='text-black font-medium'
+                                isPayButton={true}
+                                title='Pagar con Mercado Pago'
+                                urlPayAPI={baseApiMp}
+                                leftIcon='/mp-icon.png'
+                                preferenceMp={{
+                                  id: '135',
+                                  title: carName,
+                                  picture_url: '',
+                                  description: 'El auto que buscas, en Carhub',
+                                  quantity: 1,
+                                  unit_price: parseInt(carRent)
+                                }}
+                              />
+                            </div>
                           </section>
 
                           {/* Section to view car dates */}
@@ -106,6 +127,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   {/* Main image */}
                                   <Image src={generateCarImageAPI(car)}
                                     fill
+                                    sizes="500px"
                                     alt="cars"
                                     className="object-contain pt-6"
                                   />
@@ -114,6 +136,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   {/* Main image */}
                                   <Image src={generateCarImageAPI(car, '23')}
                                     fill
+                                    sizes="500px"
                                     alt="cars"
                                     className="object-contain pt-6"
                                   />
@@ -122,6 +145,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   {/* Main image */}
                                   <Image src={generateCarImageAPI(car, '13')}
                                     fill
+                                    sizes="500px"
                                     alt="cars"
                                     className="object-contain pt-6"
                                   />
@@ -229,6 +253,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                                 <Image src={generateCarImageAPI(car, '29')}
                                   fill
+                                  sizes="500px"
                                   alt="cars"
                                   className="object-contain"
                                 />
@@ -236,6 +261,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                                 <Image src={generateCarImageAPI(car)}
                                   fill
+                                  sizes="500px"
                                   alt="cars"
                                   className="object-contain"
                                 />
@@ -243,6 +269,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                                 <Image src={generateCarImageAPI(car, '13')}
                                   fill
+                                  sizes="500px"
                                   alt="cars"
                                   className="object-contain"
                                 />
@@ -261,10 +288,12 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           <div className="mt-3 flex flex-wrap gap-4">
                             {Object.entries(car).map(([key, value]) => (
                               <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                                <h4 className="capitalize text-gray-400">{
-                                  key === 'year' ? key = 'Year Launched'
-                                    : key.split("_").join(" ")
-                                }</h4>
+                                <h4 className="capitalize text-gray-400">
+                                  {
+                                    key === 'year' ? key = 'Year Launched'
+                                      : key.split("_").join(" ")
+                                  }
+                                </h4>
                                 <p className="font-medium text-black-100 capitalize">{
                                   value === 'm' ? value = 'Manual'
                                     : value === 'a' ? value = 'Automatic'

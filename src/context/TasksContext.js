@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useForm } from 'react-hook-form';
-import { baseAPIProjectsURL } from "@/libs/baseURL";
+import { baseApiProjectsUrl } from "@/libs/baseURL";
 import { usePathname } from "next/navigation";
 
 
@@ -47,7 +47,7 @@ export const TasksProvider = ({ children }) => {
 
     // Get info from a task so that it can be updated
     const loadTask = async (id) => {
-        const res = fetch(`${baseAPIProjectsURL}/tasks/${id}`, {
+        const res = fetch(`${baseApiProjectsUrl}/tasks/${id}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -78,7 +78,7 @@ export const TasksProvider = ({ children }) => {
         // Create new task
         if (!idParam) {
             try {
-                const createTask = await fetch(`${baseAPIProjectsURL}/tasks`, {
+                const createTask = await fetch(`${baseApiProjectsUrl}/tasks`, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(infoToSend)
@@ -93,7 +93,7 @@ export const TasksProvider = ({ children }) => {
         // Update task
         else {
             try {
-                const updateTask = await fetch(`${baseAPIProjectsURL}/tasks/${idParam}`, {
+                const updateTask = await fetch(`${baseApiProjectsUrl}/tasks/${idParam}`, {
                     method: 'PUT',
                     credentials: 'include',
                     body: JSON.stringify(infoToSend)
@@ -118,7 +118,7 @@ export const TasksProvider = ({ children }) => {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea?')) {
-                await fetch(`${baseAPIProjectsURL}/tasks/${task.id}`, {
+                await fetch(`${baseApiProjectsUrl}/tasks/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -137,7 +137,7 @@ export const TasksProvider = ({ children }) => {
         e.stopPropagation();
         try {
             if (window.confirm('¿Confirma que quiere eliminar la tarea completada?')) {
-                await fetch(`${baseAPIProjectsURL}/tasks/completed/${task.id}`, {
+                await fetch(`${baseApiProjectsUrl}/tasks/completed/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -156,13 +156,13 @@ export const TasksProvider = ({ children }) => {
         e.stopPropagation()
 
         try {
-            const newCompletedTask = await fetch(`${baseAPIProjectsURL}/tasks/completed`, {
+            const newCompletedTask = await fetch(`${baseApiProjectsUrl}/tasks/completed`, {
                 method: 'POST',
                 body: JSON.stringify(task),
                 credentials: 'include'
             })
 
-            const deleteTask = await fetch(`${baseAPIProjectsURL}/tasks/${task.id}`, {
+            const deleteTask = await fetch(`${baseApiProjectsUrl}/tasks/${task.id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })

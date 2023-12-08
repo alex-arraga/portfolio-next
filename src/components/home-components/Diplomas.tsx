@@ -1,10 +1,8 @@
 "use client"
 
 import Image from "next/image"
-
 import { diplomas } from "@/constants";
 import { useRouter } from "next/navigation";
-
 import { useHomeContext } from "@/context/HomeContext";
 
 function Diplomas() {
@@ -33,6 +31,8 @@ function Diplomas() {
                         src={diploma.src}
                         alt={diploma.alt}
                         fill
+                        sizes="1000px"
+                        priority
                         className="object-contain p-4"
                     />
                 </div>

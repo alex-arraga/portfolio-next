@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { baseAPIProjectsURL, baseAPI } from '@/libs/baseURL';
+import { baseApiProjectsUrl, baseApi } from '@/libs/baseURL';
 import { useState, useEffect } from 'react'
 
 import { useHomeContext } from './HomeContext';
@@ -46,7 +46,7 @@ export const CalculatorProvider = ({ children }) => {
 
             console.log(data)
 
-            const response = await fetch(`${baseAPIProjectsURL}/calculator`, {
+            const response = await fetch(`${baseApiProjectsUrl}/calculator`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',
@@ -67,7 +67,7 @@ export const CalculatorProvider = ({ children }) => {
         try {
             const id = await getUserId()
             console.log('id del get:', id)
-            const response = await fetch(`${baseAPIProjectsURL}/calculator/${id}`, {
+            const response = await fetch(`${baseApiProjectsUrl}/calculator/${id}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -83,7 +83,7 @@ export const CalculatorProvider = ({ children }) => {
 
     const getExpression = async (id) => {
         try {
-            const response = await fetch(`${baseAPIProjectsURL}/calculator/calcs/${id}`, {
+            const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -99,7 +99,7 @@ export const CalculatorProvider = ({ children }) => {
 
     const getResult = async (id) => {
         try {
-            const response = await fetch(`${baseAPIProjectsURL}/calculator/calcs/${id}`, {
+            const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -116,7 +116,7 @@ export const CalculatorProvider = ({ children }) => {
     const deleteAllOperations = async () => {
         const id = await getUserId();
         try {
-            await fetch(`${baseAPIProjectsURL}/calculator/${id}`, {
+            await fetch(`${baseApiProjectsUrl}/calculator/${id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })
@@ -130,7 +130,7 @@ export const CalculatorProvider = ({ children }) => {
     const deleteOperation = async (id) => {
         try {
             if (window.confirm('¿Confirma que quiere eliminar la operación?')) {
-                await fetch(`${baseAPIProjectsURL}/calculator/calcs/${id}`, {
+                await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })

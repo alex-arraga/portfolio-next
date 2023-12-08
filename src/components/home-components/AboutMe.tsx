@@ -20,6 +20,8 @@ function AboutMe() {
                     src={'/me.png'}
                     alt="me"
                     fill
+                    sizes="1000px"
+                    priority
                     className="object-cover rounded-2xl hidden md:block"
                 />
             </div>

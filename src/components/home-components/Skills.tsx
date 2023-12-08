@@ -25,6 +25,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>
@@ -42,6 +43,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>
@@ -59,6 +61,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>
@@ -76,6 +79,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>
@@ -93,6 +97,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>
@@ -109,6 +114,7 @@ function Skills() {
                                 src={skill.img}
                                 alt={skill.alt}
                                 fill
+                                sizes="100px"
                                 className="object-contain"
                             />
                         </div>

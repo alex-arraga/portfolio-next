@@ -10,9 +10,8 @@ function Hero() {
     const router = useRouter()
 
     return (
-        <div className="hero">
+        <section className="hero">
             <div className="flex-1 pt-36 padding-x">
-
                 <h1 className="hero__title">
                     Buy the car of your dreams
                 </h1>
@@ -23,20 +22,24 @@ function Hero() {
 
                 <CustomButton
                     title="Explore cars"
-                    containerStyle="bg-primary-blue text-white rounded-full mt-10"
+                    containerStyle="bg-primary-blue hover:bg-blue-700 duration-200 text-white rounded-full mt-10"
                     handleClick={() => router.push('/projects/cars-store/dashboard')}
                 />
-
             </div>
 
             <div className="hero__image-container">
                 <div className="hero__image">
-                    <Image src="/hero-ford-evos.png" alt="hero" fill className="object-contain" />
+                    <Image src="/hero-ford-evos.png"
+                        alt="hero"
+                        fill
+                        sizes="1500px"
+                        priority
+                        className="object-contain"
+                    />
                 </div>
                 <div className="hero__image-overlay" />
             </div>
-
-        </div>
+        </section>
     )
 }
 

@@ -1,7 +1,7 @@
 "use client"
 
-import { Price } from "@/types/payment"
 import Image from "next/image"
+import { Price } from "@/types/payment"
 import { CarCardProps } from "@/types/cars-store"
 import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
@@ -78,6 +78,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                             <div className="relative w-full h-40 my-2 object-contain">
                                 <Image src={generateCarImageAPI(car, '23')}
                                     fill
+                                    sizes="500px"
                                     alt="cars"
                                     className="object-contain"
                                 />
@@ -154,6 +155,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                             <div className="relative w-full h-40 my-3 object-contain">
                                 <Image src={generateCarImageAPI(car)}
                                     fill
+                                    sizes="300px"
                                     alt="cars"
                                     className="object-contain"
                                 />

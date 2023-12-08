@@ -8,7 +8,12 @@ function Footer({ otherClasses }: FooterProps) {
         <footer className={`flex flex-col text-black-100 border-t border-b-gray-100 ${otherClasses}`} >
             <div className='flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10'>
                 <div className='flex flex-col justify-start items-start gap-6'>
-                    <Image src="/logo.svg" alt="logo" width={118} height={18} className="object-contain" />
+                    <Image src="/logo.svg"
+                        alt="logo"
+                        width={118}
+                        height={18}
+                        className="object-contain"
+                    />
                     <p className="text-base text-gray-700">
                         CarHub 2023 <br />
                         All rights reserved &copy;
@@ -21,7 +26,11 @@ function Footer({ otherClasses }: FooterProps) {
                             <div key={link.title} className="footer__link">
                                 <h3 className="font-bold">{link.title}</h3>
                                 {link.links.map((item) => (
-                                    <Link href={item.url} key={item.title} className="text-gray-500">{item.title} </Link>
+                                    <Link href={item.url}
+                                        as=''
+                                        key={item.title}
+                                        className="text-gray-500">{item.title}
+                                    </Link>
                                 ))}
                             </div>
                         ))
@@ -35,10 +44,10 @@ function Footer({ otherClasses }: FooterProps) {
                 <p>@2023 CarHub. All rights reserved</p>
 
                 <div className="footer__copyrights-link">
-                    <Link href={"/"} className="text-gray-500">
+                    <Link href={"/"} as='' className="text-gray-500">
                         Privacy Policy
                     </Link>
-                    <Link href={"/"} className="text-gray-500">
+                    <Link href={"/"} as='' className="text-gray-500">
                         Terms of use
                     </Link>
                 </div>

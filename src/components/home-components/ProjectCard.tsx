@@ -1,8 +1,9 @@
 "use client"
 
+import Image from "next/image"
+import Link from 'next/link'
 import { useRouter } from "next/navigation"
 import { ProjectsCardProps } from "@/types/home"
-import Image from "next/image"
 import { useHomeContext } from "@/context/HomeContext"
 
 function ProjectCard({ className,
@@ -19,20 +20,16 @@ function ProjectCard({ className,
     relevantDescription,
     section }: ProjectsCardProps) {
 
-    const router = useRouter();
     const { setCodeProjects } = useHomeContext();
-
-    const handleSection = () => {
-        setCodeProjects(section)
-        router.push(`${urlClick}`)
-    }
 
     return (
         <>
             {type === 'projects' ?
 
-                <div onClick={() => window.open(`${urlClick}`)} className={`relative flex flex-col md:flex-row justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 border-2 border-gray-500 bg-gray-900 bg-opacity-70 rounded-xl md:rounded-2xl cursor-pointer hover:brightness-125 duration-300 ${className}`}>
-
+                <Link href={urlClick ? urlClick : ''}
+                    target='_blank'
+                    as=''
+                    className={`relative flex flex-col md:flex-row justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 border-2 border-gray-500 bg-gray-900 bg-opacity-70 rounded-xl md:rounded-2xl cursor-pointer hover:bg-slate-950 duration-500 ${className}`}>
                     <div className="flex flex-col md:w-2/3 xl:w-3/4 gap-4 md:gap-6">
                         <div className="flex items-center justify-start gap-4 w-full">
                             <Image
@@ -53,14 +50,17 @@ function ProjectCard({ className,
                             src={`${urlImage}`}
                             alt={`${altImage}`}
                             fill
-                            className={`object-cover bg-black sm:bg-blue-700 md:bg-pink-700 xl:bg-green-200 rounded-md md:rounded-r-2xl ${styleImage}`}
+                            sizes="1000px"
+                            className={`object-cover rounded-md md:rounded-r-2xl ${styleImage}`}
                         />
                     </div>
-                </div>
+                </Link>
 
                 :
 
-                <div onClick={() => handleSection()}
+                <Link href={urlClick ? urlClick : ''}
+                    onClick={() => setCodeProjects(section)}
+                    as=''
                     className={`relative flex justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 rounded-2xl ${className}`}>
                     <div className="flex flex-col gap-2 sm:gap-4">
                         <h3 className="text-[14px] md:text-[16px] xl:text-[24px] font-medium text-gray-100">{title}</h3>
@@ -73,7 +73,7 @@ function ProjectCard({ className,
                         height={100}
                         className={`object-contain ${styleImage} w-[60px] h-[60px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] ml-4`}
                     />
-                </div>
+                </Link>
             }
         </>
     )

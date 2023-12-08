@@ -30,3 +30,14 @@ export interface Price {
 export interface PlansCardProps {
     stripePrices: Price[]
 }
+
+export interface PreferenceMp {
+    params: {
+        id: string,
+        title: string,
+        picture_url?: string,
+        description?: string,
+        quantity: number,
+        unit_price: number
+    }
+}

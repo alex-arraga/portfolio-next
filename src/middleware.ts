@@ -8,6 +8,7 @@ export default authMiddleware({
         '/api/projects/calculator',
         '/api/projects/calculator/calcs',
         '/api/projects/cars-store',
+        '/api/payment/mercado_pago',
         '/api/projects/tasks',
         '/projects/calculator'
     ]
