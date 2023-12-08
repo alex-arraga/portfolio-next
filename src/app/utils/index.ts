@@ -5,8 +5,8 @@ export async function fetchCarsAPI(filters: FilterProps) {
     const { manufacturer, model, year, limit, fuel, city_mpg, highway_mpg, transmission } = filters;
 
     const headers = {
-        'X-RapidAPI-Key': `${process.env.RAPID_SECRET_KEY}`,
-        'X-RapidAPI-Host': `${process.env.RAPID_HOST}`
+        'X-RapidAPI-Key': process.env.RAPID_SECRET_KEY!,
+        'X-RapidAPI-Host': process.env.RAPID_HOST!
     }
 
     let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}&min_city_mpg=${city_mpg}&max_hwy_mpg=${highway_mpg}transmission=${transmission}`;
@@ -35,10 +35,10 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
-    const url = new URL(`${process.env.IMAGIN_URL}`);
+    const url = new URL(process.env.IMAGIN_URL!);
     const { make, model, year } = car;
 
-    url.searchParams.append('customer', `${process.env.IMAGIN_SECRET_KEY}`);
+    url.searchParams.append('customer', process.env.IMAGIN_SECRET_KEY!);
     url.searchParams.append('make', make);
     url.searchParams.append('modelFamily', model.split(" ")[0]);
     url.searchParams.append('zoomType', 'fullscreen');
