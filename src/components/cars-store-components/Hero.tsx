@@ -1,7 +1,5 @@
 "use client"
 
-import '@/css/cars-store.css'
-
 import Image from "next/image"
 import { CustomButton } from ".."
 import { useRouter } from 'next/navigation'

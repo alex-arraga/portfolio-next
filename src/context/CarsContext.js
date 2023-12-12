@@ -1,7 +1,7 @@
 "use client"
 
 import { baseApiProjectsUrl } from "@/libs/baseURL";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useHomeContext } from "./HomeContext";
 import { toast } from "sonner";
 import { useRouter, usePathname } from "next/navigation"
@@ -16,40 +16,44 @@ export const useCarsContext = () => {
 
 export const CarsProvider = ({ children }) => {
     const { dataUser, getUserId } = useHomeContext()
-
-    const isBrowser = !typeof window === undefined
-    // if (!isBrowser) return null
-
     const [sectionLikes, setSectionLikes] = useState(false);
+    const [isClientLoaded, setIsClientLoaded] = useState(false)
+
     const router = useRouter()
     const pathname = usePathname()
 
-    const paramsLinkApi = window.location.href.includes('?http');
-    const searchParams = new URLSearchParams(window)
+    useEffect(() => {
+        if (dataUser) {
+            setIsClientLoaded(true)
+        }
+    }, [isClientLoaded])
 
-    const hasManufacturer = searchParams.get('manufacturer')
-    const hasModel = searchParams.get('model')
+    const paramsLinkApi = isClientLoaded ? window.location.href.includes('?http') : '';
+    const searchParams = isClientLoaded ? new URLSearchParams(window.location.href) : '';
+
+    const hasManufacturer = searchParams ? searchParams.get('manufacturer') : ''
+    const hasModel = searchParams ? searchParams.get('model') : ''
 
     const keysToDelete = [];
 
 
     const updateSearchParams = (model, manufacturer) => {
-        if (!searchParams) return
+        if (searchParams) {
+            if (model !== undefined || null) {
+                searchParams.set('model', model)
+            } else {
+                searchParams.delete('model')
+            }
 
-        if (model) {
-            searchParams.set('model', model)
-        } else {
-            searchParams.delete('model')
+            if (manufacturer !== undefined || null) {
+                searchParams.set('manufacturer', manufacturer)
+            } else {
+                searchParams.delete('manufacturer')
+            }
+
+            const newPathName = `${pathname}?${searchParams.toString()}`
+            router.push(newPathName)
         }
-
-        if (manufacturer) {
-            searchParams.set('manufacturer', manufacturer)
-        } else {
-            searchParams.delete('manufacturer')
-        }
-
-        const newPathName = `${pathname}?${searchParams.toString()}`
-        router.push(newPathName)
     }
 
 

@@ -15,8 +15,8 @@ async function page({ searchParams }: HomeProps) {
     });
 
     return (
-        <div className='max-h-screen overflow-hidden'>
-            <Navbar otherClasses='bg-white relative border-b-2 border-gray-200' />
+        <div className='max-h-screen overflow-hidden bg-cars'>
+            <Navbar otherClasses='relative border-b-2 border-gray-200' />
             <Aside searchParams={searchParams} />
             <Dashboard searchParams={searchParams} allCars={cars} />
         </div>

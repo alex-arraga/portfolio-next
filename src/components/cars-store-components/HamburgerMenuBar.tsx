@@ -16,7 +16,7 @@ function HamburgerMenuBar({ handleClick, searchParams, styleMenu }: HamburgerMen
                             className={`h-6 w-6 md:h-8 md:w-8 cursor-pointer`}
                         />
 
-                        <div className="relative justify-start items-center w-full hidden sm:block text-[12px] sm:text-[14px] md:text-[14px]">
+                        <div className="relative justify-start items-center w-full hidden sm:block text-xs sm:text-sm md:text-sm">
                             <ul className="flex flex-1 justify-center gap-x-[calc(2%)] w-full rounded-full">
                                 <li className="px-2 border-b-2 border-sky-100">
                                     Year: <span className="font-semibold">

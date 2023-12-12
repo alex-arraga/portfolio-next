@@ -39,7 +39,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                         placeholder={hasManufacturer ? 'Last search: ' + hasManufacturer : 'Toyota'}
                                         displayValue={(manufacturer: string) => manufacturer}
                                         onChange={(e) => setQuery(e.target.value)}
-                                        className="bg-gray-100 w-full h-8 capitalize rounded-full text-[12px] font-light px-12"
+                                        className="bg-gray-100 w-full h-8 capitalize rounded-full text-xs font-light px-12"
                                     />
                                 </div>
 

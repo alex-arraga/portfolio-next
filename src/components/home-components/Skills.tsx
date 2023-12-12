@@ -5,7 +5,7 @@ function Skills() {
     return (
         <>
             <div className="flex justify-between items-center">
-                <h2 className="text-[20px] md:text-[30px] xl:text-[36px] font-medium text-gray-100">Habilidades</h2>
+                <h2 className="text-xl md:text-3xl xl:text-4xl font-medium text-gray-100">Habilidades</h2>
                 <Image
                     src={'/dev.png'}
                     alt="developer"
@@ -16,7 +16,7 @@ function Skills() {
             </div>
 
             {/* Backend */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Backend</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Backend</p>
             <div className="flex relative gap-2 py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     backendSkills.map((skill) => (
@@ -34,7 +34,7 @@ function Skills() {
             </div>
 
             {/* Frameworks */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Frameworks</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Frameworks</p>
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frameworksSkills.map((skill) => (
@@ -52,7 +52,7 @@ function Skills() {
             </div>
 
             {/* DB y ORM */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Bases de Datos y ORM</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Bases de Datos y ORM</p>
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     databasesSkills.map((skill) => (
@@ -70,7 +70,7 @@ function Skills() {
             </div>
 
             {/* Frontend */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Frontend</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Frontend</p>
             <div className="flex relative gap-2 py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frontendSkills.map((skill) => (
@@ -88,7 +88,7 @@ function Skills() {
             </div>
 
             {/* Design */}
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Diseño UX/UI</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Diseño UX/UI</p>
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     designSkills.map((skill) => (
@@ -105,7 +105,7 @@ function Skills() {
                 }
             </div>
 
-            <p className="text-[10px] md:text-[14px] xl:text-[16px] mt-6 mb-2 text-gray-300">Proximos a aprender</p>
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Proximos a aprender</p>
             <div className="flex relative gap-2 py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     skillsToLearn.map((skill) => (

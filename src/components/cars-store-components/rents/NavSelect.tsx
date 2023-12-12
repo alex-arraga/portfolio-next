@@ -13,7 +13,7 @@ function NavSelect() {
             <div className="flex justify-center items-center w-full max-w-[150px] sm:max-w-[150px] md:max-w-[200px]">
                 <button
                     onClick={() => setSectionLikes(false)}
-                    className={`flex justify-center gap-2 items-center text-[12px] sm:text-[14px] md:text-[16px] h-8 w-full rounded-md ${sectionLikes === true ? 'bg-gray-200 text-gray-400' : 'bg-primary-blue text-white'}`}>
+                    className={`flex justify-center gap-2 items-center text-xs sm:text-sm md:text-base h-8 w-full rounded-md ${sectionLikes === true ? 'bg-gray-200 text-gray-400' : 'bg-primary-blue text-white'}`}>
                     My rented cars
 
                     <Image
@@ -30,7 +30,7 @@ function NavSelect() {
             <div className='flex justify-center items-center w-full max-w-[150px] sm:max-w-[150px] md:max-w-[200px]'>
                 <button
                     onClick={() => setSectionLikes(true)}
-                    className={`flex justify-center items-center text-[12px] sm:text-[14px] md:text-[16px] gap-2 h-8 w-full rounded-md ${sectionLikes === false ? 'bg-gray-200 text-gray-400' : 'bg-primary-blue text-white'}`}>
+                    className={`flex justify-center items-center text-xs sm:text-sm md:text-base gap-2 h-8 w-full rounded-md ${sectionLikes === false ? 'bg-gray-200 text-gray-400' : 'bg-primary-blue text-white'}`}>
                     The cars I liked
 
                     <Image

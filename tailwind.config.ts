@@ -15,6 +15,20 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontSize: {
+        txt_10: '0.625rem',
+        txt_14: '0.875rem',
+        txt_24: '1.5rem',
+        txt_28: '1.75rem',
+        txt_30: '1.875rem',
+        txt_32: '2rem',
+        txt_40: '2.5rem',
+        txt_60: '3.75rem',
+        txt_80: '5rem',
+        txt_100: '6.25rem',
+        txt_120: '7.5rem',
+
+      },
       colors: {
         "header-blue": "#00465C",
         "header-pink": "#6C0054",

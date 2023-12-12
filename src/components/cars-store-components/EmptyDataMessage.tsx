@@ -11,7 +11,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                         <div className="flex flex-col relative gap-2 h-full justify-start items-start">
 
                             <div className='flex gap-4 w-full'>
-                                <h2 className='text-black font-bold text-[16px] sm:text-[20px] md:text-[24px]'>Likes not found!</h2>
+                                <h2 className='text-black font-bold text-base sm:text-xl md:text-2xl'>Likes not found!</h2>
                                 <div className="flex justify-center items-center bg-red-300 p-1 md:p-2 rounded-full">
                                     <Image
                                         src={'/heart-broken.svg'}
@@ -23,7 +23,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                 </div>
                             </div>
 
-                            <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don&#39t have cars with <span className="font-semibold text-blue-500">likes</span> yet, to like a vehicle <span className="font-semibold text-blue-500">simply click on the heart icon, </span>at the top right of the vehicle&#39s card!</p>
+                            <p className="mt-6 text-xs sm:text-sm md:text-base">You don&#39t have cars with <span className="font-semibold text-blue-500">likes</span> yet, to like a vehicle <span className="font-semibold text-blue-500">simply click on the heart icon, </span>at the top right of the vehicle&#39s card!</p>
                         </div>
                     </section>
 
@@ -34,7 +34,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                             <div className="flex flex-col relative gap-2 h-full justify-start items-start">
 
                                 <div className='flex gap-4 w-full'>
-                                    <h2 className='text-black font-bold text-[16px] sm:text-[20px] md:text-[24px]'>Rented cars not found!</h2>
+                                    <h2 className='text-black font-bold text-base sm:text-xl md:text-2xl'>Rented cars not found!</h2>
                                     <div className="flex justify-center items-center bg-red-300 p-1 md:p-2 rounded-full">
                                         <Image
                                             src={'/coin-off.svg'}
@@ -46,7 +46,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                     </div>
                                 </div>
 
-                                <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">You don&#39t have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> &#34;Rent Car&#34; </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href={'/projects/cars-store/dashboard'}>dashboard</Link> section!</p>
+                                <p className="mt-6 text-xs sm:text-sm md:text-base">You don&#39t have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> &#34;Rent Car&#34; </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href={'/projects/cars-store/dashboard'}>dashboard</Link> section!</p>
                             </div>
                         </section>
 
@@ -54,7 +54,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
 
                         <section className=" bg-orange-50 p-10 md:p-20 rounded-xl md:rounded-2xl m-10 mb-32">
                             <div className="flex relative gap-2 h-full justify-start items-center">
-                                <h2 className='text-black font-bold text-[16px] sm:text-[20px] md:text-[24px]'>Oops, no results!</h2>
+                                <h2 className='text-black font-bold text-base sm:text-xl md:text-2xl'>Oops, no results!</h2>
                                 <div className="bg-orange-200 p-2 rounded-full">
                                     <Image
                                         src={'/alert-triangle.svg'}
@@ -65,7 +65,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                     />
                                 </div>
                             </div>
-                            <p className="mt-6 text-[12px] sm:text-[14px] md:text-[16px]">The <span className="font-semibold text-blue-500">model</span> you are looking for does not exist in the year <span className="font-semibold text-blue-500">{searchParams?.year}</span>, or is not found <br /> in our Database, <span className="font-semibold">please try changing the year, name of model</span> or search again, thank you!</p>
+                            <p className="mt-6 text-xs sm:text-sm md:text-base">The <span className="font-semibold text-blue-500">model</span> you are looking for does not exist in the year <span className="font-semibold text-blue-500">{searchParams?.year}</span>, or is not found <br /> in our Database, <span className="font-semibold">please try changing the year, name of model</span> or search again, thank you!</p>
                         </section>
 
             }

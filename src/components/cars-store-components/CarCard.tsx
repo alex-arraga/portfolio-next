@@ -29,7 +29,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
         <>
             {
                 styleCard === 'dashboard' ?
-                    <div className="car-card group">
+                    <div className="car-card group hover:bg-white duration-200">
                         <div className="car-card__content">
                             <div className="flex justify-between items-center">
 
@@ -94,14 +94,14 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             height={20}
                                             alt="wheel"
                                         />
-                                        <p className="text-[14px]">
+                                        <p className="text-xs">
                                             {transmission === 'a' ? 'Automatic' : 'Manual'}
                                         </p>
                                     </div>
 
                                     <div className="flex flex-col justify-center items-center gap-2 w-full ">
                                         <PiEngine className='text-blue-900 w-6 h-6 ' />
-                                        <p className="text-[14px]">
+                                        <p className="text-xs">
                                             {cylinders + ' Cylinders'}
                                         </p>
                                     </div>
@@ -111,8 +111,8 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
 
                             {/* Price rent */}
                             <div className="flex w-full justify-between items-center max-h-8 mt-6">
-                                <h3 className="flex justify-start items-center  w-full  text-base">
-                                    <span className="font-semibold text-[20px]">${carRent} /</span>day
+                                <h3 className="flex justify-start items-center w-full text-base">
+                                    <span className="font-semibold text-xl">${carRent} /</span>day
                                 </h3>
 
                                 <CustomButton
@@ -132,7 +132,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
 
                     :
 
-                    <div className="car-card group">
+                    <div className="car-card group hover:bg-indigo-100 duration-200">
                         <div className="car-card__content">
 
                             {/* Car name */}
@@ -141,12 +141,12 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                             </h2>
 
                             {/* Price rent */}
-                            <p className="flex mt-6 text-[32px]">
-                                <span className="self-start text-[14px] font-semibold">
+                            <p className="flex mt-6 text-txt_28 font-medium">
+                                <span className="self-start text-txt_14">
                                     $
                                 </span>
                                 {carRent}
-                                <span className="self-end text-[14px] font-medium">
+                                <span className="self-end text-txt_14">
                                     /day
                                 </span>
                             </p>
@@ -171,7 +171,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             height={20}
                                             alt="wheel"
                                         />
-                                        <p className="text-[14px]">
+                                        <p className="text-xs">
                                             {transmission === 'a' ? 'Automatic' : 'Manual'}
                                         </p>
                                     </div>
@@ -182,7 +182,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             height={20}
                                             alt="tire"
                                         />
-                                        <p className="text-[14px]">
+                                        <p className="text-xs">
                                             {drive.toUpperCase()}
                                         </p>
                                     </div>
@@ -193,7 +193,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             height={20}
                                             alt="fuel type"
                                         />
-                                        <p className="text-[14px]">
+                                        <p className="text-xs">
                                             {city_mpg} MPG
                                         </p>
                                     </div>
@@ -203,8 +203,8 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                 <div className="car-card__btn-container">
                                     <CustomButton
                                         title="View more"
-                                        containerStyle="w-full py-[16px] rounded-full bg-primary-blue"
-                                        textStyle="text-white text-[14px] leading-[18px] font-bold"
+                                        containerStyle="w-full p-4 rounded-full bg-primary-blue"
+                                        textStyle="text-white text-xs font-bold"
                                         rightIcon="/right-arrow.svg"
                                         handleClick={() => setIsOpen(true)}
                                     />

@@ -9,7 +9,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Alex Arraga',
+  title: 'My Portfolio 😁💻',
   description: 'Discover my personal portfolio',
 }
 

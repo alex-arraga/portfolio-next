@@ -13,8 +13,8 @@ function TypesCarsFilter({ classCars, classCounter }: TypesCarsFilter) {
                 onClick={() => console.log('lala')}
             />
 
-            <h2 className="capitalize text-[14px] text-gray-400 py-1">
-                {classCars} <span className="text-[12px] font-medium opacity-50">({classCounter[classCars]})</span>
+            <h2 className="capitalize text-sm text-gray-400 py-1">
+                {classCars} <span className="text-xs font-medium opacity-50">({classCounter[classCars]})</span>
             </h2>
         </div>
 

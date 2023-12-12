@@ -1,7 +1,5 @@
 "use client"
 
-import '@/css/cars-store.css'
-
 import { CarDetailsProps } from "@/types/cars-store"
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
@@ -70,14 +68,14 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                                 {/* Section to pay - Stripe */}
                                 <h2 className='font-semibold text-[18px] my-6 text-indigo-500'>Flexible payment methods!</h2>
-                                <p className='text-[14px]'>
+                                <p className='text-sm'>
                                   At CarHub, we offer two payment options for your convenience. Choose our <span className='font-medium text-indigo-800'>monthly plan to access a wide range of cars for a full month, allowing you to change vehicles according to your preference</span>.
                                   If you need a vehicle for a shorter period of time, we also <span className='font-medium text-indigo-800'>accept daily payments through Mercado Pago</span>. We allow you to choose the option that best suits your needs.
                                 </p>
                               </div>
 
-                              <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
-                              <p className='text-[14px] pb-6'>
+                              <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
+                              <p className='text-sm pb-6'>
                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
                               </p>
                               <PlansCard stripePrices={stripePrices ? stripePrices : []} />
@@ -86,8 +84,8 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Section to pay - Mercado Pago */}
                           <section>
-                            <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
-                            <p className='text-[14px] pb-6'>
+                            <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
+                            <p className='text-sm pb-6'>
                               Experience the freedom of renting cars by the day with secure payments through Mercado Pago. This option gives you absolute flexibility for spontaneous trips or daily plans, with fast and secure transactions. By opting for daily rentals, you will have the freedom to adjust your mobility according to your schedule, without prolonged time ties. With varied and hassle-free payment methods, you can enjoy the convenience of flexible travel planning.
                             </p>
 
@@ -117,8 +115,8 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Section to view car dates */}
                           <section>
-                            <h3 className='flex justify-center text-[16px] text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
-                            <p className='text-[14px]'>
+                            <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
+                            <p className='text-sm'>
                               Looking for specific details about the vehicle you are considering for rental? Here&#39s a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
                             </p>
                             <div className='flex relative mt-6 mb-0 w-full bg-white border-2 border-gray-200 rounded-xl p-4 flex-col flex-wrap h-full'>
@@ -166,13 +164,13 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   .filter(([key]) => key !== 'model' && key !== 'make')
                                   .map(([key, value]) => (
                                     <div className="flex justify-between w-full text-right" key={key}>
-                                      <h4 className="capitalize text-gray-400 text-[14px]">
+                                      <h4 className="capitalize text-gray-400 text-sm">
                                         {
                                           key === 'year' ? key = 'Year Launched'
                                             : key.split("_").join(" ")
                                         }
                                       </h4>
-                                      <p className="font-medium text-black-100 text-[14px] capitalize">
+                                      <p className="font-medium text-black-100 text-sm capitalize">
                                         {
                                           value === 'm' ? value = 'Manual'
                                             : value === 'a' ? value = 'Automatic'

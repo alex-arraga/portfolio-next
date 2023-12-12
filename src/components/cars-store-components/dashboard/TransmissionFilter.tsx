@@ -23,7 +23,7 @@ function TransmissionFilter() {
     }
 
     return (
-        <div className='relative grid grid-cols-1 gap-4 md:grid-cols-3 w-full h-full text-[12px] md:text-[14px]'>
+        <div className='relative grid grid-cols-1 gap-4 md:grid-cols-3 w-full h-full text-xs md:text-sm'>
             <button
                 onClick={() => clearSearch()}
                 className='flex items-center hover:bg-gray-300 duration-200 justify-center bg-gray-200 w-full h-[24px] md:h-[32px] xl:h-[40px] rounded-md md:rounded-xl'>

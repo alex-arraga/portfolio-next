@@ -1,4 +1,4 @@
-import { CarsResponse, CarsResponseSchema } from "@/types/CarsResponse";
+import { CarsResponse, CarsResponseSchema } from "@/types/zod-verification";
 import { CarCardProps, FilterProps } from "@/types/cars-store";
 
 export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse> {

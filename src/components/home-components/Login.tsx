@@ -13,10 +13,10 @@ function Login() {
             />
 
             <div className="relative flex flex-col justify-center mt-4 xl:mt-6 items-center gap-6 w-full max-h-[20vh]">
-                <h1 className="text-center mx-4 text-[16px] sm:text-[18px] md:text-[20px] xl:text-[24px] font-semibold text-white">
+                <h1 className="text-center mx-4 text-base sm:text-lg md:text-xl xl:text-2xl font-semibold text-white">
                     ¡Hola internauta, bienvenido a mi Portfolio Web!
                 </h1>
-                <p className="text-center mx-4 text-[12px] xl:text-[14px] text-gray-300">
+                <p className="text-center mx-4 text-sm xl:text-sm text-gray-300">
                     Hay mucho por descubrir y nada de tiempo que perder <br /> ¿Qué te parece si comenzamos nuestro viaje?
                 </p>
             </div>

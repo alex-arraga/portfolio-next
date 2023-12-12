@@ -72,7 +72,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                 </div>
 
                 {/* Class */}
-                <h2 className="mt-1 text-[12px] sm:text-[14px] md:text-[16px] capitalize text-gray-500">
+                <h2 className="mt-1 text-xs sm:text-sm md:text-base capitalize text-gray-500">
                     {`${renameClasses(car.class)} - ${car.year}`}
                 </h2>
 
@@ -88,11 +88,11 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
 
                 {/* Info */}
                 <div className="flex flex-col justify-start items-start w-full h-full rounded-md">
-                    <h3 className="mb-4 text-[12px] sm:text-[14px] md:text-[16px] text-gray-700">
+                    <h3 className="mb-4 text-xs sm:text-sm md:text-base text-gray-700">
                         Cost: <span className="font-semibold text-black-100">${carRent} /</span>day
                     </h3>
 
-                    <ul className="flex justify-between w-full gap-2 sm:gap-4 md:gap-6 mb-4 text-[10px] sm:text-[12px] md:text-[14px]">
+                    <ul className="flex justify-between w-full gap-2 sm:gap-4 md:gap-6 mb-4 text-[10px] sm:text-xs md:text-sm">
                         <li className={`${!car.rented ? 'flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
                         </li>
@@ -113,7 +113,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                             <CustomButton
                                 title="View payment"
                                 handleClick={() => setPaymentIsOpen(true)}
-                                containerStyle="max-h-8 w-full bg-gray-700 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
+                                containerStyle="max-h-8 w-full bg-gray-700 text-xs sm:text-sm md:text-base font-medium rounded-md text-white hover:bg-primary-blue duration-300"
                             />
 
                             :
@@ -121,7 +121,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                             <CustomButton
                                 title="Rent car now"
                                 handleClick={() => setRentIsOpen(true)}
-                                containerStyle="max-h-8 w-full bg-blue-900 text-[12px] sm:text-[14px] md:text-[16px] font-medium rounded-md text-white hover:bg-primary-blue duration-300"
+                                containerStyle="max-h-8 w-full bg-blue-900 text-xs sm:text-sm md:text-base font-medium rounded-md text-white hover:bg-primary-blue duration-300"
                             />
                     }
 

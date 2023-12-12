@@ -6,7 +6,7 @@ function Personality() {
             {/* Personality */}
             <section className="flex-col rounded-xl">
                 <div className='flex justify-between items-center mb-6'>
-                    <h2 className="text-[20px] md:text-[30px] xl:text-[36px] font-medium text-gray-100">
+                    <h2 className="text-xl md:text-3xl xl:text-4xl font-medium text-gray-100">
                         Personalidad
                     </h2>
                     <Image
@@ -25,7 +25,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
+                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
                         Perseguidor de la excelencia
                     </p>
                 </div>
@@ -37,7 +37,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
+                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
                         Busco consenso en equipo sobre posibles alternativas
                     </p>
                 </div>
@@ -49,7 +49,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
+                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
                         Cauteloso y racional tomando decisiones
                     </p>
                 </div>
@@ -61,7 +61,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-[10px] md:text-[14px] xl:text-[16px]'>
+                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
                         Me gusta indagar y estar en constante aprendizaje
                     </p>
                 </div>

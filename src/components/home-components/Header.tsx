@@ -32,7 +32,7 @@ export function Header() {
                                 />
 
                                 <div className='flex bg-gradient-to-r from-indigo-900 to-transparent justify-center items-center rounded-full pl-2 md:pl-4 xl:pl-6 h-full gap-2 md:gap-4'>
-                                    <p className='text-[12px] md:text-[14px] xl:text-[16px] text-white capitalize'>
+                                    <p className='text-xs md:text-sm xl:text-base text-white capitalize'>
                                         {
                                             dataUser()?.name ? dataUser()?.name
                                                 : dataUser()?.username ? dataUser()?.username?.replace(/[0-9-_]+/g, ' ')

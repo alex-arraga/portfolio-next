@@ -84,12 +84,12 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                     value={model}
                                     onChange={(e) => setModel(e.target.value)}
                                     placeholder={hasModel ? 'Last search: ' + hasModel : 'Corolla'}
-                                    className="bg-gray-100 w-full h-8 rounded-full capitalize text-[12px] font-light px-12"
+                                    className="bg-gray-100 w-full h-8 rounded-full capitalize text-xs font-light px-12"
                                 />
                             </div>
 
                             <div className="flex justify-start w-full items-center mt-4 h-10">
-                                <div className="flex justify-between items-center w-1/2 px-4 border-2 rounded-full text-[12px] text-gray-400 border-indigo-200 border-opacity-50 h-full">
+                                <div className="flex justify-between items-center w-1/2 px-4 border-2 rounded-full text-xs text-gray-400 border-indigo-200 border-opacity-50 h-full">
                                     <p>Search!</p>
                                     <SearchButton otherClasses="aside-btn w-[26px] p-1 rounded-full bg-sky-200 h-[26px]" />
                                 </div>

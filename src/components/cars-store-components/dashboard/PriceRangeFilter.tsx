@@ -35,19 +35,19 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
         <>
             <div className="flex justify-center items-center gap-4 mt-5">
                 <div className="flex flex-col w-full gap-2 items-start">
-                    <label htmlFor="min-mpg" className="text-sky-400 uppercase font-medium text-[12px]">
+                    <label htmlFor="min-mpg" className="text-sky-400 uppercase font-medium text-xs">
                         Min / mpg
                     </label>
-                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-sm">
+                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-xs">
                         <p>{`$${minAutonomy}`}</p>
                     </div>
                 </div>
 
                 <div className="flex flex-col w-full gap-2 items-start">
-                    <label htmlFor="max-mpg" className="text-sky-400 uppercase font-medium text-[12px]">
+                    <label htmlFor="max-mpg" className="text-sky-400 uppercase font-medium text-xs">
                         Max / mpg
                     </label>
-                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-sm">
+                    <div className="flex items-center w-full h-8 pl-2 rounded-md border-2 select-none border-gray-200 text-xs">
                         <p>{`$${maxAutonomy}`}</p>
                     </div>
                 </div>
@@ -76,11 +76,11 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
 
                 <div className='flex items-center gap-2 justify-start mt-5'>
                     <output id='output-price-mpg'
-                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-sm text-gray-700`}>
+                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-xs text-gray-700`}>
                         Min USD: ${minPrice}
                     </output>
                     <output id='output-price-mpg'
-                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-sm text-gray-700`}>
+                        className={`flex items-center justify-center px-2 bg-sky-100 w-1/2 h-8 rounded-md text-xs text-gray-700`}>
                         Max USD: ${maxPrice}
                     </output>
                 </div>

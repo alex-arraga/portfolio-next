@@ -40,7 +40,7 @@ export function Aside({ searchParams }: AsideProps) {
             <HamburgerMenuBar searchParams={hamburgerParams} handleClick={openModal} styleMenu='dashboard' />
 
             <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                <Dialog as="div" className="relative z-10 bg-cars" onClose={closeModal}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -71,7 +71,7 @@ export function Aside({ searchParams }: AsideProps) {
 
                                             {/* Search Bar - Model and Manufacturer filter */}
                                             <div className="relative w-full">
-                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Search</h2>
+                                                <h2 className="text-gray-400 uppercase font-medium text-xs">Search</h2>
                                                 <div className="flex items-center w-full relative mt-5">
                                                     <SearchBar styleSearchbar='aside-filters' />
                                                 </div>
@@ -79,19 +79,19 @@ export function Aside({ searchParams }: AsideProps) {
 
                                             {/* Years filter */}
                                             <div className="relative w-full mt-10">
-                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Year</h2>
+                                                <h2 className="text-gray-400 uppercase font-medium text-xs">Year</h2>
                                                 <YearFilter />
                                             </div>
 
                                             {/* Price range
                                             <div className="relative w-full mt-10">
-                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Price</h2>
+                                                <h2 className="text-gray-400 uppercase font-medium text-xs">Price</h2>
                                                 <PriceRangeFilter maxAutonomy={maxAutonomy} minAutonomy={minAutonomy} />
                                             </div> */}
 
                                             {/* Transmission Filter */}
                                             <div className="w-full mt-10">
-                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Transmission</h2>
+                                                <h2 className="text-gray-400 uppercase font-medium text-xs">Transmission</h2>
                                                 <div className="flex justify-center items-center w-full mt-5">
                                                     <TransmissionFilter />
                                                 </div>
@@ -99,7 +99,7 @@ export function Aside({ searchParams }: AsideProps) {
 
                                             {/* Reset All Filters */}
                                             <div className="w-full mt-10">
-                                                <h2 className="text-gray-400 uppercase font-medium text-[12px]">Show all cars</h2>
+                                                <h2 className="text-gray-400 uppercase font-medium text-xs">Show all cars</h2>
                                                 <div className="flex justify-center items-center w-full mt-5">
                                                     <ResetAllFilters />
                                                 </div>

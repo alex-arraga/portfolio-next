@@ -1,5 +1,3 @@
-import '@/css/cars-store.css'
-
 import {
     Hero,
     Footer,
@@ -9,7 +7,7 @@ import {
 
 function page({ searchParams }: any) {
     return (
-        <main className='overflow-hidden'>
+        <main className='overflow-hidden bg-cars'>
             <Navbar isStatic={true} />
             <Hero />
             <Home searchParams={searchParams} />
