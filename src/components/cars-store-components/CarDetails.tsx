@@ -19,7 +19,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
         styleDetails === 'rent' ?
           <Transition appear show={isOpen} as={Fragment}>
             <Dialog as={"div"}
-              className="relative z-10"
+              className="relative z-10 bg-cars"
               onClose={closeModal}
             >
               <Transition.Child as={Fragment}
@@ -32,7 +32,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
               >
                 <div className="fixed inset-0 bg-black bg-opacity-30">
 
-                  <div className="fixed inset-0 overflow-y-auto">
+                  <div className="fixed inset-0">
                     <div className="flex min-h-full items-center justify-center p-4 text-center">
                       <Transition.Child as={Fragment}
                         enter="ease-out duration-300"
@@ -42,12 +42,12 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                         leaveFrom="opacity-200 scale-100"
                         leaveTo="opacity-0 scale-95"
                       >
-                        <Dialog.Panel className={'relative w-full max-w-[80vw] max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'}>
+                        <Dialog.Panel className={'relative w-full h-full max-w-[100vw] max-h-[100vh] md:max-w-[80vw] md:max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'}>
 
                           {/* Button 'x' to close modal */}
                           <button type="button"
                             onClick={closeModal}
-                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 hover:bg-sky-200 duration-200 rounded-full"
+                            className="absolute top-2 right-2 w-fit p-2 bg-indigo-50 hover:bg-sky-200 duration-200 rounded-full"
                           >
                             <Image
                               src={"/close.svg"}
@@ -62,12 +62,12 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           <div className='flex relative'>
                             <section className='flex w-full flex-col'>
                               <div className='flex flex-col w-full justify-start items-start'>
-                                <h1 className='capitalize text-[32px] font-bold text-gray-700 w-full'>
+                                <h1 className='capitalize text-txt_32 mt-4 sm:mt-0 font-bold text-gray-700 w-full'>
                                   {car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}
                                 </h1>
 
                                 {/* Section to pay - Stripe */}
-                                <h2 className='font-semibold text-[18px] my-6 text-indigo-500'>Flexible payment methods!</h2>
+                                <h2 className='font-semibold text-xl my-6 text-indigo-500'>Flexible payment methods!</h2>
                                 <p className='text-sm'>
                                   At CarHub, we offer two payment options for your convenience. Choose our <span className='font-medium text-indigo-800'>monthly plan to access a wide range of cars for a full month, allowing you to change vehicles according to your preference</span>.
                                   If you need a vehicle for a shorter period of time, we also <span className='font-medium text-indigo-800'>accept daily payments through Mercado Pago</span>. We allow you to choose the option that best suits your needs.
@@ -95,8 +95,8 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                             <div className='flex my-6 justify-center items-center'>
                               <CustomButton
-                                containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 w-full max-w-[350px]'
-                                textStyle='text-black font-medium'
+                                containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 h-auto w-auto'
+                                textStyle='text-black font-medium text-xs sm:text-sm md:text-base'
                                 isPayButton={true}
                                 title='Pagar con Mercado Pago'
                                 urlPayAPI={baseApiMp}
@@ -130,7 +130,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                     className="object-contain pt-6"
                                   />
                                 </div>
-                                <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+                                <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
                                   {/* Main image */}
                                   <Image src={generateCarImageAPI(car, '23')}
                                     fill
@@ -139,7 +139,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                     className="object-contain pt-6"
                                   />
                                 </div>
-                                <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+                                <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
                                   {/* Main image */}
                                   <Image src={generateCarImageAPI(car, '13')}
                                     fill
@@ -164,13 +164,13 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   .filter(([key]) => key !== 'model' && key !== 'make')
                                   .map(([key, value]) => (
                                     <div className="flex justify-between w-full text-right" key={key}>
-                                      <h4 className="capitalize text-gray-400 text-sm">
+                                      <h4 className="capitalize text-gray-400 text-xs sm:text-sm">
                                         {
                                           key === 'year' ? key = 'Year Launched'
                                             : key.split("_").join(" ")
                                         }
                                       </h4>
-                                      <p className="font-medium text-black-100 text-sm capitalize">
+                                      <p className="font-medium text-black-100 text-xs sm:text-sm capitalize">
                                         {
                                           value === 'm' ? value = 'Manual'
                                             : value === 'a' ? value = 'Automatic'
@@ -225,7 +225,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           <button type="button"
                             onClick={closeModal}
-                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 hover:bg-sky-200 duration-200 rounded-full"
+                            className="absolute top-2 right-2 z-10 w-fit p-2 bg-indigo-50 hover:bg-sky-200 duration-200 rounded-full"
                           >
                             <Image
                               src={"/close.svg"}

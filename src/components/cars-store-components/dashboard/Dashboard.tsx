@@ -1,4 +1,3 @@
-import { fetchCarsAPI } from "@/app/utils";
 import CarCard from "../CarCard";
 import { CarCardProps, DashboardProps } from "@/types/cars-store";
 import EmptyDataMessage from "../EmptyDataMessage";

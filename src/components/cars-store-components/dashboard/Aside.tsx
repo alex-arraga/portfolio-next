@@ -1,6 +1,5 @@
 "use client"
 
-// import { renameClasses } from "@/app/utils";
 import { AsideProps } from "@/types/cars-store";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'

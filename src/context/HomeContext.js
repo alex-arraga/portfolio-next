@@ -48,7 +48,6 @@ export function HomeProvider({ children }) {
 
             const data = await userDB.json()
             const id = data?.id
-            console.log(id)
 
             return id
         }

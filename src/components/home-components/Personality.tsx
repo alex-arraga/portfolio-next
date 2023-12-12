@@ -25,7 +25,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
+                    <p className='leading-5 text-gray-300 text-xs md:text-sm xl:text-base'>
                         Perseguidor de la excelencia
                     </p>
                 </div>
@@ -37,7 +37,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
+                    <p className='leading-5 text-gray-300 text-xs md:text-sm xl:text-base'>
                         Busco consenso en equipo sobre posibles alternativas
                     </p>
                 </div>
@@ -49,7 +49,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
+                    <p className='leading-5 text-gray-300 text-xs md:text-sm xl:text-base'>
                         Cauteloso y racional tomando decisiones
                     </p>
                 </div>
@@ -61,7 +61,7 @@ function Personality() {
                         height={20}
                         className="h-[12px] w-[14px] md:h-[20px] md:w-[20px] select-none"
                     />
-                    <p className='text-gray-300 text-xs md:text-sm xl:text-base'>
+                    <p className='leading-5 text-gray-300 text-xs md:text-sm xl:text-base'>
                         Me gusta indagar y estar en constante aprendizaje
                     </p>
                 </div>

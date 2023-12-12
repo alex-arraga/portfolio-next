@@ -23,13 +23,13 @@ function HomePage() {
         <main className="flex flex-col h-full max-w-[95vw] md:max-w-[90vw] mt-12 md:mt-14 xl:mt-16">
 
           {/* About me */}
-          <ContainerBoxes className="flex my-2 sm:my-4 md:my-6 relative gap-2 md:gap-4 w-full h-full ">
-            <Box className="box-me relative w-[calc(80%)] rounded-2xl">
+          <ContainerBoxes className="flex flex-col-reverse sm:flex-row my-2 sm:my-4 md:my-6 relative gap-2 md:gap-4 w-full h-full ">
+            <Box className="box-me relative w-full sm:w-[calc(80%)] rounded-2xl">
               <AboutMe />
             </Box>
 
             {/* Social Networks */}
-            <Box className="flex-col relative justify-between items-center w-[calc(20%)] gap-2">
+            <Box className="flex flex-row sm:flex-col relative justify-between items-center w-full h-20 sm:h-auto sm:w-[calc(20%)] gap-2">
               <SocialNetworks />
             </Box>
           </ContainerBoxes>

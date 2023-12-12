@@ -25,12 +25,12 @@ function SwitchProjects({ type }: { type?: string }) {
                             />
                             <h1 className='text-txt_30 md:text-txt_60 xl:text-txt_100 font-medium text-white'>Diplomas</h1>
                             <div className='flex justify-center items-center rounded-xl xl:rounded-2xl w-10 h-10 md:w-20 md:h-20 xl:w-28 xl:h-28 bg-violet-300'>
-                                <p className='text-txt_30 md:text-txt_60 xl:text-txt_80 font-semibold'>7</p>
+                                <p className='text-txt_30 md:text-txt_60 xl:text-txt_80 text-slate-800 font-semibold'>7</p>
                             </div>
                         </div>
 
                         <div className='flex justify-center items-center gap-4 w-full h-full'>
-                            <div className='btn-projects flex justify-evenly items-center select-none text-sm md:text-base xl:text-xl text-black font-medium rounded-lg w-full max-w-full md:max-w-[calc(80%)] xl:max-w-[calc(65%)] h-8 md:h-10'>
+                            <div className='btn-projects flex justify-evenly items-center select-none text-txt_10 sm:text-xs md:text-base xl:text-xl text-black font-medium rounded-lg w-full max-w-full md:max-w-[calc(80%)] xl:max-w-[calc(65%)] h-8 md:h-10'>
                                 Programación <span className="text-gray-700">|</span> Diseño UX/UI <span className="text-gray-700">|</span> Adobe Suite
                             </div>
                         </div>
@@ -50,7 +50,7 @@ function SwitchProjects({ type }: { type?: string }) {
                             />
                             <h1 className='text-txt_30 md:text-txt_60 xl:text-txt_100 font-medium text-white'>Proyectos</h1>
                             <div className='flex justify-center items-center rounded-xl xl:rounded-2xl w-10 h-10 md:w-20 md:h-20 xl:w-28 xl:h-28 bg-violet-300'>
-                                <p className='text-txt_30 md:text-txt_60 xl:text-txt_80 font-semibold'>{!codeProjects ? 4 : 3}</p>
+                                <p className='text-txt_30 md:text-txt_60 xl:text-txt_80 text-slate-800 font-semibold'>{!codeProjects ? 4 : 3}</p>
                             </div>
                         </div>
 

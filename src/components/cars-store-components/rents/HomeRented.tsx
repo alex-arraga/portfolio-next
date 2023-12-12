@@ -20,13 +20,17 @@ export const HomeRented = async () => {
     const user = await currentUser()
 
     const loadRentedCars = async () => {
-        const loadRentedCars = await prisma.cars.findMany({
-            where: {
-                user_clerk: user?.id
-            }
-        })
-        await prisma.$disconnect()
-        return loadRentedCars
+        if (user !== null) {
+            const loadCars = await prisma.cars.findMany({
+                where: {
+                    user_clerk: user?.id
+                }
+            })
+            return loadCars
+        } else {
+            await prisma.$disconnect()
+            return []
+        }
     }
 
     const rentedCars = await loadRentedCars()

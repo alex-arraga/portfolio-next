@@ -7,13 +7,16 @@ async function page({ params }: { params: { id: string } }) {
     const user = await currentUser()
 
     const getCompletedTasks = async () => {
-        const loadAllCompletedTasks = await prisma.taskCompleted.findMany({
-            where: {
-                user_clerk: user?.id
-            }
-        })
-        await prisma.$disconnect()
-        return loadAllCompletedTasks
+        if (user !== null) {
+            const loadAllCompletedTasks = await prisma.taskCompleted.findMany({
+                where: {
+                    user_clerk: user?.id
+                }
+            })
+            return loadAllCompletedTasks
+        } else {
+            await prisma.$disconnect()
+        }
     };
 
     const tasksCompleted = await getCompletedTasks();
@@ -21,8 +24,7 @@ async function page({ params }: { params: { id: string } }) {
     return (
         <AppTasks params={params}>
             <main className="mt-10">
-
-                {tasksCompleted.length === 0
+                {tasksCompleted?.length === 0
                     ? <div className="flex justify-center items-center h-[calc(100vh-10rem)]">
                         <h2 className="text-base md:text-3xl opacity-30 font-light select-none">
                             No completaste tareas
@@ -30,12 +32,11 @@ async function page({ params }: { params: { id: string } }) {
                     </div>
 
                     : <ul className="grid mx-5 md:mx-2 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-                        {tasksCompleted.sort((a, b) => b.id - a.id).map(task =>
+                        {tasksCompleted?.sort((a, b) => b.id - a.id).map(task =>
                             <TaskCard task={task} key={task.id} typePage='completed' />
                         )}
                     </ul>
                 }
-
             </main>
         </AppTasks>
     )
