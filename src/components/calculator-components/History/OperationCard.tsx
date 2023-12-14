@@ -1,7 +1,7 @@
 "use client"
 
+import Image from 'next/image';
 import { CSSTransition } from 'react-transition-group';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 import '@/css/transition.css'
 import { useEffect, useRef, useState } from 'react'
 
@@ -29,7 +29,16 @@ export function OperationCard({ operation }: { operation: Operation }) {
             <div ref={nodeRef} key={operation.id} className='bg-sky-800 w-full h-28 rounded-md p-3 mb-5'>
                 <div className='flex justify-between items-center'>
                     <p className='text-xs text-gray-200'>{operation.created_at.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                    <AiOutlineCloseCircle onClick={() => deleteOperation(operation.id)} className='text-red-300 cursor-pointer hover:text-red-500 duration-300' />
+                    <div className='h-3.5 w-3.5 sm:h-4 sm:w-4 relative flex cursor-pointer justify-center items-center rounded-full bg-transparent hover:bg-red-400 duration-100'>
+                        <Image
+                            src={'/cross-close-rounded.svg'}
+                            alt='cross close'
+                            fill
+                            sizes='20px'
+                            onClick={() => deleteOperation(operation.id)}
+                            className='object-contain rounded-full'
+                        />
+                    </div>
                 </div>
 
                 <hr className='my-3 bg-slate-900' />

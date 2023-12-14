@@ -17,6 +17,17 @@ import ProjectCard from './home-components/ProjectCard'
 import Projects from './home-components/Projects'
 import Header from './home-components/Header'
 
+
+// Calculator
+import CalculatorContainer from './calculator-components/CalculatorContainer'
+import Screen from './calculator-components/Screen'
+import { Button } from './calculator-components/Button'
+import Rows from './calculator-components/Rows'
+import Powers from '@/assets/calculator/Powers'
+import SquareRoot from '@/assets/calculator/SquareRoot'
+import PlusMinus from '@/assets/calculator/PlusMinus'
+import Keyboard from './calculator-components/Keyboard'
+
 // Cars-Store: Home 
 import Hero from './cars-store-components/Hero'
 import CustomButton from './cars-store-components/CustomButton'
@@ -34,7 +45,6 @@ import ShowMore from './cars-store-components/ShowMore'
 import Aside from './cars-store-components/dashboard/Aside'
 import YearFilter from './cars-store-components/dashboard/YearFilter'
 import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
-import TypesCarsFilter from './cars-store-components/dashboard/TypesCarsFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
 import TransmissionFilter from './cars-store-components/dashboard/TransmissionFilter'
 import ResetAllFilters from './cars-store-components/dashboard/ResetAllFilters'
@@ -51,6 +61,14 @@ import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 import PlansCard from './payment-components/PlansCard'
 
 export {
+    CalculatorContainer,
+    Powers,
+    Button,
+    Rows,
+    PlusMinus,
+    Screen,
+    Keyboard,
+    SquareRoot,
     Login,
     Box,
     ContainerBoxes,
@@ -82,7 +100,6 @@ export {
     Aside,
     YearFilter,
     PriceRangeFilter,
-    TypesCarsFilter,
     Dashboard,
     TransmissionFilter,
     ResetAllFilters,

@@ -24,7 +24,7 @@ function Navbar({ otherClasses, isStatic }: NavBarProps) {
 
 
     return (
-        <header className={`bg-cars w-full z-10 ${isStatic ? 'fixed top-0 bg-white border-b-2 border-gray-100' : ''} ${otherClasses}`}>
+        <header className={`w-full z-10 ${isStatic ? 'fixed top-0 bg-white border-b-2 border-gray-100' : ''} ${otherClasses}`}>
             <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 h-14 sm:h-16">
                 <Link href={"/projects/cars-store"} className="flex justify-center items-center">
                     <Image

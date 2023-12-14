@@ -20,20 +20,25 @@ export const useCalculatorContext = () => {
 
 export const CalculatorProvider = ({ children }) => {
     const { getUserId, dataUser } = useHomeContext();
-
-    const [doAOperation, setDoAOperation] = useState(false)
-    const [recoverExpression, setRecoverExpression] = useState('')
-    const [recoverResult, setRecoverResult] = useState('')
     const router = useRouter()
+
+    // State history
+    const [modalIsVisible, setModalIsVisible] = useState(false)
+
+    // States calculator
+    const [valueScreen, setValueScreen] = useState('');
+    const [lastResult, setLastResult] = useState('');
+    const [doAOperation, setDoAOperation] = useState(false)
 
     // Refresh the History
     useEffect(() => {
         router.refresh()
         setDoAOperation(false)
-    }, [doAOperation])
+    }, [doAOperation]);
 
 
     // Async functions
+
     // Stores a list of objects as records in History
     const saveOperation = async (expression, result) => {
         try {
@@ -44,9 +49,7 @@ export const CalculatorProvider = ({ children }) => {
                 user_clerk: dataUser().id_clerk
             }
 
-            console.log(data)
-
-            const response = await fetch(`${baseApiProjectsUrl}/calculator`, {
+            await fetch(`${baseApiProjectsUrl}/calculator`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 credentials: 'include',
@@ -61,26 +64,7 @@ export const CalculatorProvider = ({ children }) => {
         }
     };
 
-
-    // Recover all operations of a user
-    const getAllOperations = async () => {
-        try {
-            const id = await getUserId()
-            console.log('id del get:', id)
-            const response = await fetch(`${baseApiProjectsUrl}/calculator/${id}`, {
-                method: 'GET',
-                credentials: 'include'
-            })
-            const data = await response.json()
-            // setRecoverAllOperations(data.getAllOperations)
-
-            return data.getAllOperations
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-
+    // Restore the exp of a operation
     const getExpression = async (id) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
@@ -90,13 +74,13 @@ export const CalculatorProvider = ({ children }) => {
             const data = await response.json()
             const expression = data.getOperation.expression
 
-            setRecoverExpression(expression)
+            setValueScreen(valueScreen + expression)
         } catch (error) {
             console.log(error)
         }
     };
 
-
+    // Restore the res of a operation
     const getResult = async (id) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
@@ -106,7 +90,7 @@ export const CalculatorProvider = ({ children }) => {
             const data = await response.json()
             const result = data.getOperation.result
 
-            setRecoverResult(result)
+            setValueScreen(valueScreen + result)
         } catch (error) {
             console.log(error)
         }
@@ -145,14 +129,19 @@ export const CalculatorProvider = ({ children }) => {
 
     return <CalculatorContext.Provider
         value={{
+            valueScreen,
+            setValueScreen,
+            lastResult,
+            setLastResult,
             saveOperation,
             deleteOperation,
             deleteAllOperations,
-            // getAllOperations,
+            modalIsVisible,
+            setModalIsVisible,
             getExpression,
             getResult,
-            recoverExpression,
-            recoverResult
+            // recoverExpression,
+            // recoverResult
         }}
     >
         {children}

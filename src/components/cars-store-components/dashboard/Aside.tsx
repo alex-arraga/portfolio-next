@@ -5,8 +5,6 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 
 import {
-    PriceRangeFilter,
-    TypesCarsFilter,
     YearFilter,
     SearchBar,
     TransmissionFilter,

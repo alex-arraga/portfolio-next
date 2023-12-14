@@ -18,6 +18,7 @@ const config: Config = {
       fontSize: {
         txt_10: '0.625rem',
         txt_14: '0.875rem',
+        txt_20: '1.25rem',
         txt_24: '1.5rem',
         txt_28: '1.75rem',
         txt_30: '1.875rem',

@@ -15,7 +15,8 @@ async function History() {
                 }
             })
             return allOperations
-        } else {
+        }
+        else {
             await prisma.$disconnect()
         }
     }
@@ -41,6 +42,3 @@ async function History() {
 }
 
 export default History
-
-/*
-*/

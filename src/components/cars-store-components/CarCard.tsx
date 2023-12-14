@@ -6,7 +6,6 @@ import { CarCardProps } from "@/types/cars-store"
 import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."
-import { PiEngine } from 'react-icons/pi'
 import { useCarsContext } from "@/context/CarsContext"
 
 interface CarProps {
@@ -100,7 +99,13 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                     </div>
 
                                     <div className="flex flex-col justify-center items-center gap-2 w-full ">
-                                        <PiEngine className='text-blue-900 w-6 h-6 ' />
+                                        <Image
+                                            src={'/engine.svg'}
+                                            width={24}
+                                            height={24}
+                                            alt="engine"
+                                            className='text-blue-900 w-6 h-6'
+                                        />
                                         <p className="text-xs">
                                             {cylinders + ' Cylinders'}
                                         </p>

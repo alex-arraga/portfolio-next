@@ -156,13 +156,13 @@ export const TasksProvider = ({ children }) => {
         e.stopPropagation()
 
         try {
-            const newCompletedTask = await fetch(`${baseApiProjectsUrl}/tasks/completed`, {
+            await fetch(`${baseApiProjectsUrl}/tasks/completed`, {
                 method: 'POST',
                 body: JSON.stringify(task),
                 credentials: 'include'
             })
 
-            const deleteTask = await fetch(`${baseApiProjectsUrl}/tasks/${task.id}`, {
+            await fetch(`${baseApiProjectsUrl}/tasks/${task.id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })

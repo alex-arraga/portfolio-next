@@ -33,7 +33,7 @@ export function HomeProvider({ children }) {
                 call()
             }
         }
-    }, [user])
+    }, [user.isLoaded])
 
 
     const getUserId = async () => {

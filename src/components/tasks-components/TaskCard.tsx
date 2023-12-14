@@ -1,9 +1,8 @@
 "use client"
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-import { RxCrossCircled } from 'react-icons/rx';
-import { BsCheck2Circle } from 'react-icons/bs';
 import { Card } from "./Card";
 
 import { PropsTaskCard } from "@/types/tasks";
@@ -17,28 +16,56 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
         <>
             {
                 typePage === 'completed' ?
-                    <Card key={task.id} className="bg-zinc-800 p-7 border-b-2 border-sky-600 hover:border-sky-400  rounded-md hover:bg-gray-950 duration-300">
-                        <div className="flex justify-between items-start">
+                    <Card key={task.id} className="relative bg-zinc-800 p-7 border-b-2 border-sky-600 hover:border-sky-400 rounded-md hover:brightness-110 duration-300">
+
+                        <p className="absolute top-0 left-0 flex justify-center items-center w-full py-1 text-txt_10 md:text-xs border-b-2 border-slate-600 border-opacity-50 rounded-xl rounded-t-md italic text-gray-400">Tarea completada</p>
+                        <div className="flex justify-between mt-4 items-start">
                             <div className="flex justify-between w-full">
-                                <p className="flex bg-slate-700 text-xs md:text-sm italic mb-2 px-2 py-0.5 rounded-sm">Tarea completada</p>
-                                <RxCrossCircled onClick={(e: MouseEvent) => deleteCompletedTask(e, task)} className='text-red-300 hover:text-red-500 focus:text-red-500 duration-500 cursor-pointer' />
+                                <div className="flex h-fit w-full items-start justify-between">
+                                    <h3 className="text-base sm:text-lg md:text-xl font-medium">{task.title}</h3>
+                                    <div>
+                                        <Image
+                                            src={'/cross-close-rounded-red.svg'}
+                                            alt="close"
+                                            width={16}
+                                            height={16}
+                                            onClick={(e) => deleteCompletedTask(e, task)}
+                                            className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-medium mb-2">{task.title}</h3>
+                        <hr className="flex justify-center w-full h-2 my-2 sm:my-4 opacity-30" />
                         <p className="font-light text-sm md:text-base">{task.description}</p>
                     </Card>
 
                     :
 
                     <Card key={task.id} onClick={() => router.push(`/projects/tasks/edit/${task.id}`)}
-                        className="bg-slate-800 p-7 border-b-2 border-pink-600 hover:border-pink-400 rounded-md hover:bg-sky-900 duration-300 cursor-pointer">
+                        className="bg-slate-800 p-7 border-b-2 border-pink-600 hover:border-pink-400 rounded-md hover:brightness-110 duration-300 cursor-pointer">
                         <div className="flex justify-between items-start">
-                            <h3 className="text-xl md:text-2xl font-medium mb-2">{task.title}</h3>
-                            <div className="flex gap-1.5">
-                                <BsCheck2Circle onClick={(e: MouseEvent) => createCompletedTask(e, task)} className='text-emerald-100 hover:text-green-500 focus:text-green-500 duration-500 cursor-pointer' />
-                                <RxCrossCircled onClick={(e: MouseEvent) => deleteTask(e, task)} className='text-red-300 hover:text-red-500 focus:text-red-500 duration-500 cursor-pointer' />
+                            <h3 className="text-base sm:text-lg md:text-xl font-medium">{task.title}</h3>
+                            <div className="flex gap-4 mx-4 sm:ml-4">
+                                <Image
+                                    src={'/check-rounded-green.svg'}
+                                    alt="check to completed"
+                                    width={16}
+                                    height={16}
+                                    onClick={(e) => createCompletedTask(e, task)}
+                                    className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                />
+                                <Image
+                                    src={'/cross-close-rounded-red.svg'}
+                                    alt="close"
+                                    width={16}
+                                    height={16}
+                                    onClick={(e) => deleteTask(e, task)}
+                                    className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                />
                             </div>
                         </div>
+                        <hr className="flex justify-center w-full h-2 my-2 sm:my-4 opacity-30" />
                         <p className="font-light text-sm md:text-base">{task.description}</p>
                     </Card>
             }

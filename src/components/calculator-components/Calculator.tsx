@@ -1,26 +1,19 @@
 "use client"
 
-import { evaluate } from 'mathjs';
-import { useEffect, useState } from 'react';
-
-import { Button } from './Button';
-import { Screen } from './Screen';
-import { Rows } from './Rows';
-import { CalculatorContainer } from './CalculatorContainer';
-import { FiDelete } from 'react-icons/fi';
-
-import Powers from '@/assets/calculator/Powers';
-import PlusMinus from '@/assets/calculator/PlusMinus';
-import SquareRoot from '@/assets/calculator/SquareRoot';
+import { MathExpression, evaluate } from 'mathjs';
+import { useEffect } from 'react';
 
 import { useCalculatorContext } from '@/context/CalculatorContext';
+import { Keyboard } from '..';
 
 
 export function Calculator() {
-    const { saveOperation, recoverExpression, recoverResult } = useCalculatorContext();
+    const { saveOperation,
+        valueScreen,
+        setValueScreen,
+        lastResult,
+        setLastResult } = useCalculatorContext();
 
-    const [valueScreen, setValueScreen] = useState('');
-    const [lastResult, setLastResult] = useState('');
 
     // Reg Exp
     const operators = /[+\-%^*,/]|[x÷!\√]/;
@@ -36,16 +29,6 @@ export function Calculator() {
     const endsComma = comma.test(lastCharacter);
 
 
-    // Get expression and result
-    useEffect(() => {
-        setValueScreen(recoverExpression)
-    }, [recoverExpression]);
-
-    useEffect(() => {
-        setValueScreen(recoverResult)
-    }, [recoverResult]);
-
-
     // Add '.' every 3 numbers
     useEffect(() => {
         const addPoints = /\B(?=(\d{3})+(?!\d))/g;
@@ -56,48 +39,6 @@ export function Calculator() {
         if (fotmatingScreen !== valueScreen) {
             if ((!/,\d{3,}/.test(valueScreen))) {
                 setValueScreen(fotmatingScreen)
-            }
-        }
-    }, [valueScreen]);
-
-
-    // Keyboard
-    useEffect(() => {
-        window.onkeydown = eventKey => {
-            const key = eventKey.key
-            const numbers = Number(key) >= 0 && Number(key) <= 9;
-            if (numbers === true) {
-                showValue(key)
-            } else {
-                switch (key) {
-                    case '(':
-                    case ')':
-                    case '+':
-                    case '-':
-                    case ',':
-                    case '%':
-                    case '^':
-                        showValue(key)
-                        break;
-                    case '*':
-                        showValue(key.replace(/\*/g, 'x'));
-                        break;
-                    case '/':
-                        showValue(key.replace(/\//g, '÷'));
-                        break;
-                    case 'Enter':
-                        calc()
-                        break;
-                    case 'Backspace':
-                        deleteAValue()
-                        break;
-                    case 'r':
-                    case 'R':
-                        getLastResult()
-                        break;
-                    default:
-                        break;
-                }
             }
         }
     }, [valueScreen]);
@@ -174,27 +115,27 @@ export function Calculator() {
         convertValue = convertValue.replace(/e/g, Math.E.toString());
 
         // Operaciones dinamicas
-        convertValue = convertValue.replace(expSquare, (_, value) => {
+        convertValue = convertValue.replace(expSquare, (_: null, value: MathExpression) => {
             return Math.sqrt(evaluate(value)).toString();
         });
 
-        convertValue = convertValue.replace(expLog, (_, value) => {
+        convertValue = convertValue.replace(expLog, (_: null, value: MathExpression) => {
             return Math.log10(evaluate(value)).toString();
         });
 
-        convertValue = convertValue.replace(expLn, (_, value) => {
+        convertValue = convertValue.replace(expLn, (_: null, value: MathExpression) => {
             return Math.log(evaluate(value)).toString();
         });
 
-        convertValue = convertValue.replace(expTan, (_, value) => {
+        convertValue = convertValue.replace(expTan, (_: null, value: MathExpression) => {
             return Math.tan(evaluate(value)).toString();
         });
 
-        convertValue = convertValue.replace(expCos, (_, value) => {
+        convertValue = convertValue.replace(expCos, (_: null, value: MathExpression) => {
             return Math.cos(evaluate(value)).toString();
         });
 
-        convertValue = convertValue.replace(expSin, (_, value) => {
+        convertValue = convertValue.replace(expSin, (_: null, value: MathExpression) => {
             return Math.sin(evaluate(value)).toString();
         });
 
@@ -239,69 +180,13 @@ export function Calculator() {
 
 
     return (
-        <section className='flex justify-center items-center h-screen'>
-            <CalculatorContainer>
-                <Screen value={valueScreen} />
-
-                <Rows>
-                    <Button onClick={() => showValue('ln(')}>ln</Button>
-                    <Button onClick={() => showValue('log(')}>log</Button>
-                    <Button onClick={() => deleteAValue()}>
-                        <FiDelete></FiDelete>
-                    </Button>
-                    <Button onClick={() => setValueScreen('')}>AC</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('cos(')}>cos</Button>
-                    <Button onClick={() => showValue('sin(')}>sin</Button>
-                    <Button onClick={() => showValue('tan(')}>tan</Button>
-                    <Button onClick={() => getLastResult()}>ANS</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('𝜋')}>𝜋</Button>
-                    <Button onClick={() => showValue('e')}>e</Button>
-                    <Button onClick={() => showValue('√(')}>
-                        <SquareRoot />
-                    </Button>
-                    <Button onClick={() => showValue('^')}>
-                        <Powers />
-                    </Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('(')}>(</Button>
-                    <Button onClick={() => showValue(')')}>)</Button>
-                    <Button onClick={() => showValue('%')}>%</Button>
-                    <Button onClick={() => showValue('÷')}>÷</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('7')}>7</Button>
-                    <Button onClick={() => showValue('8')}>8</Button>
-                    <Button onClick={() => showValue('9')}>9</Button>
-                    <Button onClick={() => showValue('x')}>x</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('4')}>4</Button>
-                    <Button onClick={() => showValue('5')}>5</Button>
-                    <Button onClick={() => showValue('6')}>6</Button>
-                    <Button onClick={() => showValue('-')}>-</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('1')}>1</Button>
-                    <Button onClick={() => showValue('2')}>2</Button>
-                    <Button onClick={() => showValue('3')}>3</Button>
-                    <Button onClick={() => showValue('+')}>+</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => changeSymbol()}>
-                        <PlusMinus />
-                    </Button>
-                    <Button onClick={() => showValue('0')}>0</Button>
-                    <Button onClick={() => showValue(',')}>,</Button>
-                    <Button onClick={() => calc()}>=</Button>
-                </Rows>
-
-            </CalculatorContainer>
-        </section>
+        <Keyboard
+            calc={calc}
+            changeSymbol={changeSymbol}
+            deleteAValue={deleteAValue}
+            getLastResult={getLastResult}
+            showValue={showValue}
+        />
     )
 }
 

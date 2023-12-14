@@ -24,7 +24,7 @@ function NewTaskPage({ params }: { params: { id: string } }) {
                     setValue('description', res.description)
                 })
         }
-    }, [])
+    })
 
     return (
         <AppTasks params={{ id }}>

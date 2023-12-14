@@ -1,22 +1,35 @@
-import { MdPostAdd } from 'react-icons/md';
-import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
-import { BsClipboardCheck } from 'react-icons/bs'
+import Image from 'next/image';
 
 export const privateRoutes = [
     {
         name: 'Tareas',
         path: '/projects/tasks',
-        icon: <HiOutlineClipboardDocumentList className='text-white' />
+        icon: <Image src={'/pendient-task.svg'}
+            alt='tasks'
+            width={20}
+            height={20}
+            className='object-contain sm:h-5 sm:w-5'
+        />
     },
     {
         name: 'Completadas',
         path: '/projects/tasks/completed',
-        icon: <BsClipboardCheck className='text-white' />
+        icon: <Image src={'/completed-task.svg'}
+            alt='tasks'
+            width={20}
+            height={20}
+            className='object-contain sm:h-5 sm:w-5'
+        />
     },
     {
         name: 'Crear tarea',
         path: '/projects/tasks/new',
-        icon: <MdPostAdd className='text-white' />
+        icon: <Image src={'/new-task.svg'}
+            alt='tasks'
+            width={20}
+            height={20}
+            className='object-contain sm:h-5 sm:w-5'
+        />
     },
 ]
 
