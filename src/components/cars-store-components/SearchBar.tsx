@@ -1,8 +1,10 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import { updateSearchParams } from "@/app/utils"
 import { SearchManufacturer } from ".."
 import { useState } from "react"
-import Image from "next/image"
 import { searchBarProps } from "@/types/cars-store"
 import { toast } from "sonner"
 import { useCarsContext } from "@/context/CarsContext"
@@ -10,17 +12,28 @@ import { useCarsContext } from "@/context/CarsContext"
 function SearchBar({ styleSearchbar }: searchBarProps) {
     const [manufacturer, setManufacturer] = useState('')
     const [model, setModel] = useState('')
-    const { updateSearchParams, hasModel } = useCarsContext()
+    const { hasModel } = useCarsContext()
+    const router = useRouter()
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (manufacturer === '' && model === '') {
+
+        if (manufacturer !== '' && model === '') {
+            const newManufacturer = updateSearchParams({ params: [{ type: 'manufacturer', value: manufacturer.toLocaleLowerCase() }] })
+            router.push(newManufacturer)
+        }
+        else if (manufacturer && model !== '') {
+            const newManufacturerAndModel = updateSearchParams({
+                params: [
+                    { type: 'manufacturer', value: manufacturer.toLocaleLowerCase() },
+                    { type: 'model', value: model.toLocaleLowerCase() }
+                ]
+            });
+
+            router.push(newManufacturerAndModel)
+        } else {
             return toast.error('Error: You are required to fill in the field in the search bar in order to complete the search.')
         }
-
-        updateSearchParams(
-            model.toLocaleLowerCase(),
-            manufacturer.toLocaleLowerCase())
     }
 
 
@@ -30,7 +43,7 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                 {
                     otherClasses === 'aside-btn' ?
                         <div className="relative">
-                            <button type="submit" className={`flex items-center justify-center w-full h-full ${otherClasses}`}>
+                            <button className={`flex items-center justify-center w-full h-full ${otherClasses}`}>
                                 <Image
                                     src='/magnifying-glass.svg'
                                     alt="magnifiying glass"

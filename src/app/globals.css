@@ -227,7 +227,7 @@ body {
 /* START: Car Card styles */
 
 .car-card {
-  @apply flex flex-col p-6 justify-center items-start text-black-100 bg-primary-blue-100 rounded-3xl;
+  @apply flex flex-col p-6 justify-center h-full items-start text-black-100 bg-primary-blue-100 rounded-3xl;
 }
 
 .car-card__content {

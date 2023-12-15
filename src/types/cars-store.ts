@@ -1,6 +1,16 @@
 import { MouseEventHandler } from "react";
 import { Price } from "./payment";
 
+export interface UpdateSearchParamsProps {
+    params: { type: string; value: string; }[];
+}
+
+export interface DeleteParamProps {
+    param: string,
+    value?: string,
+}
+
+
 export interface NavBarProps {
     otherClasses?: string
     isStatic?: boolean

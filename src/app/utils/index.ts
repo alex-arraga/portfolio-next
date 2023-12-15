@@ -1,52 +1,107 @@
-import { CarsResponse, CarsResponseSchema } from "@/types/zod-verification";
-import { CarCardProps, FilterProps } from "@/types/cars-store";
+import { CarsResponse, CarsResponseSchema } from "@/types/zod-validation";
+import { CarCardProps, DeleteParamProps, FilterProps, UpdateSearchParamsProps } from "@/types/cars-store";
+import { toast } from "sonner";
 
-export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse> {
-
+// Obtain cars information
+export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse | undefined> {
     const { manufacturer, model, year, limit, fuel, city_mpg, highway_mpg, transmission } = filters;
 
-    const headers = {
-        'X-RapidAPI-Key': process.env.RAPID_SECRET_KEY!,
-        'X-RapidAPI-Host': process.env.RAPID_HOST!
-    }
+    const rapidHost = process.env.RAPID_HOST;
+    const rapidKey = process.env.RAPID_SECRET_KEY;
 
-    let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}&min_city_mpg=${city_mpg}&max_hwy_mpg=${highway_mpg}transmission=${transmission}`;
-    const response = await fetch(url, {
-        headers: headers
+    if (rapidHost && rapidKey) {
+        const headers = {
+            'X-RapidAPI-Key': rapidKey,
+            'X-RapidAPI-Host': rapidHost
+        }
+
+        let url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}&min_city_mpg=${city_mpg}&max_hwy_mpg=${highway_mpg}transmission=${transmission}`;
+
+        const response = await fetch(url, {
+            headers: headers
+        })
+
+        if (!response.ok) {
+            console.error(await response.text())
+            return []
+        } else {
+            const result = await response.json() as CarsResponse
+
+            // Zod chek
+            const check = CarsResponseSchema.safeParse(result)
+            if (check.success) {
+                return result
+            } else {
+                console.log(check.error)
+                return []
+            }
+        }
+    }
+};
+
+
+// Update params to filter cars info
+export const updateSearchParams = ({ params }: UpdateSearchParamsProps) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    params.map(({ type, value }) => {
+        searchParams.set(type, value)
     })
 
-    // TODO: si queres mejora esto
-    if (!response.ok) {
-        console.error(await response.text())
-        return []
-    }
+    const newPathName = `${window.location.pathname}?${searchParams.toString()}`
+    return newPathName
+};
 
-    const result = await response.json() as CarsResponse
 
-    const check = CarsResponseSchema.safeParse(result)
-    if (check.success) {
-        return result
+// Clear a filter
+export const deleteParam = ({ param, value }: DeleteParamProps) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const existingParams = Object.fromEntries(searchParams.entries())
+
+    if (value) {
+        if (existingParams[param] === value) {
+            delete existingParams[param]
+
+            const newSearchParam = new URLSearchParams(existingParams)
+            const clearPathName = `${window.location.pathname}?${newSearchParam.toString()}`
+            window.location.href = clearPathName
+        }
     } else {
-        console.log(check.error)
-        return []
+        existingParams[param]
+        delete existingParams[param]
+
+        const newSearchParam = new URLSearchParams(existingParams)
+        const clearPathName = `${window.location.pathname}?${newSearchParam.toString()}`
+        window.location.href = clearPathName
     }
-};
+}
 
-export const calculateCarRent = (city_mpg: number, year: number) => {
-    const basePricePerDay = 50; // Base rental price per day in dollars
-    const mileageFactor = 0.1; // Additional rate per mile driven
-    const ageFactor = 0.05; // Additional rate per year of vehicle age
+// Clear all filters
+export const deleteAllParams = () => {
+    const searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.size === 0) {
+        toast.message('Search parameters not found')
+    } else {
+        const keysToDelete: { param: string }[] = []
 
-    // Calculate additional rate based on mileage and age
-    const mileageRate = city_mpg * mileageFactor;
-    const ageRate = (new Date().getFullYear() - year) * ageFactor;
+        searchParams.forEach((_value, param) => {
+            keysToDelete.push({ param })
+        })
 
-    // Calculate total rental rate per day
-    const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
+        keysToDelete.forEach(({ param }) => {
+            searchParams.delete(param)
+        })
 
-    return rentalRatePerDay.toFixed(0);
-};
+        window.location.href = `${window.location.pathname}?${searchParams.toString()}`
 
+        if (searchParams.keys().next().done) {
+            toast.success('All search params have been deleted')
+        } else {
+            toast.error('Error: searchParams cant deleted')
+        }
+    }
+}
+
+// Obtain cars images
 export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
     const url = new URL(process.env.NEXT_PUBLIC_IMAGIN_URL!);
     const { make, model, year } = car;
@@ -62,17 +117,8 @@ export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: s
     return url.toString();
 };
 
-// I have to check if I am using it, otherwise delete it.
-export const updateSearchParams = (type: string, value: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set(type, value)
 
-    const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-
-    return newPathName
-};
-
-// Move to CarsContext
+// Rename classes and calculate rent
 export const renameClasses = (nameClass: string) => {
     // An array of objects with equivalencies
     const classEquivalences = [
@@ -99,3 +145,19 @@ export const renameClasses = (nameClass: string) => {
 
     return result
 }
+
+
+export const calculateCarRent = (city_mpg: number, year: number) => {
+    const basePricePerDay = 50; // Base rental price per day in dollars
+    const mileageFactor = 0.1; // Additional rate per mile driven
+    const ageFactor = 0.05; // Additional rate per year of vehicle age
+
+    // Calculate additional rate based on mileage and age
+    const mileageRate = city_mpg * mileageFactor;
+    const ageRate = (new Date().getFullYear() - year) * ageFactor;
+
+    // Calculate total rental rate per day
+    const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
+
+    return rentalRatePerDay.toFixed(0);
+};

@@ -13,13 +13,13 @@ export function YearFilter() {
     const [selected, setSelected] = useState('')
 
     const router = useRouter()
-    const searchParams = new URLSearchParams(window.location.href)
+    const searchParams = new URLSearchParams(window.location.search)
     const hasYearParam = searchParams.get('year')
 
     const setYearParam = (yearSelected: string) => {
         setSelected(yearSelected)
 
-        const newYear = updateSearchParams('year', yearSelected)
+        const newYear = updateSearchParams({ params: [{ type: 'year', value: yearSelected }] })
         router.push(newYear)
     }
 
@@ -29,9 +29,9 @@ export function YearFilter() {
             <div className={'flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-xs font-light text-gray-400'}>
                 <span className='pl-12'>
                     {
-                        hasYearParam ? selected || hasYearParam
-                            : !selected || selected === '' ? '2015'
-                                : selected
+                        selected ? selected
+                            : hasYearParam ? hasYearParam
+                                : '2015'
                     }
                 </span>
 
@@ -61,7 +61,7 @@ export function YearFilter() {
                         leaveTo="opacity-0"
                     >
 
-                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white cursor-pointer'}>
+                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white'}>
                             {
                                 yearsOfProduction.map((year) => (
                                     <Listbox.Option

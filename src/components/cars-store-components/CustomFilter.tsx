@@ -12,7 +12,7 @@ function CustomFilter({ title, options }: CustomFilterProps) {
   const router = useRouter()
 
   const handleUpdateParams = (e: { title: string, value: string }) => {
-    const newPathName = updateSearchParams(title, e.value.toLocaleLowerCase())
+    const newPathName = updateSearchParams({ params: [{ type: title, value: e.value.toLocaleLowerCase() }] })
 
     router.push(newPathName)
   }

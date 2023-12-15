@@ -16,5 +16,4 @@ const Car = z.object({
 })
 
 export const CarsResponseSchema = z.array(Car)
-
 export type CarsResponse = z.infer<typeof CarsResponseSchema>;

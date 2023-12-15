@@ -12,12 +12,12 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
     const router = useRouter()
 
     useEffect(() => {
-        const searchCityAutonomy = updateSearchParams('min_city_mpg', `${minPrice}`)
+        const searchCityAutonomy = updateSearchParams({ params: [{ type: 'min_city_mpg', value: minPrice.toString() }] })
         router.push(searchCityAutonomy)
     }, [minPrice])
 
     useEffect(() => {
-        const searchHwyAutonomy = updateSearchParams('max_hwy_mpg', `${maxPrice}`)
+        const searchHwyAutonomy = updateSearchParams({ params: [{ type: 'max_hwy_mpg', value: maxPrice.toString() }] })
         router.push(searchHwyAutonomy)
     }, [maxPrice])
 

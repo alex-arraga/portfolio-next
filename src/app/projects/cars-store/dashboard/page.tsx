@@ -18,7 +18,7 @@ async function page({ searchParams }: HomeProps) {
         <div className='max-h-screen overflow-hidden bg-cars'>
             <Navbar otherClasses='relative border-b-2 border-gray-200' />
             <Aside searchParams={searchParams} />
-            <Dashboard searchParams={searchParams} allCars={cars} />
+            <Dashboard searchParams={searchParams} allCars={cars ? cars : []} />
         </div>
     )
 }
