@@ -32,7 +32,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
                         width={28}
                         height={28}
                         onClick={() => setModalIsVisible(true)}
-                        className={`absolute z-10 left-3 top-3 p-2 h-8 w-8 sm:h-10 sm:w-10 cursor-pointer ${modalIsVisible ? 'hidden' : 'block'}`}
+                        className={`absolute z-10 left-3 top-3 p-2 h-9 w-9 sm:h-10 sm:w-10 cursor-pointer ${modalIsVisible ? 'hidden' : 'block'}`}
                     />
 
                     {/* If modal is visible */}
@@ -49,7 +49,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
 
                             <h2 className='flex justify-center mt-5 text-base md:text-xl py-5 font-semibold text-sky-100 select-none'>Historial de Operaciones</h2>
                             <button onClick={() => deleteAllOperations()}
-                                className='flex justify-center w-full py-1.5 rounded-xl sticky cursor-pointer mb-5 bg-slate-800 hover:bg-slate-700 duration-300 select-none'>Borrar Historial</button>
+                                className='flex justify-center w-full py-1.5 rounded-xl sticky cursor-pointer mb-5 bg-pink-600 bg-opacity-50 hover:bg-pink-700 duration-300 select-none'>Borrar Historial</button>
                             <hr className='mb-5 opacity-50' />
                         </div>
 

@@ -84,8 +84,8 @@ function Keyboard({
                         case 'Backspace':
                             deleteAValue()
                             break;
-                        case 'r':
-                        case 'R':
+                        case 'q':
+                        case 'Q':
                             getLastResult()
                             break;
                         default:
@@ -146,28 +146,28 @@ function Keyboard({
                         <Button onClick={() => showValue('÷')}>÷</Button>
                     </Rows>
                     <Rows>
-                        <Button onClick={() => showValue('7')}>7</Button>
-                        <Button onClick={() => showValue('8')}>8</Button>
-                        <Button onClick={() => showValue('9')}>9</Button>
+                        <Button isNumber={true} onClick={() => showValue('7')}>7</Button>
+                        <Button isNumber={true} onClick={() => showValue('8')}>8</Button>
+                        <Button isNumber={true} onClick={() => showValue('9')}>9</Button>
                         <Button onClick={() => showValue('x')}>x</Button>
                     </Rows>
                     <Rows>
-                        <Button onClick={() => showValue('4')}>4</Button>
-                        <Button onClick={() => showValue('5')}>5</Button>
-                        <Button onClick={() => showValue('6')}>6</Button>
+                        <Button isNumber={true} onClick={() => showValue('4')}>4</Button>
+                        <Button isNumber={true} onClick={() => showValue('5')}>5</Button>
+                        <Button isNumber={true} onClick={() => showValue('6')}>6</Button>
                         <Button onClick={() => showValue('-')}>-</Button>
                     </Rows>
                     <Rows>
-                        <Button onClick={() => showValue('1')}>1</Button>
-                        <Button onClick={() => showValue('2')}>2</Button>
-                        <Button onClick={() => showValue('3')}>3</Button>
+                        <Button isNumber={true} onClick={() => showValue('1')}>1</Button>
+                        <Button isNumber={true} onClick={() => showValue('2')}>2</Button>
+                        <Button isNumber={true} onClick={() => showValue('3')}>3</Button>
                         <Button onClick={() => showValue('+')}>+</Button>
                     </Rows>
                     <Rows>
                         <Button onClick={() => changeSymbol()}>
                             <PlusMinus />
                         </Button>
-                        <Button onClick={() => showValue('0')}>0</Button>
+                        <Button isNumber={true} onClick={() => showValue('0')}>0</Button>
                         <Button onClick={() => showValue(',')}>,</Button>
                         <Button onClick={() => calc()}>=</Button>
                     </Rows>
