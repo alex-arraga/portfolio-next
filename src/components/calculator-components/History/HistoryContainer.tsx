@@ -32,7 +32,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
                         width={28}
                         height={28}
                         onClick={() => setModalIsVisible(true)}
-                        className={`absolute z-10 left-3 top-3 bg-red-500 p-2 h-8 w-8 sm:h-10 sm:w-10 cursor-pointer ${modalIsVisible ? 'hidden' : 'block'}`}
+                        className={`absolute z-10 left-3 top-3 p-2 h-8 w-8 sm:h-10 sm:w-10 cursor-pointer ${modalIsVisible ? 'hidden' : 'block'}`}
                     />
 
                     {/* If modal is visible */}
