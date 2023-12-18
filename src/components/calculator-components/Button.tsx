@@ -6,7 +6,7 @@ export function Button({ children, onClick, isNumber }: { isNumber?: boolean, ch
             tabIndex={0}
             onClick={() => onClick(children)}
             className={`flex justify-center items-center text-base sm:text-lg md:text-xl cursor-pointer 
-            w-13 h-9 
+            w-full h-9 
             sm:w-14 sm:h-10
             md:w-16
             mx-1.5 my-1.5 rounded-md duration-200 border-2 border-opacity-40 bg-opacity-20 text-white
