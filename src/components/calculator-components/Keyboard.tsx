@@ -106,71 +106,73 @@ function Keyboard({
     return (
         <section className={`flex ${modalIsVisible === true ? '-z-10' : 'z-10'} justify-center items-center h-screen`}>
             <CalculatorContainer>
-                <Screen value={valueScreen} />
+                <div className='max-w-[240px] sm:max-w-[280px] md:max-w-xs'>
+                    <Screen value={valueScreen} />
 
-                <Rows>
-                    <Button onClick={() => showValue('ln(')}>ln</Button>
-                    <Button onClick={() => showValue('log(')}>log</Button>
-                    <Button onClick={() => deleteAValue()}>
-                        <Image
-                            src={'/delete-a-number.svg'}
-                            alt='delete a number'
-                            width={25}
-                            height={25}
-                            className='object-contain h-5 w-5 sm:h-6 sm:w-6'
-                        />
-                    </Button>
-                    <Button onClick={() => setValueScreen('')}>AC</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('cos(')}>cos</Button>
-                    <Button onClick={() => showValue('sin(')}>sin</Button>
-                    <Button onClick={() => showValue('tan(')}>tan</Button>
-                    <Button onClick={() => getLastResult()}>ANS</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('𝜋')}>𝜋</Button>
-                    <Button onClick={() => showValue('e')}>e</Button>
-                    <Button onClick={() => showValue('√(')}>
-                        <SquareRoot />
-                    </Button>
-                    <Button onClick={() => showValue('^')}>
-                        <Powers />
-                    </Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('(')}>(</Button>
-                    <Button onClick={() => showValue(')')}>)</Button>
-                    <Button onClick={() => showValue('%')}>%</Button>
-                    <Button onClick={() => showValue('÷')}>÷</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('7')}>7</Button>
-                    <Button onClick={() => showValue('8')}>8</Button>
-                    <Button onClick={() => showValue('9')}>9</Button>
-                    <Button onClick={() => showValue('x')}>x</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('4')}>4</Button>
-                    <Button onClick={() => showValue('5')}>5</Button>
-                    <Button onClick={() => showValue('6')}>6</Button>
-                    <Button onClick={() => showValue('-')}>-</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => showValue('1')}>1</Button>
-                    <Button onClick={() => showValue('2')}>2</Button>
-                    <Button onClick={() => showValue('3')}>3</Button>
-                    <Button onClick={() => showValue('+')}>+</Button>
-                </Rows>
-                <Rows>
-                    <Button onClick={() => changeSymbol()}>
-                        <PlusMinus />
-                    </Button>
-                    <Button onClick={() => showValue('0')}>0</Button>
-                    <Button onClick={() => showValue(',')}>,</Button>
-                    <Button onClick={() => calc()}>=</Button>
-                </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('ln(')}>ln</Button>
+                        <Button onClick={() => showValue('log(')}>log</Button>
+                        <Button onClick={() => deleteAValue()}>
+                            <Image
+                                src={'/delete-a-number.svg'}
+                                alt='delete a number'
+                                width={25}
+                                height={25}
+                                className='object-contain h-5 w-5 sm:h-6 sm:w-6'
+                            />
+                        </Button>
+                        <Button onClick={() => setValueScreen('')}>AC</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('cos(')}>cos</Button>
+                        <Button onClick={() => showValue('sin(')}>sin</Button>
+                        <Button onClick={() => showValue('tan(')}>tan</Button>
+                        <Button onClick={() => getLastResult()}>ANS</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('𝜋')}>𝜋</Button>
+                        <Button onClick={() => showValue('e')}>e</Button>
+                        <Button onClick={() => showValue('√(')}>
+                            <SquareRoot />
+                        </Button>
+                        <Button onClick={() => showValue('^')}>
+                            <Powers />
+                        </Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('(')}>(</Button>
+                        <Button onClick={() => showValue(')')}>)</Button>
+                        <Button onClick={() => showValue('%')}>%</Button>
+                        <Button onClick={() => showValue('÷')}>÷</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('7')}>7</Button>
+                        <Button onClick={() => showValue('8')}>8</Button>
+                        <Button onClick={() => showValue('9')}>9</Button>
+                        <Button onClick={() => showValue('x')}>x</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('4')}>4</Button>
+                        <Button onClick={() => showValue('5')}>5</Button>
+                        <Button onClick={() => showValue('6')}>6</Button>
+                        <Button onClick={() => showValue('-')}>-</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => showValue('1')}>1</Button>
+                        <Button onClick={() => showValue('2')}>2</Button>
+                        <Button onClick={() => showValue('3')}>3</Button>
+                        <Button onClick={() => showValue('+')}>+</Button>
+                    </Rows>
+                    <Rows>
+                        <Button onClick={() => changeSymbol()}>
+                            <PlusMinus />
+                        </Button>
+                        <Button onClick={() => showValue('0')}>0</Button>
+                        <Button onClick={() => showValue(',')}>,</Button>
+                        <Button onClick={() => calc()}>=</Button>
+                    </Rows>
 
+                </div>
             </CalculatorContainer>
         </section>
     )
