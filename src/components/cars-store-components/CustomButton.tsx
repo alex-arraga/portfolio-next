@@ -1,7 +1,8 @@
 "use client"
 
+import { deleteAllParams } from "@/app/utils";
 import { CustomButtonProps } from "@/types/cars-store"
-import { useCarsContext } from "@/context/CarsContext"
+import { baseApi } from "@/libs/baseURL";
 import Image from "next/image"
 
 function CustomButton({ title,
@@ -12,23 +13,10 @@ function CustomButton({ title,
     rightIcon,
     leftIcon,
     priceId,
-    preferenceMp,
+    infoPreferenceMp,
     isPayButton,
     isResetButton,
     urlPayAPI }: CustomButtonProps) {
-
-    const { resetAllFilters } = useCarsContext()
-
-    // const params = new URLSearchParams(window.location.href)
-
-    // const paramsMp = {
-    //     id: params.append('id', `${preferenceMp?.id}`),
-    //     title: params.append('id', `${preferenceMp?.title}`),
-    //     picture_url: params.append('id', `${preferenceMp?.picture_url}`),
-    //     description: params.append('id', `${preferenceMp?.description}`),
-    //     quantity: params.append('id', `${preferenceMp?.quantity}`),
-    //     unit_price: params.append('id', `${preferenceMp?.unit_price}`)
-    // }
 
     return (
         <>
@@ -40,20 +28,27 @@ function CustomButton({ title,
                         className={`custom-btn ${containerStyle}`}
                         onClick={async () => {
 
-                            if (preferenceMp !== undefined) {
+                            // Mercado Pago payment
+                            if (infoPreferenceMp !== undefined || null) {
                                 try {
-                                    console.log(preferenceMp)
-
-                                    await fetch(`${urlPayAPI}`, {
-                                        method: 'GET',
-                                        // body: JSON.stringify(preferenceMp),
-                                        credentials: 'include'
+                                    const response = await fetch(`${baseApi}/payment/mercado_pago`, {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            title: infoPreferenceMp?.carName,
+                                            description: infoPreferenceMp?.description,
+                                            quantity: infoPreferenceMp?.quantity,
+                                            unit_price: 20
+                                        })
                                     })
 
+                                    const data = await response.json()
+                                    console.log(data)
+                                    window.location.href = data.URL
                                 } catch (error) {
                                     console.log(error)
                                 }
 
+                                // Stripe payment
                             } else {
                                 try {
                                     console.log(priceId)
@@ -101,7 +96,7 @@ function CustomButton({ title,
                             disabled={false}
                             type={btnType || "button"}
                             className={`custom-btn ${containerStyle}`}
-                            onClick={() => resetAllFilters()}
+                            onClick={() => deleteAllParams()}
                         >
                             {leftIcon && (
                                 <div className="relative w-6 h-6">
@@ -166,3 +161,84 @@ function CustomButton({ title,
 }
 
 export default CustomButton
+
+
+// const preference = {
+//     items: [
+//         {
+//             id: `${infoPreferenceMp?.id}`,
+//             title: `${infoPreferenceMp?.carName}`,
+//             currency_id: 'ARS',
+//             picture_url: `${infoPreferenceMp?.picture_url}`,
+//             description: `${infoPreferenceMp?.description}`,
+//             category_id: `art`,
+//             quantity: `${infoPreferenceMp?.quantity}`,
+//             unit_price: `${infoPreferenceMp?.unit_price}`
+//         }
+//     ],
+//     payer: {
+//         name: `${user?.firstName}`,
+//         surname: `${user?.lastName}`,
+//         email: `${user?.externalAccounts ? user?.externalAccounts[0] || user?.externalAccounts[1] : user?.emailAddresses ? user?.emailAddresses : ''}`,
+//         phone: {
+//             area_code: `${user?.primaryPhoneNumberId ? user.primaryPhoneNumberId : ''}`,
+//             number: `${user?.phoneNumbers ? user.phoneNumbers[0] : ''}`
+//         },
+//         identification: {
+//             type: `DNI`,
+//             number: `12345678`
+//         },
+//         address: {
+//             street_name: `Calle`,
+//             street_number: 123,
+//             zip_code: `3560`
+//         }
+//     },
+//     back_urls: {
+//         success: `${myHost}/payment/success`,
+//         failure: `${myHost}/payment/failure`,
+//         pending: `${myHost}/payment/pending`
+//     },
+//     auto_return: "approved",
+//     payment_methods: {
+//         excluded_payment_methods: [
+//             {
+//                 id: "amex"
+//             }
+//         ],
+//         excluded_payment_types: [
+//             {
+//                 id: "atm"
+//             }
+//         ],
+//         installments: 6
+//     },
+//     // notification_url: `${myHost}/api/payment/mercado_pago`,
+//     statement_descriptor: "Carhub Store",
+//     external_reference: "mlplesoj9b"
+// };
+
+// ---------------- BUTTON --------------------------
+
+// if (infoPreferenceMp !== undefined || null) {
+//     const myHeaders = new Headers();
+//     myHeaders.append('Authorization', `Bearer ${process.env.NEXT_PUBLIC_MERCADOPAGO_SECRET_TOKEN}`)
+
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         body: JSON.stringify(preference)
+//     };
+
+//     try {
+//         console.log(infoPreferenceMp)
+//         console.log(`${myHost}/api/payment/mercado_pago`)
+
+//         const request = await fetch(`${apiMp}`, requestOptions)
+//         const data = await request.json()
+
+//         console.log('DATA:', data)
+
+//     } catch (error) {
+//         console.log(error)
+//     }

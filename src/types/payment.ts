@@ -41,3 +41,11 @@ export interface PreferenceMp {
         unit_price: number
     }
 }
+
+export interface ProductMp {
+    title: string,
+    currency_id: string,
+    description: string,
+    quantity: number,
+    unit_price: number
+}

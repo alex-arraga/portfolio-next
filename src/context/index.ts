@@ -1,12 +1,16 @@
-import { CalculatorProvider } from "./CalculatorContext"
-import { HomeProvider } from "./HomeContext"
-import { CarsProvider } from "./CarsContext"
-import { TasksProvider } from "./TasksContext"
+import { CalculatorProvider, useCalculatorContext } from "./CalculatorContext"
+import { HomeProvider, useHomeContext } from "./HomeContext"
+import { CarsProvider, useCarsContext } from "./CarsContext"
+import { TasksProvider, useTasksContext } from "./TasksContext"
 
 
 export {
     CalculatorProvider,
     CarsProvider,
+    useCarsContext,
+    useCalculatorContext,
     HomeProvider,
-    TasksProvider
+    useHomeContext,
+    TasksProvider,
+    useTasksContext
 }

@@ -29,10 +29,10 @@ export interface CustomButtonProps {
     rightIcon?: string,
     leftIcon?: string,
     priceId?: string,
-    preferenceMp?: {
-        id: string,
-        title: string,
-        picture_url: string,
+    infoPreferenceMp?: {
+        payment_method_id?: string,
+        carName: string,
+        picture_url?: string,
         description: string,
         quantity: number,
         unit_price: number

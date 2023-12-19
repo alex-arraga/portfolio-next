@@ -11,7 +11,7 @@ import { baseApiMp } from '@/libs/baseURL'
 
 function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: CarDetailsProps) {
   const carRent = calculateCarRent(car.city_mpg, car.year)
-  const carName = `${car.make} ${car.model}`
+  const carName = `${car.make.toUpperCase()} ${car.model.toUpperCase()}`
 
   return (
     <>
@@ -101,11 +101,9 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 title='Pagar con Mercado Pago'
                                 urlPayAPI={baseApiMp}
                                 leftIcon='/mp-icon.png'
-                                preferenceMp={{
-                                  id: '135',
-                                  title: carName,
-                                  picture_url: '',
-                                  description: 'El auto que buscas, en Carhub',
+                                infoPreferenceMp={{
+                                  carName: carName,
+                                  description: 'Prueba CarHub - Mercado Pago',
                                   quantity: 1,
                                   unit_price: parseInt(carRent)
                                 }}
