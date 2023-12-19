@@ -42,8 +42,12 @@ function CustomButton({ title,
                                     })
 
                                     const data = await response.json()
-                                    console.log(data)
-                                    window.location.href = data.URL
+
+                                    if (data.status === 200 || 201) {
+                                        window.location.href = data.URL
+                                    } else {
+                                        console.error('Error mp request')
+                                    }
                                 } catch (error) {
                                     console.log(error)
                                 }
