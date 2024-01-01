@@ -15,3 +15,7 @@ export interface CalculatorParams {
 export interface CarsParams {
     params: { cars_id: string }
 }
+
+export interface OrderParams {
+    params: { order_id: string }
+}

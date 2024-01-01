@@ -4,6 +4,8 @@ import { deleteAllParams } from "@/app/utils";
 import { CustomButtonProps } from "@/types/cars-store"
 import { baseApi } from "@/libs/baseURL";
 import Image from "next/image"
+import { useCarsContext } from "@/context";
+import { v4 as uuidv4 } from 'uuid'
 
 function CustomButton({ title,
     containerStyle,
@@ -13,10 +15,16 @@ function CustomButton({ title,
     rightIcon,
     leftIcon,
     priceId,
-    infoPreferenceMp,
     isPayButton,
     isResetButton,
+    isMercadoPagoPay,
+    car,
+    costRent,
     urlPayAPI }: CustomButtonProps) {
+
+
+    const { newOrder } = useCarsContext()
+    const uuid = uuidv4();
 
     return (
         <>
@@ -29,22 +37,29 @@ function CustomButton({ title,
                         onClick={async () => {
 
                             // Mercado Pago payment
-                            if (infoPreferenceMp !== undefined || null) {
+                            if (isMercadoPagoPay) {
                                 try {
+                                    // Crea una order en estado "pending" con todos los datos
+                                    const order = await newOrder(car, uuid, 1, costRent);
+                                    const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
+
+                                    // Crea la preferencia, tomando los datos de la order creada
                                     const response = await fetch(`${baseApi}/payment/mercado_pago`, {
                                         method: 'POST',
                                         body: JSON.stringify({
-                                            title: infoPreferenceMp?.carName,
-                                            description: infoPreferenceMp?.description,
-                                            quantity: infoPreferenceMp?.quantity,
-                                            unit_price: 20
+                                            id: order.order_id,
+                                            description: description.toUpperCase(),
+                                            quantity: order.duration_rented,
+                                            unit_price: costRent
                                         })
-                                    })
+                                    });
 
-                                    const data = await response.json()
+                                    // // Me devuelve el la response de la API con el link del pago, una vez se crea la preferencia
+                                    const data = await response.json();
 
+                                    // // Si la respuesta de la API fue correcta, me redirecciona al url del pago
                                     if (data.status === 200 || 201) {
-                                        window.location.href = data.URL
+                                        window.location.href = data.URL;
                                     } else {
                                         console.error('Error mp request')
                                     }
@@ -60,10 +75,10 @@ function CustomButton({ title,
                                         method: 'POST',
                                         body: JSON.stringify({ priceId }),
                                         credentials: 'include'
-                                    })
+                                    });
 
-                                    const response = await res.json()
-                                    window.location.href = response.url
+                                    const response = await res.json();
+                                    window.location.href = response.url;
                                 } catch (error) {
                                     console.log(error)
                                 }

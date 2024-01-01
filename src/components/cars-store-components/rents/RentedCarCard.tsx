@@ -102,9 +102,6 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                         <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             Hour<span className="font-semibold capitalize">{carDate.slice(11)}</span>
                         </li>
-                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            Rented for<span className="font-semibold capitalize">{car.duration_rented}</span>
-                        </li>
                     </ul>
 
                     {/* Buttons */}

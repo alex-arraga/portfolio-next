@@ -5,7 +5,6 @@ import { Stripe } from 'stripe';
 import { Price } from "@/types/payment";
 import { currentUser } from "@clerk/nextjs";
 
-
 const loadPrices = async (): Promise<Price[]> => {
     if (process.env.STRIPE_SECRET_KEY) {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -23,6 +22,7 @@ export const HomeRented = async () => {
         if (user !== null) {
             const loadCars = await prisma.cars.findMany({
                 where: {
+                    rented: true,
                     user_clerk: user?.id
                 }
             })

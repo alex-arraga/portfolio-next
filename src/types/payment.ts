@@ -49,3 +49,26 @@ export interface ProductMp {
     quantity: number,
     unit_price: number
 }
+
+
+export interface QuerysProps {
+    query: {
+        key: string
+        value: string
+    }
+}
+
+export interface UpdateApprobedOrderParams {
+    orderId: string,
+    status: string,
+    statusDetail: string | null,
+    payResource: string | null,
+    installments: number | null,
+    fee: number | null,
+    netAmount: number | null
+}
+
+export interface UpdateRejectedOrderParams {
+    orderId: string,
+    status: string,
+}

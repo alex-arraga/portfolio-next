@@ -1,15 +1,15 @@
 import { prisma } from "@/libs/prisma";
-import { CarsParams } from "@/types/api";
+import { OrderParams } from "@/types/api";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: CarsParams) {
+export async function GET(request: Request, { params }: OrderParams) {
     try {
-        const getCar = await prisma.cars.findFirst({
+        const infoCar = await prisma.cars.findFirst({
             where: {
-                id: parseInt(params.cars_id)
+                order_id: params.order_id
             }
         })
-        return NextResponse.json({ getCar })
+        return NextResponse.json({ infoCar })
     } catch (error) {
         return NextResponse.json({
             Error_Message: error
@@ -17,12 +17,12 @@ export async function GET(request: Request, { params }: CarsParams) {
     }
 }
 
-export async function PUT(request: Request, { params }: CarsParams) {
+export async function PUT(request: Request, { params }: OrderParams) {
     try {
         const data = await request.json()
         const updateCar = await prisma.cars.update({
             where: {
-                id: parseInt(params.cars_id)
+                order_id: params.order_id
             }, data
         })
         return NextResponse.json({ updateCar })
@@ -33,14 +33,14 @@ export async function PUT(request: Request, { params }: CarsParams) {
     }
 }
 
-export async function DELETE(request: Request, { params }: CarsParams) {
+export async function DELETE(request: Request, { params }: OrderParams) {
     try {
         await prisma.cars.delete({
             where: {
-                id: parseInt(params.cars_id)
+                order_id: params.order_id
             }
         })
-        return NextResponse.json({ Message: `Car n°: ${params.cars_id} deleted` })
+        return NextResponse.json({ Message: `Car with order_id: ${params.order_id} deleted` })
     } catch (error) {
         return NextResponse.json({
             Error_Message: error

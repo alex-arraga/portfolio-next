@@ -30,6 +30,9 @@ model User {
 
   cars_idUser  Cars[] @relation("cars_user_id")
   cars_idClerk Cars[] @relation("cars_user_clerk")
+
+  order_idUser  Order[] @relation("order_user_id")
+  order_idClerk Order[] @relation("order_user_clerk")
 }
 
 model Task {
@@ -65,6 +68,12 @@ model Calculator {
   userClerk  User     @relation("calcs_user_clerk", fields: [user_clerk], references: [id_clerk])
 }
 
+enum Pay_Method {
+  none
+  mercado_pago
+  stripe
+}
+
 model Cars {
   id              Int      @id @default(autoincrement())
   city_mpg        Int
@@ -79,13 +88,32 @@ model Cars {
   model           String
   transmission    String
   year            Int
-  rented          Boolean
   liked           Boolean
-  pay_method      String?
-  duration_rented String?
+  rented          Boolean
+  order_id        String   @unique
   user_id         Int
   user_clerk      String
   created_at      DateTime @default(now())
+  order           Order?   @relation("order_cars", fields: [order_id], references: [order_id])
   user            User     @relation("cars_user_id", fields: [user_id], references: [id])
   userClerk       User     @relation("cars_user_clerk", fields: [user_clerk], references: [id_clerk])
+}
+
+model Order {
+  id                  Int         @id @default(autoincrement())
+  order_id            String      @unique
+  pay_status          String      @default("pending")
+  pay_status_detail   String?
+  pay_method          Pay_Method?
+  pay_resource        String?
+  duration_rented     Int
+  price               Int
+  installments        Int?
+  fee                 Int?
+  net_received_amount Int?
+  user_id             Int
+  user_clerk          String
+  cars                Cars?       @relation("order_cars")
+  user                User        @relation("order_user_id", fields: [user_id], references: [id])
+  userClerk           User        @relation("order_user_clerk", fields: [user_clerk], references: [id_clerk])
 }

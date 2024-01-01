@@ -29,17 +29,12 @@ export interface CustomButtonProps {
     rightIcon?: string,
     leftIcon?: string,
     priceId?: string,
-    infoPreferenceMp?: {
-        payment_method_id?: string,
-        carName: string,
-        picture_url?: string,
-        description: string,
-        quantity: number,
-        unit_price: number
-    },
+    isMercadoPagoPay?: boolean,
+    car?: CarCardProps,
     isPayButton?: boolean,
     isResetButton?: boolean
     urlPayAPI?: string
+    costRent?: number
 };
 
 export interface SearchManufacturerProps {
@@ -158,9 +153,8 @@ export interface RentedCarCardProps {
 
     rented: boolean;
     liked: boolean;
+    order_id?: string
 
-    pay_method: string | null
-    duration_rented: string | null
     created_at: string | Date;
 }
 

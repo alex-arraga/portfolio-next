@@ -98,15 +98,12 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 h-auto w-auto'
                                 textStyle='text-black font-medium text-xs sm:text-sm md:text-base'
                                 isPayButton={true}
+                                isMercadoPagoPay={true}
                                 title='Pagar con Mercado Pago'
                                 urlPayAPI={baseApiMp}
                                 leftIcon='/mp-icon.png'
-                                infoPreferenceMp={{
-                                  carName: carName,
-                                  description: 'Prueba CarHub - Mercado Pago',
-                                  quantity: 1,
-                                  unit_price: parseInt(carRent)
-                                }}
+                                car={car}
+                                costRent={Number(carRent)}
                               />
                             </div>
                           </section>
