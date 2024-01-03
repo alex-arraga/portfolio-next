@@ -19,3 +19,10 @@ export interface CarsParams {
 export interface OrderParams {
     params: { order_id: string }
 }
+
+export interface BodyPreferenceMp {
+    order_id: string,
+    car_description: string,
+    quantity: number,
+    unit_price: number
+}

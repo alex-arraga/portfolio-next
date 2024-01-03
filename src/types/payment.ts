@@ -59,6 +59,7 @@ export interface QuerysProps {
 }
 
 export interface UpdateApprobedOrderParams {
+    paymentId: string,
     orderId: string,
     status: string,
     statusDetail: string | null,

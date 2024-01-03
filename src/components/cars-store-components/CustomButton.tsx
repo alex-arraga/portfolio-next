@@ -6,6 +6,7 @@ import { baseApi } from "@/libs/baseURL";
 import Image from "next/image"
 import { useCarsContext } from "@/context";
 import { v4 as uuidv4 } from 'uuid'
+import { useState } from "react";
 
 function CustomButton({ title,
     containerStyle,
@@ -25,6 +26,7 @@ function CustomButton({ title,
 
     const { newOrder } = useCarsContext()
     const uuid = uuidv4();
+    const [isLoading, setIsLoading] = useState('');
 
     return (
         <>
@@ -39,6 +41,7 @@ function CustomButton({ title,
                             // Mercado Pago payment
                             if (isMercadoPagoPay) {
                                 try {
+                                    setIsLoading('loading')
                                     // Crea una order en estado "pending" con todos los datos
                                     const order = await newOrder(car, uuid, 1, costRent);
                                     const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
@@ -47,17 +50,18 @@ function CustomButton({ title,
                                     const response = await fetch(`${baseApi}/payment/mercado_pago`, {
                                         method: 'POST',
                                         body: JSON.stringify({
-                                            id: order.order_id,
-                                            description: description.toUpperCase(),
+                                            order_id: order.order_id,
+                                            car_description: description.toUpperCase(),
                                             quantity: order.duration_rented,
                                             unit_price: costRent
                                         })
                                     });
 
-                                    // // Me devuelve el la response de la API con el link del pago, una vez se crea la preferencia
+                                    setIsLoading('loaded')
+                                    // Me devuelve el la response de la API con el link del pago, una vez se crea la preferencia
                                     const data = await response.json();
 
-                                    // // Si la respuesta de la API fue correcta, me redirecciona al url del pago
+                                    // Si la respuesta de la API fue correcta, me redirecciona al url del pago
                                     if (data.status === 200 || 201) {
                                         window.location.href = data.URL;
                                     } else {
@@ -85,29 +89,37 @@ function CustomButton({ title,
                             }
                         }}
                     >
-                        {leftIcon && (
-                            <div className="relative w-6 h-6">
-                                <Image
-                                    src={leftIcon}
-                                    alt="right icon"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                        )}
-                        <span className={`flex-1 ${textStyle}`}>
-                            {title}
-                        </span>
-                        {rightIcon && (
-                            <div className="relative w-6 h-6">
-                                <Image
-                                    src={rightIcon}
-                                    alt="right icon"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                        )}
+                        {isLoading === 'loading' ?
+                            <div className="animate-spin bg-gradient-to-r h-6 w-6 from-purple-300 to-blue-400" />
+
+                            :
+
+                            <>
+                                {leftIcon && (
+                                    <div className="relative w-6 h-6">
+                                        <Image
+                                            src={leftIcon}
+                                            alt="right icon"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                )}
+                                <span className={`flex-1 ${textStyle}`}>
+                                    {title}
+                                </span>
+                                {rightIcon && (
+                                    <div className="relative w-6 h-6">
+                                        <Image
+                                            src={rightIcon}
+                                            alt="right icon"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        }
                     </button>
 
                     : isResetButton ?

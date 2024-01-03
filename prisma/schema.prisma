@@ -104,6 +104,7 @@ model Cars {
 
 model Order {
   id                  Int         @id @default(autoincrement())
+  payment_id          String?     @unique
   order_id            String      @unique
   pay_status          String      @default("pending")
   pay_status_detail   String?
@@ -112,8 +113,8 @@ model Order {
   duration_rented     Int
   price               Int
   installments        Int?
-  fee                 Int?
-  net_received_amount Int?
+  fee                 Float?
+  net_received_amount Float?
   user_id             Int
   user_clerk          String
   cars                Cars?       @relation("order_cars")

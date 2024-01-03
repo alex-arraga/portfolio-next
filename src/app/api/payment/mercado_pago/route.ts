@@ -3,6 +3,7 @@ import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { baseApi, myHost } from '@/libs/baseURL';
 import { currentUser } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
+import { BodyPreferenceMp } from '@/types/api';
 
 export async function POST(request: Request) {
     if (process.env.MERCADOPAGO_SECRET_TOKEN) {
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
             options: { timeout: 5000 }
         });
 
-        const body = await request.json();
+        const body: BodyPreferenceMp = await request.json();
         const preference = new Preference(client);
 
         try {
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
                     items: [
                         {
                             id: uuid,
-                            title: body.description,
+                            title: body.car_description,
                             category_id: 'Cars',
                             currency_id: 'ARS',
                             description: 'Rented vehicle - CarHub',
@@ -31,9 +32,7 @@ export async function POST(request: Request) {
                             unit_price: body.unit_price
                         }
                     ],
-                    metadata: {
-                        order_id: body.id
-                    },
+                    external_reference: body.order_id,
                     payer: {
                         name: `${user?.firstName}`,
                         surname: `${user?.lastName}`,

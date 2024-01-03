@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
                 const payment = new Payment(client);
 
-                const approbedOrder = async ({ orderId, status, statusDetail, payResource, installments, fee, netAmount }: UpdateApprobedOrderParams) => {
+                const approbedOrder = async ({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: UpdateApprobedOrderParams) => {
                     try {
                         // Update order to "sucess"
                         await prisma.order.update({
@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
                                 order_id: orderId
                             },
                             data: {
+                                payment_id: paymentId,
                                 pay_status: status,
                                 pay_resource: payResource,
                                 pay_status_detail: statusDetail,
@@ -69,18 +70,17 @@ export async function POST(req: NextRequest) {
                                 id: paymentId,
                             })
                                 .then(data => {
-                                    console.log(data)
                                     const id = data.id!;
                                     const installments = data.installments || null;
                                     const fee = data.fee_details![0].amount || null;
                                     const statusDetail = data.status_detail || null;
                                     const netAmount = data.transaction_details!.net_received_amount || null;
                                     const status = data.status!;
-                                    const orderId = data.metadata.order_id!;
+                                    const orderId = data.external_reference!;
                                     const payResource = data.payment_method!.type || null;
 
                                     if (id.toString() === paymentId && status === 'approved') {
-                                        approbedOrder({ orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                                        approbedOrder({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                                     }
                                 })
                                 .catch(e => console.log(e));
