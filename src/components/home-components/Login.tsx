@@ -1,3 +1,4 @@
+import { myHost } from "@/libs/baseURL";
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image"
 
@@ -22,7 +23,7 @@ function Login() {
             </div>
 
             <div className="flex relative h-full my-6 w-[80vw] md:w-[50vw] xl:w-[35vw] max-h-[450px] xl:max-h-[600px]  justify-center items-start">
-                <SignIn />
+                <SignIn afterSignInUrl={'/'} path="/sign-in" routing="path" />
             </div>
 
             <Image

@@ -13,7 +13,7 @@
     "@clerk/nextjs": "^4.27.2",
     "@clerk/themes": "^1.7.9",
     "@headlessui/react": "^1.7.17",
-    "@prisma/client": "^5.4.1",
+    "@prisma/client": "^5.7.1",
     "mathjs": "^11.11.2",
     "mercadopago": "^2.0.4",
     "next": "13.5.4",
@@ -38,7 +38,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
-    "prisma": "^5.4.1",
+    "prisma": "^5.7.1",
     "tailwindcss": "^3",
     "typescript": "^5"
   },

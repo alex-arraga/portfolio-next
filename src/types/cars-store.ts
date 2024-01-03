@@ -153,13 +153,14 @@ export interface RentedCarCardProps {
 
     rented: boolean;
     liked: boolean;
-    order_id?: string
+    order_id?: string | null
 
     created_at: string | Date;
 }
 
 export interface SectionsMyCarsProps {
     rentedCars: RentedCarCardProps[]
+    likedCars: RentedCarCardProps[]
     stripePrices: Price[]
 }
 

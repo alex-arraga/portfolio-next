@@ -15,9 +15,9 @@ interface RentedCar {
 }
 
 function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
-    const [paymentIsOpen, setPaymentIsOpen] = useState(false)
-    const [rentIsOpen, setRentIsOpen] = useState(false)
-    const [like, setLike] = useState(false)
+    const [paymentIsOpen, setPaymentIsOpen] = useState(false);
+    const [rentIsOpen, setRentIsOpen] = useState(false);
+    const [like, setLike] = useState(false);
 
     const dataCarAPI = {
         city_mpg: car.city_mpg,
@@ -32,10 +32,10 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
         model: car.model,
         transmission: car.transmission,
         year: car.year,
-    }
+    };
 
-    const carRent = calculateCarRent(car.city_mpg, car.year)
-    const carDate = car.created_at.toLocaleString()
+    const carRent = calculateCarRent(car.city_mpg, car.year);
+    const carDate = car.created_at.toLocaleString();
 
     return (
         <div className="relative flex flex-col p-6 justify-start items-start text-black-100 bg-primary-blue-100 hover:bg-white rounded-3xl">
@@ -96,11 +96,14 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                         <li className={`${!car.rented ? 'flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
                             This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
                         </li>
-                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            Rented<span className="font-semibold capitalize">{carDate.slice(0, 10)}</span>
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-purple-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
+                            Rented<span className="font-semibold capitalize">{carDate.slice(0, 8)}</span>
                         </li>
-                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-gray-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            Hour<span className="font-semibold capitalize">{carDate.slice(11)}</span>
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-purple-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
+                            For<span className="font-semibold capitalize">4 days</span>
+                        </li>
+                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-purple-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
+                            Cost<span className="font-semibold capitalize">USD $120</span>
                         </li>
                     </ul>
 
@@ -110,7 +113,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                             <CustomButton
                                 title="View payment"
                                 handleClick={() => setPaymentIsOpen(true)}
-                                containerStyle="max-h-8 w-full bg-gray-700 text-xs sm:text-sm md:text-base font-medium rounded-md text-white hover:bg-primary-blue duration-300"
+                                containerStyle="max-h-8 w-full bg-purple-900 text-xs sm:text-sm md:text-base font-medium rounded-md text-white hover:bg-purple-700 duration-300"
                             />
 
                             :

@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -88,9 +91,9 @@ model Cars {
   model           String
   transmission    String
   year            Int
-  liked           Boolean
-  rented          Boolean
-  order_id        String   @unique
+  liked           Boolean  @default(false)
+  rented          Boolean  @default(false)
+  order_id        String?  @unique
   user_id         Int
   user_clerk      String
   created_at      DateTime @default(now())

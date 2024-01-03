@@ -7,7 +7,7 @@ import EmptyDataMessage from "../EmptyDataMessage";
 import { baseApi } from "@/libs/baseURL";
 import { toast } from "sonner";
 
-export const SectionsMyCars = ({ rentedCars, stripePrices }: SectionsMyCarsProps) => {
+export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: SectionsMyCarsProps) => {
     const { sectionLikes, isClientLoaded } = useCarsContext()
 
     const rejectedOrder = async (paymentId: string) => {
@@ -40,7 +40,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices }: SectionsMyCarsProps
 
 
     const hasLikes = () => {
-        if (rentedCars.filter((cars) => cars.liked).length >= 1) {
+        if (likedCars.length >= 1) {
             return true
         }
         else {
@@ -49,7 +49,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices }: SectionsMyCarsProps
     }
 
     const hasRentedCars = () => {
-        if (rentedCars.filter((cars) => cars.rented).length >= 1) {
+        if (rentedCars.length >= 1) {
             return true
         }
         else {
@@ -69,12 +69,10 @@ export const SectionsMyCars = ({ rentedCars, stripePrices }: SectionsMyCarsProps
                         {/* Likes cars */}
                         <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasLikes() === false ? 'hidden' : 'block'}`}>
                             {
-                                rentedCars.filter((cars) => cars.liked).map((cars) => (
-                                    cars.liked ?
-                                        <section className="h-full w-full" key={cars.id}>
-                                            <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
-                                        </section>
-                                        : ''
+                                likedCars.map((cars) => (
+                                    <section className="h-full w-full" key={cars.id}>
+                                        <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
+                                    </section>
                                 ))
                             }
                         </div>
@@ -91,11 +89,9 @@ export const SectionsMyCars = ({ rentedCars, stripePrices }: SectionsMyCarsProps
                         <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
                             {
                                 rentedCars.map((cars) => (
-                                    cars.rented ?
-                                        <section className="h-full w-full" key={cars.id}>
-                                            <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
-                                        </section>
-                                        : ''
+                                    <section className="h-full w-full" key={cars.id}>
+                                        <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
+                                    </section>
                                 ))
                             }
                         </div>

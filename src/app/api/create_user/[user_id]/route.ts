@@ -3,6 +3,7 @@ import { prisma } from '@/libs/prisma'
 
 export async function GET(request: Request) {
     const id_clerk = request.url.split('/')[5]
+    console.log('id clerk', id_clerk)
     try {
         const getUser = await prisma.user.findFirst({
             where: {

@@ -46,6 +46,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
+    // Corregir para que valide si existe el auto o no
     const newCarLiked = async (car) => {
         if (isClientLoaded) {
             try {
@@ -63,7 +64,6 @@ export const CarsProvider = ({ children }) => {
                     transmission: car.transmission,
                     year: car.year,
                     liked: car.liked = true,
-                    rented: car.rented = false,
                     user_id: await getUserId(),
                     user_clerk: dataUser().id_clerk
                 };

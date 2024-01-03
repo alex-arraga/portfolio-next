@@ -31,8 +31,24 @@ export const HomeRented = async () => {
             await prisma.$disconnect()
             return []
         }
-    }
+    };
 
+    const loadLikedCars = async () => {
+        if (user !== null) {
+            const loadCars = await prisma.cars.findMany({
+                where: {
+                    liked: true,
+                    user_clerk: user?.id
+                }
+            })
+            return loadCars
+        } else {
+            await prisma.$disconnect()
+            return []
+        }
+    };
+
+    const likedCars = await loadLikedCars()
     const rentedCars = await loadRentedCars()
     const prices = await loadPrices();
 
@@ -44,7 +60,7 @@ export const HomeRented = async () => {
                 </section>
 
                 <section className="h-full">
-                    <SectionsMyCars rentedCars={rentedCars} stripePrices={prices} />
+                    <SectionsMyCars rentedCars={rentedCars} likedCars={likedCars} stripePrices={prices} />
                 </section>
             </div>
         </main>
