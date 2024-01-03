@@ -164,35 +164,6 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    // const rejectedOrder = async (paymentId) => {
-    //     try {
-    //         await fetch(`${baseApi}/payment/order/${paymentId}`, {
-    //             method: 'DELETE',
-    //             credentials: 'include'
-    //         })
-
-    //         await fetch(`${baseApi}/projects/cars-store/${paymentId}`, {
-    //             method: 'DELETE',
-    //             credentials: 'include'
-    //         })
-
-    //         return toast.error('The payment was rejected')
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-
-    // if (isClientLoaded) {
-    //     const searchParams = new URLSearchParams(window.location.search);
-    //     const statusParam = searchParams.get('status')
-    //     const paymentIdParam = searchParams.get('payment_id')
-
-    //     if (statusParam === 'rejected' && paymentIdParam) {
-    //         rejectedOrder(paymentIdParam)
-    //     }
-    // }
-
     return <CarsContext.Provider value={{
         sectionLikes,
         setSectionLikes,
@@ -202,7 +173,6 @@ export const CarsProvider = ({ children }) => {
         newPendingCar,
         searchParams,
         hasManufacturer,
-        getOrder,
         newOrder,
         hasModel
     }}>

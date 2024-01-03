@@ -34,7 +34,8 @@ export interface CustomButtonProps {
     isPayButton?: boolean,
     isResetButton?: boolean
     urlPayAPI?: string
-    costRent?: number
+    costDayRent?: number
+    durationRent?: number
 };
 
 export interface SearchManufacturerProps {

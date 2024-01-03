@@ -1,7 +1,7 @@
 "use client"
 
 import { CarDetailsProps } from "@/types/cars-store"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { generateCarImageAPI, calculateCarRent } from "@/app/utils"
 import { CustomButton, PlansCard } from '..'
@@ -10,8 +10,10 @@ import Image from "next/image"
 import { baseApiMp } from '@/libs/baseURL'
 
 function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: CarDetailsProps) {
-  const carRent = calculateCarRent(car.city_mpg, car.year)
-  const carName = `${car.make.toUpperCase()} ${car.model.toUpperCase()}`
+  const [days, setDays] = useState(1);
+  const carRent = calculateCarRent(car.city_mpg, car.year);
+  const totalCost = Number(carRent) * days;
+
 
   return (
     <>
@@ -89,11 +91,35 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               Experience the freedom of renting cars by the day with secure payments through Mercado Pago. This option gives you absolute flexibility for spontaneous trips or daily plans, with fast and secure transactions. By opting for daily rentals, you will have the freedom to adjust your mobility according to your schedule, without prolonged time ties. With varied and hassle-free payment methods, you can enjoy the convenience of flexible travel planning.
                             </p>
 
-                            <div className='flex justify-center items-center w-full max-w-[180px] rounded-md bg-indigo-50 p-2'>
-                              <h4 className='font-medium'>Price: <span className='font-semibold text-indigo-500'>${carRent} /day</span></h4>
+                            <div className="flex w-full h-full justify-between items-center bg-slate-100 bg-opacity-50 p-4 rounded-md">
+                              {/* Price per day */}
+                              <div className='flex justify-center items-center w-full max-w-[240px] rounded-md bg-indigo-50 border-2 border-blue-200 p-2'>
+                                <h4 className='font-medium'>Price: <span className='font-semibold text-indigo-500'>${carRent} /day</span></h4>
+                              </div>
+
+                              {/* Duration rent */}
+                              <div className="flex justify-center items-center gap-4 w-full max-w-[350px] bg-indigo-50 border-2 border-blue-200 rounded-md px-6 py-1">
+                                <h4 className="font-medium">Days of rent: </h4>
+                                <button
+                                  className="flex justify-center items-center w-6 h-6 rounded-sm bg-violet-200 hover:bg-violet-400 duration-200"
+                                  onClick={() => days !== 1 ? setDays(days - 1) : ''}>
+                                  -
+                                </button>
+                                <p className="flex justify-center items-center bg-indigo-500 w-8 h-8 rounded-md text-white">{days}</p>
+                                <button
+                                  className="flex justify-center items-center w-6 h-6 rounded-sm bg-violet-200 hover:bg-violet-400 duration-200"
+                                  onClick={() => setDays(days + 1)}>
+                                  +
+                                </button>
+                              </div>
+
+                              {/* Total cost */}
+                              <div className="flex justify-center items-center w-full max-w-[240px] rounded-md bg-emerald-200 border-2 border-emerald-300 p-2">
+                                <h4 className="font-medium">Total cost: <span className="font-semibold">${totalCost}</span></h4>
+                              </div>
                             </div>
 
-                            <div className='flex my-6 justify-center items-center'>
+                            <div className='flex my-10 justify-center items-center'>
                               <CustomButton
                                 containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 h-auto w-auto'
                                 textStyle='text-black font-medium text-xs sm:text-sm md:text-base'
@@ -103,7 +129,8 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 urlPayAPI={baseApiMp}
                                 leftIcon='/mp-icon.png'
                                 car={car}
-                                costRent={Number(carRent)}
+                                costDayRent={Number(carRent)}
+                                durationRent={days}
                               />
                             </div>
                           </section>

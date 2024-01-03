@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server"
 import { MercadoPagoConfig, Payment } from "mercadopago"
 import { prisma } from "@/libs/prisma";
-import { UpdateApprobedOrderParams } from "@/types/payment";
+import { SettingOrderParams } from "@/types/payment";
 
 export async function POST(req: NextRequest) {
     if (req.url && req.url?.includes('?')) {
@@ -14,36 +14,66 @@ export async function POST(req: NextRequest) {
 
                 const payment = new Payment(client);
 
-                const approbedOrder = async ({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: UpdateApprobedOrderParams) => {
-                    try {
-                        // Update order to "sucess"
-                        await prisma.order.update({
-                            where: {
-                                order_id: orderId
-                            },
-                            data: {
-                                payment_id: paymentId,
-                                pay_status: status,
-                                pay_resource: payResource,
-                                pay_status_detail: statusDetail,
-                                installments: installments,
-                                fee: fee,
-                                net_received_amount: netAmount,
-                                pay_method: "mercado_pago"
-                            }
-                        })
+                const settingOrder = async ({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: SettingOrderParams) => {
+                    if (status === 'approved') {
+                        try {
+                            // Update order to "sucess" and "rented" prop of cars to "true"
+                            await prisma.order.update({
+                                where: {
+                                    order_id: orderId
+                                },
+                                data: {
+                                    payment_id: paymentId,
+                                    pay_status: status,
+                                    pay_resource: payResource,
+                                    pay_status_detail: statusDetail,
+                                    installments: installments,
+                                    fee: fee,
+                                    net_received_amount: netAmount,
+                                    pay_method: "mercado_pago"
+                                }
+                            })
 
-                        // Update car to change "rented = true"
-                        await prisma.cars.update({
-                            where: {
-                                order_id: orderId
-                            },
-                            data: {
-                                rented: true
-                            }
-                        })
-                    } catch (error) {
-                        console.log(error)
+                            // Update car to change "rented = true"
+                            await prisma.cars.update({
+                                where: {
+                                    order_id: orderId
+                                },
+                                data: {
+                                    rented: true
+                                }
+                            })
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    } else {
+                        try {
+                            // If payment status isn't approved, update status order to "rejected" and delete de created car
+                            await prisma.order.update({
+                                where: {
+                                    order_id: orderId
+                                },
+                                data: {
+                                    payment_id: paymentId,
+                                    pay_status: status,
+                                    pay_resource: payResource,
+                                    pay_status_detail: statusDetail,
+                                    installments: installments,
+                                    fee: fee,
+                                    net_received_amount: netAmount,
+                                    pay_method: "mercado_pago"
+                                }
+                            })
+
+                            // Delete created car
+                            await prisma.cars.delete({
+                                where: {
+                                    order_id: orderId
+                                }
+                            })
+                        } catch (error) {
+                            console.log(error)
+                        }
                     }
                 };
 
@@ -66,21 +96,23 @@ export async function POST(req: NextRequest) {
                         if (item.key === 'data.id') {
                             const paymentId = item.value;
 
+                            // Obtains payment and saves the transaction, whether successful or rejected.
                             payment.get({
                                 id: paymentId,
                             })
                                 .then(data => {
                                     const id = data.id!;
-                                    const installments = data.installments || null;
-                                    const fee = data.fee_details![0].amount || null;
-                                    const statusDetail = data.status_detail || null;
-                                    const netAmount = data.transaction_details!.net_received_amount || null;
-                                    const status = data.status!;
+                                    const installments = data.installments ?? undefined;
+                                    const fee = data.fee_details?.[0]?.amount ?? undefined;
+                                    const statusDetail = data.status_detail ?? undefined;
+                                    const netAmount = data.transaction_details?.net_received_amount ?? undefined;
+                                    const status = data.status ?? undefined;
                                     const orderId = data.external_reference!;
-                                    const payResource = data.payment_method!.type || null;
+                                    const payResource = data.payment_method?.type ?? undefined;
 
-                                    if (id.toString() === paymentId && status === 'approved') {
-                                        approbedOrder({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                                    // If payment exist update the order
+                                    if (id.toString() === paymentId) {
+                                        settingOrder({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                                     }
                                 })
                                 .catch(e => console.log(e));

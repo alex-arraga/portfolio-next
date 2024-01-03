@@ -4,40 +4,10 @@ import RentedCarCard from "./RentedCarCard";
 import { SectionsMyCarsProps } from "@/types/cars-store";
 import { useCarsContext } from '@/context/CarsContext'
 import EmptyDataMessage from "../EmptyDataMessage";
-import { baseApi } from "@/libs/baseURL";
-import { toast } from "sonner";
+
 
 export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: SectionsMyCarsProps) => {
-    const { sectionLikes, isClientLoaded } = useCarsContext()
-
-    const rejectedOrder = async (paymentId: string) => {
-        try {
-            await fetch(`${baseApi}/payment/order/${paymentId}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-
-            await fetch(`${baseApi}/projects/cars-store/${paymentId}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-
-            return toast.error('The payment was rejected')
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    if (isClientLoaded) {
-        const searchParams = new URLSearchParams(window.location.search);
-        const statusParam = searchParams.get('status')
-        const paymentIdParam = searchParams.get('payment_id')
-
-        if (statusParam === 'rejected' && paymentIdParam) {
-            rejectedOrder(paymentIdParam)
-        }
-    }
-
+    const { sectionLikes } = useCarsContext()
 
     const hasLikes = () => {
         if (likedCars.length >= 1) {

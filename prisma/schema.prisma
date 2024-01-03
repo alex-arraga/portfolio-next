@@ -106,7 +106,7 @@ model Order {
   id                  Int         @id @default(autoincrement())
   payment_id          String?     @unique
   order_id            String      @unique
-  pay_status          String      @default("pending")
+  pay_status          String?     @default("pending")
   pay_status_detail   String?
   pay_method          Pay_Method?
   pay_resource        String?

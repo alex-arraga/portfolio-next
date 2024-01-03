@@ -58,15 +58,15 @@ export interface QuerysProps {
     }
 }
 
-export interface UpdateApprobedOrderParams {
+export interface SettingOrderParams {
     paymentId: string,
     orderId: string,
-    status: string,
-    statusDetail: string | null,
-    payResource: string | null,
-    installments: number | null,
-    fee: number | null,
-    netAmount: number | null
+    status?: string,
+    statusDetail?: string,
+    payResource?: string,
+    installments?: number,
+    fee?: number,
+    netAmount?: number
 }
 
 export interface UpdateRejectedOrderParams {

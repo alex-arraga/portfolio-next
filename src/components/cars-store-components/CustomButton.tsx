@@ -20,7 +20,8 @@ function CustomButton({ title,
     isResetButton,
     isMercadoPagoPay,
     car,
-    costRent,
+    costDayRent,
+    durationRent,
     urlPayAPI }: CustomButtonProps) {
 
 
@@ -43,7 +44,7 @@ function CustomButton({ title,
                                 try {
                                     setIsLoading('loading')
                                     // Crea una order en estado "pending" con todos los datos
-                                    const order = await newOrder(car, uuid, 1, costRent);
+                                    const order = await newOrder(car, uuid, durationRent, costDayRent);
                                     const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
 
                                     // Crea la preferencia, tomando los datos de la order creada
@@ -52,8 +53,8 @@ function CustomButton({ title,
                                         body: JSON.stringify({
                                             order_id: order.order_id,
                                             car_description: description.toUpperCase(),
-                                            quantity: order.duration_rented,
-                                            unit_price: costRent
+                                            quantity: durationRent,
+                                            unit_price: costDayRent
                                         })
                                     });
 
