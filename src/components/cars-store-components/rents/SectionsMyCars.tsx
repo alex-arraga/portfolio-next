@@ -7,7 +7,7 @@ import EmptyDataMessage from "../EmptyDataMessage";
 
 
 export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: SectionsMyCarsProps) => {
-    const { sectionLikes } = useCarsContext()
+    const { sectionLikes } = useCarsContext();
 
     const hasLikes = () => {
         if (likedCars.length >= 1) {

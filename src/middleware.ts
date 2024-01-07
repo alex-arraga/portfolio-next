@@ -10,6 +10,8 @@ export default authMiddleware({
         '/api/projects/cars-store',
         '/api/payment/mercado_pago',
         '/api/payment/mercado_pago/notify',
+        '/api/payment/stripe',
+        '/api/payment/stripe/notify',
         '/api/projects/tasks',
         '/projects/calculator'
     ]

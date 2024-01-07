@@ -46,6 +46,40 @@ export const CarsProvider = ({ children }) => {
     };
 
 
+    const newPendingCar = async (car, orderId) => {
+        if (isClientLoaded) {
+            try {
+                const dataNewCar = {
+                    city_mpg: car.city_mpg,
+                    class: car.class,
+                    combination_mpg: car.combination_mpg,
+                    cylinders: car.cylinders,
+                    displacement: car.displacement,
+                    drive: car.drive,
+                    fuel_type: car.fuel_type,
+                    highway_mpg: car.highway_mpg,
+                    make: car.make,
+                    model: car.model,
+                    transmission: car.transmission,
+                    year: car.year,
+
+                    liked: car.liked = false,
+                    rented: car.rented = false,
+
+                    order_id: orderId,
+                    user_id: await getUserId(),
+                    user_clerk: dataUser().id_clerk
+                };
+
+                // Create car in db
+                await newCar(dataNewCar);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    };
+
+
     // Corregir para que valide si existe el auto o no
     const newCarLiked = async (car) => {
         if (isClientLoaded) {
@@ -123,40 +157,6 @@ export const CarsProvider = ({ children }) => {
                 const data = response.infoOrder
 
                 return data
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    };
-
-
-    const newPendingCar = async (car, orderId) => {
-        if (isClientLoaded) {
-            try {
-                const dataNewCar = {
-                    city_mpg: car.city_mpg,
-                    class: car.class,
-                    combination_mpg: car.combination_mpg,
-                    cylinders: car.cylinders,
-                    displacement: car.displacement,
-                    drive: car.drive,
-                    fuel_type: car.fuel_type,
-                    highway_mpg: car.highway_mpg,
-                    make: car.make,
-                    model: car.model,
-                    transmission: car.transmission,
-                    year: car.year,
-
-                    liked: car.liked = false,
-                    rented: car.rented = false,
-
-                    order_id: orderId,
-                    user_id: await getUserId(),
-                    user_clerk: dataUser().id_clerk
-                };
-
-                // Create car in db
-                await newCar(dataNewCar);
             } catch (error) {
                 console.log(error)
             }

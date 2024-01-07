@@ -26,3 +26,8 @@ export interface BodyPreferenceMp {
     quantity: number,
     unit_price: number
 }
+
+export interface BodyPayloadStripe {
+    order_id: string,
+    price_id: string
+}

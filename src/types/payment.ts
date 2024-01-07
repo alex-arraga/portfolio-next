@@ -1,3 +1,5 @@
+import { CarCardProps } from "./cars-store";
+
 export interface Price {
     id: string;
     object: string;
@@ -28,6 +30,8 @@ export interface Price {
 
 
 export interface PlansCardProps {
+    costDayRent: number,
+    car: CarCardProps
     stripePrices: Price[]
 }
 
@@ -72,4 +76,21 @@ export interface SettingOrderParams {
 export interface UpdateRejectedOrderParams {
     orderId: string,
     status: string,
+}
+
+export interface NewOrderProps {
+    id: number
+    duration_rented: number
+    fee: number | null
+    installments: number | null
+    net_received_amount: number | null
+    order_id: string
+    pay_method: string | null
+    pay_resource: string | null
+    pay_status: string
+    pay_status_detail: string | null
+    payment_id: string | null
+    price: number
+    user_clerk: string
+    user_id: number
 }

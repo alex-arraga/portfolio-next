@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useCarsContext } from "@/context";
 import { v4 as uuidv4 } from 'uuid'
 import { useState } from "react";
+import { NewOrderProps } from "@/types/payment";
 
 function CustomButton({ title,
     containerStyle,
@@ -39,15 +40,15 @@ function CustomButton({ title,
                         className={`custom-btn ${containerStyle}`}
                         onClick={async () => {
 
-                            // Mercado Pago payment
+                            // MERCADO PAGO - Payment
                             if (isMercadoPagoPay) {
                                 try {
                                     setIsLoading('loading')
-                                    // Crea una order en estado "pending" con todos los datos
-                                    const order = await newOrder(car, uuid, durationRent, costDayRent);
+                                    // Create order with "pending" status and data
+                                    const order: NewOrderProps = await newOrder(car, uuid, durationRent, costDayRent);
                                     const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
 
-                                    // Crea la preferencia, tomando los datos de la order creada
+                                    // Create the preference, with order data that was created
                                     const response = await fetch(`${baseApi}/payment/mercado_pago`, {
                                         method: 'POST',
                                         body: JSON.stringify({
@@ -59,10 +60,11 @@ function CustomButton({ title,
                                     });
 
                                     setIsLoading('loaded')
-                                    // Me devuelve el la response de la API con el link del pago, una vez se crea la preferencia
+
+                                    // Return the API response with payment link, creating the mp preference
                                     const data = await response.json();
 
-                                    // Si la respuesta de la API fue correcta, me redirecciona al url del pago
+                                    // If API response is ok, redirect to payment URL
                                     if (data.status === 200 || 201) {
                                         window.location.href = data.URL;
                                     } else {
@@ -72,18 +74,26 @@ function CustomButton({ title,
                                     console.log(error)
                                 }
 
-                                // Stripe payment
+                                // STRIPE - Payment
                             } else {
                                 try {
-                                    console.log(priceId)
+                                    setIsLoading('loading')
+                                    const order: NewOrderProps = await newOrder(car, uuid, 1, costDayRent);
+
                                     const res = await fetch(`${urlPayAPI}`, {
                                         method: 'POST',
-                                        body: JSON.stringify({ priceId }),
+                                        body: JSON.stringify({
+                                            price_id: priceId,
+                                            order_id: order.order_id
+                                        }),
                                         credentials: 'include'
                                     });
 
+                                    setIsLoading('loaded')
+
                                     const response = await res.json();
                                     window.location.href = response.url;
+
                                 } catch (error) {
                                     console.log(error)
                                 }
@@ -193,84 +203,3 @@ function CustomButton({ title,
 }
 
 export default CustomButton
-
-
-// const preference = {
-//     items: [
-//         {
-//             id: `${infoPreferenceMp?.id}`,
-//             title: `${infoPreferenceMp?.carName}`,
-//             currency_id: 'ARS',
-//             picture_url: `${infoPreferenceMp?.picture_url}`,
-//             description: `${infoPreferenceMp?.description}`,
-//             category_id: `art`,
-//             quantity: `${infoPreferenceMp?.quantity}`,
-//             unit_price: `${infoPreferenceMp?.unit_price}`
-//         }
-//     ],
-//     payer: {
-//         name: `${user?.firstName}`,
-//         surname: `${user?.lastName}`,
-//         email: `${user?.externalAccounts ? user?.externalAccounts[0] || user?.externalAccounts[1] : user?.emailAddresses ? user?.emailAddresses : ''}`,
-//         phone: {
-//             area_code: `${user?.primaryPhoneNumberId ? user.primaryPhoneNumberId : ''}`,
-//             number: `${user?.phoneNumbers ? user.phoneNumbers[0] : ''}`
-//         },
-//         identification: {
-//             type: `DNI`,
-//             number: `12345678`
-//         },
-//         address: {
-//             street_name: `Calle`,
-//             street_number: 123,
-//             zip_code: `3560`
-//         }
-//     },
-//     back_urls: {
-//         success: `${myHost}/payment/success`,
-//         failure: `${myHost}/payment/failure`,
-//         pending: `${myHost}/payment/pending`
-//     },
-//     auto_return: "approved",
-//     payment_methods: {
-//         excluded_payment_methods: [
-//             {
-//                 id: "amex"
-//             }
-//         ],
-//         excluded_payment_types: [
-//             {
-//                 id: "atm"
-//             }
-//         ],
-//         installments: 6
-//     },
-//     // notification_url: `${myHost}/api/payment/mercado_pago`,
-//     statement_descriptor: "Carhub Store",
-//     external_reference: "mlplesoj9b"
-// };
-
-// ---------------- BUTTON --------------------------
-
-// if (infoPreferenceMp !== undefined || null) {
-//     const myHeaders = new Headers();
-//     myHeaders.append('Authorization', `Bearer ${process.env.NEXT_PUBLIC_MERCADOPAGO_SECRET_TOKEN}`)
-
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: myHeaders,
-//         body: JSON.stringify(preference)
-//     };
-
-//     try {
-//         console.log(infoPreferenceMp)
-//         console.log(`${myHost}/api/payment/mercado_pago`)
-
-//         const request = await fetch(`${apiMp}`, requestOptions)
-//         const data = await request.json()
-
-//         console.log('DATA:', data)
-
-//     } catch (error) {
-//         console.log(error)
-//     }

@@ -80,7 +80,11 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <p className='text-sm pb-6'>
                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
                               </p>
-                              <PlansCard stripePrices={stripePrices ? stripePrices : []} />
+                              <PlansCard
+                                car={car}
+                                costDayRent={Number(carRent)}
+                                stripePrices={stripePrices ? stripePrices : []}
+                              />
                             </section>
                           </div>
 

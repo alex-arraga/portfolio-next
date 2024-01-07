@@ -3,7 +3,7 @@
 import { PlansCardProps } from "@/types/payment"
 import { CustomButton } from ".."
 
-export function PlansCard({ stripePrices }: PlansCardProps) {
+export function PlansCard({ car, stripePrices, costDayRent }: PlansCardProps) {
 
     const plans = stripePrices
 
@@ -35,7 +35,9 @@ export function PlansCard({ stripePrices }: PlansCardProps) {
                                 textStyle="font-medium text-white"
                                 isPayButton={true}
                                 priceId={plan.id}
-                                urlPayAPI="/api/checkout"
+                                car={car}
+                                costDayRent={costDayRent}
+                                urlPayAPI="/api/payment/stripe"
                             />
                         </div>
                     </div>
