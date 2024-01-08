@@ -1,9 +1,9 @@
 "use client"
 
 import { PlansCardProps } from "@/types/payment"
-import { CustomButton } from ".."
+import { PaymentButton } from ".."
 
-export function PlansCard({ car, stripePrices, costDayRent }: PlansCardProps) {
+export function PlansCard({ car, stripePrices }: PlansCardProps) {
 
     const plans = stripePrices
 
@@ -11,7 +11,7 @@ export function PlansCard({ car, stripePrices, costDayRent }: PlansCardProps) {
         <section className='relative flex flex-col rounded-xl'>
             <div className='grid auto-cols-fr grid-cols-1 md:grid-cols-2 xl:grid-cols-3 h-full md:m-4 gap-4 text-sm font-light'>
                 {plans.sort((a, b) => a.unit_amount - b.unit_amount).map((plan) => (
-                    <div className={`relative flex flex-col justify-start items-start h-auto md:h-[300px] w-full ${plan.nickname === 'Basic Plan' ? 'bg-gray-200' : plan.nickname === 'Premium Plan' ? 'bg-blue-200' : 'bg-violet-200'} rounded-xl`} key={plan.id}>
+                    <div className={`relative flex flex-col justify-start items-start h-auto md:h-[300px] w-full ${plan.nickname === 'Basic Plan' ? 'bg-blue-200' : plan.nickname === 'Premium Plan' ? 'bg-violet-200' : 'bg-orange-100'} rounded-xl`} key={plan.id}>
                         <h1 className="flex justify-center items-center w-full text-base font-semibold my-4">{plan.nickname}</h1>
                         <h2 className="flex justify-center w-full text-xl font-semibold mb-4 rounded-md">
                             USD $<span className="text-violet-600">{plan.unit_amount / 100}</span>/month
@@ -29,14 +29,15 @@ export function PlansCard({ car, stripePrices, costDayRent }: PlansCardProps) {
                             }
                         </p>
                         <div className="flex justify-center items-center w-full h-full my-4">
-                            <CustomButton
+                            <PaymentButton
+                                stripe
                                 title="I want this plan"
                                 containerStyle=" bg-primary-blue hover:bg-blue-800 duration-300 rounded-md w-auto h-auto"
                                 textStyle="font-medium text-white"
-                                isPayButton={true}
                                 priceId={plan.id}
                                 car={car}
-                                costDayRent={costDayRent}
+                                suscription={plan.unit_amount / 100}
+                                durationRent={plan.nickname === 'Basic Plan' ? 30 : plan.nickname === 'Premium Plan' ? 60 : 90}
                                 urlPayAPI="/api/payment/stripe"
                             />
                         </div>

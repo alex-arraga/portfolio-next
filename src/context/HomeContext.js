@@ -54,26 +54,31 @@ export function HomeProvider({ children }) {
 
 
     const dataUser = () => {
-        const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
-        const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
+        try {
+            const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
+            const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
 
-        // Validation Google
-        const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1]?.provider === 'google' ? true : false;
-        const googleEmail = hasGoogleAccount ? user.user?.externalAccounts[1].emailAddress : undefined;
+            // Validation Google
+            const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1]?.provider === 'google' ? true : false;
+            const googleEmail = hasGoogleAccount ? user.user?.externalAccounts[1].emailAddress : undefined;
 
-        const data = {
-            id_clerk: user.user?.id,
-            username: user.user?.username,
-            name: user.user?.firstName,
-            lastname: user.user?.lastName,
-            has_google_account: hasGoogleAccount,
-            google_email: googleEmail,
-            has_github_account: hasGithubAccount,
-            github_email: githubEmail,
-            created_at: user.user?.createdAt
+            const data = {
+                id_clerk: user.user?.id,
+                username: user.user?.username,
+                name: user.user?.firstName,
+                lastname: user.user?.lastName,
+                has_google_account: hasGoogleAccount,
+                google_email: googleEmail,
+                has_github_account: hasGithubAccount,
+                github_email: githubEmail,
+                created_at: user.user?.createdAt
+            }
+
+            return data
+        } catch (error) {
+            console.log(error)
+            return null
         }
-
-        return data
     };
 
 

@@ -63,6 +63,7 @@ export interface QuerysProps {
 }
 
 export interface SettingOrderParams {
+    typeService: "mercado_pago" | "stripe",
     paymentId: string,
     orderId: string,
     status?: string,
@@ -90,7 +91,25 @@ export interface NewOrderProps {
     pay_status: string
     pay_status_detail: string | null
     payment_id: string | null
-    price: number
+    price: number,
+    suscription?: number
     user_clerk: string
     user_id: number
 }
+
+
+export interface PaymentButtonProps {
+    title: string
+    containerStyle: string
+    textStyle?: string
+    rightIcon?: string
+    leftIcon?: string
+    priceId?: string
+    mercadoPago?: boolean
+    stripe?: boolean
+    car: CarCardProps
+    costRent?: number
+    suscription?: number
+    durationRent: number
+    urlPayAPI: string
+} 

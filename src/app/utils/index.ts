@@ -1,6 +1,8 @@
 import { CarsResponse, CarsResponseSchema } from "@/types/zod-validation";
 import { CarCardProps, DeleteParamProps, FilterProps, UpdateSearchParamsProps } from "@/types/cars-store";
 import { toast } from "sonner";
+import { prisma } from "@/libs/prisma";
+import { SettingOrderParams } from "@/types/payment";
 
 // Obtain cars information
 export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse | undefined> {
@@ -160,4 +162,69 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
 
     return rentalRatePerDay.toFixed(0);
+};
+
+
+export const settingOrder = async ({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: SettingOrderParams) => {
+
+    if (status === 'approved' || status === 'paid') {
+        try {
+            // Update order to "sucess" and "rented" prop of cars to "true"
+            await prisma.order.update({
+                where: {
+                    order_id: orderId
+                },
+                data: {
+                    payment_id: paymentId,
+                    pay_status: status,
+                    pay_resource: payResource,
+                    pay_status_detail: statusDetail,
+                    installments: installments,
+                    fee: fee,
+                    net_received_amount: netAmount,
+                    pay_method: typeService
+                }
+            })
+
+            // Update car to change "rented = true"
+            await prisma.cars.update({
+                where: {
+                    order_id: orderId
+                },
+                data: {
+                    rented: true
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        try {
+            // If payment status isn't approved, update status order to "rejected" and delete de created car
+            await prisma.order.update({
+                where: {
+                    order_id: orderId
+                },
+                data: {
+                    payment_id: paymentId,
+                    pay_status: status,
+                    pay_resource: payResource,
+                    pay_status_detail: statusDetail,
+                    installments: installments,
+                    fee: fee,
+                    net_received_amount: netAmount,
+                    pay_method: typeService
+                }
+            })
+
+            // Delete created car
+            await prisma.cars.delete({
+                where: {
+                    order_id: orderId
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 };

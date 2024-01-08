@@ -59,6 +59,7 @@ import EmptyDataMessage from './cars-store-components/EmptyDataMessage'
 
 // Payment Components
 import PlansCard from './payment-components/PlansCard'
+import PaymentButton from './payment-components/PaymentButton'
 
 export {
     CalculatorContainer,
@@ -109,5 +110,6 @@ export {
     NavSelect,
     SectionsMyCars,
     EmptyDataMessage,
-    PlansCard
+    PlansCard,
+    PaymentButton
 }

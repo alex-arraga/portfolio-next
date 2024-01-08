@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server"
 import { MercadoPagoConfig, Payment } from "mercadopago"
-import { prisma } from "@/libs/prisma";
-import { SettingOrderParams } from "@/types/payment";
+import { settingOrder } from "@/app/utils";
+
 
 export async function POST(req: NextRequest) {
     if (req.url && req.url?.includes('?')) {
@@ -13,69 +13,6 @@ export async function POST(req: NextRequest) {
                 });
 
                 const payment = new Payment(client);
-
-                const settingOrder = async ({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: SettingOrderParams) => {
-                    if (status === 'approved') {
-                        try {
-                            // Update order to "sucess" and "rented" prop of cars to "true"
-                            await prisma.order.update({
-                                where: {
-                                    order_id: orderId
-                                },
-                                data: {
-                                    payment_id: paymentId,
-                                    pay_status: status,
-                                    pay_resource: payResource,
-                                    pay_status_detail: statusDetail,
-                                    installments: installments,
-                                    fee: fee,
-                                    net_received_amount: netAmount,
-                                    pay_method: "mercado_pago"
-                                }
-                            })
-
-                            // Update car to change "rented = true"
-                            await prisma.cars.update({
-                                where: {
-                                    order_id: orderId
-                                },
-                                data: {
-                                    rented: true
-                                }
-                            })
-                        } catch (error) {
-                            console.log(error)
-                        }
-                    } else {
-                        try {
-                            // If payment status isn't approved, update status order to "rejected" and delete de created car
-                            await prisma.order.update({
-                                where: {
-                                    order_id: orderId
-                                },
-                                data: {
-                                    payment_id: paymentId,
-                                    pay_status: status,
-                                    pay_resource: payResource,
-                                    pay_status_detail: statusDetail,
-                                    installments: installments,
-                                    fee: fee,
-                                    net_received_amount: netAmount,
-                                    pay_method: "mercado_pago"
-                                }
-                            })
-
-                            // Delete created car
-                            await prisma.cars.delete({
-                                where: {
-                                    order_id: orderId
-                                }
-                            })
-                        } catch (error) {
-                            console.log(error)
-                        }
-                    }
-                };
 
                 // query
                 const queryUrl = req.url.slice(req.url.indexOf('?') + 1).split('&');
@@ -101,6 +38,7 @@ export async function POST(req: NextRequest) {
                                 id: paymentId,
                             })
                                 .then(data => {
+                                    const typeService = "mercado_pago"
                                     const id = data.id!;
                                     const installments = data.installments ?? undefined;
                                     const fee = data.fee_details?.[0]?.amount ?? undefined;
@@ -112,7 +50,7 @@ export async function POST(req: NextRequest) {
 
                                     // If payment exist update the order
                                     if (id.toString() === paymentId) {
-                                        settingOrder({ paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                                        settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                                     }
                                 })
                                 .catch(e => console.log(e));

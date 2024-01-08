@@ -23,19 +23,13 @@ export interface FooterProps {
 export interface CustomButtonProps {
     title: string,
     containerStyle?: string,
+    totalCustom?: boolean
     textStyle?: string,
     handleClick?: MouseEventHandler<HTMLButtonElement>
     btnType?: 'button' | 'submit',
     rightIcon?: string,
     leftIcon?: string,
-    priceId?: string,
-    isMercadoPagoPay?: boolean,
-    car?: CarCardProps,
-    isPayButton?: boolean,
     isResetButton?: boolean
-    urlPayAPI?: string
-    costDayRent?: number
-    durationRent?: number
 };
 
 export interface SearchManufacturerProps {

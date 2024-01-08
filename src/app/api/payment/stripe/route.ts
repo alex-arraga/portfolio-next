@@ -22,7 +22,6 @@ export async function POST(request: Request) {
                     quantity: 1
                 }
             ],
-            metadata: { meta: 'metadata default' },
             success_url: `${baseClientProjectsURL}/cars-store/rents`,
             cancel_url: `${baseClientProjectsURL}/cars-store/dashboard`
         })

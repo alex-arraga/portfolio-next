@@ -127,7 +127,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const newOrder = async (car, orderId, durationRented, costRent) => {
+    const newOrder = async (car, orderId, durationRented, costRent, suscription) => {
         if (isClientLoaded) {
             try {
                 const priceRent = costRent * durationRented;
@@ -136,7 +136,7 @@ export const CarsProvider = ({ children }) => {
                 const orderData = {
                     order_id: orderId,
                     duration_rented: durationRented,
-                    price: priceRent,
+                    price: suscription ? suscription : priceRent,
                     user_id: await getUserId(),
                     user_clerk: dataUser().id_clerk
                 };
@@ -159,6 +159,7 @@ export const CarsProvider = ({ children }) => {
                 return data
             } catch (error) {
                 console.log(error)
+                return null
             }
         }
     };
