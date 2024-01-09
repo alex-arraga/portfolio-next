@@ -1,4 +1,4 @@
-import { CarCardProps } from "./cars-store";
+import { CarCardProps, RentedCarCardProps } from "./cars-store";
 
 export interface Price {
     id: string;
@@ -112,4 +112,34 @@ export interface PaymentButtonProps {
     suscription?: number
     durationRent: number
     urlPayAPI: string
-} 
+}
+
+
+export interface PaymentComprobantProps {
+    priceSuscription: number,
+    payment: NewOrderProps | null
+    car: RentedCarCardProps
+    isOpen: boolean,
+    closeModal: () => void
+}
+
+
+export interface GetOrderProps {
+    message: string,
+    infoOrder: {
+        id: number
+        duration_rented: number
+        fee: number | null
+        installments: number | null
+        net_received_amount: number | null
+        order_id: string
+        pay_method: string | null
+        pay_resource: string | null
+        pay_status: string
+        pay_status_detail: string | null
+        payment_id: string | null
+        price: number,
+        user_clerk: string
+        user_id: number
+    }
+}
