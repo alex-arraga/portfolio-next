@@ -175,7 +175,7 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                                             <li className="flex justify-between items-center bg-teal-300 mt-2 p-2 rounded-md">
                                                                 <h3 className="font-medium">total cost:</h3>
                                                                 <p className="text-sm md:text-base font-semibold text-medium">
-                                                                    ARS ${payment?.price}
+                                                                    ARS ${hasMonthlyPlan ? priceSuscription : payment?.price}
                                                                 </p>
                                                             </li>
                                                         </ul>
