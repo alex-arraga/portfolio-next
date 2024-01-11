@@ -1,49 +1,53 @@
 import { prisma } from "@/libs/prisma";
-import { OrderParams } from "@/types/api";
+import { CarsParams } from "@/types/api";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: OrderParams) {
+export async function GET(request: Request, { params }: CarsParams) {
+    const { id } = params
+
     try {
         const infoCar = await prisma.cars.findFirst({
             where: {
-                order_id: params.order_id
+                car_id: id
             }
         })
-        return NextResponse.json({ infoCar })
-    } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+
+        return NextResponse.json({ status: 200, infoCar })
+    }
+    catch (error) {
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }
 
-export async function PUT(request: Request, { params }: OrderParams) {
+export async function PUT(request: Request, { params }: CarsParams) {
+    const { id } = params
+    const data = await request.json()
+
     try {
-        const data = await request.json()
         const updateCar = await prisma.cars.update({
             where: {
-                order_id: params.order_id
+                car_id: id
             }, data
         })
         return NextResponse.json({ updateCar })
     } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }
 
-export async function DELETE(request: Request, { params }: OrderParams) {
+
+export async function DELETE(request: Request, { params }: CarsParams) {
+    const { id } = params
+
     try {
         await prisma.cars.delete({
             where: {
-                order_id: params.order_id
+                car_id: id
             }
         })
-        return NextResponse.json({ Message: `Car with order_id: ${params.order_id} deleted` })
+
+        return NextResponse.json({ status: 200, message: 'Car deleted' })
     } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }

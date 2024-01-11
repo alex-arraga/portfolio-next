@@ -133,6 +133,7 @@ export interface HamburgerMenuBarProps {
 
 export interface RentedCarCardProps {
     id: number;
+    car_id: string,
     city_mpg: number;
     class: string;
     combination_mpg: number;

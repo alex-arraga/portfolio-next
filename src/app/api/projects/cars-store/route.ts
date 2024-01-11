@@ -4,33 +4,27 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
     try {
         const getAllCars = await prisma.cars.findMany()
-        return NextResponse.json({ getAllCars })
+        return NextResponse.json({ status: 200, getAllCars })
     } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }
 
 export async function POST(request: Request) {
     try {
         const data = await request.json()
-        const newCarRented = await prisma.cars.create({ data })
-        return NextResponse.json({ newCarRented })
+        await prisma.cars.create({ data })
+        return NextResponse.json({ status: 200, message: 'Car created' })
     } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }
 
 export async function DELETE(request: Request) {
     try {
         await prisma.cars.deleteMany()
-        return NextResponse.json({ Message: 'All cars deleted' })
+        return NextResponse.json({ status: 200, message: 'All cars deleted' })
     } catch (error) {
-        return NextResponse.json({
-            Error_Message: error
-        })
+        return NextResponse.json({ status: 400, Error_Message: error })
     }
 }

@@ -1,11 +1,12 @@
 "use client"
 
-import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
+import { generateCarImageAPI, renameClasses } from "@/app/utils"
 import { GetOrderProps, NewOrderProps, Price } from "@/types/payment"
 import { RentedCarCardProps } from "@/types/cars-store"
 import { useEffect, useState } from 'react'
 import { CarDetails, PaymentComprobant } from "../../index"
 import { baseApi } from "@/libs/baseURL"
+import { useCarsContext } from "@/context"
 
 import Image from "next/image"
 import CustomButton from "../CustomButton"
@@ -16,6 +17,7 @@ interface RentedCar {
 }
 
 function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
+    const { manageLikes } = useCarsContext()
     const [paymentComprobantIsOpen, setPaymentComprobantIsOpen] = useState(false);
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const [like, setLike] = useState(false);
@@ -69,7 +71,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
     }, [isLoaded])
 
     return (
-        <div className="relative flex flex-col p-6 justify-start items-start text-black-100 bg-primary-blue-100 hover:bg-white rounded-3xl">
+        <div className="relative flex flex-col p-6 justify-start items-start text-black-100 bg-primary-blue-100 hover:bg-white rounded-3xl h-full">
             <div className="w-full flex-col relative justify-between items-start gap-2">
                 <div className="flex items-start justify-between">
                     {/* Car name */}
@@ -82,7 +84,8 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                         {
                             car.liked ?
                                 <Image
-                                    onClick={() => setLike(false)}
+                                    onClick={() => manageLikes(car)}
+                                    className="object-contain cursor-pointer"
                                     src={'/heart-filled.svg'}
                                     width={22}
                                     height={22}
@@ -92,7 +95,8 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                                 :
 
                                 <Image
-                                    onClick={() => setLike(true)}
+                                    onClick={() => manageLikes(car)}
+                                    className="object-contain cursor-pointer"
                                     src={'/heart-outline.svg'}
                                     width={22}
                                     height={22}
@@ -118,33 +122,34 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                 </div>
 
                 {/* Info */}
+
                 <section className="flex flex-col justify-start items-start w-full h-full rounded-md">
-                    <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md my-4">
-                        <div className="flex items-center gap-2">
-                            <Image
-                                src={'/car-rented.svg'}
-                                width={24}
-                                height={24}
-                                alt="car rented icon"
-                                className="object-contain"
-                            />
+                    {
+                        car.rented ?
+                            <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md mb-4">
+                                <div className="flex items-center gap-2">
+                                    <Image
+                                        src={'/car-rented.svg'}
+                                        width={24}
+                                        height={24}
+                                        alt="car rented icon"
+                                        className="object-contain w-5 h-5 sm:w-6 sm:h-6"
+                                    />
 
-                            <p className="text-xs md:text-sm font-medium">You rented this car!</p>
-                        </div>
-                        <p className="text-xs md:text-sm font-medium bg-teal-600 px-2 py-1 rounded-md text-white">{hasMonthlyPlan ? 'Monthly suscription' : 'Daily rent'}</p>
-                    </div>
+                                    <p className="text-txt_10 sm:text-xs md:text-sm font-medium">You rented this car!</p>
+                                </div>
+                                <p className="text-txt_10 sm:text-xs md:text-sm font-medium bg-teal-600 p-2 rounded-md text-white">{hasMonthlyPlan ? 'Monthly rent' : 'Daily rent'}</p>
+                            </div>
 
-                    <ul className="flex justify-between w-full gap-2 sm:gap-4 md:gap-6 mb-4 text-[10px] sm:text-xs md:text-sm">
-                        <li className={`${!car.rented ? 'flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
-                        </li>
-                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-slate-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            For<span className="font-semibold capitalize">{paymentData?.duration_rented} days</span>
-                        </li>
-                        <li className={`${car.rented ? 'flex flex-col justify-center items-center w-full bg-slate-200 text-gray-700 py-1 rounded-md' : 'hidden'}`}>
-                            Cost<span className="font-semibold capitalize">ARS ${hasMonthlyPlan ? priceDollar.toLocaleString() : paymentData?.price.toLocaleString()}</span>
-                        </li>
-                    </ul>
+                            :
+
+                            <div className="flex justify-between w-full gap-2 sm:gap-4 mb-4 text-[10px] sm:text-xs md:text-sm">
+                                <p className='flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md'>
+                                    This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
+                                </p>
+                            </div>
+                    }
+
 
                     {/* Buttons */}
                     {

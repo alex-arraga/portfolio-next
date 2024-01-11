@@ -1,10 +1,9 @@
 "use client"
 
 import Image from "next/image"
-import { baseApi } from "@/libs/baseURL"
 import { PaymentComprobantProps } from "@/types/payment"
 import { Dialog, Transition } from "@headlessui/react"
-import { Fragment, useEffect, useState } from "react"
+import { Fragment } from "react"
 import { renameClasses } from "@/app/utils"
 
 function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription }: PaymentComprobantProps) {
@@ -45,7 +44,7 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                             leaveFrom="opacity-200 scale-100"
                                             leaveTo="opacity-0 scale-95"
                                         >
-                                            <Dialog.Panel className={'relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-gray-200 p-4 md:p-6 text-left shadow-xl transition-all flex flex-col gap-5'}>
+                                            <Dialog.Panel className={'relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-slate-50 p-4 md:p-6 text-left shadow-xl transition-all flex flex-col gap-5'}>
 
                                                 <button type="button"
                                                     onClick={closeModal}
@@ -63,7 +62,7 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                                 <div className="flex flex-col justify-start items-center my-2 sm:my-4 md:my-6 p-2 rounded-md">
                                                     <h1 className="border-b-2 border-indigo-300 text-sm sm:text-base md:text-lg xl:text-xl text-black font-semibold">Payment Comprobant</h1>
 
-                                                    <div className="bg-white rounded-md p-4 md:p-6 my-6 w-full">
+                                                    <section className="bg-white border-4 border-gray-200 rounded-md p-4 md:p-6 my-6 w-full">
                                                         <ul className="flex flex-col justify-between text-black capitalize gap-2 text-txt_10 sm:text-xs md:text-sm">
 
                                                             {/* DATE */}
@@ -179,12 +178,9 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                                                 </p>
                                                             </li>
                                                         </ul>
-                                                    </div>
+                                                    </section>
                                                 </div>
-
-
                                             </Dialog.Panel>
-
                                         </Transition.Child>
                                     </div>
                                 </div>

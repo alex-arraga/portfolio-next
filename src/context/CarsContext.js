@@ -4,6 +4,8 @@ import { baseApi, baseApiProjectsUrl } from "@/libs/baseURL";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useHomeContext } from "./HomeContext";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from "next/navigation";
 
 export const CarsContext = createContext();
 
@@ -14,6 +16,9 @@ export const useCarsContext = () => {
 };
 
 export const CarsProvider = ({ children }) => {
+    const uuid = uuidv4();
+    const router = useRouter()
+
     const { dataUser, getUserId } = useHomeContext();
     const [sectionLikes, setSectionLikes] = useState(false);
     const [isClientLoaded, setIsClientLoaded] = useState(false);
@@ -37,11 +42,140 @@ export const CarsProvider = ({ children }) => {
                 body: JSON.stringify(car)
             })
 
-            const newCar = await response.json()
-            return newCar
+            const data = await response.json()
+            return data
 
         } catch (error) {
             console.log(error)
+        }
+    };
+
+
+    const getCar = async (carId) => {
+        try {
+            const response = await fetch(`${baseApiProjectsUrl}/cars-store/${carId}`, {
+                method: 'GET',
+                credentials: 'include',
+            })
+
+            const body = await response.json()
+            const data = body.infoCar
+
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+
+    const updateCar = async (car) => {
+        // Case 1 - If the car have a LIKE and is RENTED, it will remove the LIKE
+        if (car.liked && car.rented) {
+            try {
+                const likeUpdated = { liked: false };
+
+                const response = await fetch(`${baseApiProjectsUrl}/cars-store/${car.car_id}`, {
+                    method: 'PUT',
+                    credentials: 'include',
+                    body: JSON.stringify(likeUpdated)
+                });
+
+                if (response.ok) {
+                    router.refresh()
+                    return toast.message(`The like of ${car.make.toUpperCase()} ${car.model.toUpperCase()} has been removed`);
+                };
+            } catch (error) {
+                console.log(error)
+                return toast.error('Oops, an error occurred')
+            }
+
+            // Case 2 - If the car NOT have a LIKE and is RENTED, it will have a LIKE.
+        } else if (!car.liked && car.rented) {
+            try {
+                const likeUpdated = { liked: true };
+
+                const response = await fetch(`${baseApiProjectsUrl}/cars-store/${car.car_id}`, {
+                    method: 'PUT',
+                    credentials: 'include',
+                    body: JSON.stringify(likeUpdated)
+                });
+
+                if (response.ok) {
+                    router.refresh()
+                    return toast.message(`${car.make.toUpperCase()} ${car.model.toUpperCase()} added to the section 'The cars I Liked'`);
+                };
+            } catch (error) {
+                console.log(error)
+                return toast.error('Oops, an error occurred')
+            }
+        }
+
+        // Case 3 - If the car have a LIKE and HAS NOT BEEN RENTED, it will be DELETED.
+        else if (car.liked && !car.rented) {
+            try {
+                await deleteCar(car.car_id);
+                router.refresh();
+
+                return toast.message(`${car.make.toUpperCase()} ${car.model.toUpperCase()} removed from the cars you like`);
+            } catch (error) {
+                console.log(error)
+                return toast.error('Oops, an error occurred')
+            }
+        }
+    };
+
+
+    const deleteCar = async (carId) => {
+        try {
+            const response = await fetch(`${baseApiProjectsUrl}/cars-store/${carId}`, {
+                method: 'DELETE',
+                credentials: 'include',
+            })
+
+            if (response.ok) {
+                router.refresh()
+            }
+
+        } catch (error) {
+            console.log(error)
+            return toast.error('Oops, an error occurred')
+        }
+    };
+
+
+    const manageLikes = async (car) => {
+        if (isClientLoaded) {
+            try {
+                const existCar = await getCar(car.car_id)
+
+                if (!existCar) {
+                    const data = {
+                        car_id: `${uuid}${new Date().getTime()}`,
+                        city_mpg: car.city_mpg,
+                        class: car.class,
+                        combination_mpg: car.combination_mpg,
+                        cylinders: car.cylinders,
+                        displacement: car.displacement,
+                        drive: car.drive,
+                        fuel_type: car.fuel_type,
+                        highway_mpg: car.highway_mpg,
+                        make: car.make,
+                        model: car.model,
+                        transmission: car.transmission,
+                        year: car.year,
+                        liked: true,
+                        user_id: await getUserId(),
+                        user_clerk: dataUser().id_clerk
+                    };
+
+                    await newCar(data);
+                    toast.success(`This car was added to the section 'The cars I Liked'`)
+                } else {
+                    await updateCar(existCar)
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     };
 
@@ -50,6 +184,7 @@ export const CarsProvider = ({ children }) => {
         if (isClientLoaded) {
             try {
                 const dataNewCar = {
+                    car_id: `${uuid}${new Date().getTime()}`,
                     city_mpg: car.city_mpg,
                     class: car.class,
                     combination_mpg: car.combination_mpg,
@@ -63,8 +198,7 @@ export const CarsProvider = ({ children }) => {
                     transmission: car.transmission,
                     year: car.year,
 
-                    liked: car.liked = false,
-                    rented: car.rented = false,
+                    rented: false,
 
                     order_id: orderId,
                     user_id: await getUserId(),
@@ -73,39 +207,6 @@ export const CarsProvider = ({ children }) => {
 
                 // Create car in db
                 await newCar(dataNewCar);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    };
-
-
-    // Corregir para que valide si existe el auto o no
-    const newCarLiked = async (car) => {
-        if (isClientLoaded) {
-            try {
-                const data = {
-                    city_mpg: car.city_mpg,
-                    class: car.class,
-                    combination_mpg: car.combination_mpg,
-                    cylinders: car.cylinders,
-                    displacement: car.displacement,
-                    drive: car.drive,
-                    fuel_type: car.fuel_type,
-                    highway_mpg: car.highway_mpg,
-                    make: car.make,
-                    model: car.model,
-                    transmission: car.transmission,
-                    year: car.year,
-                    liked: car.liked = true,
-                    user_id: await getUserId(),
-                    user_clerk: dataUser().id_clerk
-                };
-
-                console.log(data)
-
-                await newCar(data);
-                toast.success(`This car was added to the section 'The cars I Liked'`)
             } catch (error) {
                 console.log(error)
             }
@@ -132,7 +233,7 @@ export const CarsProvider = ({ children }) => {
             try {
                 const priceRent = costRent * durationRented;
 
-                // Objeto que se enviara como datos para la orden
+                // Object that will send to create new order
                 const orderData = {
                     order_id: orderId,
                     duration_rented: durationRented,
@@ -151,7 +252,7 @@ export const CarsProvider = ({ children }) => {
                 // POST - Create "pending" car to connect bot tables
                 await newPendingCar(car, orderId)
 
-                // GET - Obtengo los datos de la orden creada para enviarlo a la "MP preference"
+                // GET - Obtain the created order data to send to the "MP preference"
                 const obtainOrder = await getOrder(orderId)
                 const response = await obtainOrder.json()
                 const data = response.infoOrder
@@ -170,7 +271,7 @@ export const CarsProvider = ({ children }) => {
         setSectionLikes,
         newCar,
         isClientLoaded,
-        newCarLiked,
+        manageLikes,
         newPendingCar,
         searchParams,
         hasManufacturer,
@@ -182,3 +283,27 @@ export const CarsProvider = ({ children }) => {
 }
 
 export default CarsContext
+
+
+
+
+/*
+    car_id          String   @unique
+    city_mpg        Int
+    class           String
+    combination_mpg Int
+    cylinders       Int
+    displacement    Float
+    drive           String
+    fuel_type       String
+    highway_mpg     Int
+    make            String
+    model           String
+    transmission    String
+    year            Int
+    liked           Boolean  @default(false)
+    rented          Boolean  @default(false)
+    order_id        String?  @unique
+    user_id         Int
+    user_clerk      String
+ */

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { Stripe } from 'stripe'
-import { prisma } from "@/libs/prisma";
 import { settingOrder } from "@/app/utils";
 
 export async function POST(request: Request) {

@@ -23,7 +23,7 @@ export const HomeRented = async () => {
             const loadCars = await prisma.cars.findMany({
                 where: {
                     rented: true,
-                    user_clerk: user?.id
+                    user_clerk: user?.id,
                 }
             })
             return loadCars

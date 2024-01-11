@@ -1,5 +1,3 @@
-import { Cars } from "@prisma/client"
-
 // Type Tasks
 export interface TasksParams {
     params: { tasks_id: string }
@@ -11,9 +9,8 @@ export interface CalculatorParams {
 }
 
 // Type Cars
-
 export interface CarsParams {
-    params: { cars_id: string }
+    params: { id: string }
 }
 
 export interface OrderParams {

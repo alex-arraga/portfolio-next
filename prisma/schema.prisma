@@ -79,6 +79,7 @@ enum Pay_Method {
 
 model Cars {
   id              Int      @id @default(autoincrement())
+  car_id          String   @unique
   city_mpg        Int
   class           String
   combination_mpg Int

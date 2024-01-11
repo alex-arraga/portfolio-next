@@ -21,7 +21,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
     const { city_mpg, year, make, model, transmission, drive, cylinders } = car;
     const carRent = calculateCarRent(city_mpg, year);
 
-    const { newCarLiked } = useCarsContext();
+    const { manageLikes } = useCarsContext();
 
 
     return (
@@ -44,7 +44,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                             <Image
                                                 onClick={() => {
                                                     setLike(true)
-                                                    newCarLiked(car)
+                                                    manageLikes(car)
                                                 }}
                                                 src={'/heart-outline.svg'}
                                                 width={22}
