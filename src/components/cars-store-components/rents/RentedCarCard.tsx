@@ -1,7 +1,7 @@
 "use client"
 
 import { generateCarImageAPI, renameClasses } from "@/app/utils"
-import { GetOrderProps, NewOrderProps, Price } from "@/types/payment"
+import { GetOrderProps, Price } from "@/types/payment"
 import { RentedCarCardProps } from "@/types/cars-store"
 import { useEffect, useState } from 'react'
 import { CarDetails, PaymentComprobant } from "../../index"
@@ -20,16 +20,17 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
     const { manageLikes } = useCarsContext()
     const [paymentComprobantIsOpen, setPaymentComprobantIsOpen] = useState(false);
     const [rentIsOpen, setRentIsOpen] = useState(false);
-    const [like, setLike] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
 
     const [paymentData, setPaymentData] = useState<GetOrderProps['infoOrder'] | undefined>();
     const hasMonthlyPlan = paymentData?.pay_status_detail === 'recurrent_suscription';
 
-    // Price multiplied by the price of the official argentine dollar - 9/1/2024
+    // Price multiplied by the official dollar price in Argentina - 9/1/2024
     const priceDollar = paymentData?.price! * 813.84;
 
-    const dataCarAPI = {
+    const dataRentedCar = {
+        id: car.id,
+        car_id: car.car_id,
         city_mpg: car.city_mpg,
         class: car.class,
         combination_mpg: car.combination_mpg,
@@ -42,6 +43,9 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
         model: car.model,
         transmission: car.transmission,
         year: car.year,
+        rented: car.rented,
+        liked: car.liked,
+        order_id: car.order_id,
     };
 
 
@@ -175,7 +179,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                         <CarDetails
                             isOpen={rentIsOpen}
                             closeModal={() => setRentIsOpen(false)}
-                            car={dataCarAPI}
+                            car={dataRentedCar}
                             styleDetails='rent'
                             stripePrices={stripePrices}
                         />

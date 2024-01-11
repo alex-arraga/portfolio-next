@@ -59,7 +59,7 @@ export interface CarCardProps {
 export interface CarDetailsProps {
     isOpen: boolean,
     closeModal: () => void,
-    car: CarCardProps,
+    car: CarCardProps | RentedCarCardProps,
     styleDetails?: string,
     stripePrices?: Price[]
 }
@@ -146,12 +146,10 @@ export interface RentedCarCardProps {
     model: string;
     transmission: string;
     year: number;
-
     rented: boolean;
     liked: boolean;
     order_id?: string | null
-
-    created_at: string | Date;
+    created_at?: string | Date;
 }
 
 export interface SectionsMyCarsProps {

@@ -107,7 +107,7 @@ export interface PaymentButtonProps {
     priceId?: string
     mercadoPago?: boolean
     stripe?: boolean
-    car: CarCardProps
+    car: CarCardProps | RentedCarCardProps
     costRent?: number
     suscription?: number
     durationRent: number
