@@ -5,6 +5,7 @@ export default authMiddleware({
     publicRoutes: [
         '/api',
         '/api/create_user',
+        '/api/cron',
         '/api/projects/calculator',
         '/api/projects/calculator/calcs',
         '/api/projects/cars-store',

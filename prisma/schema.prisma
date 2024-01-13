@@ -118,6 +118,7 @@ model Order {
   net_received_amount Float?
   user_id             Int
   user_clerk          String
+  created_at          DateTime    @default(now())
   cars                Cars?       @relation("order_cars")
   user                User        @relation("order_user_id", fields: [user_id], references: [id])
   userClerk           User        @relation("order_user_clerk", fields: [user_clerk], references: [id_clerk])

@@ -8,8 +8,8 @@ import { renameClasses } from "@/app/utils"
 
 function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription }: PaymentComprobantProps) {
 
-    const carDate = car.created_at.toLocaleString().replace(/,(.*)/, ' ');
-    const carHour = car.created_at.toLocaleString().replace(/(.*),/, ' ').slice(0, -3)
+    const carDate = car.created_at?.toLocaleString().replace(/,(.*)/, ' ');
+    const carHour = car.created_at?.toLocaleString().replace(/(.*),/, ' ').slice(0, -3)
     const hasMonthlyPlan = payment?.pay_status_detail === 'recurrent_suscription';
 
     const priceDay = payment?.price ? payment?.price / payment?.duration_rented : undefined;
