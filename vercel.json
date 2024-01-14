@@ -1,0 +1,8 @@
+{
+    "crons": [
+        {
+            "path": "/api/sync-slack-team/T0CAQ10TZ",
+            "schedule": "0 9 * * *"
+        }
+    ]
+}
