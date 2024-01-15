@@ -39,7 +39,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
                         {/* Likes cars */}
                         <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasLikes() === false ? 'hidden' : 'block'}`}>
                             {
-                                likedCars.map((cars) => (
+                                likedCars.sort((a, b) => b.id - a.id).map((cars) => (
                                     <section className="h-full w-full" key={cars.id}>
                                         <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
                                     </section>
@@ -58,7 +58,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
                         {/* Likes cars */}
                         <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
                             {
-                                rentedCars.map((cars) => (
+                                rentedCars.sort((a, b) => b.id - a.id).map((cars) => (
                                     <section className="h-full w-full" key={cars.id}>
                                         <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
                                     </section>

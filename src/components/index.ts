@@ -1,3 +1,6 @@
+// Generic Components
+import LoadingPage from './generic-components/LoadingPage'
+
 // Home Components
 import Login from './home-components/Login'
 import { Box } from './home-components/Box'
@@ -63,6 +66,7 @@ import PaymentButton from './payment-components/PaymentButton'
 import PaymentComprobant from './payment-components/PaymentComprobant'
 
 export {
+    LoadingPage,
     CalculatorContainer,
     Powers,
     Button,

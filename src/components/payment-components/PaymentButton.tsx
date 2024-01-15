@@ -39,7 +39,7 @@ function PaymentButton({
                         try {
                             setIsLoading('loading')
                             // Create order with "pending" status and data
-                            const order: NewOrderProps = await newOrder(car, uuid, durationRent, costRent);
+                            const order: NewOrderProps = await newOrder(car, uuid, durationRent, costRent, undefined);
                             const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
 
                             // Create the preference, with order data that was created

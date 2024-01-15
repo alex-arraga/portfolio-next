@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: OrderParams) {
                 }
             })
 
-            return NextResponse.json({ message: 'Order found', infoOrder })
+            return NextResponse.json({ status: 200, message: 'Order found', infoOrder })
         } catch (error) {
             return NextResponse.json({ Error_Message: error })
         }
@@ -31,10 +31,7 @@ export async function PUT(request: Request, { params }: OrderParams) {
             data
         })
 
-        return NextResponse.json({
-            message: 'Order update',
-            updateOrder
-        })
+        return NextResponse.json({ status: 200, message: 'Order update', updateOrder })
     } catch (error) {
         return NextResponse.json({ Error_Message: error })
     }
@@ -49,7 +46,7 @@ export async function DELETE(request: Request, { params }: OrderParams) {
                 }
             })
 
-            return NextResponse.json({ message: 'Order deleted' })
+            return NextResponse.json({ status: 200, message: 'Order deleted' })
         } catch (error) {
             return NextResponse.json({ Error_Message: error })
         }

@@ -220,7 +220,8 @@ export const settingOrder = async ({ typeService, paymentId, orderId, status, st
             // Delete created car
             await prisma.cars.delete({
                 where: {
-                    order_id: orderId
+                    order_id: orderId,
+                    liked: false
                 }
             })
         } catch (error) {

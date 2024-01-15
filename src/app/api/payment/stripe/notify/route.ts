@@ -37,7 +37,8 @@ export async function POST(request: Request) {
 
                 return NextResponse.json({ status: 200 })
             } catch (error) {
-                return NextResponse.json({ status: 400, Webhook_Error: error })
+                console.log(error)
+                return NextResponse.json({ Webhook_Error: error })
             }
         } else {
             return NextResponse.json({ Webhook_Error: 'sig or endpoint not exist' })

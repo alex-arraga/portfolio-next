@@ -142,7 +142,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                             <div className='flex my-6 sm:my-8 md:my-10 justify-center items-center'>
                               <PaymentButton
-                                mercadoPago
+                                mercadoPago={true}
                                 containerStyle='flex justify-center items-center bg-blue-200 hover:bg-sky-300 duration-200 rounded-xl gap-2 h-auto w-auto'
                                 textStyle='text-black font-medium text-xs sm:text-sm md:text-base'
                                 title='Pagar con Mercado Pago'

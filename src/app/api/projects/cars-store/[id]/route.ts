@@ -15,7 +15,7 @@ export async function GET(request: Request, { params }: CarsParams) {
         return NextResponse.json({ status: 200, infoCar })
     }
     catch (error) {
-        return NextResponse.json({ status: 400, Error_Message: error })
+        return NextResponse.json({ Error_Message: error })
     }
 }
 
@@ -31,7 +31,7 @@ export async function PUT(request: Request, { params }: CarsParams) {
         })
         return NextResponse.json({ updateCar })
     } catch (error) {
-        return NextResponse.json({ status: 400, Error_Message: error })
+        return NextResponse.json({ Error_Message: error })
     }
 }
 
@@ -48,6 +48,6 @@ export async function DELETE(request: Request, { params }: CarsParams) {
 
         return NextResponse.json({ status: 200, message: 'Car deleted' })
     } catch (error) {
-        return NextResponse.json({ status: 400, Error_Message: error })
+        return NextResponse.json({ Error_Message: error })
     }
 }

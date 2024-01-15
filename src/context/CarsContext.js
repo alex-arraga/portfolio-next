@@ -276,11 +276,17 @@ export const CarsProvider = ({ children }) => {
                 }
 
                 // GET - Obtain the created order data to send to the "MP preference"
-                const obtainOrder = await getOrder(orderId)
-                const response = await obtainOrder.json()
-                const data = response.infoOrder
+                const response = await getOrder(orderId)
 
-                return data
+                if (response.ok) {
+                    const body = await response.json()
+                    const data = body.infoOrder
+
+                    return data
+                } else {
+                    toast.error('An error was ocurred... Please try again')
+                    return null
+                }
             } catch (error) {
                 console.log(error)
                 return null

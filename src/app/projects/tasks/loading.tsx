@@ -1,2 +1,2 @@
-import LoadingPage from "@/components/generic-components/LoadingPage";
+import { LoadingPage } from '@/components/index'
 export default LoadingPage

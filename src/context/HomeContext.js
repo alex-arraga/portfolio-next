@@ -38,17 +38,24 @@ export function HomeProvider({ children }) {
     const getUserId = async () => {
         const userId = dataUser()?.id_clerk;
         if (loadPage === true && userId !== undefined) {
-            const userDB = await fetch(`${baseApi}/create_user/${userId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
+            try {
+                const response = await fetch(`${baseApi}/create_user/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
 
-            const data = await userDB.json()
-            const id = data?.id
+                if (response.ok) {
+                    const data = await response.json()
+                    const id = data?.id
 
-            return id
+                    return id
+                }
+            } catch (error) {
+                console.log('An error getting user id was ocurred... ', error)
+                return null
+            }
         }
     };
 
@@ -84,15 +91,23 @@ export function HomeProvider({ children }) {
 
     const getUserDB = async () => {
         if (user.user.id) {
-            const userDB = await fetch(`${baseApi}/create_user/${user.user.id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
+            try {
+                const response = await fetch(`${baseApi}/create_user/${user.user.id}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
 
-            const data = await userDB.json()
-            return data
+                if (response.ok) {
+                    const data = await response.json()
+                    return data
+                }
+            } catch (error) {
+                console.log('An error loading user was ocurred... ', error)
+                return null
+            }
         }
     };
 

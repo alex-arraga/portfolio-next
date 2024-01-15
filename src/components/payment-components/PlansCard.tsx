@@ -30,7 +30,7 @@ export function PlansCard({ car, stripePrices }: PlansCardProps) {
                         </p>
                         <div className="flex justify-center items-center w-full h-full my-4">
                             <PaymentButton
-                                stripe
+                                stripe={true}
                                 title="I want this plan"
                                 containerStyle=" bg-primary-blue hover:bg-blue-800 duration-300 rounded-md w-auto h-auto"
                                 textStyle="font-medium text-white"
