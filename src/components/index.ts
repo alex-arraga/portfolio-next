@@ -45,7 +45,7 @@ import CarDetails from './cars-store-components/CarDetails'
 import ShowMore from './cars-store-components/ShowMore'
 
 // Cars-Store: Dashboard
-import Aside from './cars-store-components/dashboard/Aside'
+import HeaderCars from './cars-store-components/dashboard/HeaderCars'
 import YearFilter from './cars-store-components/dashboard/YearFilter'
 import PriceRangeFilter from './cars-store-components/dashboard/PriceRangeFilter'
 import Dashboard from './cars-store-components/dashboard/Dashboard'
@@ -103,7 +103,7 @@ export {
     CarCard,
     CarDetails,
     ShowMore,
-    Aside,
+    HeaderCars,
     YearFilter,
     PriceRangeFilter,
     Dashboard,

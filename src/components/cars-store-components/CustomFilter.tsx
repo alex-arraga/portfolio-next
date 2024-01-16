@@ -35,6 +35,7 @@ function CustomFilter({ title, options }: CustomFilterProps) {
               alt="arrow option icon"
               width={20}
               height={20}
+              className="object-contain"
             />
           </Listbox.Button>
           <Transition
@@ -49,7 +50,7 @@ function CustomFilter({ title, options }: CustomFilterProps) {
                   <Listbox.Option
                     key={option.title}
                     value={option}
-                    className={({ active }) => `relative cursor-pointer select-none py-2 px-4 z-10 ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
+                    className={({ active }) => `relative cursor-pointer py-2 px-4 z-10 ${active ? 'bg-primary-blue text-white' : 'text-gray-900 bg-white'}`}
                   >
                     {({ selected }) => (
                       <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>

@@ -9,11 +9,11 @@ import {
     SearchBar,
     TransmissionFilter,
     ResetAllFilters,
-    HamburgerMenuBar
+    Navbar
 } from "@/components/index";
 
 
-export function Aside({ searchParams }: AsideProps) {
+export function HeaderCars({ searchParams }: AsideProps) {
     const [isOpen, setIsOpen] = useState(false)
 
     const hamburgerParams = {
@@ -34,7 +34,7 @@ export function Aside({ searchParams }: AsideProps) {
 
     return (
         <>
-            <HamburgerMenuBar searchParams={hamburgerParams} handleClick={openModal} styleMenu='dashboard' />
+            <Navbar openModal={openModal} hamburgerParams={hamburgerParams} isDashboard />
 
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10 bg-cars" onClose={closeModal}>
@@ -114,4 +114,4 @@ export function Aside({ searchParams }: AsideProps) {
     )
 }
 
-export default Aside
+export default HeaderCars

@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import React, { MouseEventHandler } from "react";
 import { Price } from "./payment";
 
 export interface UpdateSearchParamsProps {
@@ -12,8 +12,17 @@ export interface DeleteParamProps {
 
 
 export interface NavBarProps {
+    secondNav?: React.ReactNode
+    isDashboard?: boolean
     otherClasses?: string
     isStatic?: boolean
+    hamburgerParams?: {
+        year: number | null | undefined,
+        manufacturer: string | null | undefined,
+        model: string | null | undefined,
+        transmission: string | null | undefined
+    }
+    openModal?: () => void
 }
 
 export interface FooterProps {

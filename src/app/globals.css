@@ -218,10 +218,6 @@ body {
   @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
 }
 
-.home__error-container {
-  @apply mt-16 flex justify-center items-center flex-col gap-2;
-}
-
 /* END: Home styles */
 
 /* START: Car Card styles */
@@ -232,10 +228,6 @@ body {
 
 .car-card__content {
   @apply w-full flex-col justify-between items-start gap-2;
-}
-
-.car-card__content-title {
-  @apply text-2xl font-bold capitalize;
 }
 
 .car-card__price {

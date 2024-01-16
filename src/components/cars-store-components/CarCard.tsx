@@ -33,7 +33,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                             <div className="flex justify-between items-center">
 
                                 {/* Car name */}
-                                <h1 className="car-card__content-title capitalize">
+                                <h1 className="text-lg sm:text-xl md:text-txt_22 font-bold capitalize truncate text-ellipsis">
                                     {make} {model}
                                 </h1>
 
@@ -141,9 +141,9 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                         <div className="car-card__content">
 
                             {/* Car name */}
-                            <h2 className="car-card__content-title capitalize">
+                            <h1 className="text-lg sm:text-xl md:text-txt_22 font-bold capitalize truncate text-ellipsis">
                                 {make} {model}
-                            </h2>
+                            </h1>
 
                             {/* Price rent */}
                             <p className="flex mt-6 text-txt_28 font-medium">

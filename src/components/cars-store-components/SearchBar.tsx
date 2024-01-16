@@ -41,30 +41,51 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
         return (
             <>
                 {
+                    // ES
                     otherClasses === 'aside-btn' ?
-                        <div className="relative">
-                            <button className={`flex items-center justify-center w-full h-full ${otherClasses}`}>
-                                <Image
-                                    src='/magnifying-glass.svg'
-                                    alt="magnifiying glass"
-                                    width={40}
-                                    height={40}
-                                    className="object-contain bg-sky-100 rounded-full" />
-                            </button>
+
+                        <div className="relative w-full h-full">
+                            <div className="bg-transparent border-2 border-sky-100 rounded-full w-1/2 items-center mt-4 h-10">
+                                <button className={`flex items-center p-4 rounded-full justify-between w-full h-full ${otherClasses}`}>
+                                    <p className="text-txt_10 sm:text-xs md:text-sm text-black text-opacity-50">Search!</p>
+                                    <Image
+                                        src='/magnifying-glass.svg'
+                                        alt="magnifiying glass"
+                                        width={30}
+                                        height={30}
+                                        className="object-contain bg-sky-200 p-0.5 rounded-full" />
+                                </button>
+                            </div>
                         </div>
 
-                        :
 
-                        <div className="relative">
-                            <button type="submit" className={`ml-3 z-10 ${otherClasses}`}>
-                                <Image
-                                    src='/magnifying-glass.svg'
-                                    alt="magnifiying glass"
-                                    width={40}
-                                    height={40}
-                                    className="object-contain" />
-                            </button>
-                        </div>
+                        : otherClasses === 'home-bar' ?
+                            <div className="relative w-full sm:hidden">
+                                <div className="w-[calc(60%)] px-4 py-2 rounded-full bg-blue-100">
+                                    <button className={`flex justify-between items-center right-2 w-full h-full ${otherClasses}`}>
+                                        <p className="font-medium text-sm text-black-100 text-opacity-70">Search!</p>
+                                        <Image
+                                            src='/magnifying-glass.svg'
+                                            alt="magnifiying glass"
+                                            width={30}
+                                            height={30}
+                                            className="object-contain rounded-full" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            :
+
+                            <div className="relative">
+                                <button type="submit" className={`m-1 w-auto h-fit z-10 ${otherClasses}`}>
+                                    <Image
+                                        src='/magnifying-glass.svg'
+                                        alt="magnifiying glass"
+                                        width={40}
+                                        height={40}
+                                        className="object-contain h-10 w-10" />
+                                </button>
+                            </div>
                 }
             </>
         )
@@ -101,14 +122,8 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                 />
                             </div>
 
-                            <div className="flex justify-start w-full items-center mt-4 h-10">
-                                <div className="flex justify-between items-center w-1/2 px-4 border-2 rounded-full text-xs text-gray-400 border-indigo-200 border-opacity-50 h-full">
-                                    <p>Search!</p>
-                                    <SearchButton otherClasses="aside-btn w-[26px] p-1 rounded-full bg-sky-200 h-[26px]" />
-                                </div>
-                            </div>
+                            <SearchButton otherClasses="aside-btn" />
                         </div>
-
                     </form>
 
                     :
@@ -119,7 +134,6 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                 manufacturer={manufacturer}
                                 setManufacturer={setManufacturer}
                             />
-                            <SearchButton otherClasses="sm:hidden" />
                         </div>
 
                         {/* Search Model */}
@@ -138,9 +152,9 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
                                 placeholder={hasModel ? 'Last search: ' + hasModel : 'Tiguan'}
                                 className="searchbar__input"
                             />
-                            <SearchButton otherClasses="sm:hidden" />
                         </div>
-                        <SearchButton otherClasses="max-sm:hidden" />
+                        <SearchButton otherClasses="home-bar" />
+                        <SearchButton otherClasses="hidden sm:block" />
                     </form>
             }
         </>

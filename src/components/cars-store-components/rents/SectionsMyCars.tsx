@@ -37,7 +37,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
                         </div>
 
                         {/* Likes cars */}
-                        <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasLikes() === false ? 'hidden' : 'block'}`}>
+                        <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasLikes() === false ? 'hidden' : 'block'}`}>
                             {
                                 likedCars.sort((a, b) => b.id - a.id).map((cars) => (
                                     <section className="h-full w-full" key={cars.id}>
@@ -56,7 +56,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
                         </div>
 
                         {/* Likes cars */}
-                        <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-full overflow-y-auto mb-[calc(10vh)] ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
+                        <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
                             {
                                 rentedCars.sort((a, b) => b.id - a.id).map((cars) => (
                                     <section className="h-full w-full" key={cars.id}>
@@ -72,3 +72,5 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
 }
 
 export default SectionsMyCars
+
+// overflow-y-auto mb-[calc(10vh)]

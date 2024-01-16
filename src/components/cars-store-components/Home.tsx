@@ -1,5 +1,5 @@
 import { fuels, yearsOfProduction } from '@/constants';
-import { CustomFilter, SearchBar, CarCard, ShowMore, CustomButton } from '..'
+import { CustomFilter, SearchBar, CarCard, ShowMore, CustomButton, EmptyDataMessage } from '..'
 import { fetchCarsAPI } from '@/app/utils'
 import { HomeProps } from '@/types/cars-store';
 
@@ -26,12 +26,16 @@ export async function Home({ searchParams }: HomeProps) {
             <div className='home__filters'>
                 <SearchBar />
 
-                <div className='home_filter-container flex items-end gap-3'>
-                    <CustomFilter title="fuel" options={fuels} />
-                    <CustomFilter title="year" options={yearsOfProduction} />
+                <div className='flex flex-col justify-start items-start sm:flex-row sm:justify-start max-w-md sm:items-end w-full gap-6 sm:gap-3'>
+                    <div className='home_filter-container flex items-end gap-3'>
+                        <CustomFilter title="fuel" options={fuels} />
+                        <CustomFilter title="year" options={yearsOfProduction} />
+                    </div>
+
                     <CustomButton
                         title='Reset filters'
-                        containerStyle='flex items-center max-h-[38px] shadow-md rounded-lg bg-indigo-100 hover:bg-indigo-400 hover:text-white duration-200'
+                        textStyle='text-sm sm:text-base'
+                        containerStyle='flex justify-center items-center max-h-9 px-2 w-1/2 shadow-sm sm:shadow-md rounded-lg bg-purple-100 hover:bg-purple-300 active:bg-purple-300 duration-200'
                         isResetButton={true}
                     />
                 </div>
@@ -53,8 +57,8 @@ export async function Home({ searchParams }: HomeProps) {
 
                         :
 
-                        <section className='home__error-container'>
-                            <h2 className='text-black text-xl'>Oops no results</h2>
+                        <section className='flex justify-center items-center flex-col gap-2 mt-8 sm:mt-10'>
+                            <EmptyDataMessage styleMessage='home' />
                         </section>
                 }
 

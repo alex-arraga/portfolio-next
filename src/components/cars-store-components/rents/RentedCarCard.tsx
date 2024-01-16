@@ -79,7 +79,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
             <div className="w-full flex-col relative justify-between items-start gap-2">
                 <div className="flex items-start justify-between">
                     {/* Car name */}
-                    <h1 className="text-[18px] md:text-[22px] leading-[26px] font-bold capitalize">
+                    <h1 className="text-lg md:text-txt_22 font-bold capitalize truncate text-ellipsis">
                         {car.make} {car.model} - {car.transmission === 'm' ? 'MT' : 'AT'}
                     </h1>
 
@@ -127,7 +127,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
 
                 {/* Info */}
 
-                <section className="flex flex-col justify-start items-start w-full h-full rounded-md">
+                <section className="flex flex-col justify-start items-start w-full h-fit rounded-md">
                     {
                         car.rented ?
                             <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md mb-4">
@@ -202,3 +202,5 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
 }
 
 export default RentedCarCard
+
+// leading-[26px]

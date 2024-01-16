@@ -1,4 +1,4 @@
-import { Aside, Navbar, Dashboard } from '@/components'
+import { HeaderCars, Dashboard, Footer } from '@/components'
 import { HomeProps } from '@/types/cars-store'
 import { fetchCarsAPI } from '@/app/utils';
 
@@ -15,10 +15,10 @@ async function page({ searchParams }: HomeProps) {
     });
 
     return (
-        <div className='max-h-screen overflow-hidden bg-cars'>
-            <Navbar otherClasses='relative border-b-2 border-gray-200' />
-            <Aside searchParams={searchParams} />
+        <div className='h-full w-full overflow-y-auto overflow-x-hidden bg-cars'>
+            <HeaderCars searchParams={searchParams} />
             <Dashboard searchParams={searchParams} allCars={cars ? cars : []} />
+            <Footer />
         </div>
     )
 }

@@ -50,6 +50,7 @@ export const updateSearchParams = ({ params }: UpdateSearchParamsProps) => {
     })
 
     const newPathName = `${window.location.pathname}?${searchParams.toString()}`
+    toast.success('Filters applicated')
     return newPathName
 };
 

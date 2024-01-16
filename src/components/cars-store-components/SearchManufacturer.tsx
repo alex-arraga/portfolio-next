@@ -32,7 +32,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                         width={20}
                                         height={20}
                                         alt="Car Logo"
-                                        className="ml-4 opacity-30 absolute"
+                                        className="object-contain ml-4 opacity-30 absolute"
                                     />
 
                                     <Combobox.Input
@@ -91,7 +91,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                         width={20}
                                         height={20}
                                         alt="Car Logo"
-                                        className="ml-4"
+                                        className="object-contain ml-4"
                                     />
                                 </Combobox.Button>
 

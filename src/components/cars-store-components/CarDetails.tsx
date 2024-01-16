@@ -3,7 +3,7 @@
 import { CarDetailsProps } from "@/types/cars-store"
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { generateCarImageAPI, calculateCarRent } from "@/app/utils"
+import { generateCarImageAPI, calculateCarRent, renameClasses } from "@/app/utils"
 
 import Image from "next/image"
 import { baseApiMp } from '@/libs/baseURL'
@@ -283,6 +283,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                             <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                               <Image src={generateCarImageAPI(car)}
                                 fill
+                                sizes="500px"
                                 alt="cars"
                                 className="object-contain"
                               />
@@ -319,9 +320,9 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Name car and model */}
                           <div className="flex-1 flex flex-col gap-2">
-                            <h2 className="font-semibold text-xl capitalize">
+                            <h1 className="font-semibold text-lg sm:text-xl capitalize truncate text-clip text-black">
                               {car.make} {car.model}
-                            </h2>
+                            </h1>
                           </div>
 
                           {/* Show de properties and values of object 'car' */}
@@ -335,9 +336,10 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                   }
                                 </h4>
                                 <p className="font-medium text-black-100 capitalize">{
-                                  value === 'm' ? value = 'Manual'
-                                    : value === 'a' ? value = 'Automatic'
-                                      : value
+                                  key === 'class' ? value = renameClasses(value)
+                                    : value === 'm' ? value = 'Manual'
+                                      : value === 'a' ? value = 'Automatic'
+                                        : value
                                 }</p>
                               </div>
                             ))}
