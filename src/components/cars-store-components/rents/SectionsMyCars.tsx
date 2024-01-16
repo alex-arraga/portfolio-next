@@ -4,10 +4,17 @@ import RentedCarCard from "./RentedCarCard";
 import { SectionsMyCarsProps } from "@/types/cars-store";
 import { useCarsContext } from '@/context/CarsContext'
 import EmptyDataMessage from "../EmptyDataMessage";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 
 export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: SectionsMyCarsProps) => {
+    const router = useRouter();
     const { sectionLikes } = useCarsContext();
+    const [countLikes, setCountLikes] = useState(0);
+    const [countRents, setCountRents] = useState(0);
+
 
     const hasLikes = () => {
         if (likedCars.length >= 1) {
@@ -26,6 +33,21 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
             return false
         }
     }
+
+
+    useEffect(() => {
+        const numberLikes = likedCars.length;
+        const numberRentedCars = rentedCars.length;
+
+        if (countLikes !== numberLikes) {
+            setCountLikes(numberLikes)
+            router.refresh()
+        } else if (countRents !== numberRentedCars) {
+            setCountRents(numberRentedCars)
+            router.refresh()
+        }
+    }, [countLikes, countRents])
+
 
     return (
         <>
@@ -72,5 +94,3 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
 }
 
 export default SectionsMyCars
-
-// overflow-y-auto mb-[calc(10vh)]
