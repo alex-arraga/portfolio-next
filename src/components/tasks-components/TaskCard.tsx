@@ -27,10 +27,10 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
                                         <Image
                                             src={'/cross-close-rounded-red.svg'}
                                             alt="close"
-                                            width={16}
-                                            height={16}
+                                            width={20}
+                                            height={20}
                                             onClick={(e) => deleteCompletedTask(e, task)}
-                                            className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                            className='object-contain cursor-pointer ml-4 h-4 w-4 sm:h-[18px] sm:w-[18px] 2xl:w-5 2xl:h-5 hover:scale-125 duration-200'
                                         />
                                     </div>
                                 </div>
@@ -46,22 +46,22 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
                         className="bg-slate-800 p-7 border-b-2 border-pink-600 hover:border-pink-400 rounded-md hover:brightness-110 duration-300 cursor-pointer">
                         <div className="flex justify-between items-start">
                             <h3 className="text-base sm:text-lg md:text-xl font-medium">{task.title}</h3>
-                            <div className="flex gap-4 mx-4 sm:ml-4">
+                            <div className="flex gap-3 md:gap-2 mx-4 sm:ml-4">
                                 <Image
                                     src={'/check-rounded-green.svg'}
                                     alt="check to completed"
-                                    width={16}
-                                    height={16}
+                                    width={20}
+                                    height={20}
                                     onClick={(e) => createCompletedTask(e, task)}
-                                    className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                    className='object-contain cursor-pointer ml-4 h-4 w-4 sm:h-[18px] sm:w-[18px] 2xl:w-5 2xl:h-5 hover:scale-125 duration-200'
                                 />
                                 <Image
                                     src={'/cross-close-rounded-red.svg'}
                                     alt="close"
-                                    width={16}
-                                    height={16}
+                                    width={20}
+                                    height={20}
                                     onClick={(e) => deleteTask(e, task)}
-                                    className='object-contain cursor-pointer ml-4 h-3 w-3 sm:h-4 sm:w-4 hover:scale-125 duration-200'
+                                    className='object-contain cursor-pointer ml-4 h-4 w-4 sm:h-[18px] sm:w-[18px] 2xl:w-5 2xl:h-5 hover:scale-125 duration-200'
                                 />
                             </div>
                         </div>
