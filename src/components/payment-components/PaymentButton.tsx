@@ -22,7 +22,8 @@ function PaymentButton({
     durationRent,
     urlPayAPI }: PaymentButtonProps) {
 
-    const [isLoading, setIsLoading] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const [errorLoading, setErrorLoading] = useState(false)
     const { newOrder } = useCarsContext()
     const uuid = uuidv4();
 
@@ -30,14 +31,14 @@ function PaymentButton({
     return (
         <div>
             <button
-                disabled={false}
-                className={`custom-btn ${containerStyle}`}
+                disabled={errorLoading || isLoading}
+                className={`custom-btn ${errorLoading ? 'disabled:bg-gray-600 disabled:bg-opacity-30' : ''} ${containerStyle}`}
                 onClick={async () => {
 
                     // MERCADO PAGO - Payment
                     if (mercadoPago) {
                         try {
-                            setIsLoading('loading')
+                            setIsLoading(true)
                             // Create order with "pending" status and data
                             const order: NewOrderProps = await newOrder(car, uuid, durationRent, costRent, undefined);
                             const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
@@ -53,18 +54,21 @@ function PaymentButton({
                                 })
                             });
 
-                            setIsLoading('loaded')
 
-                            // Return the API response with payment link, creating the mp preference
-                            const data = await response.json();
+                            if (response.ok) {
+                                // Convert the response in json, this have the payment link
+                                setIsLoading(false)
+                                const data = await response.json();
 
-                            // If API response is ok, redirect to payment URL
-                            if (data.status === 200 || 201) {
-                                window.location.href = data.URL;
+                                if (data.status === 200 || 201) {
+                                    // If data have status 200 or 201, redirect to payment URL
+                                    window.location.href = data.URL;
+                                }
                             } else {
-                                console.error('Error mp request')
+                                throw new Error('Error: Mercado Pago API request failed')
                             }
                         } catch (error) {
+                            setErrorLoading(true)
                             console.log(error)
                         }
                     }
@@ -72,11 +76,11 @@ function PaymentButton({
                     // STRIPE - Payment
                     if (stripe) {
                         try {
-                            setIsLoading('loading')
+                            setIsLoading(true)
                             const order: NewOrderProps = await newOrder(car, uuid, durationRent, undefined, suscription);
 
                             if (order) {
-                                const res = await fetch(`${urlPayAPI}`, {
+                                const response = await fetch(`${urlPayAPI}`, {
                                     method: 'POST',
                                     credentials: 'include',
                                     body: JSON.stringify({
@@ -85,48 +89,69 @@ function PaymentButton({
                                     })
                                 });
 
-                                setIsLoading('loaded')
+                                if (response.ok) {
+                                    setIsLoading(false)
+                                    const data = await response.json();
 
-                                const response = await res.json();
-                                window.location.href = response.url;
+                                    window.location.href = data.url;
+                                } else {
+                                    throw new Error('Error: Stripe API request failed')
+                                }
                             }
-
                         } catch (error) {
+                            setErrorLoading(true)
                             console.log(error)
                         }
                     }
                 }}
             >
-                {isLoading === 'loading' ?
-                    <div className="animate-spin bg-gradient-to-r h-6 w-6 from-purple-300 to-blue-400" />
+                {mercadoPago && isLoading ?
+                    <div className='flex justify-between items-center px-2 gap-3 w-full h-full'>
+                        <p className='text-black text-xs sm:text-sm  font-medium'>Loading...</p>
+                        <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-500' />
+                    </div>
 
-                    :
+                    : isLoading ?
 
-                    <>
-                        {leftIcon && (
-                            <div className="relative w-6 h-6">
-                                <Image
-                                    src={leftIcon}
-                                    alt="right icon"
-                                    fill
-                                    className="object-contain"
-                                />
+                        <div className='flex justify-between items-center px-2 gap-3 w-full h-full'>
+                            <p className='text-white text-xs sm:text-sm  font-medium'>Loading...</p>
+                            <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-200' />
+                        </div>
+
+                        : errorLoading ?
+
+                            <div className='flex justify-between items-center px-2 gap-2 w-full h-full bg-transparent'>
+                                <p className='text-gray-700 text-xs sm:text-sm font-medium'>Load failure</p>
+                                <p className='text-base'>😥</p>
                             </div>
-                        )}
-                        <span className={`flex-1 ${textStyle}`}>
-                            {title}
-                        </span>
-                        {rightIcon && (
-                            <div className="relative w-6 h-6">
-                                <Image
-                                    src={rightIcon}
-                                    alt="right icon"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                        )}
-                    </>
+
+                            :
+
+                            <>
+                                {leftIcon && (
+                                    <div className="relative w-6 h-6">
+                                        <Image
+                                            src={leftIcon}
+                                            alt="right icon"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                )}
+                                <span className={`flex-1 ${textStyle}`}>
+                                    {title}
+                                </span>
+                                {rightIcon && (
+                                    <div className="relative w-6 h-6">
+                                        <Image
+                                            src={rightIcon}
+                                            alt="right icon"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                )}
+                            </>
                 }
             </button>
         </div>

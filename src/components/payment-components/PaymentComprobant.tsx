@@ -171,9 +171,9 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                                                     ARS ${hasMonthlyPlan ? priceDaySuscription?.toLocaleString() : priceDay?.toLocaleString()}
                                                                 </p>
                                                             </li>
-                                                            <li className="flex justify-between items-center bg-teal-300 mt-2 p-2 rounded-md">
-                                                                <h3 className="font-medium">total cost:</h3>
-                                                                <p className="text-sm md:text-base font-semibold text-medium">
+                                                            <li className="flex justify-between items-center bg-teal-700 mt-2 py-2 px-4 rounded-md">
+                                                                <h3 className="text-gray-100">total cost:</h3>
+                                                                <p className="text-sm md:text-base font-medium text-medium text-white">
                                                                     ARS ${hasMonthlyPlan ? priceSuscription : payment?.price}
                                                                 </p>
                                                             </li>
