@@ -2,13 +2,11 @@
 
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { baseApiProjectsUrl, baseApi } from '@/libs/baseURL';
+import { baseApiProjectsUrl } from '@/libs/baseURL';
 import { useState, useEffect } from 'react'
-
-import { useHomeContext } from './HomeContext';
-
-// Context
+import { confirmToast } from '@/components/CustomToast';
 import { createContext, useContext } from 'react'
+import { useHomeContext } from './HomeContext';
 
 export const CalculatorContext = createContext()
 
@@ -17,6 +15,7 @@ export const useCalculatorContext = () => {
     if (!context) { console.log('useCalculator must be inside of a context') }
     return context
 }
+
 
 export const CalculatorProvider = ({ children }) => {
     const { getUserId, dataUser } = useHomeContext();
@@ -113,11 +112,13 @@ export const CalculatorProvider = ({ children }) => {
 
     const deleteOperation = async (id) => {
         try {
-            if (window.confirm('¿Confirma que quiere eliminar la operación?')) {
+            const confirm = await confirmToast('¿Confirma que quiere eliminar la operación?')
+            if (confirm) {
                 await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
+
                 router.refresh()
                 toast.success('Se ha eliminado la operación')
             }
@@ -140,8 +141,6 @@ export const CalculatorProvider = ({ children }) => {
             setModalIsVisible,
             getExpression,
             getResult,
-            // recoverExpression,
-            // recoverResult
         }}
     >
         {children}
