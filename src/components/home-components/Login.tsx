@@ -1,20 +1,21 @@
-import { myHost } from "@/libs/baseURL";
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image"
 
 function Login() {
     return (
         <div className="flex flex-col min-h-screen h-full justify-center items-center">
-            <Image
-                src={'/header-icon.svg'}
-                alt="main icon"
-                width={50}
-                height={50}
-                className="absolute top-3 left-3 xl:left-5 xl:top-5 hidden md:block md:w-[40px] md:h-[40px] xl:w-[50px] xl:h-[50px]"
-            />
+            <div className="flex w-screen justify-center items-center md:absolute md:justify-start md:left-0 md:top-0 md:w-fit p-2 my-2">
+                <Image
+                    src={'/header-icon.svg'}
+                    alt="main icon"
+                    width={45}
+                    height={45}
+                    className="object-contain md:ml-2"
+                />
+            </div>
 
-            <div className="relative flex flex-col justify-center mt-4 xl:mt-6 items-center gap-6 w-full max-h-[20vh]">
-                <h1 className="text-center mx-4 text-base sm:text-lg md:text-xl xl:text-2xl font-semibold text-white">
+            <div className="relative flex flex-col justify-center items-center gap-6 w-full max-h-[20vh]">
+                <h1 className="text-center mx-4 text-base sm:text-lg md:text-xl xl:text-2xl font-semibold text-indigo-100">
                     ¡Hola internauta, bienvenido a mi Portfolio Web!
                 </h1>
                 <p className="text-center mx-4 text-sm xl:text-sm text-gray-300">
@@ -28,7 +29,7 @@ function Login() {
 
             <Image
                 src={'/astronaut-index.svg'}
-                alt=""
+                alt="astronaut"
                 height={300}
                 width={300}
                 className="object-contain absolute bottom-0 right-0 hidden xl:block"
