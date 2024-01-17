@@ -3,6 +3,7 @@
 import { useHomeContext } from "./HomeContext";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { confirmToast } from "@/components/CustomToast";
 import { toast } from "sonner";
 import { useForm } from 'react-hook-form';
 import { baseApiProjectsUrl } from "@/libs/baseURL";
@@ -117,13 +118,15 @@ export const TasksProvider = ({ children }) => {
     const deleteTask = async (e, task) => {
         e.stopPropagation();
         try {
-            if (window.confirm('¿Confirma que quiere eliminar la tarea?')) {
+            const confirm = await confirmToast('¿Confirma que quiere eliminar la tarea pendiente?')
+            if (confirm) {
                 await fetch(`${baseApiProjectsUrl}/tasks/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
+
+                toast.success('Tarea eliminada con exito')
             }
-            toast.success('Tarea eliminada con exito')
         } catch (error) {
             console.log(error)
             toast.error('No se ha podido eliminar la tarea')
@@ -136,13 +139,15 @@ export const TasksProvider = ({ children }) => {
     const deleteCompletedTask = async (e, task) => {
         e.stopPropagation();
         try {
-            if (window.confirm('¿Confirma que quiere eliminar la tarea completada?')) {
+            const confirm = await confirmToast('¿Confirma que quiere eliminar la tarea completada?')
+            if (confirm) {
                 await fetch(`${baseApiProjectsUrl}/tasks/completed/${task.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
+
+                toast.success('Se ha eliminado la tarea completada')
             }
-            toast.success('Se ha eliminado la tarea completada')
         } catch (error) {
             console.log(error)
             toast.error('No se ha podido eliminar la tarea')
