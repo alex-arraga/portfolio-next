@@ -4,6 +4,8 @@ import { baseApi, myHost } from '@/libs/baseURL';
 import { currentUser } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
 import { BodyPreferenceMp } from '@/types/api';
+import { PreferenceMercadoPagoSchema } from '@/schemas/zod-schemas';
+
 
 export async function POST(request: Request) {
     if (process.env.MERCADOPAGO_SECRET_TOKEN) {
@@ -65,15 +67,23 @@ export async function POST(request: Request) {
                 }
             });
 
+            // Zod
+            const check = PreferenceMercadoPagoSchema.safeParse(createPreference)
 
-            return NextResponse.json({
-                status: createPreference.api_response.status,
-                URL: createPreference.init_point,
-            })
+            if (check.success) {
+                return NextResponse.json({
+                    status: createPreference.api_response.status,
+                    URL: createPreference.init_point,
+                })
+
+            } else {
+                throw new Error('Failure in the preference', check.error)
+            }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     } else {
-        return NextResponse.json({ Error_Message: 'MPSecretKey not exist' })
+        console.error('MPSecretKey not exist')
+        return NextResponse.json({ status: 500, Error_Message: 'MPSecretKey not exist' })
     }
 }
