@@ -459,4 +459,4 @@ export const StripeInvoicePaymentSchema = z.object({
     type: z.string()
 })
 
-
+export type StripeInvoiceResponse = z.infer<typeof StripeInvoicePaymentSchema>
