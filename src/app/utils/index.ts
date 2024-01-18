@@ -45,18 +45,14 @@ export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse |
 
 // Update params to filter cars info
 export const updateSearchParams = ({ params }: UpdateSearchParamsProps) => {
-    try {
-        const searchParams = new URLSearchParams(window.location.search);
-        params.map(({ type, value }) => {
-            searchParams.set(type, value)
-        })
+    const searchParams = new URLSearchParams(window.location.search);
+    params.map(({ type, value }) => {
+        searchParams.set(type, value)
+    })
 
-        const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-        toast.success('Filters applicated')
-        return newPathName
-    } catch (error) {
-        console.log('Error in the function to updating search params', error)
-    }
+    const newPathName = `${window.location.pathname}?${searchParams.toString()}`
+    toast.success('Filters applicated')
+    return newPathName
 };
 
 
