@@ -1,6 +1,5 @@
 // Client URL
-// export const myHost = process.env.NEXT_PUBLIC_BASE_URL
-export const myHost = 'https://9cce-190-113-181-37.ngrok-free.app'
+export const myHost = process.env.NEXT_PUBLIC_BASE_URL
 export const baseClientProjectsURL = `${myHost}/projects`
 
 // My API

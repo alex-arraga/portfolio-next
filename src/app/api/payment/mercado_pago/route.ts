@@ -77,7 +77,7 @@ export async function POST(request: Request) {
                 })
 
             } else {
-                throw new Error('Failure in the preference', check.error)
+                throw new Error('Failure in the Mercado Pago preference', check.error)
             }
         } catch (error) {
             console.error(error)

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Stripe } from 'stripe'
 import { settingOrder } from "@/app/utils";
+import { StripeInvoicePaymentSchema } from "@/schemas/zod-schemas";
 
 export async function POST(request: Request) {
     if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_WEBHOOK_KEY) {
@@ -19,20 +20,26 @@ export async function POST(request: Request) {
                 event = stripe.webhooks.constructEvent(payload, signature, webhookSecret)
 
                 if (event.type == 'invoice.payment_succeeded' || event.type == 'invoice.payment_failed') {
-                    const payData = event.data.object
-                    const amount = payData.amount_paid / 100
+                    const check = StripeInvoicePaymentSchema.safeParse(event)
 
-                    const status = payData.status!
-                    const statusDetail = 'recurrent_suscription'
-                    const typeService = 'stripe'
-                    const payResource = 'card'
-                    const installments = 1
-                    const paymentId = payData.id
-                    const fee = amount * 0.055;
-                    const netAmount = amount - fee ?? undefined
-                    const orderId = payData.subscription_details?.metadata?.order_id!
+                    if (check.success) {
+                        const payData = event.data.object
+                        const amount = payData.amount_paid / 100
 
-                    settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                        const status = payData.status!
+                        const statusDetail = 'recurrent_suscription'
+                        const typeService = 'stripe'
+                        const payResource = 'card'
+                        const installments = 1
+                        const paymentId = payData.id
+                        const fee = amount * 0.055;
+                        const netAmount = amount - fee ?? undefined
+                        const orderId = payData.subscription_details?.metadata?.order_id!
+
+                        settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                    } else {
+                        throw new Error('Failure in Stripe payment intent', check.error)
+                    }
                 };
 
                 return NextResponse.json({ status: 200 })
@@ -41,7 +48,7 @@ export async function POST(request: Request) {
                 return NextResponse.json({ Webhook_Error: error })
             }
         } else {
-            return NextResponse.json({ Webhook_Error: 'sig or endpoint not exist' })
+            return NextResponse.json({ Webhook_Error: 'Signature or endpoint not exist' })
         }
     } else {
         return NextResponse.json({ Webhook_Error: 'STRIPE_SECRET_KEY not exist' })
