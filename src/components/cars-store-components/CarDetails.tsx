@@ -165,7 +165,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               <div className='flex gap-4'>
                                 <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                                   {/* Main image */}
-                                  <Image src={generateCarImageAPI(car)}
+                                  <Image src={generateCarImageAPI(car) ?? ''}
                                     fill
                                     sizes="500px"
                                     alt="cars"
@@ -174,7 +174,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 </div>
                                 <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
                                   {/* Main image */}
-                                  <Image src={generateCarImageAPI(car, '23')}
+                                  <Image src={generateCarImageAPI(car, '23') ?? ''}
                                     fill
                                     sizes="500px"
                                     alt="cars"
@@ -183,7 +183,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 </div>
                                 <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
                                   {/* Main image */}
-                                  <Image src={generateCarImageAPI(car, '13')}
+                                  <Image src={generateCarImageAPI(car, '13') ?? ''}
                                     fill
                                     sizes="500px"
                                     alt="cars"
@@ -281,7 +281,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           {/* Main image */}
                           <div className="flex flex-col gap-3">
                             <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                              <Image src={generateCarImageAPI(car)}
+                              <Image src={generateCarImageAPI(car) ?? ''}
                                 fill
                                 sizes="500px"
                                 alt="cars"
@@ -292,7 +292,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                             {/* 3 more images of the car, in different angles */}
                             <div className="flex gap-3">
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={generateCarImageAPI(car, '29')}
+                                <Image src={generateCarImageAPI(car, '29') ?? ''}
                                   fill
                                   sizes="500px"
                                   alt="cars"
@@ -300,7 +300,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 />
                               </div>
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={generateCarImageAPI(car)}
+                                <Image src={generateCarImageAPI(car) ?? ''}
                                   fill
                                   sizes="500px"
                                   alt="cars"
@@ -308,7 +308,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 />
                               </div>
                               <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={generateCarImageAPI(car, '13')}
+                                <Image src={generateCarImageAPI(car, '13') ?? ''}
                                   fill
                                   sizes="500px"
                                   alt="cars"

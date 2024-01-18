@@ -75,7 +75,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
 
                             {/* Main image */}
                             <div className="relative w-full h-40 my-2 object-contain">
-                                <Image src={generateCarImageAPI(car, '23')}
+                                <Image src={generateCarImageAPI(car, '23') ?? ''}
                                     fill
                                     sizes="500px"
                                     alt="cars"
@@ -158,7 +158,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
 
                             {/* Main image */}
                             <div className="relative w-full h-40 my-3 object-contain">
-                                <Image src={generateCarImageAPI(car)}
+                                <Image src={generateCarImageAPI(car) ?? ''}
                                     fill
                                     sizes="300px"
                                     alt="cars"

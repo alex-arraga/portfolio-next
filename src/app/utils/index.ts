@@ -1,8 +1,9 @@
-import { CarsResponse, CarsResponseSchema } from "@/types/zod-validation";
+import { CarsResponse, CarsResponseSchema, CarImagesSchema } from "@/schemas/zod-schemas";
 import { CarCardProps, DeleteParamProps, FilterProps, UpdateSearchParamsProps } from "@/types/cars-store";
 import { toast } from "sonner";
 import { prisma } from "@/libs/prisma";
 import { SettingOrderParams } from "@/types/payment";
+
 
 // Obtain cars information
 export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse | undefined> {
@@ -27,10 +28,10 @@ export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse |
             console.error(await response.text())
             return []
         } else {
+            // Zod check
             const result = await response.json() as CarsResponse
-
-            // Zod chek
             const check = CarsResponseSchema.safeParse(result)
+
             if (check.success) {
                 return result
             } else {
@@ -44,39 +45,48 @@ export async function fetchCarsAPI(filters: FilterProps): Promise<CarsResponse |
 
 // Update params to filter cars info
 export const updateSearchParams = ({ params }: UpdateSearchParamsProps) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    params.map(({ type, value }) => {
-        searchParams.set(type, value)
-    })
+    try {
+        const searchParams = new URLSearchParams(window.location.search);
+        params.map(({ type, value }) => {
+            searchParams.set(type, value)
+        })
 
-    const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-    toast.success('Filters applicated')
-    return newPathName
+        const newPathName = `${window.location.pathname}?${searchParams.toString()}`
+        toast.success('Filters applicated')
+        return newPathName
+    } catch (error) {
+        console.log('Error in the function to updating search params', error)
+    }
 };
 
 
 // Clear a filter
 export const deleteParam = ({ param, value }: DeleteParamProps) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const existingParams = Object.fromEntries(searchParams.entries())
+    try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const existingParams = Object.fromEntries(searchParams.entries())
 
-    if (value) {
-        if (existingParams[param] === value) {
+        if (value) {
+            if (existingParams[param] === value) {
+                delete existingParams[param]
+
+                const newSearchParam = new URLSearchParams(existingParams)
+                const clearPathName = `${window.location.pathname}?${newSearchParam.toString()}`
+                window.location.href = clearPathName
+            }
+        } else {
+            existingParams[param]
             delete existingParams[param]
 
             const newSearchParam = new URLSearchParams(existingParams)
             const clearPathName = `${window.location.pathname}?${newSearchParam.toString()}`
             window.location.href = clearPathName
         }
-    } else {
-        existingParams[param]
-        delete existingParams[param]
-
-        const newSearchParam = new URLSearchParams(existingParams)
-        const clearPathName = `${window.location.pathname}?${newSearchParam.toString()}`
-        window.location.href = clearPathName
+    } catch (error) {
+        console.log('Error in the function to delete specific parameters', error)
     }
 }
+
 
 // Clear all filters
 export const deleteAllParams = () => {
@@ -104,20 +114,42 @@ export const deleteAllParams = () => {
     }
 }
 
+
 // Obtain cars images
 export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
-    const url = new URL(process.env.NEXT_PUBLIC_IMAGIN_URL!);
-    const { make, model, year } = car;
+    try {
+        const { make, model, year } = car;
 
-    url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_SECRET_KEY!);
-    url.searchParams.append('make', make);
-    url.searchParams.append('modelFamily', model.split(" ")[0]);
-    url.searchParams.append('zoomType', 'fullscreen');
-    url.searchParams.append('modelYear', `${year}`);
-    url.searchParams.append('angle', `${angle}`);
-    url.searchParams.append('color', `${color}`);
+        const apiUrl = process.env.NEXT_PUBLIC_IMAGIN_URL!;
+        const secretKey = process.env.NEXT_PUBLIC_IMAGIN_SECRET_KEY!;
 
-    return url.toString();
+        let url = new URL(apiUrl);
+
+        // Zod
+        const check = CarImagesSchema.safeParse({
+            customer: secretKey,
+            make: make,
+            modelFamily: car.model.split(" ")[0],
+            zoomType: 'fullscreen',
+            modelYear: year.toString(),
+            angle: angle || '',
+            color: color || '',
+        });
+
+        if (check.success) {
+            url.searchParams.append('customer', secretKey);
+            url.searchParams.append('make', make);
+            url.searchParams.append('modelFamily', model.split(" ")[0]);
+            url.searchParams.append('zoomType', 'fullscreen');
+            url.searchParams.append('modelYear', year.toString());
+            url.searchParams.append('angle', angle || '');
+            url.searchParams.append('color', color || '');
+
+            return url.toString()
+        }
+    } catch (error) {
+        console.error('Error in Imagin API function', error)
+    }
 };
 
 
@@ -150,6 +182,7 @@ export const renameClasses = (nameClass: string) => {
 }
 
 
+// Calculate the price per day of renting a car
 export const calculateCarRent = (city_mpg: number, year: number) => {
     const basePricePerDay = 50; // Base rental price per day in dollars
     const mileageFactor = 0.1; // Additional rate per mile driven
@@ -166,8 +199,8 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 };
 
 
+// Update rents orders data and the corresponding car
 export const settingOrder = async ({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount }: SettingOrderParams) => {
-
     if (status === 'approved' || status === 'paid') {
         try {
             // Update order to "sucess" and "rented" prop of cars to "true"
