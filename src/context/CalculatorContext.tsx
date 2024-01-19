@@ -1,15 +1,20 @@
 "use client"
 
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { baseApiProjectsUrl } from '@/libs/baseURL';
-import { useState, useEffect } from 'react'
-import { confirmToast } from '@/components/CustomToast';
-import { createContext, useContext } from 'react'
-import { useHomeContext } from './HomeContext';
+import { DefaultContextProviderProps } from "@/types/context-types";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useHomeContext } from "@/context/HomeContext";
+import { useRouter } from "next/navigation";
+import { baseApiProjectsUrl } from "@/libs/baseURL";
+import { confirmToast } from "@/components/CustomToast";
+import { toast } from "sonner";
+import { CalculatorContextType } from "@/types/context-types";
 
-export const CalculatorContext = createContext()
 
+// Create context
+export const CalculatorContext = createContext<CalculatorContextType | null>(null)
+
+
+// Hook
 export const useCalculatorContext = () => {
     const context = useContext(CalculatorContext)
     if (!context) { console.log('useCalculator must be inside of a context') }
@@ -17,7 +22,8 @@ export const useCalculatorContext = () => {
 }
 
 
-export const CalculatorProvider = ({ children }) => {
+// Provider
+export const CalculatorProvider = ({ children }: DefaultContextProviderProps) => {
     const { getUserId, dataUser } = useHomeContext();
     const router = useRouter()
 
@@ -39,22 +45,22 @@ export const CalculatorProvider = ({ children }) => {
     // Async functions
 
     // Stores a list of objects as records in History
-    const saveOperation = async (expression, result) => {
+    const saveOperation = async (expression: string, result: string) => {
         try {
             const data = {
                 expression,
                 result,
                 user_id: await getUserId(),
-                user_clerk: dataUser().id_clerk
+                user_clerk: dataUser()?.id_clerk
             }
 
             await fetch(`${baseApiProjectsUrl}/calculator`, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify(data)
             })
 
             setDoAOperation(true)
@@ -63,8 +69,9 @@ export const CalculatorProvider = ({ children }) => {
         }
     };
 
+
     // Restore the exp of a operation
-    const getExpression = async (id) => {
+    const getExpression = async (id: number) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                 method: 'GET',
@@ -79,8 +86,9 @@ export const CalculatorProvider = ({ children }) => {
         }
     };
 
+
     // Restore the res of a operation
-    const getResult = async (id) => {
+    const getResult = async (id: number) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/calculator/calcs/${id}`, {
                 method: 'GET',
@@ -99,18 +107,24 @@ export const CalculatorProvider = ({ children }) => {
     const deleteAllOperations = async () => {
         const id = await getUserId();
         try {
-            await fetch(`${baseApiProjectsUrl}/calculator/${id}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-            router.refresh()
+            const confirm = await confirmToast('¿Confirma que quiere eliminar todas las operaciones?')
+            if (confirm) {
+                await fetch(`${baseApiProjectsUrl}/calculator/${id}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                })
+
+                router.refresh()
+                toast.success('Todas las operaciones han sido eliminadas')
+            }
         } catch (error) {
+            toast.error('Se produjo un error, inténtelo de nuevo')
             console.log(error)
         }
     };
 
 
-    const deleteOperation = async (id) => {
+    const deleteOperation = async (id: number) => {
         try {
             const confirm = await confirmToast('¿Confirma que quiere eliminar la operación?')
             if (confirm) {
@@ -120,9 +134,10 @@ export const CalculatorProvider = ({ children }) => {
                 })
 
                 router.refresh()
-                toast.success('Se ha eliminado la operación')
+                toast.success('Operación eliminada')
             }
         } catch (error) {
+            toast.error('Se produjo un error, inténtelo de nuevo')
             console.log(error)
         }
     };
@@ -130,19 +145,22 @@ export const CalculatorProvider = ({ children }) => {
 
     return <CalculatorContext.Provider
         value={{
+            modalIsVisible,
+            setModalIsVisible,
             valueScreen,
             setValueScreen,
             lastResult,
             setLastResult,
             saveOperation,
-            deleteOperation,
-            deleteAllOperations,
-            modalIsVisible,
-            setModalIsVisible,
             getExpression,
             getResult,
+            deleteAllOperations,
+            deleteOperation,
         }}
     >
         {children}
     </CalculatorContext.Provider>
 }
+
+
+export default CalculatorContext

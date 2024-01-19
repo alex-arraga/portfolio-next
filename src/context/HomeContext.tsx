@@ -3,7 +3,7 @@
 import { baseApi } from "@/libs/baseURL";
 import { createContext, useContext, useState, useEffect } from "react"
 import { useUser } from "@clerk/nextjs";
-import { HomeContextType, HomeProviderProps } from "@/types/context-types";
+import { HomeContextType, DefaultContextProviderProps } from "@/types/context-types";
 
 
 // Create context
@@ -20,7 +20,7 @@ export const useHomeContext = () => {
 
 
 // Data provider
-export function HomeProvider({ children }: HomeProviderProps) {
+export function HomeProvider({ children }: DefaultContextProviderProps) {
     const [codeProjects, setCodeProjects] = useState(true);
     const [image, setImage] = useState('');
     const [loadPage, setLoadPage] = useState(false);

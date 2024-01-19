@@ -38,7 +38,8 @@
     "src/components/calculator-components/AppCalculator/AppCalculator.tsx",
     "src/components/calculator-components/History/History.tsx",
     "src/app/not-found.js",
-    "src/pages/NotFoundPage.js"
+    "src/pages/NotFoundPage.js",
+    "src/context/CalculatorContext.tsx"
   ],
   "exclude": [
     "node_modules"

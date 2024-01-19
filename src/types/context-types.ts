@@ -22,7 +22,23 @@ export type HomeContextType = {
     getUserId: () => Promise<any>
 }
 
-// Home Provider
-export type HomeProviderProps = {
+
+// Calculator Context
+export type CalculatorContextType = {
+    modalIsVisible: boolean,
+    setModalIsVisible: React.Dispatch<SetStateAction<boolean>>,
+    valueScreen: string,
+    setValueScreen: React.Dispatch<SetStateAction<string>>,
+    lastResult: string,
+    setLastResult: React.Dispatch<SetStateAction<string>>,
+    saveOperation: (expression: string, result: string) => Promise<void>,
+    getExpression: (id: number) => Promise<void>,
+    getResult: (id: number) => Promise<void>,
+    deleteAllOperations: () => Promise<void>
+    deleteOperation: (id: number) => Promise<void>
+}
+
+// Default Provider
+export type DefaultContextProviderProps = {
     children: React.ReactNode
 }
