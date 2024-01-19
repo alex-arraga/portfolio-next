@@ -161,6 +161,3 @@ export const CalculatorProvider = ({ children }: DefaultContextProviderProps) =>
         {children}
     </CalculatorContext.Provider>
 }
-
-
-export default CalculatorContext

@@ -8,10 +8,12 @@ import { toast } from "sonner";
 import { useForm } from 'react-hook-form';
 import { baseApiProjectsUrl } from "@/libs/baseURL";
 import { usePathname } from "next/navigation";
+import { DefaultContextProviderProps, TaskContextType } from "@/types/context-types";
+import { Task } from "@prisma/client";
 
 
 // Create task context
-export const TasksContext = createContext()
+export const TasksContext = createContext<TaskContextType | null>(null)
 
 
 // Custumized hook to can use the context
@@ -24,7 +26,7 @@ export const useTasksContext = () => {
 
 
 // Provider
-export const TasksProvider = ({ children }) => {
+export const TasksProvider = ({ children }: DefaultContextProviderProps) => {
     const router = useRouter();
     const { handleSubmit } = useForm();
     const { getUserId, dataUser } = useHomeContext();
@@ -37,6 +39,7 @@ export const TasksProvider = ({ children }) => {
     const pathname = usePathname();
     const [idParam, setIdParam] = useState('');
 
+
     // If the user enters 'tasks/new' I reset the idParam hook to prevent the task from being updated instead of created
     useEffect(() => {
         let pathnameNewTask = window.location.pathname === '/projects/tasks/new'
@@ -47,7 +50,7 @@ export const TasksProvider = ({ children }) => {
 
 
     // Get info from a task so that it can be updated
-    const loadTask = async (id) => {
+    const loadTask = async (id: string) => {
         const res = fetch(`${baseApiProjectsUrl}/tasks/${id}`, {
             method: 'GET',
             credentials: 'include'
@@ -73,7 +76,7 @@ export const TasksProvider = ({ children }) => {
             title: titleData,
             description: descriptionData,
             user_id: await getUserId(),
-            user_clerk: dataUser().id_clerk
+            user_clerk: dataUser()?.id_clerk
         }
 
         // Create new task
@@ -115,7 +118,7 @@ export const TasksProvider = ({ children }) => {
 
 
     // Delete a pendient task
-    const deleteTask = async (e, task) => {
+    const deleteTask = async (e: React.MouseEvent, task: Task) => {
         e.stopPropagation();
         try {
             const confirm = await confirmToast('¿Confirma que quiere eliminar la tarea pendiente?')
@@ -136,7 +139,7 @@ export const TasksProvider = ({ children }) => {
 
 
     // Delete completed task
-    const deleteCompletedTask = async (e, task) => {
+    const deleteCompletedTask = async (e: React.MouseEvent, task: Task) => {
         e.stopPropagation();
         try {
             const confirm = await confirmToast('¿Confirma que quiere eliminar la tarea completada?')
@@ -157,7 +160,7 @@ export const TasksProvider = ({ children }) => {
 
 
     // On click en check button, create completed task
-    const createCompletedTask = async (e, task) => {
+    const createCompletedTask = async (e: React.MouseEvent, task: Task) => {
         e.stopPropagation()
 
         try {
@@ -191,7 +194,7 @@ export const TasksProvider = ({ children }) => {
         deleteCompletedTask,
         createCompletedTask,
         idParam,
-        setIdParam,
+        setIdParam
     }}>
         {children}
     </TasksContext.Provider>

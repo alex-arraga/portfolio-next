@@ -1,3 +1,4 @@
+import { Task } from "@prisma/client"
 import { SetStateAction } from "react"
 
 
@@ -37,6 +38,21 @@ export type CalculatorContextType = {
     deleteAllOperations: () => Promise<void>
     deleteOperation: (id: number) => Promise<void>
 }
+
+
+// Task Context
+export type TaskContextType = {
+    idParam: string,
+    setIdParam: React.Dispatch<SetStateAction<string>>,
+    setDescriptionData: React.Dispatch<SetStateAction<string>>,
+    setTitleData: React.Dispatch<SetStateAction<string>>,
+    loadTask: (id: string) => Promise<any>,
+    onSubmit: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>,
+    deleteTask: (e: React.MouseEvent, task: Task) => Promise<void>,
+    deleteCompletedTask: (e: React.MouseEvent, task: Task) => Promise<void>,
+    createCompletedTask: (e: React.MouseEvent, task: Task) => Promise<void>
+}
+
 
 // Default Provider
 export type DefaultContextProviderProps = {
