@@ -59,7 +59,7 @@ function ProjectCard({ className,
                 :
 
                 <Link href={urlClick ? urlClick : ''}
-                    onClick={() => setCodeProjects(section)}
+                    onClick={() => setCodeProjects(section ?? false)}
                     as={urlClick}
                     className={`relative flex justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 rounded-2xl ${className}`}>
                     <div className="flex flex-col gap-2 sm:gap-4">

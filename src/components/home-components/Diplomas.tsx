@@ -14,7 +14,7 @@ function Diplomas() {
         setParams.set('image', diploma)
         const imageParam = setParams.get('image')
 
-        setImage(imageParam)
+        setImage(imageParam ?? '')
         router.push(`/diplomas/show?image=${imageParam}`)
     }
 

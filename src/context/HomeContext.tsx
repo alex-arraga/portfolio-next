@@ -1,11 +1,14 @@
 "use client"
 
 import { baseApi } from "@/libs/baseURL";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react"
 import { useUser } from "@clerk/nextjs";
+import { HomeContextType, HomeProviderProps } from "@/types/context-types";
+
 
 // Create context
-export const HomeContext = createContext();
+export const HomeContext = createContext<HomeContextType | null>(null);
+
 
 // Hook to use context
 export const useHomeContext = () => {
@@ -15,12 +18,12 @@ export const useHomeContext = () => {
     } return context
 };
 
+
 // Data provider
-export function HomeProvider({ children }) {
+export function HomeProvider({ children }: HomeProviderProps) {
     const [codeProjects, setCodeProjects] = useState(true);
     const [image, setImage] = useState('');
     const [loadPage, setLoadPage] = useState(false);
-
 
     // Clerk user
     const user = useUser();
@@ -35,15 +38,14 @@ export function HomeProvider({ children }) {
     }, [user.isLoaded])
 
 
+
     const getUserId = async () => {
         const userId = dataUser()?.id_clerk;
-        if (loadPage === true && userId !== undefined) {
+        if (loadPage && userId !== undefined) {
             try {
                 const response = await fetch(`${baseApi}/create_user/${userId}`, {
                     method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    credentials: 'include'
                 });
 
                 if (response.ok) {
@@ -61,7 +63,7 @@ export function HomeProvider({ children }) {
 
 
     const dataUser = () => {
-        try {
+        if (loadPage) {
             const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
             const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
 
@@ -82,22 +84,16 @@ export function HomeProvider({ children }) {
             }
 
             return data
-        } catch (error) {
-            console.log(error)
-            return null
         }
     };
 
 
     const getUserDB = async () => {
-        if (user.user.id) {
+        if (user.user?.id) {
             try {
                 const response = await fetch(`${baseApi}/create_user/${user.user.id}`, {
                     method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    credentials: 'include'
                 });
 
                 if (response.ok) {
@@ -129,8 +125,12 @@ export function HomeProvider({ children }) {
             try {
                 const data = dataUser();
                 await fetch(`${baseApi}/create_user`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     method: 'POST',
-                    body: JSON.stringify(data)
+                    credentials: 'include',
+                    body: JSON.stringify(data),
                 })
             } catch (error) {
                 console.log('Fetch error on register a new user', error)
@@ -144,6 +144,7 @@ export function HomeProvider({ children }) {
             await registerUser()
         }
     };
+
 
     return <HomeContext.Provider value={{
         codeProjects,
