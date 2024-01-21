@@ -12,8 +12,10 @@ import { useCarsContext } from "@/context/CarsContext"
 function SearchBar({ styleSearchbar }: searchBarProps) {
     const [manufacturer, setManufacturer] = useState('')
     const [model, setModel] = useState('')
-    const { hasModel } = useCarsContext()
     const router = useRouter()
+
+    const context = useCarsContext()
+    const hasModel = context?.hasModel
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

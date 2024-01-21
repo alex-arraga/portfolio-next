@@ -203,7 +203,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               {/* Show properties and values of object 'car' */}
                               <div className="mt-4 mx-2 flex flex-wrap gap-2">
                                 {Object.entries(car)
-                                  .filter(([key]) => key !== 'model' && key !== 'make')
+                                  .filter(([key]) => key !== 'model' && key !== 'make' && key !== 'order_id' && key !== 'id' && key !== 'car_id' && key !== 'rented' && key !== 'liked')
                                   .map(([key, value]) => (
                                     <div className="flex justify-between w-full text-right" key={key}>
                                       <h4 className="capitalize text-gray-400 text-xs sm:text-sm">
@@ -216,7 +216,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                         {
                                           value === 'm' ? value = 'Manual'
                                             : value === 'a' ? value = 'Automatic'
-                                              : value
+                                              : value?.toString()
                                         }
                                       </p>
                                     </div>
@@ -327,22 +327,26 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
 
                           {/* Show de properties and values of object 'car' */}
                           <div className="mt-3 flex flex-wrap gap-4">
-                            {Object.entries(car).map(([key, value]) => (
-                              <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                                <h4 className="capitalize text-gray-400">
-                                  {
-                                    key === 'year' ? key = 'Year Launched'
-                                      : key.split("_").join(" ")
-                                  }
-                                </h4>
-                                <p className="font-medium text-black-100 capitalize">{
-                                  key === 'class' ? value = renameClasses(value)
-                                    : value === 'm' ? value = 'Manual'
-                                      : value === 'a' ? value = 'Automatic'
-                                        : value
-                                }</p>
-                              </div>
-                            ))}
+                            {Object.entries(car)
+                              .filter(([key]) => key !== 'order_id' && key !== 'id' && key !== 'car_id' && key !== 'rented' && key !== 'liked')
+                              .map(([key, value]) => (
+                                <div className="flex justify-between gap-5 w-full text-right" key={key}>
+                                  <h4 className="capitalize text-gray-400">
+                                    {
+                                      key === 'year' ? key = 'Year Launched'
+                                        : key.split("_").join(" ")
+                                    }
+                                  </h4>
+                                  <p className="font-medium text-black-100 capitalize">
+                                    {
+                                      key === 'class' ? value = renameClasses(value!.toString())
+                                        : value === 'm' ? value = 'Manual'
+                                          : value === 'a' ? value = 'Automatic'
+                                            : value?.toString()
+                                    }
+                                  </p>
+                                </div>
+                              ))}
                           </div>
                         </Dialog.Panel>
 

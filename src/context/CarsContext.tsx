@@ -1,40 +1,64 @@
 "use client"
 
 import { baseApi, baseApiProjectsUrl } from "@/libs/baseURL";
-import { createContext, useContext, useState, useEffect } from "react";
-import { useHomeContext } from "./HomeContext";
+import { createContext, useContext, useState, useEffect, SetStateAction } from "react";
+import { useHomeContext } from "@/context/HomeContext";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from "next/navigation";
+import { DefaultContextProviderProps } from "@/types/context-types";
+import { CarCardProps, DataNewCar, RentedCarCardProps } from "@/types/cars-store";
 
-export const CarsContext = createContext();
 
+type CarsContextType = {
+    isClientLoaded: boolean,
+    sectionLikes: boolean,
+    setSectionLikes: React.Dispatch<SetStateAction<boolean>>,
+    searchParams: URLSearchParams | "",
+    hasManufacturer: string | null,
+    hasModel: string | null,
+    newCar: (car: DataNewCar) => Promise<any>,
+    manageLikes: (car: RentedCarCardProps | CarCardProps) => Promise<void>,
+    newPendingCar: (car: CarCardProps, orderId: string) => Promise<void>,
+    newOrder: (car: RentedCarCardProps | CarCardProps, orderId: string, durationRented: number, costRent?: number, suscription?: number) => Promise<any>
+}
+
+
+const CarsContext = createContext<CarsContextType | null>(null);
+
+
+// Hook
 export const useCarsContext = () => {
     const context = useContext(CarsContext)
     if (!context) { console.log('useCarsContext must be inside of a context') }
     return context
 };
 
-export const CarsProvider = ({ children }) => {
+
+// Provider
+export const CarsProvider = ({ children }: DefaultContextProviderProps) => {
+    const { dataUser, getUserId } = useHomeContext();
+
     const uuid = uuidv4();
     const router = useRouter()
 
-    const { dataUser, getUserId } = useHomeContext();
     const [sectionLikes, setSectionLikes] = useState(false);
     const [isClientLoaded, setIsClientLoaded] = useState(false);
 
+
     useEffect(() => {
-        if (dataUser) {
-            setIsClientLoaded(true)
-        }
+        setIsClientLoaded(true)
     }, [isClientLoaded])
+
 
     const searchParams = isClientLoaded ? new URLSearchParams(window.location.href) : '';
 
     const hasManufacturer = searchParams ? searchParams.get('manufacturer') : '';
     const hasModel = searchParams ? searchParams.get('model') : '';
 
-    const newCar = async (car) => {
+
+
+    const newCar = async (car: DataNewCar) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/cars-store`, {
                 method: 'POST',
@@ -51,7 +75,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const getCar = async (carId) => {
+    const getCar = async (carId: string) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/cars-store/${carId}`, {
                 method: 'GET',
@@ -68,7 +92,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const updateCar = async (car, isLikeChange, dataToUpdate) => {
+    const updateCar = async (car: DataNewCar | RentedCarCardProps | CarCardProps, isLikeChange: boolean, dataToUpdate?: {}) => {
         if (isLikeChange) {
             // Case 1 - If the car have a LIKE and is RENTED, it will remove the LIKE
             if (car.liked && car.rented) {
@@ -114,7 +138,7 @@ export const CarsProvider = ({ children }) => {
             // Case 3 - If the car have a LIKE and HAS NOT BEEN RENTED, it will be DELETED.
             else if (car.liked && !car.rented) {
                 try {
-                    await deleteCar(car.car_id);
+                    await deleteCar(car.car_id!);
                     router.refresh();
 
                     return toast.message(`${car.make.toUpperCase()} ${car.model.toUpperCase()} removed from the cars you like`);
@@ -140,7 +164,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const deleteCar = async (carId) => {
+    const deleteCar = async (carId: string) => {
         try {
             const response = await fetch(`${baseApiProjectsUrl}/cars-store/${carId}`, {
                 method: 'DELETE',
@@ -158,10 +182,10 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const manageLikes = async (car) => {
+    const manageLikes = async (car: RentedCarCardProps | CarCardProps) => {
         if (isClientLoaded) {
             try {
-                const existCar = await getCar(car.car_id)
+                const existCar = await getCar(car.car_id!)
 
                 if (!existCar) {
                     const data = {
@@ -180,7 +204,7 @@ export const CarsProvider = ({ children }) => {
                         year: car.year,
                         liked: true,
                         user_id: await getUserId(),
-                        user_clerk: dataUser().id_clerk
+                        user_clerk: dataUser()?.id_clerk
                     };
 
                     await newCar(data);
@@ -195,7 +219,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const newPendingCar = async (car, orderId) => {
+    const newPendingCar = async (car: CarCardProps, orderId: string) => {
         if (isClientLoaded) {
             try {
                 const dataNewCar = {
@@ -217,7 +241,7 @@ export const CarsProvider = ({ children }) => {
 
                     order_id: orderId,
                     user_id: await getUserId(),
-                    user_clerk: dataUser().id_clerk
+                    user_clerk: dataUser()?.id_clerk
                 };
 
                 // Create car in db
@@ -229,7 +253,7 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const getOrder = async (id) => {
+    const getOrder = async (id: string) => {
         try {
             const getOrder = await fetch(`${baseApi}/payment/order/${id}`, {
                 method: 'GET',
@@ -243,10 +267,10 @@ export const CarsProvider = ({ children }) => {
     };
 
 
-    const newOrder = async (car, orderId, durationRented, costRent, suscription) => {
+    const newOrder = async (car: RentedCarCardProps | CarCardProps, orderId: string, durationRented: number, costRent?: number, suscription?: number) => {
         if (isClientLoaded) {
             try {
-                const priceRent = costRent * durationRented;
+                const priceRent = costRent ? costRent * durationRented : '';
 
                 // Object that will send to create new order
                 const orderData = {
@@ -254,7 +278,7 @@ export const CarsProvider = ({ children }) => {
                     duration_rented: durationRented,
                     price: suscription ? suscription : priceRent,
                     user_id: await getUserId(),
-                    user_clerk: dataUser().id_clerk
+                    user_clerk: dataUser()?.id_clerk
                 };
 
                 // POST - Create order
@@ -265,7 +289,7 @@ export const CarsProvider = ({ children }) => {
                 })
 
                 // GET - Chek if the car exist
-                const existCar = await getCar(car.car_id)
+                const existCar = await getCar(car.car_id!)
 
                 if (!existCar) {
                     // POST - If the car not exist, create "pending" car to connect bot tables
@@ -278,7 +302,7 @@ export const CarsProvider = ({ children }) => {
                 // GET - Obtain the created order data to send to the "MP preference"
                 const response = await getOrder(orderId)
 
-                if (response.ok) {
+                if (response && response.ok) {
                     const body = await response.json()
                     const data = body.infoOrder
 
@@ -296,19 +320,17 @@ export const CarsProvider = ({ children }) => {
 
 
     return <CarsContext.Provider value={{
+        isClientLoaded,
         sectionLikes,
         setSectionLikes,
-        newCar,
-        isClientLoaded,
-        manageLikes,
-        newPendingCar,
         searchParams,
         hasManufacturer,
-        newOrder,
-        hasModel
+        hasModel,
+        newCar,
+        manageLikes,
+        newPendingCar,
+        newOrder
     }}>
         {children}
     </CarsContext.Provider>
 }
-
-export default CarsContext

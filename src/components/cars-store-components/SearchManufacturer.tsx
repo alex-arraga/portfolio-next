@@ -10,7 +10,9 @@ import { useCarsContext } from "@/context/CarsContext"
 
 function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: SearchManufacturerProps) {
     const [query, setQuery] = useState('');
-    const { hasManufacturer } = useCarsContext()
+
+    const context = useCarsContext()
+    const hasManufacturer = context?.hasManufacturer
 
     const filterManufacturers = query === '' ? manufacturers : manufacturers.filter((item) => (
         item.toLocaleLowerCase()

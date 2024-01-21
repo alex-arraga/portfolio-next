@@ -17,7 +17,8 @@ interface RentedCar {
 }
 
 function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
-    const { manageLikes } = useCarsContext()
+    const context = useCarsContext();
+
     const [paymentComprobantIsOpen, setPaymentComprobantIsOpen] = useState(false);
     const [rentIsOpen, setRentIsOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
@@ -74,133 +75,136 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
 
     }, [isLoaded])
 
-    return (
-        <div className="relative flex flex-col p-6 justify-start items-start text-black-100 bg-primary-blue-100 hover:bg-white rounded-3xl h-full">
-            <div className="w-full flex-col relative justify-between items-start gap-2">
-                <div className="flex items-start justify-between">
-                    {/* Car name */}
-                    <h1 className="text-lg md:text-txt_22 font-bold capitalize truncate text-ellipsis">
-                        {car.make} {car.model} - {car.transmission === 'm' ? 'MT' : 'AT'}
-                    </h1>
 
-                    {/* Like */}
-                    <div>
+    if (context) {
+        const { manageLikes } = context
+
+        return (
+            <div className="relative flex flex-col p-6 justify-start items-start text-black-100 bg-primary-blue-100 hover:bg-white rounded-3xl h-full">
+                <div className="w-full flex-col relative justify-between items-start gap-2">
+                    <div className="flex items-start justify-between">
+                        {/* Car name */}
+                        <h1 className="text-lg md:text-txt_22 font-bold capitalize truncate text-ellipsis">
+                            {car.make} {car.model} - {car.transmission === 'm' ? 'MT' : 'AT'}
+                        </h1>
+
+                        {/* Like */}
+                        <div>
+                            {
+                                car.liked ?
+                                    <Image
+                                        onClick={() => manageLikes(car)}
+                                        className="object-contain cursor-pointer"
+                                        src={'/heart-filled.svg'}
+                                        width={22}
+                                        height={22}
+                                        alt="like icon"
+                                    />
+
+                                    :
+
+                                    <Image
+                                        onClick={() => manageLikes(car)}
+                                        className="object-contain cursor-pointer"
+                                        src={'/heart-outline.svg'}
+                                        width={22}
+                                        height={22}
+                                        alt="like icon"
+                                    />
+                            }
+                        </div>
+                    </div>
+
+                    {/* Class */}
+                    <h2 className="mt-1 text-xs sm:text-sm md:text-base capitalize text-gray-500">
+                        {`${renameClasses(car.class)} - ${car.year}`}
+                    </h2>
+
+                    {/* Main image */}
+                    <div className="relative w-full h-32 sm:h-40 md:h-56 mt-4 md:mt-6 object-contain">
+                        <Image src={generateCarImageAPI(car, '') ?? ''}
+                            fill
+                            sizes="500px"
+                            alt="cars"
+                            className="object-contain"
+                        />
+                    </div>
+
+                    {/* Info */}
+
+                    <section className="flex flex-col justify-start items-start w-full h-fit rounded-md">
                         {
-                            car.liked ?
-                                <Image
-                                    onClick={() => manageLikes(car)}
-                                    className="object-contain cursor-pointer"
-                                    src={'/heart-filled.svg'}
-                                    width={22}
-                                    height={22}
-                                    alt="like icon"
+                            car.rented ?
+                                <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md mb-4">
+                                    <div className="flex items-center gap-2">
+                                        <Image
+                                            src={'/car-rented.svg'}
+                                            width={24}
+                                            height={24}
+                                            alt="car rented icon"
+                                            className="object-contain w-5 h-5 sm:w-6 sm:h-6"
+                                        />
+
+                                        <p className="text-txt_10 sm:text-xs md:text-sm font-medium">You rented this car!</p>
+                                    </div>
+                                    <p className="text-txt_10 sm:text-xs md:text-sm font-medium bg-teal-600 p-2 rounded-md text-white">{hasMonthlyPlan ? 'Monthly rent' : 'Daily rent'}</p>
+                                </div>
+
+                                :
+
+                                <div className="flex justify-between w-full gap-2 sm:gap-4 mb-4 text-[10px] sm:text-xs md:text-sm">
+                                    <p className='flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md'>
+                                        This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
+                                    </p>
+                                </div>
+                        }
+
+
+                        {/* Buttons */}
+                        {
+                            car.rented ?
+                                <CustomButton
+                                    title="View payment"
+                                    handleClick={() => setPaymentComprobantIsOpen(true)}
+                                    containerStyle="max-h-8 w-full bg-teal-800 hover:bg-emerald-600 duration-300 rounded-md "
+                                    textStyle="text-xs sm:text-sm md:text-base font-medium text-white"
                                 />
 
                                 :
 
-                                <Image
-                                    onClick={() => manageLikes(car)}
-                                    className="object-contain cursor-pointer"
-                                    src={'/heart-outline.svg'}
-                                    width={22}
-                                    height={22}
-                                    alt="like icon"
+                                <CustomButton
+                                    title="Rent car now"
+                                    handleClick={() => setRentIsOpen(true)}
+                                    containerStyle="max-h-8 w-full bg-blue-900 rounded-md hover:bg-primary-blue duration-300"
+                                    textStyle="text-xs sm:text-sm md:text-base font-medium text-white"
                                 />
                         }
-                    </div>
-                </div>
 
-                {/* Class */}
-                <h2 className="mt-1 text-xs sm:text-sm md:text-base capitalize text-gray-500">
-                    {`${renameClasses(car.class)} - ${car.year}`}
-                </h2>
-
-                {/* Main image */}
-                <div className="relative w-full h-32 sm:h-40 md:h-56 mt-4 md:mt-6 object-contain">
-                    <Image src={generateCarImageAPI(car, '') ?? ''}
-                        fill
-                        sizes="500px"
-                        alt="cars"
-                        className="object-contain"
-                    />
-                </div>
-
-                {/* Info */}
-
-                <section className="flex flex-col justify-start items-start w-full h-fit rounded-md">
-                    {
-                        car.rented ?
-                            <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md mb-4">
-                                <div className="flex items-center gap-2">
-                                    <Image
-                                        src={'/car-rented.svg'}
-                                        width={24}
-                                        height={24}
-                                        alt="car rented icon"
-                                        className="object-contain w-5 h-5 sm:w-6 sm:h-6"
-                                    />
-
-                                    <p className="text-txt_10 sm:text-xs md:text-sm font-medium">You rented this car!</p>
-                                </div>
-                                <p className="text-txt_10 sm:text-xs md:text-sm font-medium bg-teal-600 p-2 rounded-md text-white">{hasMonthlyPlan ? 'Monthly rent' : 'Daily rent'}</p>
-                            </div>
-
-                            :
-
-                            <div className="flex justify-between w-full gap-2 sm:gap-4 mb-4 text-[10px] sm:text-xs md:text-sm">
-                                <p className='flex flex-col justify-center items-center w-full bg-red-100 text-gray-700 py-1 rounded-md'>
-                                    This car has never been rented yet<br /> <span className="flex justify-center font-semibold">Do you want to rent it?</span>
-                                </p>
-                            </div>
-                    }
-
-
-                    {/* Buttons */}
-                    {
-                        car.rented ?
-                            <CustomButton
-                                title="View payment"
-                                handleClick={() => setPaymentComprobantIsOpen(true)}
-                                containerStyle="max-h-8 w-full bg-teal-800 hover:bg-emerald-600 duration-300 rounded-md "
-                                textStyle="text-xs sm:text-sm md:text-base font-medium text-white"
+                        <div>
+                            <CarDetails
+                                isOpen={rentIsOpen}
+                                closeModal={() => setRentIsOpen(false)}
+                                car={dataRentedCar}
+                                styleDetails='rent'
+                                stripePrices={stripePrices}
                             />
+                        </div>
 
-                            :
-
-                            <CustomButton
-                                title="Rent car now"
-                                handleClick={() => setRentIsOpen(true)}
-                                containerStyle="max-h-8 w-full bg-blue-900 rounded-md hover:bg-primary-blue duration-300"
-                                textStyle="text-xs sm:text-sm md:text-base font-medium text-white"
+                        <div>
+                            <PaymentComprobant
+                                payment={paymentData ?? null}
+                                priceSuscription={priceDollar}
+                                car={car}
+                                isOpen={paymentComprobantIsOpen}
+                                closeModal={() => setPaymentComprobantIsOpen(false)}
                             />
-                    }
+                        </div>
+                    </section>
 
-                    <div>
-                        <CarDetails
-                            isOpen={rentIsOpen}
-                            closeModal={() => setRentIsOpen(false)}
-                            car={dataRentedCar}
-                            styleDetails='rent'
-                            stripePrices={stripePrices}
-                        />
-                    </div>
-
-                    <div>
-                        <PaymentComprobant
-                            payment={paymentData ?? null}
-                            priceSuscription={priceDollar}
-                            car={car}
-                            isOpen={paymentComprobantIsOpen}
-                            closeModal={() => setPaymentComprobantIsOpen(false)}
-                        />
-                    </div>
-                </section>
-
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default RentedCarCard
-
-// leading-[26px]

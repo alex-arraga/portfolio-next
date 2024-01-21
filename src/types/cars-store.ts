@@ -1,17 +1,17 @@
 import React, { MouseEventHandler } from "react";
 import { Price } from "./payment";
 
-export interface UpdateSearchParamsProps {
+
+export type UpdateSearchParamsProps = {
     params: { type: string; value: string; }[];
 }
 
-export interface DeleteParamProps {
+export type DeleteParamProps = {
     param: string,
     value?: string,
 }
 
-
-export interface NavBarProps {
+export type NavBarProps = {
     secondNav?: React.ReactNode
     isDashboard?: boolean
     otherClasses?: string
@@ -25,11 +25,11 @@ export interface NavBarProps {
     openModal?: () => void
 }
 
-export interface FooterProps {
+export type FooterProps = {
     otherClasses?: string
 }
 
-export interface CustomButtonProps {
+export type CustomButtonProps = {
     title: string,
     containerStyle?: string,
     totalCustom?: boolean
@@ -41,13 +41,13 @@ export interface CustomButtonProps {
     isResetButton?: boolean
 };
 
-export interface SearchManufacturerProps {
+export type SearchManufacturerProps = {
     manufacturer: string,
     setManufacturer: (manufacturer: string) => void,
     styleSearchbar?: string
 }
 
-export interface CarCardProps {
+export type CarCardProps = {
     city_mpg: number,
     class: string,
     combination_mpg: number,
@@ -61,19 +61,20 @@ export interface CarCardProps {
     transmission: string,
     year: number
 
+    car_id?: string,
     rented?: boolean;
     liked?: boolean;
 };
 
-export interface CarDetailsProps {
+export type CarDetailsProps = {
     isOpen: boolean,
     closeModal: () => void,
-    car: CarCardProps | RentedCarCardProps,
+    car: CarCardProps,
     styleDetails?: string,
     stripePrices?: Price[]
 }
 
-export interface FilterProps {
+export type FilterProps = {
     manufacturer?: string | null,
     model?: string | null,
     limit?: number | null,
@@ -84,31 +85,31 @@ export interface FilterProps {
     transmission?: string | null,
 }
 
-export interface HomeProps {
+export type HomeProps = {
     searchParams: FilterProps,
 }
 
-export interface OptionProps {
+export type OptionProps = {
     title: string,
     value: string
 }
 
-export interface CustomFilterProps {
+export type CustomFilterProps = {
     title: string,
     options: OptionProps[]
 }
 
-export interface ShowMoreProps {
+export type ShowMoreProps = {
     pageNumber: number,
     isNext: boolean
 }
 
-export interface PriceFilterProps {
+export type PriceFilterProps = {
     minAutonomy: number,
     maxAutonomy: number
 }
 
-export interface TypesCars {
+export type TypesCars = {
     classCars: string,
     classCounter: {
         [classes: string]: number
@@ -116,20 +117,20 @@ export interface TypesCars {
     originalNameClasses?: string
 }
 
-export interface AsideProps {
+export type AsideProps = {
     searchParams: FilterProps
 }
 
-export interface DashboardProps {
+export type DashboardProps = {
     allCars: CarCardProps[],
     searchParams: FilterProps
 }
 
-export interface searchBarProps {
+export type searchBarProps = {
     styleSearchbar?: string
 }
 
-export interface HamburgerMenuBarProps {
+export type HamburgerMenuBarProps = {
     handleClick: () => void,
     styleMenu?: string
     searchParams?: {
@@ -140,7 +141,7 @@ export interface HamburgerMenuBarProps {
     }
 }
 
-export interface RentedCarCardProps {
+export type RentedCarCardProps = {
     id: number;
     car_id: string,
     city_mpg: number;
@@ -161,13 +162,37 @@ export interface RentedCarCardProps {
     created_at?: string | Date;
 }
 
-export interface SectionsMyCarsProps {
+export type SectionsMyCarsProps = {
     rentedCars: RentedCarCardProps[]
     likedCars: RentedCarCardProps[]
     stripePrices: Price[]
 }
 
-export interface EmptyDataMessageProps {
+export type EmptyDataMessageProps = {
     searchParams?: FilterProps
     styleMessage?: string
+}
+
+export type DataNewCar = {
+    id?: number,
+    car_id: string,
+    city_mpg: number;
+    class: string;
+    combination_mpg: number;
+    cylinders: number;
+    displacement: number;
+    drive: string;
+    fuel_type: string;
+    highway_mpg: number;
+    make: string;
+    model: string;
+    transmission: string;
+    year: number;
+
+    liked?: boolean
+    rented?: boolean;
+
+    order_id?: string | null
+    user_id: () => Promise<any>,
+    user_clerk?: string | null
 }
