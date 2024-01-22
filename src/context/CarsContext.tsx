@@ -1,27 +1,14 @@
 "use client"
 
 import { baseApi, baseApiProjectsUrl } from "@/libs/baseURL";
-import { createContext, useContext, useState, useEffect, SetStateAction } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useHomeContext } from "@/context/HomeContext";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from "next/navigation";
 import { DefaultContextProviderProps } from "@/types/context-types";
+import { CarsContextType } from "@/types/context-types";
 import { CarCardProps, DataNewCar, RentedCarCardProps } from "@/types/cars-store";
-
-
-type CarsContextType = {
-    isClientLoaded: boolean,
-    sectionLikes: boolean,
-    setSectionLikes: React.Dispatch<SetStateAction<boolean>>,
-    searchParams: URLSearchParams | "",
-    hasManufacturer: string | null,
-    hasModel: string | null,
-    newCar: (car: DataNewCar) => Promise<any>,
-    manageLikes: (car: RentedCarCardProps | CarCardProps) => Promise<void>,
-    newPendingCar: (car: CarCardProps, orderId: string) => Promise<void>,
-    newOrder: (car: RentedCarCardProps | CarCardProps, orderId: string, durationRented: number, costRent?: number, suscription?: number) => Promise<any>
-}
 
 
 const CarsContext = createContext<CarsContextType | null>(null);

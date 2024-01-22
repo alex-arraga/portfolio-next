@@ -73,7 +73,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
             getPaymentData(car.order_id!)
         }
 
-    }, [isLoaded])
+    }, [isLoaded, car.order_id])
 
 
     if (context) {

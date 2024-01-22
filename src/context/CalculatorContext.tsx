@@ -39,7 +39,7 @@ export const CalculatorProvider = ({ children }: DefaultContextProviderProps) =>
     useEffect(() => {
         router.refresh()
         setDoAOperation(false)
-    }, [doAOperation]);
+    }, [doAOperation, router]);
 
 
     // Async functions

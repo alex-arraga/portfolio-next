@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
                                             settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                                         }
                                     } else {
-                                        throw new Error('Error in Mercado Pago Payment', check.error)
+                                        console.log(check.error)
                                     }
                                 })
                                 .catch(e => console.log(e));

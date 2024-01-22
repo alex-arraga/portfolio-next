@@ -14,12 +14,12 @@ export function PriceRangeFilter({ minAutonomy, maxAutonomy }: PriceFilterProps)
     useEffect(() => {
         const searchCityAutonomy = updateSearchParams({ params: [{ type: 'min_city_mpg', value: minPrice.toString() }] })
         router.push(searchCityAutonomy)
-    }, [minPrice])
+    }, [minPrice, router])
 
     useEffect(() => {
         const searchHwyAutonomy = updateSearchParams({ params: [{ type: 'max_hwy_mpg', value: maxPrice.toString() }] })
         router.push(searchHwyAutonomy)
-    }, [maxPrice])
+    }, [maxPrice, router])
 
 
     const handleMinRange = (e: React.ChangeEvent<HTMLInputElement>) => {

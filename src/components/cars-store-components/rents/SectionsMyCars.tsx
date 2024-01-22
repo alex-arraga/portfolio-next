@@ -46,7 +46,7 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
             setCountRents(numberRentedCars)
             router.refresh()
         }
-    }, [countLikes, countRents])
+    }, [countLikes, countRents, likedCars.length, rentedCars.length, router])
 
 
     if (context) {

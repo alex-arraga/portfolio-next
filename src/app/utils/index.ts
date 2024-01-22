@@ -113,38 +113,36 @@ export const deleteAllParams = () => {
 
 // Obtain cars images
 export const generateCarImageAPI = (car: CarCardProps, angle?: string, color?: string) => {
-    try {
-        const { make, model, year } = car;
+    const { make, model, year } = car;
 
-        const apiUrl = process.env.NEXT_PUBLIC_IMAGIN_URL!;
-        const secretKey = process.env.NEXT_PUBLIC_IMAGIN_SECRET_KEY!;
+    const apiUrl = process.env.NEXT_PUBLIC_IMAGIN_URL!;
+    const secretKey = process.env.NEXT_PUBLIC_IMAGIN_SECRET_KEY!;
 
-        let url = new URL(apiUrl);
+    let url = new URL(apiUrl);
 
-        // Zod
-        const check = CarImagesSchema.safeParse({
-            customer: secretKey,
-            make: make,
-            modelFamily: car.model.split(" ")[0],
-            zoomType: 'fullscreen',
-            modelYear: year.toString(),
-            angle: angle || '',
-            color: color || '',
-        });
+    // Zod
+    const check = CarImagesSchema.safeParse({
+        customer: secretKey,
+        make: make,
+        modelFamily: car.model.split(" ")[0],
+        zoomType: 'fullscreen',
+        modelYear: year.toString(),
+        angle: angle || '',
+        color: color || '',
+    });
 
-        if (check.success) {
-            url.searchParams.append('customer', secretKey);
-            url.searchParams.append('make', make);
-            url.searchParams.append('modelFamily', model.split(" ")[0]);
-            url.searchParams.append('zoomType', 'fullscreen');
-            url.searchParams.append('modelYear', year.toString());
-            url.searchParams.append('angle', angle || '');
-            url.searchParams.append('color', color || '');
+    if (check.success) {
+        url.searchParams.append('customer', secretKey);
+        url.searchParams.append('make', make);
+        url.searchParams.append('modelFamily', model.split(" ")[0]);
+        url.searchParams.append('zoomType', 'fullscreen');
+        url.searchParams.append('modelYear', year.toString());
+        url.searchParams.append('angle', angle || '');
+        url.searchParams.append('color', color || '');
 
-            return url.toString()
-        }
-    } catch (error) {
-        console.error('Error in Imagin API function', error)
+        return url.toString()
+    } else {
+        console.error(check.error)
     }
 };
 

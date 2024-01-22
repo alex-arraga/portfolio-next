@@ -28,7 +28,7 @@ function Keyboard({
 
     useEffect(() => {
         setHasNavigator(true)
-    })
+    }, [])
 
     // Validation: Browser or Mobile
     const isMobileDevice = hasNavigator ? /Mobi|Android|iPhone|Phone|BlackBerry|iPad/i.test(navigator?.userAgent) : '';
@@ -101,7 +101,7 @@ function Keyboard({
                 window.removeEventListener('keydown', handleKeyDownEvent)
             }
         }
-    }, [valueScreen, isMobileDevice]);
+    }, [valueScreen, isMobileDevice, calc, deleteAValue, getLastResult, showValue]);
 
 
     if (context) {

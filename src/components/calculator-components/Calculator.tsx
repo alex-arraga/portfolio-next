@@ -25,7 +25,7 @@ export function Calculator() {
                 }
             }
         }
-    }, [valueScreen]);
+    }, [valueScreen, context]);
 
 
     if (context) {

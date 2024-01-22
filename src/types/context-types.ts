@@ -1,5 +1,6 @@
 import { Task } from "@prisma/client"
 import { SetStateAction } from "react"
+import { CarCardProps, DataNewCar, RentedCarCardProps } from "./cars-store"
 
 
 // Home Context 
@@ -53,6 +54,20 @@ export type TaskContextType = {
     createCompletedTask: (e: React.MouseEvent, task: Task) => Promise<void>
 }
 
+
+// Cars Context 
+export type CarsContextType = {
+    isClientLoaded: boolean,
+    sectionLikes: boolean,
+    setSectionLikes: React.Dispatch<SetStateAction<boolean>>,
+    searchParams: URLSearchParams | "",
+    hasManufacturer: string | null,
+    hasModel: string | null,
+    newCar: (car: DataNewCar) => Promise<any>,
+    manageLikes: (car: RentedCarCardProps | CarCardProps) => Promise<void>,
+    newPendingCar: (car: CarCardProps, orderId: string) => Promise<void>,
+    newOrder: (car: RentedCarCardProps | CarCardProps, orderId: string, durationRented: number, costRent?: number, suscription?: number) => Promise<any>
+}
 
 // Default Provider
 export type DefaultContextProviderProps = {
