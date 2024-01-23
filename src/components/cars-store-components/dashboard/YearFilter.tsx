@@ -26,7 +26,7 @@ export function YearFilter() {
     return (
         <div className='mt-5'>
 
-            <div className={'flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-xs font-light text-gray-400'}>
+            <div className={'flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-xs font-medium cursor-pointer text-gray-400'}>
                 <span className='pl-12'>
                     {
                         selected ? selected
@@ -61,14 +61,14 @@ export function YearFilter() {
                         leaveTo="opacity-0"
                     >
 
-                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white'}>
+                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white h-max-[calc(3rem)]'}>
                             {
                                 yearsOfProduction.map((year) => (
                                     <Listbox.Option
                                         key={Math.random()}
                                         value={year.value}
                                         onChange={() => setYearParam(year.value)}
-                                        className={({ active }) => `search-manufacturer__option flex justify-end text-xs ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
+                                        className={({ active }) => `flex justify-end text-xs sm:text-sm select-none py-2 pl-10 pr-4 cursor-pointer ${active ? 'bg-primary-blue text-white' : 'text-gray-600'}`}
                                     >
                                         <p>{year.value}</p>
                                     </Listbox.Option>

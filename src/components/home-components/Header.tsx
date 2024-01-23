@@ -10,7 +10,7 @@ export function Header() {
     const { loadPage, dataUser } = useHomeContext()
 
     useEffect(() => {
-        if (loadPage === true) {
+        if (loadPage) {
             setLoadData(true)
         }
     }, [loadPage])

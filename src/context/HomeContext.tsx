@@ -4,6 +4,7 @@ import { baseApi } from "@/libs/baseURL";
 import { createContext, useContext, useState, useEffect } from "react"
 import { useUser } from "@clerk/nextjs";
 import { HomeContextType, DefaultContextProviderProps } from "@/types/context-types";
+import { useRouter, usePathname } from "next/navigation";
 
 
 // Create context
@@ -21,6 +22,9 @@ export const useHomeContext = () => {
 
 // Data provider
 export function HomeProvider({ children }: DefaultContextProviderProps) {
+    const router = useRouter();
+    const pahtname = usePathname();
+
     const [codeProjects, setCodeProjects] = useState(true);
     const [image, setImage] = useState('');
     const [loadPage, setLoadPage] = useState(false);
@@ -29,19 +33,16 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     const user = useUser();
 
     useEffect(() => {
-        if (user.isLoaded) {
+        if (user.isLoaded && pahtname === '/') {
             setLoadPage(true)
-            if (window.location.pathname === "/") {
-                call()
-            }
+            registerUser()
         }
-    }, [user.isLoaded])
-
+    }, [user.isLoaded, pahtname])
 
 
     const getUserId = async () => {
         const userId = dataUser()?.id_clerk;
-        if (loadPage && userId !== undefined) {
+        if (userId) {
             try {
                 const response = await fetch(`${baseApi}/create_user/${userId}`, {
                     method: 'GET',
@@ -63,28 +64,26 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
 
 
     const dataUser = () => {
-        if (loadPage) {
-            const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
-            const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
+        const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
+        const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
 
-            // Validation Google
-            const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1]?.provider === 'google' ? true : false;
-            const googleEmail = hasGoogleAccount ? user.user?.externalAccounts[1].emailAddress : undefined;
+        // Validation Google
+        const hasGoogleAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[1]?.provider === 'google' ? true : false;
+        const googleEmail = hasGoogleAccount ? user.user?.externalAccounts[1].emailAddress : undefined;
 
-            const data = {
-                id_clerk: user.user?.id,
-                username: user.user?.username,
-                name: user.user?.firstName,
-                lastname: user.user?.lastName,
-                has_google_account: hasGoogleAccount,
-                google_email: googleEmail,
-                has_github_account: hasGithubAccount,
-                github_email: githubEmail,
-                created_at: user.user?.createdAt
-            }
-
-            return data
+        const data = {
+            id_clerk: user.user?.id,
+            username: user.user?.username,
+            name: user.user?.firstName,
+            lastname: user.user?.lastName,
+            has_google_account: hasGoogleAccount,
+            google_email: googleEmail,
+            has_github_account: hasGithubAccount,
+            github_email: githubEmail,
+            created_at: user.user?.createdAt
         }
+
+        return data
     };
 
 
@@ -124,7 +123,7 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
         if (!userExist) {
             try {
                 const data = dataUser();
-                await fetch(`${baseApi}/create_user`, {
+                const response = await fetch(`${baseApi}/create_user`, {
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -132,16 +131,15 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
                     credentials: 'include',
                     body: JSON.stringify(data),
                 })
+
+                if (response.ok) {
+                    router.refresh()
+                } else {
+                    throw new Error('Failure in register user')
+                }
             } catch (error) {
                 console.log('Fetch error on register a new user', error)
             }
-        }
-    };
-
-
-    const call = async () => {
-        if (window.location.pathname === '/') {
-            await registerUser()
         }
     };
 

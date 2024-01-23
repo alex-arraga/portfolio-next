@@ -1,15 +1,16 @@
 "use client"
 
 import RentedCarCard from "./RentedCarCard";
+import EmptyDataMessage from "../EmptyDataMessage";
 import { SectionsMyCarsProps } from "@/types/cars-store";
 import { useCarsContext } from '@/context/CarsContext'
-import EmptyDataMessage from "../EmptyDataMessage";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 
 export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: SectionsMyCarsProps) => {
     const router = useRouter();
+    const pathname = usePathname()
     const context = useCarsContext();
 
     const [countLikes, setCountLikes] = useState(0);
@@ -36,17 +37,18 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
 
 
     useEffect(() => {
-        const numberLikes = likedCars.length;
-        const numberRentedCars = rentedCars.length;
+        if (pathname === '/projects/cars-store/rents') {
+            if (countLikes !== likedCars.length) {
+                setCountLikes(likedCars.length)
+                router.refresh()
+            }
 
-        if (countLikes !== numberLikes) {
-            setCountLikes(numberLikes)
-            router.refresh()
-        } else if (countRents !== numberRentedCars) {
-            setCountRents(numberRentedCars)
-            router.refresh()
+            if (countRents !== rentedCars.length) {
+                setCountRents(rentedCars.length)
+                router.refresh()
+            }
         }
-    }, [countLikes, countRents, likedCars.length, rentedCars.length, router])
+    }, [countLikes, countRents, likedCars.length, rentedCars.length, pathname, router])
 
 
     if (context) {

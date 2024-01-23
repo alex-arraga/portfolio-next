@@ -10,7 +10,7 @@ export async function Home({ searchParams }: HomeProps) {
         model: searchParams.model || '',
         year: searchParams.year || 2015,
         limit: searchParams.limit || 9,
-        fuel: searchParams.fuel || '',
+        fuel: searchParams.fuel || 'gas',
     });
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;

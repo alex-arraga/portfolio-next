@@ -54,6 +54,7 @@ export const CalculatorProvider = ({ children }: DefaultContextProviderProps) =>
                 user_clerk: dataUser()?.id_clerk
             }
 
+            console.log(data)
             await fetch(`${baseApiProjectsUrl}/calculator`, {
                 headers: {
                     'Content-Type': 'application/json'
