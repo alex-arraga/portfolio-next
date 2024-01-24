@@ -9,8 +9,35 @@ import { ClerkProvider } from '@clerk/nextjs'
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'My Portfolio 😁💻',
-  description: 'Discover my personal portfolio',
+  title: 'Porfolio 😁💻',
+  description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
+  keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind'],
+  creator: 'Alex Arraga',
+  metadataBase: new URL('https://ejemplo.com'),
+  alternates: {
+    canonical: '/'
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true
+  },
+  openGraph: {
+    title: 'Alex Arraga - Web developer portfolio 💻',
+    description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
+    images: '/img-og.png',
+    countryName: 'Argentina',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alex Arraga - Web developer portfolio 💻',
+    description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
+    images: {
+      url: '/img-og.png',
+      alt: 'Portfolio logo'
+    }
+  }
 }
 
 export default function RootLayout({
