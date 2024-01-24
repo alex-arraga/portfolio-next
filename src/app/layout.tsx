@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
   keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind'],
   creator: 'Alex Arraga',
-  metadataBase: new URL('https://ejemplo.com'),
+  metadataBase: new URL('https://alexarraga.lat'),
   alternates: {
     canonical: '/'
   },
