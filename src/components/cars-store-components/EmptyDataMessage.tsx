@@ -1,4 +1,4 @@
-import { EmptyDataMessageProps } from '@/types/cars-store'
+import { EmptyDataMessageProps } from '@/types/cars-store-types'
 import Image from 'next/image'
 import Link from 'next/link'
 

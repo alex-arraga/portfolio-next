@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from "next/navigation";
 import { DefaultContextProviderProps } from "@/types/context-types";
 import { CarsContextType } from "@/types/context-types";
-import { CarCardProps, DataNewCar, RentedCarCardProps } from "@/types/cars-store";
+import { CarCardProps, DataNewCar, RentedCarCardProps } from "@/types/cars-store-types";
 
 
 const CarsContext = createContext<CarsContextType | null>(null);

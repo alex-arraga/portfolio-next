@@ -3,7 +3,7 @@ import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { baseApi, myHost } from '@/libs/baseURL';
 import { currentUser } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
-import { BodyPreferenceMp } from '@/types/api';
+import { BodyPreferenceMp } from '@/types/api-types';
 import { PreferenceMercadoPagoSchema } from '@/schemas/zod-schemas';
 
 

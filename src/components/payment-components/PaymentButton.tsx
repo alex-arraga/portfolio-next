@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { NewOrderProps, PaymentButtonProps } from '@/types/payment';
+import { NewOrderProps, PaymentButtonProps } from '@/types/payment-types';
 import { useCarsContext } from '@/context';
 import { baseApi } from '@/libs/baseURL';
 import { v4 as uuidv4 } from 'uuid'

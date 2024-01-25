@@ -1,6 +1,6 @@
 "use client"
 
-import { PriceFilterProps } from '@/types/cars-store'
+import { PriceFilterProps } from '@/types/cars-store-types'
 import { useEffect, useState } from 'react'
 import { updateSearchParams } from '@/app/utils'
 import { useRouter } from 'next/navigation'

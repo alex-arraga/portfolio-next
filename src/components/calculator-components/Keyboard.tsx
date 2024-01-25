@@ -12,7 +12,7 @@ import {
     SquareRoot,
     PlusMinus
 } from "../index"
-import { KeyboardProps } from '@/types/calculator'
+import { KeyboardProps } from '@/types/calculator-types'
 
 function Keyboard({
     calc,

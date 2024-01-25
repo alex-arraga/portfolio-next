@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { footerLinks } from "@/constants"
 import Link from "next/link"
-import { FooterProps } from "@/types/cars-store"
+import { FooterProps } from "@/types/cars-store-types"
 
 function Footer({ otherClasses }: FooterProps) {
     return (

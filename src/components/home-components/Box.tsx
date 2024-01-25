@@ -1,6 +1,6 @@
 "use client"
 
-import { BoxProps } from '@/types/home'
+import { BoxProps } from '@/types/home-types'
 
 export const Box = ({ children, className }: BoxProps) => {
   return (

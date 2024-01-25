@@ -1,7 +1,7 @@
 "use client"
 
 import { deleteAllParams } from "@/app/utils";
-import { CustomButtonProps } from "@/types/cars-store"
+import { CustomButtonProps } from "@/types/cars-store-types"
 import Image from "next/image"
 
 function CustomButton({ title,

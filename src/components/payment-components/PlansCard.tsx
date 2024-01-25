@@ -1,6 +1,6 @@
 "use client"
 
-import { PlansCardProps } from "@/types/payment"
+import { PlansCardProps } from "@/types/payment-types"
 import { PaymentButton } from ".."
 
 export function PlansCard({ car, stripePrices }: PlansCardProps) {

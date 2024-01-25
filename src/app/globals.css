@@ -66,10 +66,10 @@ body {
 }
 
 .box-english {
-  border: 2px solid rgb(125, 105, 6);
+  border: 2px solid #823e80;
   background-image: linear-gradient(to bottom,
-      #a05908,
-      rgba(74, 74, 74, 0))
+      #650062,
+      rgba(0, 0, 0, 0))
 }
 
 .box-proyects {
@@ -81,14 +81,14 @@ body {
 
 .box-proyects__pills-design {
   background-image: linear-gradient(to right,
-      #005E47,
-      #73AA5F)
+      #ab9534,
+      #ac32a2)
 }
 
 .box-proyects__pills-code {
   background-image: linear-gradient(to right,
-      #752568,
-      #8C7A17)
+      #2468ac,
+      #ac32a2)
 }
 
 .box-proyects__pills-design:hover {

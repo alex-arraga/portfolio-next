@@ -1,5 +1,5 @@
 import { HeaderCars, Dashboard, Footer } from '@/components'
-import { HomeProps } from '@/types/cars-store'
+import { HomeProps } from '@/types/cars-store-types'
 import { fetchCarsAPI } from '@/app/utils';
 
 async function page({ searchParams }: HomeProps) {

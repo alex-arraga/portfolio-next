@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { Price } from "./payment";
+import { Price } from "./payment-types";
 
 
 export type UpdateSearchParamsProps = {

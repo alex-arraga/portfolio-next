@@ -1,7 +1,7 @@
 import CarCard from "../CarCard";
-import { CarCardProps, DashboardProps } from "@/types/cars-store";
+import { CarCardProps, DashboardProps } from "@/types/cars-store-types";
 import EmptyDataMessage from "../EmptyDataMessage";
-import { Price } from "@/types/payment";
+import { Price } from "@/types/payment-types";
 import { Stripe } from 'stripe'
 
 const loadPrices = async (): Promise<Price[]> => {

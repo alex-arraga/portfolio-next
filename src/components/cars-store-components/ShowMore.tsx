@@ -1,6 +1,6 @@
 "use client"
 
-import { ShowMoreProps } from "@/types/cars-store"
+import { ShowMoreProps } from "@/types/cars-store-types"
 import { useRouter } from "next/navigation"
 import { CustomButton } from ".."
 import { updateSearchParams } from "@/app/utils"

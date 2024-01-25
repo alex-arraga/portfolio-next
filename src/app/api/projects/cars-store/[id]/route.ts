@@ -1,5 +1,5 @@
 import { prisma } from "@/libs/prisma";
-import { CarsParams } from "@/types/api";
+import { CarsParams } from "@/types/api-types";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, { params }: CarsParams) {

@@ -1,6 +1,6 @@
 import { Task } from "@prisma/client"
 import { SetStateAction } from "react"
-import { CarCardProps, DataNewCar, RentedCarCardProps } from "./cars-store"
+import { CarCardProps, DataNewCar, RentedCarCardProps } from "./cars-store-types"
 
 
 // Home Context 

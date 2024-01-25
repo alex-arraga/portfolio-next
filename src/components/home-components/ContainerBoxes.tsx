@@ -1,4 +1,4 @@
-import { ContainerBoxesProps } from "@/types/home"
+import { ContainerBoxesProps } from "@/types/home-types"
 
 function ContainerBoxes({ children, className }: ContainerBoxesProps) {
     return (

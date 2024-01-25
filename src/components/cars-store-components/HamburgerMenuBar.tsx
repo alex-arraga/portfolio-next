@@ -1,6 +1,6 @@
 "use client"
 
-import { HamburgerMenuBarProps } from '@/types/cars-store';
+import { HamburgerMenuBarProps } from '@/types/cars-store-types';
 import Image from 'next/image';
 
 

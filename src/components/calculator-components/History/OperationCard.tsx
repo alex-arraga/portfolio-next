@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import '@/css/transition.css'
 import { useEffect, useRef, useState } from 'react'
 
-import { Operation } from '@/types/calculator'
+import { Operation } from '@/types/calculator-types'
 import { useCalculatorContext } from '@/context/CalculatorContext';
 
 

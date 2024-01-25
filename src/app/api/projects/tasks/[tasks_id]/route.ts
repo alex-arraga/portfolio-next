@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/libs/prisma';
-import { TasksParams } from '@/types/api';
+import { TasksParams } from '@/types/api-types';
 
 
 // Get a Task

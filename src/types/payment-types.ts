@@ -1,4 +1,4 @@
-import { CarCardProps, RentedCarCardProps } from "./cars-store";
+import { CarCardProps, RentedCarCardProps } from "./cars-store-types";
 
 export type Price = {
     id: string;

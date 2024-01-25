@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Price } from "@/types/payment"
-import { CarCardProps } from "@/types/cars-store"
+import { Price } from "@/types/payment-types"
+import { CarCardProps } from "@/types/cars-store-types"
 import { useState } from 'react'
 import { calculateCarRent, generateCarImageAPI, renameClasses } from "@/app/utils"
 import { CustomButton, CarDetails } from ".."

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Stripe } from 'stripe'
 import { baseClientProjectsURL } from "@/libs/baseURL";
-import { BodyPayloadStripe } from "@/types/api";
+import { BodyPayloadStripe } from "@/types/api-types";
 import { StripeSessionSchema } from "@/schemas/zod-schemas";
 
 export async function POST(request: Request) {

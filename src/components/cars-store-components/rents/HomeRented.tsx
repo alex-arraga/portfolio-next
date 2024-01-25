@@ -2,7 +2,7 @@ import { prisma } from "@/libs/prisma";
 import NavSelect from "./NavSelect";
 import SectionsMyCars from "./SectionsMyCars";
 import { Stripe } from 'stripe';
-import { Price } from "@/types/payment";
+import { Price } from "@/types/payment-types";
 import { currentUser } from "@clerk/nextjs";
 
 const loadPrices = async (): Promise<Price[]> => {

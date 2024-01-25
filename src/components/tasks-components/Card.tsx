@@ -1,5 +1,5 @@
 import React from "react"
-import { PropsCard } from "@/types/tasks"
+import { PropsCard } from "@/types/tasks-types"
 
 export function Card({ children, className, onClick }: PropsCard): React.ReactElement {
     return (

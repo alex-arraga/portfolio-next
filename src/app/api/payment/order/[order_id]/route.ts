@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
-import { OrderParams } from "@/types/api";
+import { OrderParams } from "@/types/api-types";
 
 export async function GET(request: Request, { params }: OrderParams) {
     if (params.order_id) {

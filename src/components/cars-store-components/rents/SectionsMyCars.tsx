@@ -2,7 +2,7 @@
 
 import RentedCarCard from "./RentedCarCard";
 import EmptyDataMessage from "../EmptyDataMessage";
-import { SectionsMyCarsProps } from "@/types/cars-store";
+import { SectionsMyCarsProps } from "@/types/cars-store-types";
 import { useCarsContext } from '@/context/CarsContext'
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";

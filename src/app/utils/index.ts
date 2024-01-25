@@ -1,8 +1,8 @@
 import { CarsResponse, CarsResponseSchema, CarImagesSchema } from "@/schemas/zod-schemas";
-import { CarCardProps, DeleteParamProps, FilterProps, UpdateSearchParamsProps } from "@/types/cars-store";
+import { CarCardProps, DeleteParamProps, FilterProps, UpdateSearchParamsProps } from "@/types/cars-store-types";
 import { toast } from "sonner";
 import { prisma } from "@/libs/prisma";
-import { SettingOrderParams } from "@/types/payment";
+import { SettingOrderParams } from "@/types/payment-types";
 
 
 // Obtain cars information

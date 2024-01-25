@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { NavBarProps } from "@/types/cars-store"
+import { NavBarProps } from "@/types/cars-store-types"
 import { useEffect, useState } from "react"
 import { UserButton } from "@clerk/nextjs"
 import { usePathname } from 'next/navigation'

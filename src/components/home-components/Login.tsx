@@ -4,7 +4,7 @@ import Image from "next/image"
 function Login() {
     return (
         <div className="flex flex-col min-h-screen h-full justify-center items-center">
-            <div className="flex w-screen justify-center items-center md:absolute md:justify-start md:left-0 md:top-0 md:w-fit p-2 my-2">
+            <div className="flex w-screen justify-center items-center md:absolute md:justify-start md:left-0 md:top-0 md:w-fit p-2 mb-2">
                 <Image
                     src={'/header-icon.svg'}
                     alt="main icon"

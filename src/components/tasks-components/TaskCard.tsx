@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { Card } from "./Card";
 
-import { PropsTaskCard } from "@/types/tasks";
+import { PropsTaskCard } from "@/types/tasks-types";
 import { useTasksContext } from "@/context/TasksContext";
 
 export function TaskCard({ task, typePage }: PropsTaskCard) {

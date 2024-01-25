@@ -1,5 +1,5 @@
 import { prisma } from '@/libs/prisma'
-import { TasksParams } from '@/types/api'
+import { TasksParams } from '@/types/api-types'
 import { NextResponse } from 'next/server'
 
 export const DELETE = async (request: Request, { params }: TasksParams) => {

@@ -1,6 +1,6 @@
 "use client"
 
-import { AsideProps } from "@/types/cars-store";
+import { AsideProps } from "@/types/cars-store-types";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 

@@ -1,7 +1,7 @@
 import { fuels, yearsOfProduction } from '@/constants';
 import { CustomFilter, SearchBar, CarCard, ShowMore, CustomButton, EmptyDataMessage } from '..'
 import { fetchCarsAPI } from '@/app/utils'
-import { HomeProps } from '@/types/cars-store';
+import { HomeProps } from '@/types/cars-store-types';
 
 export async function Home({ searchParams }: HomeProps) {
 

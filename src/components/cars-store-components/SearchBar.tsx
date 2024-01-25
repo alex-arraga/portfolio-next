@@ -5,7 +5,7 @@ import Image from "next/image"
 import { updateSearchParams } from "@/app/utils"
 import { SearchManufacturer } from ".."
 import { useState } from "react"
-import { searchBarProps } from "@/types/cars-store"
+import { searchBarProps } from "@/types/cars-store-types"
 import { toast } from "sonner"
 import { useCarsContext } from "@/context/CarsContext"
 

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { PaymentComprobantProps } from "@/types/payment"
+import { PaymentComprobantProps } from "@/types/payment-types"
 import { Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 import { renameClasses } from "@/app/utils"

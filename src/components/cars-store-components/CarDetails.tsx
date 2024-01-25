@@ -1,6 +1,6 @@
 "use client"
 
-import { CarDetailsProps } from "@/types/cars-store"
+import { CarDetailsProps } from "@/types/cars-store-types"
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { generateCarImageAPI, calculateCarRent, renameClasses } from "@/app/utils"

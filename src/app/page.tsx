@@ -23,7 +23,7 @@ function HomePage() {
         <main className="flex flex-col h-full max-w-[95vw] md:max-w-[90vw] mt-12 md:mt-14 xl:mt-16">
 
           {/* About me, Social Networks */}
-          <ContainerBoxes className="flex flex-col-reverse sm:flex-row my-2 sm:my-4 md:my-6 relative gap-2 md:gap-4 w-full h-full ">
+          <ContainerBoxes className="flex flex-col-reverse sm:flex-row my-2 md:my-4 relative gap-2 md:gap-4 w-full h-full ">
             <Box className="box-me relative w-full sm:w-[calc(80%)] rounded-2xl">
               <AboutMe />
             </Box>
@@ -36,14 +36,14 @@ function HomePage() {
 
           {/* My Projects */}
           <ContainerBoxes>
-            <Box className="w-full h-full rounded-2xl box-proyects p-4 md:p-6 xl:p-10 mb-2 md:mb-4 xl:mb-6">
+            <Box className="w-full h-full rounded-2xl box-proyects p-4 md:p-6 xl:p-10 mb-2 md:mb-4">
               <Projects />
             </Box>
           </ContainerBoxes>
 
 
           {/* My age, English Level, Certicates */}
-          <ContainerBoxes className="flex w-full h-full gap-2 md:gap-4 mb-2 md:mb-4 xl:mb-6">
+          <ContainerBoxes className="flex w-full h-full gap-2 md:gap-4 mb-2 md:mb-4">
             <Box className="box-english select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-10 rounded-2xl">
               <MyEnglish />
             </Box>
@@ -59,7 +59,7 @@ function HomePage() {
 
 
           {/* Work Experience, Personality, Skills */}
-          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-10">
+          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-8">
             <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-10 rounded-2xl">
               <Skills />
             </Box>
@@ -74,7 +74,6 @@ function HomePage() {
               </Box>
             </div>
           </ContainerBoxes>
-
 
         </main>
       </div>

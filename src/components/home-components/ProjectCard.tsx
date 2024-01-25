@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from 'next/link'
 import { useRouter } from "next/navigation"
-import { ProjectsCardProps } from "@/types/home"
+import { ProjectsCardProps } from "@/types/home-types"
 import { useHomeContext } from "@/context/HomeContext"
 
 function ProjectCard({ className,

@@ -1,8 +1,8 @@
 "use client"
 
 import { generateCarImageAPI, renameClasses } from "@/app/utils"
-import { GetOrderProps, Price } from "@/types/payment"
-import { RentedCarCardProps } from "@/types/cars-store"
+import { GetOrderProps, Price } from "@/types/payment-types"
+import { RentedCarCardProps } from "@/types/cars-store-types"
 import { useEffect, useState } from 'react'
 import { CarDetails, PaymentComprobant } from "../../index"
 import { baseApi } from "@/libs/baseURL"
