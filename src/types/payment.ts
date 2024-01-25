@@ -1,6 +1,6 @@
 import { CarCardProps, RentedCarCardProps } from "./cars-store";
 
-export interface Price {
+export type Price = {
     id: string;
     object: string;
     active: boolean;
@@ -29,13 +29,13 @@ export interface Price {
 }
 
 
-export interface PlansCardProps {
+export type PlansCardProps = {
     costDayRent: number,
     car: CarCardProps
     stripePrices: Price[]
 }
 
-export interface PreferenceMp {
+export type PreferenceMp = {
     params: {
         id: string,
         title: string,
@@ -46,7 +46,7 @@ export interface PreferenceMp {
     }
 }
 
-export interface ProductMp {
+export type ProductMp = {
     title: string,
     currency_id: string,
     description: string,
@@ -55,14 +55,14 @@ export interface ProductMp {
 }
 
 
-export interface QuerysProps {
+export type QuerysProps = {
     query: {
         key: string
         value: string
     }
 }
 
-export interface SettingOrderParams {
+export type SettingOrderParams = {
     typeService: "mercado_pago" | "stripe",
     paymentId: string,
     orderId: string,
@@ -74,12 +74,12 @@ export interface SettingOrderParams {
     netAmount?: number
 }
 
-export interface UpdateRejectedOrderParams {
+export type UpdateRejectedOrderParams = {
     orderId: string,
     status: string,
 }
 
-export interface NewOrderProps {
+export type NewOrderProps = {
     id: number
     duration_rented: number
     fee: number | null
@@ -98,7 +98,7 @@ export interface NewOrderProps {
 }
 
 
-export interface PaymentButtonProps {
+export type PaymentButtonProps = {
     title: string
     containerStyle: string
     textStyle?: string
@@ -115,7 +115,7 @@ export interface PaymentButtonProps {
 }
 
 
-export interface PaymentComprobantProps {
+export type PaymentComprobantProps = {
     priceSuscription: number,
     payment: NewOrderProps | null
     car: RentedCarCardProps
@@ -124,7 +124,7 @@ export interface PaymentComprobantProps {
 }
 
 
-export interface GetOrderProps {
+export type GetOrderProps = {
     message: string,
     infoOrder: {
         id: number

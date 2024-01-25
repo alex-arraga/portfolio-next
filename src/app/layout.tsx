@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
   keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind'],
   creator: 'Alex Arraga',
-  metadataBase: new URL('https://alexarraga.lat'),
+  metadataBase: new URL('https://alexarraga.lat/'),
   alternates: {
     canonical: '/'
   },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Alex Arraga - Web developer portfolio 💻',
     description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
-    images: '/img-og.png',
+    images: '/opengraph-image.png',
     countryName: 'Argentina',
     type: 'website'
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'Alex Arraga - Web developer portfolio 💻',
     description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
     images: {
-      url: '/img-og.png',
+      url: '/opengraph-image.png',
       alt: 'Portfolio logo'
     }
   }

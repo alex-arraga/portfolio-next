@@ -131,10 +131,10 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                 </div>
 
                                 {/* Total cost */}
-                                <div className="flex justify-between items-center w-full max-w-xl rounded-md bg-pink-200 border-2 border-pink-500 p-2">
+                                <div className="flex justify-between items-center w-full max-w-xl rounded-md bg-sky-200 border-2 border-sky-600 p-2">
                                   <h4 className="font-medium text-xs sm:text-sm md:text-base text-slate-700">Total cost: </h4>
-                                  <div className="px-4 py-1 bg-pink-500 rounded-md">
-                                    <p className="font-medium text-sm sm:text-base md:text-lg xl:text-xl text-white">${totalCost}</p>
+                                  <div className="px-4 py-1 bg-sky-600 rounded-md">
+                                    <p className="font-medium text-sm sm:text-base md:text-lg text-white">${totalCost}</p>
                                   </div>
                                 </div>
                               </div>

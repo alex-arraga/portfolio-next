@@ -1,30 +1,30 @@
 // Type Tasks
-export interface TasksParams {
+export type TasksParams = {
     params: { tasks_id: string }
 }
 
 // Type Calculator
-export interface CalculatorParams {
+export type CalculatorParams = {
     params: { calc_id: string }
 }
 
 // Type Cars
-export interface CarsParams {
+export type CarsParams = {
     params: { id: string }
 }
 
-export interface OrderParams {
+export type OrderParams = {
     params: { order_id: string }
 }
 
-export interface BodyPreferenceMp {
+export type BodyPreferenceMp = {
     order_id: string,
     car_description: string,
     quantity: number,
     unit_price: number
 }
 
-export interface BodyPayloadStripe {
+export type BodyPayloadStripe = {
     order_id: string,
     price_id: string
 }

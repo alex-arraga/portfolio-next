@@ -1,10 +1,10 @@
-export interface BoxProps {
+export type BoxProps = {
     children: React.ReactNode
     className?: string
     type?: string
 }
 
-export interface ProjectsCardProps {
+export type ProjectsCardProps = {
     urlImage: string
     title: string
     text: string
@@ -20,12 +20,12 @@ export interface ProjectsCardProps {
     section?: boolean
 }
 
-export interface ContainerBoxesProps {
+export type ContainerBoxesProps = {
     children: React.ReactNode
     className?: string
     type?: string
 }
 
-export interface ShowImages {
+export type ShowImages = {
     image: string
 }
