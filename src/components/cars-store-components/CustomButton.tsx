@@ -12,6 +12,8 @@ function CustomButton({ title,
     btnType,
     rightIcon,
     leftIcon,
+    styleLeftIcon,
+    styleRightIcon,
     isResetButton }: CustomButtonProps) {
 
     return (
@@ -28,7 +30,7 @@ function CustomButton({ title,
                             src={leftIcon}
                             alt="right icon"
                             fill
-                            className="object-contain"
+                            className={`object-contain ${styleLeftIcon}`}
                         />
                     </div>
                 )}
@@ -41,7 +43,7 @@ function CustomButton({ title,
                             src={rightIcon}
                             alt="right icon"
                             fill
-                            className="object-contain"
+                            className={`object-contain ${styleRightIcon}`}
                         />
                     </div>
                 )}

@@ -1,6 +1,6 @@
-## Personal Portfolio
+# Personal Portfolio
 
-# Languages & technologies used: 
+## Languages & technologies used: 
 
 - HTML
 - CSS | Tailwind

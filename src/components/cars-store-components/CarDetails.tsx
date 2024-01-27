@@ -95,8 +95,6 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                               Experience the freedom of renting cars by the day with secure payments through Mercado Pago. This option gives you absolute flexibility for spontaneous trips or daily plans, with fast and secure transactions. By opting for daily rentals, you will have the freedom to adjust your mobility according to your schedule, without prolonged time ties. With varied and hassle-free payment methods, you can enjoy the convenience of flexible travel planning.
                             </p>
 
-
-
                             {/* Calculate price and days */}
                             <fieldset className="flex w-full h-full justify-center border-2 rounded-xl p-4 sm:p-6 bg-slate-200">
                               <div className="flex flex-col justify-between items-center gap-4 p-4 md:p-6 w-full rounded-xl max-w-2xl bg-sky-700">
@@ -156,10 +154,12 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                           </section>
 
                           {/* Section to view car dates */}
-                          <section>
-                            <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Car Details</h3>
+                          <section className="mb-4">
+                            <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>
+                              Car Details
+                            </h3>
                             <p className='text-sm'>
-                              Looking for specific details about the vehicle you are considering for rental? Here&#39s a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
+                              Looking for specific details about the vehicle you are considering for rental? Here is a detailed description of the <span className='text-indigo-500 font-semibold capitalize'>{car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}</span>, technical features and performance. From performance to technology and safety, find out what makes this vehicle an exceptional choice for your next trip.
                             </p>
                             <div className='flex relative mt-6 mb-0 w-full bg-white border-2 border-gray-200 rounded-xl p-4 flex-col flex-wrap h-full'>
                               <div className='flex gap-4'>
@@ -358,7 +358,6 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
               </Transition.Child>
             </Dialog>
           </Transition>
-
       }
     </>
   )

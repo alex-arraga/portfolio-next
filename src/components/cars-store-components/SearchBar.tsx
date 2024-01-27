@@ -43,7 +43,6 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
         return (
             <>
                 {
-                    // ES
                     otherClasses === 'aside-btn' ?
 
                         <div className="relative w-full h-full">

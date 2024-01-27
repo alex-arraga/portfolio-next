@@ -16,18 +16,18 @@ export async function Home({ searchParams }: HomeProps) {
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
     return (
-        <section className='mt-8 padding-x padding-y max-width' id='discover'>
+        <section className='mt-6 md:mt-4 padding-x padding-y max-width' id='discover'>
 
-            <div className='home__text-container'>
-                <h1 className='text-4xl font-extrabold'>Car Catalogue</h1>
-                <p>Explore the cars your might like</p>
+            <div className='flex flex-col items-start justify-start gap-2 md:gap-3 text-black-100'>
+                <h1 className='text-2xl sm:text-3xl xl:text-4xl font-extrabold'>Car Catalogue</h1>
+                <p className='text-sm sm:text-base'>Explore the cars your might like</p>
             </div>
 
-            <div className='home__filters'>
+            <div className='mt-6 md:mt-10 xl:mt-12 w-full flex-1 items-center flex-wrap gap-5'>
                 <SearchBar />
 
-                <div className='flex flex-col justify-start items-start sm:flex-row sm:justify-start max-w-md sm:items-end w-full gap-6 sm:gap-3'>
-                    <div className='home_filter-container flex items-end gap-3'>
+                <div className='flex flex-col justify-start items-start sm:flex-row sm:justify-start max-w-md sm:items-end w-full gap-5 sm:gap-6'>
+                    <div className='flex items-end gap-3'>
                         <CustomFilter title="fuel" options={fuels} />
                         <CustomFilter title="year" options={yearsOfProduction} />
                     </div>

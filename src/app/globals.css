@@ -178,14 +178,6 @@ body {
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
 }
 
-.hero__title {
-  @apply text-5xl sm:text-6xl md:text-7xl font-extrabold;
-}
-
-.hero__subtitle {
-  @apply text-xl md:text-3xl text-black-100 font-light mt-5;
-}
-
 .hero__image-container {
   @apply xl:flex-[1.5] relative flex justify-end items-end w-full xl:h-full;
 }
@@ -215,7 +207,7 @@ body {
 }
 
 .home__cars-wrapper {
-  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
+  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-6 md:gap-8 mt-12 md:mt-14;
 }
 
 /* END: Home styles */
@@ -283,7 +275,7 @@ body {
 /* START: Custom Filter styles */
 
 .custom-filter__btn {
-  @apply relative w-full min-w-[130px] flex justify-between cursor-pointer items-center rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border mt-10;
+  @apply relative w-full min-w-[130px] flex justify-between cursor-pointer items-center rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border mt-8 md:mt-10;
 }
 
 .custom-filter__options {

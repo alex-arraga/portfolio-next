@@ -38,6 +38,8 @@ export type CustomButtonProps = {
     btnType?: 'button' | 'submit',
     rightIcon?: string,
     leftIcon?: string,
+    styleLeftIcon?: string,
+    styleRightIcon?: string,
     isResetButton?: boolean
 };
 
