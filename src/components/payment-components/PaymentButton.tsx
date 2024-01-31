@@ -35,7 +35,7 @@ function PaymentButton({
         return (
             <div>
                 <button
-                    disabled={errorLoading || isLoading}
+                    disabled={errorLoading}
                     className={`custom-btn ${errorLoading ? 'disabled:bg-gray-600 disabled:bg-opacity-30' : ''} ${containerStyle}`}
                     onClick={async () => {
 
@@ -72,6 +72,7 @@ function PaymentButton({
                                     throw new Error('Error: Mercado Pago API request failed')
                                 }
                             } catch (error) {
+                                setIsLoading(false)
                                 setErrorLoading(true)
                                 console.log(error)
                             }
@@ -103,59 +104,61 @@ function PaymentButton({
                                     }
                                 }
                             } catch (error) {
+                                setIsLoading(false)
                                 setErrorLoading(true)
                                 console.log(error)
                             }
                         }
                     }}
                 >
-                    {mercadoPago && isLoading ?
-                        <div className='flex justify-between items-center px-2 gap-3 w-full h-full'>
-                            <p className='text-black text-xs sm:text-sm  font-medium'>Loading...</p>
-                            <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-500' />
-                        </div>
-
-                        : isLoading ?
-
+                    {
+                        mercadoPago && isLoading ?
                             <div className='flex justify-between items-center px-2 gap-3 w-full h-full'>
-                                <p className='text-white text-xs sm:text-sm  font-medium'>Loading...</p>
-                                <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-200' />
+                                <p className='text-black text-xs sm:text-sm  font-medium'>Loading...</p>
+                                <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-500' />
                             </div>
 
-                            : errorLoading ?
+                            : isLoading ?
 
-                                <div className='flex justify-between items-center px-2 gap-2 w-full h-full bg-transparent'>
-                                    <p className='text-gray-700 text-xs sm:text-sm font-medium'>Load failure</p>
-                                    <p className='text-base'>😥</p>
+                                <div className='flex justify-between items-center px-2 gap-3 w-full h-full'>
+                                    <p className='text-white text-xs sm:text-sm  font-medium'>Loading...</p>
+                                    <div className='bg-gradient-to-r animate-spin h-4 w-4 bg-blue-200' />
                                 </div>
 
-                                :
+                                : errorLoading ?
 
-                                <>
-                                    {leftIcon && (
-                                        <div className="relative w-6 h-6">
-                                            <Image
-                                                src={leftIcon}
-                                                alt="right icon"
-                                                fill
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )}
-                                    <span className={`flex-1 ${textStyle}`}>
-                                        {title}
-                                    </span>
-                                    {rightIcon && (
-                                        <div className="relative w-6 h-6">
-                                            <Image
-                                                src={rightIcon}
-                                                alt="right icon"
-                                                fill
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )}
-                                </>
+                                    <div className='flex justify-between items-center px-2 gap-2 w-full h-full bg-transparent'>
+                                        <p className='text-gray-700 text-xs sm:text-sm font-medium'>Load failure</p>
+                                        <p className='text-base'>😥</p>
+                                    </div>
+
+                                    :
+
+                                    <>
+                                        {leftIcon && (
+                                            <div className="relative w-6 h-6">
+                                                <Image
+                                                    src={leftIcon}
+                                                    alt="right icon"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
+                                        )}
+                                        <span className={`flex-1 ${textStyle}`}>
+                                            {title}
+                                        </span>
+                                        {rightIcon && (
+                                            <div className="relative w-6 h-6">
+                                                <Image
+                                                    src={rightIcon}
+                                                    alt="right icon"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
+                                        )}
+                                    </>
                     }
                 </button>
             </div>
