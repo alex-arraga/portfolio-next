@@ -74,12 +74,12 @@ export async function POST(request: Request) {
                 status: createPreference.api_response.status,
                 URL: createPreference.init_point,
             })
-
         } else {
             console.log(check.error)
         }
+
     } catch (error) {
         console.log(error)
-        return NextResponse.json({ status: 500, error })
+        return error
     }
 } 
