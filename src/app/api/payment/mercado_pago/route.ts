@@ -80,6 +80,6 @@ export async function POST(request: Request) {
 
     } catch (error) {
         console.log(error)
-        return error
+        return NextResponse.json({ message: "Error in Mercado Pago API", error: error }, { status: 500 })
     }
 } 

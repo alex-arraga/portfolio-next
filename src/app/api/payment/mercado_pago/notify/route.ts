@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         }
     } catch (error) {
         console.log(error)
-        return Response.json(error)
+        return NextResponse.json({ message: "Error in Mercado Pago Notify", error: error }, { status: 500 })
     }
 
     return NextResponse.json({ success: true }, { status: 200 })
