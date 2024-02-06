@@ -26,9 +26,9 @@ export const HomeRented = async () => {
                     user_clerk: user?.id,
                 }
             })
+            await prisma.$disconnect()
             return loadCars
         } else {
-            await prisma.$disconnect()
             return []
         }
     };
@@ -41,9 +41,9 @@ export const HomeRented = async () => {
                     user_clerk: user?.id
                 }
             })
+            await prisma.$disconnect()
             return loadCars
         } else {
-            await prisma.$disconnect()
             return []
         }
     };

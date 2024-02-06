@@ -26,7 +26,6 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     const pahtname = usePathname();
 
     const [codeProjects, setCodeProjects] = useState(true);
-    const [image, setImage] = useState('');
     const [loadPage, setLoadPage] = useState(false);
 
     // Clerk user
@@ -147,8 +146,6 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     return <HomeContext.Provider value={{
         codeProjects,
         setCodeProjects,
-        image,
-        setImage,
         loadPage,
         dataUser,
         getUserId

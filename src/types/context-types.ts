@@ -7,8 +7,6 @@ import { CarCardProps, DataNewCar, RentedCarCardProps } from "./cars-store-types
 export type HomeContextType = {
     codeProjects: boolean,
     setCodeProjects: React.Dispatch<SetStateAction<boolean>>,
-    image: string,
-    setImage: React.Dispatch<SetStateAction<string>>,
     loadPage: boolean,
     dataUser: () => {
         id_clerk?: string | null,

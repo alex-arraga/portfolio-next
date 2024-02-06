@@ -39,10 +39,8 @@ export const CarsProvider = ({ children }: DefaultContextProviderProps) => {
 
 
     const searchParams = isClientLoaded ? new URLSearchParams(window.location.href) : '';
-
     const hasManufacturer = searchParams ? searchParams.get('manufacturer') : '';
     const hasModel = searchParams ? searchParams.get('model') : '';
-
 
 
     const newCar = async (car: DataNewCar) => {

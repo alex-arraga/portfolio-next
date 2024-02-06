@@ -13,9 +13,10 @@ async function page({ params }: { params: { id: string } }) {
                     user_clerk: user?.id
                 }
             })
+            await prisma.$disconnect()
             return loadAllCompletedTasks
         } else {
-            await prisma.$disconnect()
+            return []
         }
     };
 

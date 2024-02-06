@@ -39,10 +39,19 @@ export function Header() {
                                                     : 'Internauta'
                                         }
                                     </p>
-
-                                    <UserButton afterSignOutUrl="/sign-in" />
+                                    {
+                                        dataUser()?.name === undefined || dataUser()?.username === undefined ?
+                                            <Image
+                                                src='/internauta.svg'
+                                                alt='internauta logo'
+                                                height={28}
+                                                width={28}
+                                                className='object-contain '
+                                            />
+                                            :
+                                            <UserButton afterSignOutUrl="/sign-in" />
+                                    }
                                 </div>
-
                             </div>
                         </div>
                     </header>
@@ -53,13 +62,12 @@ export function Header() {
                         <div className='flex justify-center bg-gradient-to-r from-slate-950 to-slate-900 items-center w-full h-full'>
                             <div className='flex relative justify-between items-center w-full px-4 md:px-6 xl:px-8'>
 
-                                <div className='w-8 h-8 bg-slate-800 rounded-lg' />
-                                <div className='w-14 h-8 bg-slate-800 rounded-lg' />
+                                <div className='w-8 h-8 bg-slate-800 rounded-lg animate-pulse' />
+                                <div className='w-14 h-8 bg-slate-800 rounded-lg animate-pulse' />
 
                             </div>
                         </div>
                     </header>
-
             }
         </>
     )

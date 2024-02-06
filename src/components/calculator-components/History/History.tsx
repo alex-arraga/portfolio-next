@@ -14,10 +14,11 @@ async function History() {
                     user_clerk: user?.id
                 }
             })
+            await prisma.$disconnect()
             return allOperations
         }
         else {
-            await prisma.$disconnect()
+            return []
         }
     }
 

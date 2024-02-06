@@ -3,9 +3,15 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
     ignoredRoutes: [],
     publicRoutes: [
-        '/api',
-        '/api/create_user',
+        // Client UI
+        '/',
+        '/projects',
+        '/diplomas',
+        '/diplomas/show',
+
+        // API
         '/api/cron',
+        '/api/create_user',
         '/api/projects/calculator',
         '/api/projects/calculator/calcs',
         '/api/projects/cars-store',
@@ -14,7 +20,6 @@ export default authMiddleware({
         '/api/payment/stripe',
         '/api/payment/stripe/notify',
         '/api/projects/tasks',
-        '/projects/calculator'
     ]
 });
 
