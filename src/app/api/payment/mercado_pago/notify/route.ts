@@ -3,12 +3,11 @@ import { MercadoPagoConfig, Payment } from "mercadopago"
 import { settingOrder } from "@/app/utils";
 import { MercadoPagoPaymentSchema } from "@/schemas/zod-schemas";
 import { BodyWebhookMP } from "@/types/api-types";
-import { NextApiResponse } from "next";
 import { sendMessage } from "@/app/utils/sendMessage";
 
 
-export async function POST(request: NextRequest, response: NextApiResponse) {
-    response.status(200)
+export async function POST(request: NextRequest) {
+    NextResponse.json({}, { status: 200 })
 
     const client = new MercadoPagoConfig({
         accessToken: process.env.MERCADOPAGO_SECRET_TOKEN!
