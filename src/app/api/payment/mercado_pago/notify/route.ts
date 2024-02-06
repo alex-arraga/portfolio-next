@@ -3,9 +3,13 @@ import { MercadoPagoConfig, Payment } from "mercadopago"
 import { settingOrder } from "@/app/utils";
 import { MercadoPagoPaymentSchema } from "@/schemas/zod-schemas";
 import { BodyWebhookMP } from "@/types/api-types";
+import { NextApiResponse } from "next";
+import { sendMessage } from "@/app/utils/sendMessage";
 
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, response: NextApiResponse) {
+    response.status(200)
+
     const client = new MercadoPagoConfig({
         accessToken: process.env.MERCADOPAGO_SECRET_TOKEN!
     });
@@ -30,16 +34,15 @@ export async function POST(request: NextRequest) {
 
             // If payment exist update the order
             if (body.data.id === paymentId) {
-                settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
+                await settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                 return Response.json({ modify_order: true })
             }
         } else {
             console.log(check.error)
+            await sendMessage(check.error.message)
         }
     } catch (error) {
         console.log(error)
         return NextResponse.json({ message: "Error in Mercado Pago Notify", error: error }, { status: 500 })
     }
-
-    return NextResponse.json({ success: true }, { status: 200 })
 }
