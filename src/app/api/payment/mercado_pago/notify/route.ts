@@ -8,6 +8,8 @@ import { sendMessage } from "@/app/utils/sendMessage";
 
 export async function POST(request: NextRequest) {
     try {
+        await sendMessage('0- Notify - Llego al Notify 🟢')
+
         const client = new MercadoPagoConfig({
             accessToken: process.env.MERCADOPAGO_SECRET_TOKEN!,
             options: { timeout: 5000 }
@@ -18,10 +20,13 @@ export async function POST(request: NextRequest) {
         const payment = await new Payment(client).get({ id: webhookId });
 
         if (payment && payment.id?.toString() === webhookId) {
+            await sendMessage('1- Notify - El payment existe 🟢')
+
             // Zod validation
             const check = MercadoPagoPaymentSchema.safeParse(payment)
 
             if (check.success) {
+                await sendMessage('2- Notify - Paso el check 🟢')
                 const typeService = "mercado_pago"
                 const paymentId = payment.id?.toString();
                 const installments = payment.installments ?? undefined;
@@ -33,6 +38,7 @@ export async function POST(request: NextRequest) {
                 const payResource = payment.payment_method?.type ?? undefined;
 
                 // If payment exist update the order
+                await sendMessage('3- Notify - Llego al settingOrder 🟢')
                 await settingOrder({ typeService, paymentId, orderId, status, statusDetail, payResource, installments, fee, netAmount })
                 return NextResponse.json({ success: true }, { status: 200 })
 
