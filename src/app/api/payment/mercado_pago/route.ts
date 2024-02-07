@@ -69,6 +69,7 @@ export async function POST(request: Request) {
 
         // Zod validation
         const check = PreferenceMercadoPagoSchema.safeParse(createPreference)
+        await sendMessage('Preference MP created 🟢')
 
         if (check.success) {
             return NextResponse.json({
