@@ -6,6 +6,7 @@ import { useCarsContext } from '@/context';
 import { baseApi } from '@/libs/baseURL';
 import { v4 as uuidv4 } from 'uuid'
 import Image from 'next/image';
+import { sendMessage } from '@/app/utils/sendMessage';
 
 function PaymentButton({
     title,
@@ -48,33 +49,36 @@ function PaymentButton({
                                 const description = `${car!.make} ${car!.model} ${car!.transmission === 'a' ? 'AT' : 'MT'} - ${car!.year}`;
 
                                 // Create the preference, with order data that was created
-                                const response = await fetch(`${baseApi}/payment/mercado_pago`, {
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        order_id: order.order_id,
-                                        car_description: description.toUpperCase(),
-                                        quantity: durationRent,
-                                        unit_price: costRent
-                                    })
-                                });
+                                if (order.order_id) {
+                                    const response = await fetch(`${baseApi}/payment/mercado_pago`, {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            order_id: order.order_id,
+                                            car_description: description.toUpperCase(),
+                                            quantity: durationRent,
+                                            unit_price: costRent
+                                        })
+                                    });
 
 
-                                if (response.ok) {
-                                    // Convert the response in json, this have the payment link
-                                    setIsLoading(false)
-                                    const data = await response.json();
+                                    if (response.ok) {
+                                        // Convert the response in json, this have the payment link
+                                        setIsLoading(false)
+                                        const data = await response.json();
 
-                                    if (data.status === 200 || 201) {
-                                        // If data have status 200 or 201, redirect to payment URL
-                                        window.location.href = data.URL;
+                                        if (data.status === 200 || 201) {
+                                            // If data have status 200 or 201, redirect to payment URL
+                                            window.location.href = data.URL;
+                                        }
+                                    } else {
+                                        throw new Error('Error: Mercado Pago API request failed')
                                     }
-                                } else {
-                                    throw new Error('Error: Mercado Pago API request failed')
                                 }
                             } catch (error) {
                                 setIsLoading(false)
                                 setErrorLoading(true)
                                 console.log(error)
+                                await sendMessage(`Error in MP button, ${error}`)
                             }
                         }
 

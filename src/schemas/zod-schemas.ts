@@ -144,7 +144,7 @@ export const PreferenceMercadoPagoSchema = z.object({
             "access-control-max-age": z.array(z.unknown()),
             "timing-allow-origin": z.array(z.unknown())
         })
-    })
+    }).optional()
 })
 
 export type PreferenceMercadoPagoResponse = z.infer<typeof PreferenceMercadoPagoSchema>
@@ -290,7 +290,7 @@ export const MercadoPagoPaymentSchema = z.object({
             "access-control-max-age": z.array(z.unknown()),
             "timing-allow-origin": z.array(z.unknown())
         })
-    })
+    }).optional()
 })
 
 export type MercadoPagoPaymentResponse = z.infer<typeof MercadoPagoPaymentSchema>

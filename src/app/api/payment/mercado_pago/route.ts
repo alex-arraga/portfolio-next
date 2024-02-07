@@ -5,21 +5,22 @@ import { currentUser } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
 import { BodyPreferenceMp } from '@/types/api-types';
 import { PreferenceMercadoPagoSchema } from '@/schemas/zod-schemas';
+import { sendMessage } from '@/app/utils/sendMessage';
 
 
 export async function POST(request: Request) {
     const user = await currentUser();
     const uuid = uuidv4();
 
-    const client = new MercadoPagoConfig({
-        accessToken: process.env.MERCADOPAGO_SECRET_TOKEN!,
-        options: { timeout: 5000 }
-    });
-
-    const body: BodyPreferenceMp = await request.json();
-    const preference = new Preference(client);
-
     try {
+        const client = new MercadoPagoConfig({
+            accessToken: process.env.MERCADOPAGO_SECRET_TOKEN!,
+            options: { timeout: 5000 }
+        });
+
+        const body: BodyPreferenceMp = await request.json();
+        const preference = new Preference(client);
+
         const createPreference = await preference.create({
             body: {
                 items: [
@@ -66,7 +67,7 @@ export async function POST(request: Request) {
             }
         });
 
-        // Zod
+        // Zod validation
         const check = PreferenceMercadoPagoSchema.safeParse(createPreference)
 
         if (check.success) {
@@ -76,10 +77,12 @@ export async function POST(request: Request) {
             })
         } else {
             console.log(check.error)
+            await sendMessage(`Error check in MP Preference: ${check.error.message}`)
         }
 
     } catch (error) {
         console.log(error)
+        await sendMessage(`Error in MP preference, ${error}`)
         return NextResponse.json({ message: "Error in Mercado Pago API", error: error }, { status: 500 })
     }
 } 
