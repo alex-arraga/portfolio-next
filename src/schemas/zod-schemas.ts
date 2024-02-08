@@ -41,7 +41,7 @@ const ExcludedPaymentTypes = z.enum(["credit_card", "debit_card", "atm", "all", 
 
 
 export const PreferenceMercadoPagoSchema = z.object({
-    additional_info: z.string(),
+    additional_info: z.string().optional(),
     auto_return: z.string(),
     back_urls: z.object({
         failure: z.string(),
@@ -157,10 +157,10 @@ export const MercadoPagoPaymentSchema = z.object({
     additional_info: z.object({
         authentication_code: z.nullable(z.string()),
         available_balance: z.nullable(z.number()),
-        ip_address: z.string(),
+        ip_address: z.string().optional(),
         items: z.array(z.object({})),
         nsu_processadora: z.nullable(z.object({})),
-        payer: z.object({ phone: z.object({}) })
+        payer: z.object({ phone: z.object({}) }).optional()
     }),
     authorization_code: z.nullable(z.string()),
     binary_mode: z.boolean(),
@@ -243,8 +243,8 @@ export const MercadoPagoPaymentSchema = z.object({
             branch: z.nullable(z.string()),
             sub_unit: z.string(),
             unit: z.string()
-        }),
-        transaction_data: z.object({ e2e_id: z.null() }),
+        }).optional(),
+        transaction_data: z.object({}).optional(),
         type: z.string()
     }),
     pos_id: z.nullable(z.string()),
