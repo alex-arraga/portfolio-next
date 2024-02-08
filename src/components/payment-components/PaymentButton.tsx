@@ -68,7 +68,6 @@ function PaymentButton({
 
                                         if (data.status === 200 || 201) {
                                             // If data have status 200 or 201, redirect to payment URL
-                                            await sendMessage('Redireccionando a mp 🟢')
                                             window.location.href = data.URL;
                                         }
                                     } else {

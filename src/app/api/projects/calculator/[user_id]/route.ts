@@ -1,3 +1,4 @@
+import { sendMessage } from "@/app/utils/sendMessage"
 import { prisma } from "@/libs/prisma"
 import { NextResponse } from "next/server"
 
@@ -13,6 +14,7 @@ export async function GET(request: Request) {
         })
         return NextResponse.json({ getAllOperations })
     } catch (error) {
+        await sendMessage(`Calculator API Error 🔴 - Route: calculator[user_id], Method: GET - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })
@@ -23,7 +25,6 @@ export async function GET(request: Request) {
 // Delete: all operations
 export async function DELETE(request: Request) {
     const userId = parseInt(request.url.split('/')[6])
-    console.log('🎇', userId)
     try {
         await prisma.calculator.deleteMany({
             where: {
@@ -35,6 +36,7 @@ export async function DELETE(request: Request) {
         })
 
     } catch (error) {
+        await sendMessage(`Calculator API Error 🔴 - Route: calculator[user_id], Method: DELETE - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })

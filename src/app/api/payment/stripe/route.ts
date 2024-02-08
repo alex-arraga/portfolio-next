@@ -3,6 +3,7 @@ import { Stripe } from 'stripe'
 import { baseClientProjectsURL } from "@/libs/baseURL";
 import { BodyPayloadStripe } from "@/types/api-types";
 import { StripeSessionSchema } from "@/schemas/zod-schemas";
+import { sendMessage } from "@/app/utils/sendMessage";
 
 export async function POST(request: Request) {
     const { price_id, order_id }: BodyPayloadStripe = await request.json()
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
         }
     } catch (error) {
         console.log(error)
+        await sendMessage(`Stripe API Error 🔴 - Route: stripe.route, Method: POST - ${error}`)
         return NextResponse.json({ Error_Message: error })
     }
 }

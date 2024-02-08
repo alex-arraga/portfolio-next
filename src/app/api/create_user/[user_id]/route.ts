@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/libs/prisma'
+import { sendMessage } from '@/app/utils/sendMessage'
 
 export async function GET(request: Request) {
     const id_clerk = request.url.split('/')[5]
@@ -14,6 +15,7 @@ export async function GET(request: Request) {
         }
         return NextResponse.json(getUser)
     } catch (error) {
+        await sendMessage(`User API Error 🔴 - Route: create_user[user_id], Method: GET - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })

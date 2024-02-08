@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/libs/prisma';
 import { TasksParams } from '@/types/api-types';
+import { sendMessage } from '@/app/utils/sendMessage';
 
 
 // Get a Task
@@ -17,6 +18,7 @@ export async function GET(request: Request, { params }: TasksParams) {
         return NextResponse.json(getTask)
 
     } catch (error) {
+        await sendMessage(`Tasks API Error 🔴 - Route: tasks[tasks_id], Method: GET - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })
@@ -39,6 +41,7 @@ export async function PUT(request: Request, { params }: TasksParams) {
         })
 
     } catch (error) {
+        await sendMessage(`Tasks API Error 🔴 - Route: tasks[tasks_id], Method: PUT - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })
@@ -58,6 +61,7 @@ export async function DELETE(request: Request, { params }: TasksParams) {
         })
 
     } catch (error) {
+        await sendMessage(`Tasks API Error 🔴 - Route: tasks[tasks_id], Method: DELETE - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })

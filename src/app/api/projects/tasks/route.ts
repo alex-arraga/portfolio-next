@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/libs/prisma'
+import { sendMessage } from '@/app/utils/sendMessage';
 
 // Get All Task
 export async function GET() {
@@ -7,6 +8,7 @@ export async function GET() {
         const getAllTasks = await prisma.task.findMany()
         return NextResponse.json(getAllTasks)
     } catch (error) {
+        await sendMessage(`Tasks API Error 🔴 - Route: tasks.route, Method: GET - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })
@@ -24,6 +26,7 @@ export async function POST(request: Request) {
             createTask
         })
     } catch (error) {
+        await sendMessage(`Tasks API Error 🔴 - Route: tasks.route, Method: POST - ${error}`)
         return NextResponse.json({
             Error_Message: error
         })

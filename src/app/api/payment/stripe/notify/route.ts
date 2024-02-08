@@ -48,9 +48,11 @@ export async function POST(request: Request, response: NextApiResponse) {
 
         } catch (error) {
             console.log(error)
+            await sendMessage(`Stripe API Error 🔴 - Route: stripe_notify, Method: POST - ${error}`)
             return NextResponse.json({ Webhook_Error: error }, { status: 500 })
         }
     } else {
+        await sendMessage('Stripe API Error 🔴 - Route: stripe_notify - Error: Signature or endpoint not exist')
         return NextResponse.json({ Webhook_Error: 'Signature or endpoint not exist' })
     }
 }

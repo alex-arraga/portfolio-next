@@ -69,7 +69,6 @@ export async function POST(request: Request) {
 
         // Zod validation
         const check = PreferenceMercadoPagoSchema.safeParse(createPreference)
-        await sendMessage('Preference MP created 🟢')
 
         if (check.success) {
             return NextResponse.json({
@@ -78,12 +77,12 @@ export async function POST(request: Request) {
             })
         } else {
             console.log(check.error)
-            await sendMessage(`Error check in MP Preference: ${check.error.message}`)
+            await sendMessage(`Mercado Pago Preference: Error Zod Check 🔴 ${check.error.message}`)
         }
 
     } catch (error) {
         console.log(error)
-        await sendMessage(`Error in MP preference, ${error}`)
+        await sendMessage(`Mercado Pago API Error 🔴 - Route: preference.route, Method: POST - ${error}`)
         return NextResponse.json({ message: "Error in Mercado Pago API", error: error }, { status: 500 })
     }
 } 

@@ -17,7 +17,7 @@ export type OrderParams = {
     params: { order_id: string }
 }
 
-export type BodyWebhookMP = {
+export type PaymentDataWebhookMP = {
     action: string,
     api_version: string,
     data: { id: string },
@@ -27,6 +27,13 @@ export type BodyWebhookMP = {
     type: string,
     user_id: string
 }
+
+export type NotificationWebhookMP = {
+    resource: string,
+    topic: string
+}
+
+export type WebhookMP = PaymentDataWebhookMP | NotificationWebhookMP
 
 export type BodyPreferenceMp = {
     order_id: string,
