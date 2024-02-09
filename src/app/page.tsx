@@ -36,7 +36,7 @@ function HomePage() {
 
           {/* My Projects */}
           <ContainerBoxes>
-            <Box className="w-full h-full rounded-2xl box-proyects p-4 md:p-6 xl:p-10 mb-2 md:mb-4">
+            <Box className="w-full h-full rounded-2xl box-proyects p-4 md:p-6 xl:p-8 mb-2 md:mb-4">
               <Projects />
             </Box>
           </ContainerBoxes>
@@ -44,11 +44,11 @@ function HomePage() {
 
           {/* My age, English Level, Certicates */}
           <ContainerBoxes className="flex w-full h-full gap-2 md:gap-4 mb-2 md:mb-4">
-            <Box className="box-english select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-10 rounded-2xl">
+            <Box className="box-english select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
               <MyEnglish />
             </Box>
 
-            <Box className="box-age select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-10 rounded-2xl">
+            <Box className="box-age select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
               <MyAge />
             </Box>
 
@@ -60,16 +60,16 @@ function HomePage() {
 
           {/* Work Experience, Personality, Skills */}
           <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-8">
-            <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-10 rounded-2xl">
+            <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-8 rounded-2xl">
               <Skills />
             </Box>
 
             <div className="flex flex-wrap gap-2 md:gap-4 w-full md:w-1/2">
-              <Box className="box-work_experience w-full relative h-[63%] p-4 md:p-6 xl:p-10 rounded-2xl">
+              <Box className="box-work_experience w-full relative h-[65%] p-4 md:p-6 xl:p-8 rounded-2xl">
                 <WorkExperience />
               </Box>
 
-              <Box className="box-personality w-full relative h-[35%] p-4 md:p-6 xl:p-10 rounded-2xl">
+              <Box className="box-personality w-full relative h-[33%] p-4 md:p-6 xl:p-8 rounded-2xl">
                 <Personality />
               </Box>
             </div>

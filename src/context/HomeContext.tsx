@@ -1,7 +1,7 @@
 "use client"
 
 import { baseApi } from "@/libs/baseURL";
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, useCallback } from "react"
 import { useUser } from "@clerk/nextjs";
 import { HomeContextType, DefaultContextProviderProps } from "@/types/context-types";
 import { useRouter, usePathname } from "next/navigation";
@@ -25,20 +25,15 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     const router = useRouter();
     const pahtname = usePathname();
 
+    const validPathnames = '/' || '/projects/cars-store' || '/projects/cars-store/rents' || '/projects/cars-store/dashboard' || '/projects/calculator' || '/projects/tasks'
     const [codeProjects, setCodeProjects] = useState(true);
     const [loadPage, setLoadPage] = useState(false);
 
     // Clerk user
     const user = useUser();
 
-    useEffect(() => {
-        if (user.isLoaded && pahtname === '/') {
-            setLoadPage(true)
-            registerUser()
-        }
-    }, [user.isLoaded, pahtname])
 
-
+    // Return the ID number of the database, according to the user.
     const getUserId = async () => {
         const userId = dataUser()?.id_clerk;
         if (userId) {
@@ -62,7 +57,8 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     };
 
 
-    const dataUser = () => {
+    // Get the data of current user
+    const dataUser = useCallback(() => {
         const hasGithubAccount = user.user?.externalAccounts.length !== undefined && user.user?.externalAccounts.length > 0 && user.user?.externalAccounts[0]?.provider === 'github' ? true : false;
         const githubEmail = hasGithubAccount ? user.user?.externalAccounts[0].emailAddress : undefined;
 
@@ -83,10 +79,13 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
         }
 
         return data
-    };
+    }, [user.user]);
 
 
-    const getUserDB = async () => {
+    // Code flow: User Registration
+
+    // 3- Query the database to validate if the user exist
+    const getUserDB = useCallback(async () => {
         if (user.user?.id) {
             try {
                 const response = await fetch(`${baseApi}/create_user/${user.user.id}`, {
@@ -103,10 +102,11 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
                 return null
             }
         }
-    };
+    }, [user.user?.id]);
 
 
-    const validation = async () => {
+    // 2- If the user exist return true, else return false
+    const validation = useCallback(async () => {
         const data = await getUserDB();
         if (!data) {
             return false
@@ -114,10 +114,11 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
             const hasUser = data.id_clerk === user.user?.id ? true : false
             return hasUser
         }
-    };
+    }, [user.user?.id, getUserDB]);
 
 
-    const registerUser = async () => {
+    // 1- Before that function register a new user, validate if the user already exist
+    const registerUser = useCallback(async () => {
         const userExist = await validation();
         if (!userExist) {
             try {
@@ -140,7 +141,19 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
                 console.log('Fetch error on register a new user', error)
             }
         }
-    };
+    }, [router, validation, dataUser]);
+
+
+    // 0- If the user is logged in, the function registerUser is executed
+    useEffect(() => {
+        if (user.isLoaded) {
+            setLoadPage(true)
+            if (user.user?.id && pahtname === validPathnames) {
+                console.log('Home Context🎈')
+                registerUser()
+            }
+        }
+    }, [user.isLoaded, pahtname, , validPathnames, registerUser, user.user?.id])
 
 
     return <HomeContext.Provider value={{
