@@ -44,7 +44,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                         leaveFrom="opacity-200 scale-100"
                         leaveTo="opacity-0 scale-95"
                       >
-                        <Dialog.Panel className={'relative w-full h-full max-w-[100vw] max-h-[100vh] md:max-w-[80vw] md:max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'}>
+                        <Dialog.Panel className={'relative w-full h-full max-w-[100vw] md:max-w-[80vw] 2xl:max-w-[45vw] max-h-[100vh] md:max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'}>
 
                           {/* Button 'x' to close modal */}
                           <button type="button"

@@ -29,10 +29,10 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
         <>
             {
                 isDashboard ?
-                    <div className="fixed top-0 flex flex-col w-full bg-white z-10 mb-10">
-                        <header className={`w-full border-gray-100 border-b-2 ${otherClasses}`}>
-                            <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 h-14 sm:h-16">
-                                <Link href={"/projects/cars-store"} className="flex justify-center items-center">
+                    <header className="fixed top-0 flex flex-col items-center w-full bg-white z-10 mb-10">
+                        <nav className={`w-full max-w-[2000px] border-gray-100 border-b-2 ${otherClasses}`}>
+                            <section className="mx-auto flex justify-between items-center h-14 sm:h-16">
+                                <Link href={"/projects/cars-store"} className="flex justify-center items-center pl-4 md:pl-6">
                                     <Image
                                         src="/logo.svg"
                                         alt="app logo"
@@ -42,7 +42,7 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
                                     />
                                 </Link>
 
-                                <div className="relative flex items-center justify-center pr-4 gap-3 md:gap-6">
+                                <div className="relative flex items-center justify-center pr-4 md:pr-6 gap-3 md:gap-6">
                                     <Link href={pathRents}
                                         onClick={() => setPath(pathRents)}
                                         className={`${path === pathRents ? 'bg-indigo-200 p-2 rounded-full' : 'bg-gray-100 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300'}`}>
@@ -69,18 +69,18 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
                                         <UserButton afterSignOutUrl="/sign-in" />
                                     </div>
                                 </div>
-                            </nav>
-                        </header>
+                            </section>
+                        </nav>
 
                         <HamburgerMenuBar searchParams={hamburgerParams} handleClick={openModal!} styleMenu='dashboard' />
-                    </div>
+                    </header>
 
                     :
 
 
                     <header className={`w-full z-10 ${isStatic ? 'fixed top-0 bg-white border-b-2 border-gray-100' : ''} ${otherClasses}`}>
-                        <nav className="max-w-[1440px] mx-auto flex justify-between items-center pl-4 h-14 sm:h-16">
-                            <Link href={"/projects/cars-store"} className="flex justify-center items-center">
+                        <nav className="mx-auto max-w-[2000px] flex justify-between items-center h-14 sm:h-16">
+                            <Link href={"/projects/cars-store"} className="flex justify-center items-center pl-4 md:pl-6">
                                 <Image
                                     src="/logo.svg"
                                     alt="app logo"
@@ -90,7 +90,7 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
                                 />
                             </Link>
 
-                            <div className="relative flex items-center justify-center pr-4 gap-3 md:gap-6">
+                            <div className="relative flex items-center justify-center pr-4 md:pr-6 gap-3 md:gap-6">
                                 <Link href={pathRents}
                                     onClick={() => setPath(pathRents)}
                                     className={`${path === pathRents ? 'bg-indigo-200 p-2 rounded-full' : 'bg-gray-100 p-1.5 md:bg-white rounded-full hover:bg-sky-200 duration-300'}`}>

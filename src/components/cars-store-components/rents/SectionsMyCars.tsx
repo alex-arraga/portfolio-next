@@ -58,41 +58,45 @@ export const SectionsMyCars = ({ rentedCars, stripePrices, likedCars }: Sections
             <>
                 {
                     sectionLikes === true ?
-                        <section className="overflow-hidden h-full">
-                            <div className={`flex overflow-hidden justify-center items-center w-full h-full ${hasLikes() === true ? 'hidden' : 'block'}`}>
-                                <EmptyDataMessage styleMessage="likes" />
-                            </div>
+                        <main className="flex justify-center w-full overflow-hidden h-full">
+                            <section className="w-full max-w-[2000px]">
+                                <div className={`flex overflow-hidden justify-center items-center w-full h-full ${hasLikes() === true ? 'hidden' : 'block'}`}>
+                                    <EmptyDataMessage styleMessage="likes" />
+                                </div>
 
-                            {/* Likes cars */}
-                            <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasLikes() === false ? 'hidden' : 'block'}`}>
-                                {
-                                    likedCars.sort((a, b) => b.id - a.id).map((cars) => (
-                                        <section className="h-full w-full" key={cars.id}>
-                                            <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
-                                        </section>
-                                    ))
-                                }
-                            </div>
-                        </section>
+                                {/* Likes cars */}
+                                <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasLikes() === false ? 'hidden' : 'block'}`}>
+                                    {
+                                        likedCars.sort((a, b) => b.id - a.id).map((cars) => (
+                                            <section className="h-full w-full" key={cars.id}>
+                                                <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
+                                            </section>
+                                        ))
+                                    }
+                                </div>
+                            </section>
+                        </main>
 
                         :
 
-                        <section className="overflow-hidden h-full">
-                            <div className={`flex overflow-hidden justify-center items-center w-full h-full ${hasRentedCars() === true ? 'hidden' : 'block'}`}>
-                                <EmptyDataMessage styleMessage="rents" />
-                            </div>
+                        <main className="flex justify-center w-full overflow-hidden h-full">
+                            <section className="w-full max-w-[2000px]">
+                                <div className={`flex overflow-hidden justify-center items-center w-full h-full ${hasRentedCars() === true ? 'hidden' : 'block'}`}>
+                                    <EmptyDataMessage styleMessage="rents" />
+                                </div>
 
-                            {/* Likes cars */}
-                            <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
-                                {
-                                    rentedCars.sort((a, b) => b.id - a.id).map((cars) => (
-                                        <section className="h-full w-full" key={cars.id}>
-                                            <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
-                                        </section>
-                                    ))
-                                }
-                            </div>
-                        </section>
+                                {/* Likes cars */}
+                                <div className={`relative grid grid-cols-1 overflow-x-hidden md:grid-cols-2 xl:grid-cols-3 gap-6 p-4 sm:p-6 md:p-10 h-auto ${hasRentedCars() === false ? 'hidden' : 'block'}`}>
+                                    {
+                                        rentedCars.sort((a, b) => b.id - a.id).map((cars) => (
+                                            <section className="h-full w-full" key={cars.id}>
+                                                <RentedCarCard rentedCars={cars} stripePrices={stripePrices} />
+                                            </section>
+                                        ))
+                                    }
+                                </div>
+                            </section>
+                        </main>
                 }
             </>
         )
