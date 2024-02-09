@@ -1,10 +1,8 @@
 "use client"
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 import { Card } from "./Card";
-
 import { PropsTaskCard } from "@/types/tasks-types";
 import { useTasksContext } from "@/context/TasksContext";
 
@@ -17,7 +15,6 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
             {
                 typePage === 'completed' ?
                     <Card key={task.id} className="relative bg-zinc-800 p-7 border-b-2 border-sky-600 hover:border-sky-400 rounded-md hover:brightness-110 duration-300">
-
                         <p className="absolute top-0 left-0 flex justify-center items-center w-full py-1 text-txt_10 md:text-xs border-b-2 border-slate-600 border-opacity-50 rounded-xl rounded-t-md italic text-gray-400">Tarea completada</p>
                         <div className="flex justify-between mt-4 items-start">
                             <div className="flex justify-between w-full">
