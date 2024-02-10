@@ -48,7 +48,7 @@ export default function RootLayout({
       <body className={`${poppinsFont.className} overflow-x-hidden overflow-y-auto`}>
         <ClerkProvider appearance={{
           variables: {
-            colorBackground: 'rgba(255, 255, 255, .9)',
+            colorBackground: 'rgba(255, 255, 255)',
             colorPrimary: '#6432CF',
             colorText: 'black',
             colorTextSecondary: '#4279CC',
