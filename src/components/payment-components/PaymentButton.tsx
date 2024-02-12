@@ -36,7 +36,8 @@ function PaymentButton({
         return (
             <div>
                 <button
-                    disabled={errorLoading}
+                    // Inactive Stripe - 2
+                    disabled={stripe || errorLoading}
                     className={`custom-btn ${errorLoading ? 'disabled:bg-gray-600 disabled:bg-opacity-30' : ''} ${containerStyle}`}
                     onClick={async () => {
 
