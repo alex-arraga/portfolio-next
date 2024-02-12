@@ -23,7 +23,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
             <>
                 {/* Contenedor completo */}
                 <CSSTransition classNames='fade'
-                    key={'register'}
+                    key='register'
                     in={modalIsVisible}
                     timeout={500}
                     nodeRef={nodeRef}
@@ -32,7 +32,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
 
                     <div className={`relative ${modalIsVisible ? 'z-20 w-screen' : 'z-0'} left-0 top-0 h-screen w-full px-3`}>
                         <Image
-                            src={'/burger-menu.svg'}
+                            src='/burger-menu.svg'
                             alt='burger menu'
                             width={28}
                             height={28}
@@ -44,7 +44,7 @@ function HistoryContainer({ children }: { children: React.ReactNode }) {
                         <div ref={nodeRef} className={`scroll h-full absolute overflow-auto text-start left-0 top-0 bg-black w-full border-opacity-30 border-sky-200 border-r-2 px-5 ${modalIsVisible == false ? 'hidden' : 'block'}`} >
                             <div className='bg-black sticky top-0'>
                                 <Image
-                                    src={'/cross-close.svg'}
+                                    src='/cross-close.svg'
                                     alt='cross'
                                     width={24}
                                     height={24}

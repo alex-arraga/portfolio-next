@@ -44,7 +44,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                 leaveFrom="opacity-200 scale-100"
                                                 leaveTo="opacity-0 scale-95"
                                             >
-                                                <Dialog.Panel className={'relative w-full h-full max-w-[100vw] md:max-w-[80vw] 2xl:max-w-[45vw] max-h-[100vh] md:max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'}>
+                                                <Dialog.Panel className='relative w-full h-full max-w-[100vw] md:max-w-[80vw] 2xl:max-w-[45vw] max-h-[100vh] md:max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 xl:p-10 text-left shadow-xl transition-all'>
 
                                                     {/* Button 'x' to close modal */}
                                                     <button type="button"
@@ -68,7 +68,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                     {car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}
                                                                 </h1>
 
-                                                                {/* Section to pay - Stripe */}
+                                                                {/* Section: Pay Methods */}
                                                                 <h2 className='font-semibold text-xl my-6 text-indigo-500'>Flexible payment methods!</h2>
                                                                 <p className='text-sm'>
                                                                     At CarHub, we offer two payment options for your convenience. Choose our <span className='font-medium text-indigo-800'>monthly plan to access a wide range of cars for a full month, allowing you to change vehicles according to your preference</span>.
@@ -76,6 +76,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                 </p>
                                                             </div>
 
+                                                            {/* Stripe */}
                                                             <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
                                                             <p className='text-sm pb-6'>
                                                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
@@ -88,7 +89,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                         </section>
                                                     </div>
 
-                                                    {/* Section to pay - Mercado Pago */}
+                                                    {/* Mercado Pago */}
                                                     <section>
                                                         <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
                                                         <p className='text-sm pb-6'>
@@ -153,7 +154,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                         </div>
                                                     </section>
 
-                                                    {/* Section to view car dates */}
+                                                    {/* Section: Car data */}
                                                     <section className="mb-4">
                                                         <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>
                                                             Car Details
@@ -164,7 +165,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                         <div className='flex relative mt-6 mb-0 w-full bg-white border-2 border-gray-200 rounded-xl p-4 flex-col flex-wrap h-full'>
                                                             <div className='flex gap-4'>
                                                                 <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                                                                    {/* Main image */}
+                                                                    {/* First image */}
                                                                     <Image src={generateCarImageAPI(car) ?? ''}
                                                                         fill
                                                                         sizes="500px"
@@ -173,7 +174,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                     />
                                                                 </div>
                                                                 <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
-                                                                    {/* Main image */}
+                                                                    {/* Second image */}
                                                                     <Image src={generateCarImageAPI(car, '23') ?? ''}
                                                                         fill
                                                                         sizes="500px"
@@ -182,7 +183,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                     />
                                                                 </div>
                                                                 <div className="relative w-full hidden md:block h-40 bg-pattern bg-cover bg-center rounded-lg">
-                                                                    {/* Main image */}
+                                                                    {/* Third image */}
                                                                     <Image src={generateCarImageAPI(car, '13') ?? ''}
                                                                         fill
                                                                         sizes="500px"
@@ -192,8 +193,6 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                 </div>
                                                             </div>
 
-
-                                                            {/* Name car and model */}
                                                             <div className="mt-6 mx-2">
                                                                 <h1 className="font-semibold capitalize">
                                                                     Data Sheet
@@ -263,7 +262,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                 leaveFrom="opacity-200 scale-100"
                                                 leaveTo="opacity-0 scale-95"
                                             >
-                                                <Dialog.Panel className={'relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'}>
+                                                <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
 
                                                     <button type="button"
                                                         onClick={closeModal}

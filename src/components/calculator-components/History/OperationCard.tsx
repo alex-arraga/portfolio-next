@@ -35,7 +35,7 @@ export function OperationCard({ operation }: { operation: Operation }) {
                         <p className='text-xs text-gray-200'>{operation.created_at.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                         <div className='h-3.5 w-3.5 sm:h-4 sm:w-4 relative flex cursor-pointer justify-center items-center rounded-full bg-transparent hover:bg-red-500 duration-100'>
                             <Image
-                                src={'/cross-close-rounded.svg'}
+                                src='/cross-close-rounded.svg'
                                 alt='cross close'
                                 fill
                                 sizes='20px'

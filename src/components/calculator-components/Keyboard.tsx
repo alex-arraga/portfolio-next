@@ -120,7 +120,7 @@ function Keyboard({
                             <Button onClick={() => showValue('log(')}>log</Button>
                             <Button onClick={() => deleteAValue()}>
                                 <Image
-                                    src={'/delete-a-number.svg'}
+                                    src='/delete-a-number.svg'
                                     alt='delete a number'
                                     width={25}
                                     height={25}

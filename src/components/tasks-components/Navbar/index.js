@@ -4,7 +4,7 @@ export const privateRoutes = [
     {
         name: 'Tareas',
         path: '/projects/tasks',
-        icon: <Image src={'/pendient-task.svg'}
+        icon: <Image src='/pendient-task.svg'
             alt='tasks'
             width={20}
             height={20}
@@ -14,7 +14,7 @@ export const privateRoutes = [
     {
         name: 'Completadas',
         path: '/projects/tasks/completed',
-        icon: <Image src={'/completed-task.svg'}
+        icon: <Image src='/completed-task.svg'
             alt='tasks'
             width={20}
             height={20}
@@ -24,7 +24,7 @@ export const privateRoutes = [
     {
         name: 'Crear tarea',
         path: '/projects/tasks/new',
-        icon: <Image src={'/new-task.svg'}
+        icon: <Image src='/new-task.svg'
             alt='tasks'
             width={20}
             height={20}

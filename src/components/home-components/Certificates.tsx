@@ -10,7 +10,7 @@ function Certificates() {
         <>
             <Image
                 onClick={() => router.push(`${myHost}/diplomas`)}
-                src={'/certificate.gif'}
+                src='/certificate.gif'
                 alt="certicate"
                 fill
                 sizes="1000px"

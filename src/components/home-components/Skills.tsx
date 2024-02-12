@@ -7,7 +7,7 @@ function Skills() {
             <div className="flex justify-between items-center">
                 <h2 className="text-xl md:text-3xl xl:text-4xl font-medium text-gray-100">Habilidades</h2>
                 <Image
-                    src={'/dev.png'}
+                    src='/dev.png'
                     alt="developer"
                     width={500}
                     height={500}

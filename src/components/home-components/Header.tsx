@@ -42,7 +42,7 @@ export function Header() {
                         <div className='flex justify-center bg-gradient-to-r from-slate-950 to-slate-900 items-center w-full h-full'>
                             <div className='flex justify-between items-center w-full px-4 md:px-6 xl:px-8'>
                                 <Image
-                                    src={'/header-icon.svg'}
+                                    src='/header-icon.svg'
                                     alt='page logo'
                                     width={36}
                                     height={36}
@@ -90,12 +90,12 @@ export function Header() {
                                                                 <p className='text-sm sm:text-base md:text-lg w-full text-center font-semibold'>Internauta <span className='text-xs sm:text-sm font-medium text-gray-500'>(Invitado)</span></p>
                                                             </div>
                                                             <Link
-                                                                href={'/sign-in'}
+                                                                href='/sign-in'
                                                                 className='text-xs sm:text-sm 2xl:text-base font-medium px-4 py-2 text-blue-700 border-2 border-gray-200 hover:bg-indigo-100 hover:border-blue-500 duration-200 w-full text-right rounded-md'>
                                                                 Ingresar con mi cuenta
                                                             </Link>
                                                             <Link
-                                                                href={'/sign-up'}
+                                                                href='/sign-up'
                                                                 className='text-xs sm:text-sm 2xl:text-base font-medium px-4 py-2 text-blue-700 border-2 border-gray-200 hover:bg-indigo-100 hover:border-blue-500 duration-200 w-full text-right rounded-md'>
                                                                 Registrarme
                                                             </Link>

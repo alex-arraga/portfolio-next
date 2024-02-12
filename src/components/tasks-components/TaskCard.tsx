@@ -22,7 +22,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
                                     <h3 className="text-base sm:text-lg md:text-xl font-medium">{task.title}</h3>
                                     <div>
                                         <Image
-                                            src={'/cross-close-rounded-red.svg'}
+                                            src='/cross-close-rounded-red.svg'
                                             alt="close"
                                             width={20}
                                             height={20}
@@ -45,7 +45,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
                             <h3 className="text-base sm:text-lg md:text-xl font-medium">{task.title}</h3>
                             <div className="flex gap-3 md:gap-2 mx-4 sm:ml-4">
                                 <Image
-                                    src={'/check-rounded-green.svg'}
+                                    src='/check-rounded-green.svg'
                                     alt="check to completed"
                                     width={20}
                                     height={20}
@@ -53,7 +53,7 @@ export function TaskCard({ task, typePage }: PropsTaskCard) {
                                     className='object-contain cursor-pointer ml-4 h-4 w-4 sm:h-[18px] sm:w-[18px] 2xl:w-5 2xl:h-5 hover:scale-125 duration-200'
                                 />
                                 <Image
-                                    src={'/cross-close-rounded-red.svg'}
+                                    src='/cross-close-rounded-red.svg'
                                     alt="close"
                                     width={20}
                                     height={20}

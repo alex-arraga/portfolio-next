@@ -44,7 +44,7 @@ function PaymentComprobant({ isOpen, closeModal, car, payment, priceSuscription 
                                             leaveFrom="opacity-200 scale-100"
                                             leaveTo="opacity-0 scale-95"
                                         >
-                                            <Dialog.Panel className={'relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-slate-50 p-4 md:p-6 text-left shadow-xl transition-all flex flex-col gap-5'}>
+                                            <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-slate-50 p-4 md:p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
 
                                                 <button type="button"
                                                     onClick={closeModal}

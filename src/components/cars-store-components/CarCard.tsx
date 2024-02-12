@@ -48,7 +48,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                                         setLike(true)
                                                         manageLikes(car)
                                                     }}
-                                                    src={'/heart-outline.svg'}
+                                                    src='/heart-outline.svg'
                                                     width={22}
                                                     height={22}
                                                     alt="like icon"
@@ -59,7 +59,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
                                                     onClick={() => {
                                                         setLike(false)
                                                     }}
-                                                    src={'/heart-filled.svg'}
+                                                    src='/heart-filled.svg'
                                                     width={22}
                                                     height={22}
                                                     alt="like icon"
@@ -102,7 +102,7 @@ function CarCard({ car, styleCard, stripePrices }: CarProps) {
 
                                         <div className="flex flex-col justify-center items-center gap-2 w-full ">
                                             <Image
-                                                src={'/engine.svg'}
+                                                src='/engine.svg'
                                                 width={24}
                                                 height={24}
                                                 alt="engine"

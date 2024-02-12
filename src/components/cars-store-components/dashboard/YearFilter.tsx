@@ -26,7 +26,7 @@ export function YearFilter() {
     return (
         <div className='mt-5'>
 
-            <div className={'flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-xs font-medium cursor-pointer text-gray-400'}>
+            <div className='flex justify-start relative items-center bg-gray-100 w-full h-8 rounded-full text-xs font-medium cursor-pointer text-gray-400'>
                 <span className='pl-12'>
                     {
                         selected ? selected
@@ -39,14 +39,14 @@ export function YearFilter() {
                     value={selected}
                     onChange={setYearParam}
                 >
-                    <Image src={'/calendar-search.svg'}
+                    <Image src='/calendar-search.svg'
                         alt='year car'
                         width={20}
                         height={20}
                         className='absolute left-4 opacity-30'
                     />
-                    <Listbox.Button className={'relative flex items-center justify-end w-full h-full'}>
-                        <Image src={'/chevron-up-down.svg'}
+                    <Listbox.Button className='relative flex items-center justify-end w-full h-full'>
+                        <Image src='/chevron-up-down.svg'
                             alt='year car'
                             width={20}
                             height={20}
@@ -61,7 +61,7 @@ export function YearFilter() {
                         leaveTo="opacity-0"
                     >
 
-                        <Listbox.Options className={'absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white h-max-[calc(3rem)]'}>
+                        <Listbox.Options className='absolute z-10 w-full border-2 border-gray-200 rounded-xl top-10 bg-white h-max-[calc(3rem)]'>
                             {
                                 yearsOfProduction.map((year) => (
                                     <Listbox.Option

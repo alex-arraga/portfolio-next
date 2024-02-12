@@ -17,7 +17,7 @@ function SwitchProjects({ type }: { type?: string }) {
                         <div className='flex items-center justify-center gap-2 md:gap-4 xl:gap-6 mb-4 md:mb-6'>
                             <Image
                                 onClick={() => router.push('/')}
-                                src={'/arrow-switch.svg'}
+                                src='/arrow-switch.svg'
                                 alt='arrow back'
                                 width={120}
                                 height={50}
@@ -42,7 +42,7 @@ function SwitchProjects({ type }: { type?: string }) {
                         <div className='flex items-center justify-center gap-2 md:gap-4 xl:gap-6 mb-4 md:mb-6'>
                             <Image
                                 onClick={() => router.push('/')}
-                                src={'/arrow-switch.svg'}
+                                src='/arrow-switch.svg'
                                 alt='arrow back'
                                 width={120}
                                 height={50}

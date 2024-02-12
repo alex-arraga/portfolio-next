@@ -20,7 +20,7 @@ function NavSelect() {
                         My rented cars
 
                         <Image
-                            src={'/coin.svg'}
+                            src='/coin.svg'
                             alt="like"
                             width={16}
                             height={16}
@@ -37,7 +37,7 @@ function NavSelect() {
                         The cars I liked
 
                         <Image
-                            src={'/heart-gray-filled.svg'}
+                            src='/heart-gray-filled.svg'
                             alt="like"
                             width={16}
                             height={16}

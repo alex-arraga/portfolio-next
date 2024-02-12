@@ -17,7 +17,7 @@ function AboutMe() {
 
             <div className="relative hidden md:block md:w-1/3 h-full">
                 <Image
-                    src={'/me.png'}
+                    src='/me.png'
                     alt="me"
                     fill
                     sizes="1000px"

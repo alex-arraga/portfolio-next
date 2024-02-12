@@ -8,7 +8,7 @@ function WorkExperience() {
                     Experiencia Laboral
                 </h2>
                 <Image
-                    src={'/job.png'}
+                    src='/job.png'
                     alt="job icon"
                     height={500}
                     width={500}

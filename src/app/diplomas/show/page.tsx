@@ -25,7 +25,7 @@ function Show() {
             <section className="flex justify-center items-center w-screen h-screen bg-[url('/bg-main-blur-30.png')]">
                 <Image
                     onClick={() => router.push(`${myHost}/diplomas`)}
-                    src={'/arrow-switch.svg'}
+                    src='/arrow-switch.svg'
                     alt="back"
                     width={50}
                     height={50}

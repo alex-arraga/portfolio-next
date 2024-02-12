@@ -108,7 +108,7 @@ function SearchBar({ styleSearchbar }: searchBarProps) {
 
                             {/* Search Model */}
                             <div className="flex relative flex-1 items-center w-full">
-                                <Image src={'/model-icon.png'}
+                                <Image src='/model-icon.png'
                                     alt="magnifyng glass"
                                     width={20}
                                     height={20}

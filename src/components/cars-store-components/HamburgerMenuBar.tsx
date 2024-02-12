@@ -12,7 +12,7 @@ function HamburgerMenuBar({ handleClick, searchParams, styleMenu }: HamburgerMen
 
                     <section className="relative flex justify-start items-center px-4 sm:px-6 md:px-10 my-6 h-0 w-full max-w-[2000px]">
                         <Image
-                            src={'/burger-menu-black.svg'}
+                            src='/burger-menu-black.svg'
                             alt='burger menu'
                             width={24}
                             height={24}
@@ -60,7 +60,7 @@ function HamburgerMenuBar({ handleClick, searchParams, styleMenu }: HamburgerMen
 
                     <div className="relative flex justify-start items-center mx-4 sm:mx-6 md:mx-10 my-6 h-0 w-full">
                         <Image
-                            src={'/burger-menu-black.svg'}
+                            src='/burger-menu-black.svg'
                             alt='burger menu'
                             width={24}
                             height={24}

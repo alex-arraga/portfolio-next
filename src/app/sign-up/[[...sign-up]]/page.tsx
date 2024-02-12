@@ -6,7 +6,7 @@ export default function Page() {
         <main className="bg-home">
             <section className='bg-[url("/bg-main-blur-30.png")] relative flex flex-col justify-start items-center w-full h-screen max-w-screen max-h-screen'>
                 <div className="flex justify-center items-center w-full h-full">
-                    <SignUp afterSignUpUrl={'/sign-in'} routing="path" path="/sign-up" />
+                    <SignUp afterSignUpUrl='/sign-in' routing="path" path="/sign-up" />
                 </div>
             </section>
         </main>

@@ -15,7 +15,7 @@ export function Navbar() {
 
     return (
         <nav className="flex justify-between items-center py-5">
-            <Link href={'/projects/tasks'} className="cursor-pointer">
+            <Link href='/projects/tasks' className="cursor-pointer">
                 <h2 className="px-5 hidden md:block text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-pink-400">NEXT Tasks</h2>
             </Link>
             <ul className="flex w-full md:max-w-xl h-full justify-center">

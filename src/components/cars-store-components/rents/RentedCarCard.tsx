@@ -95,7 +95,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                                     <Image
                                         onClick={() => manageLikes(car)}
                                         className="object-contain cursor-pointer"
-                                        src={'/heart-filled.svg'}
+                                        src='/heart-filled.svg'
                                         width={22}
                                         height={22}
                                         alt="like icon"
@@ -106,7 +106,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                                     <Image
                                         onClick={() => manageLikes(car)}
                                         className="object-contain cursor-pointer"
-                                        src={'/heart-outline.svg'}
+                                        src='/heart-outline.svg'
                                         width={22}
                                         height={22}
                                         alt="like icon"
@@ -138,7 +138,7 @@ function RentedCarCard({ rentedCars: car, stripePrices }: RentedCar) {
                                 <div className="flex justify-between items-center w-full bg-teal-100 p-2 rounded-md mb-4">
                                     <div className="flex items-center gap-2">
                                         <Image
-                                            src={'/car-rented.svg'}
+                                            src='/car-rented.svg'
                                             width={24}
                                             height={24}
                                             alt="car rented icon"

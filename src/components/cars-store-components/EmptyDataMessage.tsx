@@ -14,7 +14,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                 <h2 className='text-black font-bold text-base sm:text-xl md:text-2xl'>Likes not found!</h2>
                                 <div className="flex justify-center items-center bg-red-300 p-1 md:p-2 rounded-full">
                                     <Image
-                                        src={'/heart-broken.svg'}
+                                        src='/heart-broken.svg'
                                         alt="likes not found"
                                         width={20}
                                         height={20}
@@ -37,7 +37,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                     <h2 className='text-black font-bold text-base sm:text-xl md:text-2xl'>Rented cars not found!</h2>
                                     <div className="flex justify-center items-center bg-red-300 p-1 md:p-2 rounded-full">
                                         <Image
-                                            src={'/coin-off.svg'}
+                                            src='/coin-off.svg'
                                             alt="rented cars not found"
                                             width={20}
                                             height={20}
@@ -46,7 +46,7 @@ export function EmptyDataMessage({ searchParams, styleMessage }: EmptyDataMessag
                                     </div>
                                 </div>
 
-                                <p className="mt-6 text-xs sm:text-sm md:text-base">You dont have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> &#34;Rent Car&#34; </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href={'/projects/cars-store/dashboard'}>dashboard</Link> section!</p>
+                                <p className="mt-6 text-xs sm:text-sm md:text-base">You dont have <span className="font-semibold text-blue-500">cars rented</span> yet, to rented a vehicle simply click on the button<span className="font-semibold text-blue-500"> &#34;Rent Car&#34; </span> on the <Link className="font-semibold underline hover:text-blue-700 duration-300" href='/projects/cars-store/dashboard'>dashboard</Link> section!</p>
                             </div>
                         </section>
 

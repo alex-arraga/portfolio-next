@@ -53,13 +53,13 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                     leaveTo="opacity-0"
                                     afterLeave={() => setQuery('')}
                                 >
-                                    <Combobox.Options className={'absolute z-10 bg-gray-100 w-full my-2 rounded-xl border-2 border-gray-200'}>
+                                    <Combobox.Options className='absolute z-10 bg-gray-100 w-full my-2 rounded-xl border-2 border-gray-200'>
                                         {
                                             filterManufacturers.length === 0 && query !== '' ?
                                                 (
                                                     <Combobox.Option
                                                         value={query}
-                                                        className={'search-manufacturer__option'}>
+                                                        className='search-manufacturer__option'>
                                                         No results &#34;{query}&#34;
                                                     </Combobox.Option>
                                                 )
@@ -87,7 +87,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                     <div className="search-manufacturer">
                         <Combobox value={manufacturer} onChange={setManufacturer}>
                             <div className="relative w-full">
-                                <Combobox.Button className={'absolute top-[14px]'} >
+                                <Combobox.Button className='absolute top-[14px]' >
                                     <Image
                                         src={"/car-logo.svg"}
                                         width={20}
@@ -98,7 +98,7 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                 </Combobox.Button>
 
                                 <Combobox.Input
-                                    className={'search-manufacturer__input'}
+                                    className='search-manufacturer__input'
                                     placeholder={hasManufacturer ? 'Last search: ' + hasManufacturer : 'Volkswagen'}
                                     displayValue={(manufacturer: string) => manufacturer}
                                     onChange={(e) => setQuery(e.target.value)}
@@ -111,13 +111,13 @@ function SearchManufacturer({ manufacturer, setManufacturer, styleSearchbar }: S
                                     leaveTo="opacity-0"
                                     afterLeave={() => setQuery('')}
                                 >
-                                    <Combobox.Options className={'absolute z-10 bg-gray-100 w-full my-2 rounded-xl border-2 border-gray-200'}>
+                                    <Combobox.Options className='absolute z-10 bg-gray-100 w-full my-2 rounded-xl border-2 border-gray-200'>
                                         {
                                             filterManufacturers.length === 0 && query !== '' ?
                                                 (
                                                     <Combobox.Option
                                                         value={query}
-                                                        className={'search-manufacturer__option'}>
+                                                        className='search-manufacturer__option'>
                                                         No results &#34;{query}&#34;
                                                     </Combobox.Option>
                                                 )

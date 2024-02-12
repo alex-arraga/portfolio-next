@@ -6,7 +6,7 @@ function Login() {
         <div className="flex flex-col min-h-screen h-full justify-center items-center">
             <div className="flex w-screen justify-center items-center md:absolute md:justify-start md:left-0 md:top-0 md:w-fit p-2 mb-2">
                 <Image
-                    src={'/header-icon.svg'}
+                    src='/header-icon.svg'
                     alt="main icon"
                     width={45}
                     height={45}
@@ -24,11 +24,11 @@ function Login() {
             </div>
 
             <div className="flex relative h-full my-6 w-[80vw] md:w-[50vw] xl:w-[35vw] max-h-[450px] xl:max-h-[600px]  justify-center items-start">
-                <SignIn afterSignInUrl={'/'} path="/sign-in" routing="path" />
+                <SignIn afterSignInUrl='/' path="/sign-in" routing="path" />
             </div>
 
             <Image
-                src={'/astronaut-index.svg'}
+                src='/astronaut-index.svg'
                 alt="astronaut"
                 height={300}
                 width={300}

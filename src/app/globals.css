@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TODO: los gradientes podemos llevarlos a tailwindcss ya que lo estas usando, lo miramos juntos */
 
 body {
   @apply bg-neutral-900;

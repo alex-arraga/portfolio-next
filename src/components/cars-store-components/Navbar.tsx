@@ -32,7 +32,7 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
                     <header className="fixed top-0 flex flex-col items-center w-full bg-white z-10 mb-10">
                         <nav className={`w-full max-w-[2000px] border-gray-100 border-b-2 ${otherClasses}`}>
                             <section className="mx-auto flex justify-between items-center h-14 sm:h-16">
-                                <Link href={"/projects/cars-store"} className="flex justify-center items-center pl-4 md:pl-6">
+                                <Link href="/projects/cars-store" className="flex justify-center items-center pl-4 md:pl-6">
                                     <Image
                                         src="/logo.svg"
                                         alt="app logo"
@@ -80,7 +80,7 @@ function Navbar({ otherClasses, isStatic, isDashboard, openModal, hamburgerParam
 
                     <header className={`w-full z-10 ${isStatic ? 'fixed top-0 bg-white border-b-2 border-gray-100' : ''} ${otherClasses}`}>
                         <nav className="mx-auto max-w-[2000px] flex justify-between items-center h-14 sm:h-16">
-                            <Link href={"/projects/cars-store"} className="flex justify-center items-center pl-4 md:pl-6">
+                            <Link href="/projects/cars-store" className="flex justify-center items-center pl-4 md:pl-6">
                                 <Image
                                     src="/logo.svg"
                                     alt="app logo"

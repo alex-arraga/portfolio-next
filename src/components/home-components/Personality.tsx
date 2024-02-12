@@ -10,7 +10,7 @@ function Personality() {
                         Personalidad
                     </h2>
                     <Image
-                        src={'/personality.png'}
+                        src='/personality.png'
                         alt='personality'
                         width={500}
                         height={500}
@@ -19,7 +19,7 @@ function Personality() {
                 </div>
                 <div className="flex justify-start items-center gap-4 mb-4">
                     <Image
-                        src={'/diamon-icon.svg'}
+                        src='/diamon-icon.svg'
                         alt="diamond"
                         width={20}
                         height={20}
@@ -31,7 +31,7 @@ function Personality() {
                 </div>
                 <div className="flex justify-start items-center gap-4 my-4">
                     <Image
-                        src={'/team-icon.svg'}
+                        src='/team-icon.svg'
                         alt="diamond"
                         width={20}
                         height={20}
@@ -43,7 +43,7 @@ function Personality() {
                 </div>
                 <div className="flex justify-start items-center gap-4 my-4">
                     <Image
-                        src={'/brain-icon.svg'}
+                        src='/brain-icon.svg'
                         alt="diamond"
                         width={20}
                         height={20}
@@ -55,7 +55,7 @@ function Personality() {
                 </div>
                 <div className="flex justify-start items-center gap-4 mt-4">
                     <Image
-                        src={'/brain-icon-2.svg'}
+                        src='/brain-icon-2.svg'
                         alt="diamond"
                         width={20}
                         height={20}
