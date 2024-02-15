@@ -158,7 +158,7 @@ export const MercadoPagoPaymentSchema = z.object({
         authentication_code: z.nullable(z.string()),
         available_balance: z.nullable(z.number()),
         ip_address: z.string().optional(),
-        items: z.array(z.object({})),
+        items: z.array(z.object({})).optional(),
         nsu_processadora: z.nullable(z.object({})),
         payer: z.object({ phone: z.object({}) }).optional()
     }),
