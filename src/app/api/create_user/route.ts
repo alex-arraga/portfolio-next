@@ -7,6 +7,7 @@ export async function POST(request: Request) {
         const data = await request.json()
         const user = await prisma.user.create({ data })
 
+        await sendMessage(`New user created - ${user.name ? user.name + user.lastname : user.username}`)
         return NextResponse.json({ status: 200, user })
     } catch (error) {
         await sendMessage(`User API Error 🔴 - Route: create_user.route, Method: POST - ${error}`)
