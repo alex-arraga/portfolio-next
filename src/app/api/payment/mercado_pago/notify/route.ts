@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
                 throw new Error('Payment not exist')
             }
         } else {
-            await sendMessage('⚠️ Payment information awaited')
             return NextResponse.json({}, {status: 200})
         }
 
