@@ -23,9 +23,8 @@ export const useHomeContext = () => {
 // Data provider
 export function HomeProvider({ children }: DefaultContextProviderProps) {
     const router = useRouter();
-    const pahtname = usePathname();
+    const pathname = usePathname();
 
-    const validPathnames = '/' || '/projects/cars-store' || '/projects/cars-store/rents' || '/projects/cars-store/dashboard' || '/projects/calculator' || '/projects/tasks'
     const [codeProjects, setCodeProjects] = useState(true);
     const [loadPage, setLoadPage] = useState(false);
 
@@ -148,12 +147,11 @@ export function HomeProvider({ children }: DefaultContextProviderProps) {
     useEffect(() => {
         if (user.isLoaded) {
             setLoadPage(true)
-            if (user.user?.id && pahtname === validPathnames) {
-                console.log('Home Context🎈')
+            if (user.user?.id) {
                 registerUser()
             }
         }
-    }, [user.isLoaded, pahtname, , validPathnames, registerUser, user.user?.id])
+    }, [user.isLoaded, pathname, registerUser, user.user?.id])
 
 
     return <HomeContext.Provider value={{

@@ -19,11 +19,6 @@ export function Header() {
         }
     }, [loadPage])
 
-
-    useEffect(() => {
-        console.log(isDialogOpen)
-    }, [isDialogOpen])
-
     const handleDialog = () => {
         if (!isDialogOpen) {
             setIsDialogOpen(true)
