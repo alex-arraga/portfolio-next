@@ -1,3 +1,5 @@
+import { baseClientProjectsURL } from "@/libs/baseURL";
+
 export const diplomas = [
     {
         name: "basic-code",
@@ -259,3 +261,72 @@ export const footerLinks = [
         ],
     },
 ];
+
+export const personalCodeProjects = [
+    {
+        title: "CarHub",
+        text: "Una pagina que te permite comprar y rentar los mejores autos a partir del modelo 2015, encontrá marcas y vehiculos que se ajusten a tus necesidades segun la ocasion y el destino a donde apuntes. Nosotros te damos el medio, mientras que vos disfrutas el camino",
+        relevantDescription: "Te brindamos la posibilidad de alquilar autos por día o suscribirte a uno de nuestros planes mensuales. Cambiá de coche hasta 3 veces por mes a un coste mucho menor",
+        urlIcon: "/car-icon-project.png",
+        urlImage: "/carhub.png",
+        altImage: "carhub",
+        urlClick: `${baseClientProjectsURL}/cars-store`
+    },
+    {
+        title: "Calculadora",
+        text: "Una calculadora que permite realizar cálculos básicos y cálculos logarítmicos. Esta diseñada y programada para que todas las operaciones junto a sus respectivos resultados, queden almacenados en un historial de registros. ",
+        relevantDescription: "¡Podes recuperar las operaciones cuando vos quieras, tanto las expresiones como sus resultados!",
+        urlIcon: "/calculator-icon.png",
+        urlImage: "/calculator.png",
+        altImage: "calculator",
+        urlClick: `${baseClientProjectsURL}/calculator`
+    },
+    {
+        title: "To Do",
+        text: 'No podría faltar el clasíco y mítico To Do en un buen portfolio, una lista de tareas con Responsive Design que de manera sencilla y rápida te permite anotar tareas pendientes a realizar y marcarlas como completadas una vez que la cumplas.',
+        relevantDescription: '¡Utiliza una Base de Datos relacional para almacenar cada tarea y además permite realizar un check a cada una, guardandolas en una nueva sección llamada "completadas"!',
+        urlIcon: "/tasks-icon.png",
+        urlImage: "/to-do.png",
+        altImage: "tasks",
+        urlClick: `${baseClientProjectsURL}/tasks`
+    }
+]
+
+export const personalDesignProjects = [
+    {
+        urlIcon: "/patagonia-icon.png",
+        title: "Patagonia Argentina",
+        text: "Dinamica app en donde podes pedir delivery, o disfrutar tu pedido en el propio restaurante. Pensada para ahorrarle trabajo al personal y hacer vistoso un menu lleno de platos exisitos, integra un sistema de pago rapido y seguro, haciendo que la tarea de pagar no conlleve retrasos inesperados.",
+        relevantDescription: "¿Necesitas pagar en efectivo estando en el restaurante? ¡No te preocupes, podes llamar al mozo solo con apretar un boton!",
+        urlImage: "/patagonia.png",
+        altImage: "patagonia",
+        urlClick: "https://www.behance.net/gallery/149060887/Patagonia-Argentina",
+    },
+    {
+        urlIcon: "/orfeus-icon.png",
+        title: "Orfeus",
+        text: "Una app de música gratuita, escuchá millones de canciones en alta calidad. Una interfaz intuitiva y fácil de usar,en donde podes adquirir Orfeus Premium y acceder a música sin anuncios y de mayor calidad, a un precio muy tentador respecto de sus competidores.",
+        relevantDescription: "¡Con el plan Premium podes acceder a los videoclips oficiales de tu música favorita, probarlo gratis durante 30 días!",
+        urlImage: "/orfeus.png",
+        altImage: "orfeus",
+        urlClick: "https://www.behance.net/gallery/146272239/Orfeus-App-UXUI",
+    },
+    {
+        urlIcon: "/sportshop-icon.png",
+        title: "SportShop",
+        text: "SportShop es un tienda online especializada en el ambito deportivo, se destaca por sus excelentes precios y por trabajar con marcas top a nivel mundial. Encontrá ropa, pelotas, zapatillas, raquetas, botines o lo que necesites para realizar tu deporte e ir al siguiente nivel.",
+        relevantDescription: "¡Trabajamos con marcas nacionales e internacionales para atletas de alto rendimiento, explorá la tienda que te llevará al siguiente nivel!",
+        urlImage: "/sportshop.png",
+        altImage: "sportshop",
+        urlClick: "https://www.behance.net/gallery/148958819/SportShop",
+    },
+    {
+        urlIcon: "/yacanto-icon.png",
+        title: "Hotel Yacanto",
+        text: "Fundado a principios del siglo XX en Córdoba, el Hotel Yacanto ofrece un estilo clásico, junto con un predio mayor a 9 hectareas, rodeadas de cierras, riachuelos y naturaleza, cuenta con un campo de golf entre otros servicios que háran que de sus vacaciones, placenteras. ",
+        relevantDescription: "¡Organizamos tu boda soñada, te invitamos a vivir un evento inolvidable acompañado de nuestros mejores servicios de catering!",
+        urlImage: "/yacanto.png",
+        altImage: "hotel yacanto",
+        urlClick: "https://www.behance.net/gallery/162372391/Hotel-Yacanto",
+    }
+]
