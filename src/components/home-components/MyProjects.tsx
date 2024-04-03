@@ -13,7 +13,9 @@ function MyProjects() {
                 codeProjects === false ?
                     <div className="flex flex-col h-full gap-4 xl:gap-6">
                         {personalDesignProjects.map((project) => (
-                            <ProjectCard type="projects"
+                            <ProjectCard
+                                type="projects"
+                                key={project.title}
                                 title={project.title}
                                 text={project.text}
                                 relevantDescription={project.relevantDescription}
@@ -29,7 +31,9 @@ function MyProjects() {
 
                     <div className="flex flex-col h-full gap-4 xl:gap-6">
                         {personalCodeProjects.map((project) => (
-                            <ProjectCard type="projects"
+                            <ProjectCard
+                                type="projects"
+                                key={project.title}
                                 title={project.title}
                                 text={project.text}
                                 relevantDescription={project.relevantDescription}
