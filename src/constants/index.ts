@@ -273,6 +273,15 @@ export const personalCodeProjects = [
         urlClick: `${baseClientProjectsURL}/cars-store`
     },
     {
+        title: "Go API",
+        text: "Una app creada con diversas tecnologías, un Backend creado con Go utilizando Fiber como framework, un Frontend con Next.js, una base de datos No SQL - MongoDB y deployada utilizando Docker",
+        relevantDescription: "¡Crea productos, agrégales un precio y ve su renderización en el lado del cliente!",
+        urlIcon: "/goapp-icon.png",
+        urlImage: "/go-app.png",
+        altImage: "go api app",
+        urlClick: "https://docker-go-mongo-frontend.onrender.com/"
+    },
+    {
         title: "Calculadora",
         text: "Una calculadora que permite realizar cálculos básicos y cálculos logarítmicos. Esta diseñada y programada para que todas las operaciones junto a sus respectivos resultados, queden almacenados en un historial de registros. ",
         relevantDescription: "¡Podes recuperar las operaciones cuando vos quieras, tanto las expresiones como sus resultados!",
@@ -294,8 +303,8 @@ export const personalCodeProjects = [
 
 export const personalDesignProjects = [
     {
-        urlIcon: "/patagonia-icon.png",
         title: "Patagonia Argentina",
+        urlIcon: "/patagonia-icon.png",
         text: "Dinamica app en donde podes pedir delivery, o disfrutar tu pedido en el propio restaurante. Pensada para ahorrarle trabajo al personal y hacer vistoso un menu lleno de platos exisitos, integra un sistema de pago rapido y seguro, haciendo que la tarea de pagar no conlleve retrasos inesperados.",
         relevantDescription: "¿Necesitas pagar en efectivo estando en el restaurante? ¡No te preocupes, podes llamar al mozo solo con apretar un boton!",
         urlImage: "/patagonia.png",
@@ -303,8 +312,8 @@ export const personalDesignProjects = [
         urlClick: "https://www.behance.net/gallery/149060887/Patagonia-Argentina",
     },
     {
-        urlIcon: "/orfeus-icon.png",
         title: "Orfeus",
+        urlIcon: "/orfeus-icon.png",
         text: "Una app de música gratuita, escuchá millones de canciones en alta calidad. Una interfaz intuitiva y fácil de usar,en donde podes adquirir Orfeus Premium y acceder a música sin anuncios y de mayor calidad, a un precio muy tentador respecto de sus competidores.",
         relevantDescription: "¡Con el plan Premium podes acceder a los videoclips oficiales de tu música favorita, probarlo gratis durante 30 días!",
         urlImage: "/orfeus.png",
@@ -312,8 +321,8 @@ export const personalDesignProjects = [
         urlClick: "https://www.behance.net/gallery/146272239/Orfeus-App-UXUI",
     },
     {
-        urlIcon: "/sportshop-icon.png",
         title: "SportShop",
+        urlIcon: "/sportshop-icon.png",
         text: "SportShop es un tienda online especializada en el ambito deportivo, se destaca por sus excelentes precios y por trabajar con marcas top a nivel mundial. Encontrá ropa, pelotas, zapatillas, raquetas, botines o lo que necesites para realizar tu deporte e ir al siguiente nivel.",
         relevantDescription: "¡Trabajamos con marcas nacionales e internacionales para atletas de alto rendimiento, explorá la tienda que te llevará al siguiente nivel!",
         urlImage: "/sportshop.png",
@@ -321,8 +330,8 @@ export const personalDesignProjects = [
         urlClick: "https://www.behance.net/gallery/148958819/SportShop",
     },
     {
-        urlIcon: "/yacanto-icon.png",
         title: "Hotel Yacanto",
+        urlIcon: "/yacanto-icon.png",
         text: "Fundado a principios del siglo XX en Córdoba, el Hotel Yacanto ofrece un estilo clásico, junto con un predio mayor a 9 hectareas, rodeadas de cierras, riachuelos y naturaleza, cuenta con un campo de golf entre otros servicios que háran que de sus vacaciones, placenteras. ",
         relevantDescription: "¡Organizamos tu boda soñada, te invitamos a vivir un evento inolvidable acompañado de nuestros mejores servicios de catering!",
         urlImage: "/yacanto.png",
