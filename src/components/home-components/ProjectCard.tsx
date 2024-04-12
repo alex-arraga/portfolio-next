@@ -4,8 +4,6 @@ import Image from "next/image"
 import Link from 'next/link'
 import { ProjectsCardProps } from "@/types/home-types"
 import { useHomeContext } from "@/context/HomeContext"
-import { useRouter } from "next/navigation"
-import { useEffect, useRef } from "react"
 
 function ProjectCard({ className,
     urlImage,
@@ -23,12 +21,6 @@ function ProjectCard({ className,
     github_repo }: ProjectsCardProps) {
 
     const { setCodeProjects } = useHomeContext();
-    const refBtn = useRef()
-    const router = useRouter()
-
-    useEffect(() => {
-        console.log(github_repo)
-    }, [github_repo])
 
     return (
         <>
