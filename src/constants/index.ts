@@ -40,124 +40,163 @@ export const diplomas = [
 
 export const backendSkills = [
     {
+        title: 'Consolas o CLIs',
         name: 'terminal',
         img: '/terminal.png',
-        alt: 'terminal icon'
+        alt: 'terminal'
     },
     {
+        title: 'Git',
         name: 'git',
         img: '/git.png',
-        alt: 'git icon'
+        alt: 'git'
     },
     {
+        title: 'GitHub',
         name: 'github',
         img: '/github-white.svg',
-        alt: 'github icon'
+        alt: 'github'
     },
     {
+        title: 'Node.js',
         name: 'node.js',
         img: '/node.png',
-        alt: 'node icon'
+        alt: 'node'
     },
     {
+        title: 'TypeScript',
         name: 'typescript',
         img: '/typescript.png',
-        alt: 'typescript icon'
+        alt: 'typescript'
+    },
+    {
+        title: 'Golang',
+        name: 'go',
+        img: '/go.png',
+        alt: 'go'
+    },
+    {
+        title: 'Docker',
+        name: 'docker',
+        img: '/docker.png',
+        alt: 'docker'
     }
 ]
 
 export const frontendSkills = [
     {
+        title: 'HTML',
         name: 'html',
         img: '/html.png',
-        alt: 'html icon'
+        alt: 'html'
     },
     {
+        title: 'CSS',
         name: 'css',
         img: '/css.png',
-        alt: 'css icon'
+        alt: 'css'
     },
     {
+        title: 'JavaScript',
         name: 'javascript',
         img: '/js.png',
-        alt: 'javascript icon'
+        alt: 'javascript'
     },
     {
+        title: 'React.js',
         name: 'react',
         img: '/react.png',
-        alt: 'react icon'
+        alt: 'react'
     },
     {
+        title: 'Tailwind.css',
         name: 'tailwind',
         img: '/tailwind.png',
-        alt: 'tailwind icon'
+        alt: 'tailwind'
     },
     {
+        title: 'Vite.js',
         name: 'vite.js',
         img: '/vite.png',
-        alt: 'vite icon'
+        alt: 'vite'
     }
 ]
 
 export const databasesSkills = [
     {
+        title: 'Postgres SQL',
         name: 'postgres',
         img: '/postgres.png',
-        alt: 'postgres icon'
+        alt: 'postgres'
     },
     {
+        title: 'MongoDB',
         name: 'mongo db',
         img: '/mongodb.png',
-        alt: 'mongo db icon'
+        alt: 'mongo db'
     },
     {
+        title: 'Prisma ORM',
         name: 'prisma orm',
         img: '/prisma.svg',
-        alt: 'prisma orm icon'
+        alt: 'prisma orm'
     }
 ]
 
 export const designSkills = [
     {
+        title: 'PhotoShop',
         name: 'photoshop',
         img: '/photoshop.png',
-        alt: 'photoshop icon'
+        alt: 'photoshop'
     },
     {
+        title: 'Figma',
         name: 'figma',
         img: '/figma.png',
-        alt: 'figma icon'
+        alt: 'figma'
     },
     {
+        title: 'Whimsical',
         name: 'whimsical',
         img: '/whimsical.png',
-        alt: 'whimsical icon'
+        alt: 'whimsical'
     }
 ]
 
 export const skillsToLearn = [
     {
-        name: 'go',
-        img: '/go.png',
-        alt: 'go icon'
+        title: 'GraphQL',
+        name: 'graphql',
+        img: '/graphql-icon.svg',
+        alt: 'graphql'
     },
     {
-        name: 'docker',
-        img: '/docker.png',
-        alt: 'docker icon'
+        title: 'Vue.js',
+        name: 'vue',
+        img: '/vue-icon.svg',
+        alt: 'vue js'
     }
 ]
 
 export const frameworksSkills = [
     {
+        title: 'Next.js 14',
         name: 'next.js',
-        img: '/next-js-white.svg',
+        img: '/next.png',
         alt: 'next icon'
     },
     {
+        title: 'Express - Node.js',
         name: 'express',
         img: '/express.png',
         alt: 'express icon'
+    },
+    {
+        title: 'Fiber - Golang',
+        name: 'fiber',
+        img: '/fiber-go.png',
+        alt: 'fiber go icon'
     }
 ]
 
