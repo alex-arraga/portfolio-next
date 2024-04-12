@@ -270,7 +270,8 @@ export const personalCodeProjects = [
         urlIcon: "/car-icon-project.png",
         urlImage: "/carhub.png",
         altImage: "carhub",
-        urlClick: `${baseClientProjectsURL}/cars-store`
+        urlClick: `${baseClientProjectsURL}/cars-store`,
+        github_repo: "https://github.com/alex-arraga/portfolio-next/blob/main/src/app/projects/cars-store/page.tsx"
     },
     {
         title: "Go API",
@@ -279,7 +280,8 @@ export const personalCodeProjects = [
         urlIcon: "/goapp-icon.png",
         urlImage: "/go-app.png",
         altImage: "go api app",
-        urlClick: "https://docker-go-mongo-frontend.onrender.com/"
+        urlClick: "https://docker-go-mongo-frontend.onrender.com/",
+        github_repo: "https://github.com/alex-arraga/docker-go-mongo"
     },
     {
         title: "Calculadora",
@@ -288,7 +290,8 @@ export const personalCodeProjects = [
         urlIcon: "/calculator-icon.png",
         urlImage: "/calculator.png",
         altImage: "calculator",
-        urlClick: `${baseClientProjectsURL}/calculator`
+        urlClick: `${baseClientProjectsURL}/calculator`,
+        github_repo: "https://github.com/alex-arraga/portfolio-next/blob/main/src/app/projects/calculator/page.tsx"
     },
     {
         title: "To Do",
@@ -297,7 +300,8 @@ export const personalCodeProjects = [
         urlIcon: "/tasks-icon.png",
         urlImage: "/to-do.png",
         altImage: "tasks",
-        urlClick: `${baseClientProjectsURL}/tasks`
+        urlClick: `${baseClientProjectsURL}/tasks`,
+        github_repo: "https://github.com/alex-arraga/portfolio-next/blob/main/src/app/projects/tasks/page.tsx"
     }
 ]
 

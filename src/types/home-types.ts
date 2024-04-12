@@ -5,6 +5,7 @@ export type BoxProps = {
 }
 
 export type ProjectsCardProps = {
+    github_repo?: string,
     urlImage: string
     title: string
     text: string

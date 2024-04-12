@@ -14,7 +14,7 @@ function MyProjects() {
                     <div className="flex flex-col h-full gap-4 xl:gap-6">
                         {personalDesignProjects.map((project) => (
                             <ProjectCard
-                                type="projects"
+                                type="design"
                                 key={project.title}
                                 title={project.title}
                                 text={project.text}
@@ -32,7 +32,7 @@ function MyProjects() {
                     <div className="flex flex-col h-full gap-4 xl:gap-6">
                         {personalCodeProjects.map((project) => (
                             <ProjectCard
-                                type="projects"
+                                type="code"
                                 key={project.title}
                                 title={project.title}
                                 text={project.text}
@@ -41,6 +41,7 @@ function MyProjects() {
                                 urlImage={project.urlImage}
                                 altImage={project.altImage}
                                 urlClick={project.urlClick}
+                                github_repo={project.github_repo}
                             />
                         ))}
                     </div>
