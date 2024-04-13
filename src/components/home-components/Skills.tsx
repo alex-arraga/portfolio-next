@@ -23,11 +23,11 @@ function Skills() {
             </div>
 
             {/* Backend */}
-            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Backend</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Backend and tools</p>
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     backendSkills.map((skill) => (
-                        <div className="relative w-full h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
@@ -43,10 +43,10 @@ function Skills() {
 
             {/* Frameworks */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Frameworks</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-6 px-6 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-14 w-full rounded-lg">
                 {
                     frameworksSkills.map((skill) => (
-                        <div className="relative w-full max-w-[50px] md:max-w-[140px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[105px] h-full max-h-8 sm:max-h-12 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
@@ -62,10 +62,10 @@ function Skills() {
 
             {/* DB y ORM */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Bases de Datos y ORM</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-6 px-4 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     databasesSkills.map((skill) => (
-                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
@@ -81,10 +81,10 @@ function Skills() {
 
             {/* Frontend */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Frontend</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frontendSkills.map((skill) => (
-                        <div className="relative w-full h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
@@ -100,10 +100,10 @@ function Skills() {
 
             {/* Design */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Diseño UX/UI</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     designSkills.map((skill) => (
-                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
@@ -117,11 +117,12 @@ function Skills() {
                 }
             </div>
 
+            {/* To learn */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Proximos a aprender</p>
-            <div className="flex relative gap-2 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     skillsToLearn.map((skill) => (
-                        <div className="relative w-full max-w-[50px] md:max-w-[100px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-125 duration-300" key={skill.name}>
+                        <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
                             <Image
                                 title={skill.title}
                                 src={skill.img}
