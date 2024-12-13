@@ -64,20 +64,21 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                     <div className='flex relative'>
                                                         <section className='flex w-full flex-col'>
                                                             <div className='flex flex-col w-full justify-start items-start'>
-                                                                <h1 className='capitalize text-txt_32 mt-4 sm:mt-0 font-bold text-gray-700 w-full'>
+                                                                <h1 className='capitalize text-txt_32 my-4 sm:mt-0 font-bold text-gray-700 w-full'>
                                                                     {car.make} {car.model} {car.transmission === 'a' ? 'AT' : 'MT'} - {car.year}
                                                                 </h1>
 
                                                                 {/* Section: Pay Methods */}
-                                                                <h2 className='font-semibold text-xl my-6 text-indigo-500'>Flexible payment methods!</h2>
-                                                                <p className='text-sm'>
+                                                                {/* <h2 className='font-semibold text-xl my-6 text-indigo-500'>Pay with Mercado Pago</h2> */}
+                                                                {/* <p className='text-sm'>
                                                                     At CarHub, we offer two payment options for your convenience. Choose our <span className='font-medium text-indigo-800'>monthly plan to access a wide range of cars for a full month, allowing you to change vehicles according to your preference</span>.
                                                                     If you need a vehicle for a shorter period of time, we also <span className='font-medium text-indigo-800'>accept daily payments through Mercado Pago</span>. We allow you to choose the option that best suits your needs.
-                                                                </p>
+                                                                </p> */}
                                                             </div>
 
-                                                            {/* Stripe */}
-                                                            <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
+
+                                                            {/*  Stripe - I can't use it because I don't have account */}
+                                                            {/* <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Monthly Plans</h3>
                                                             <p className='text-sm pb-6'>
                                                                 With our monthly rental plans we give you the possibility to change vehicles once a week within the brands available in each plan, we offer you the freedom to adjust your driving experience according to your needs. No strings attached, no worries and a safe way for you and your family.
                                                             </p>
@@ -85,16 +86,16 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                 car={car}
                                                                 costDayRent={Number(carRent)}
                                                                 stripePrices={stripePrices ? stripePrices : []}
-                                                            />
+                                                            /> */}
                                                         </section>
                                                     </div>
 
                                                     {/* Mercado Pago */}
                                                     <section>
-                                                        <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3>
-                                                        <p className='text-sm pb-6'>
+                                                        {/* <h3 className='flex justify-center text-base text-sky-600 my-10 font-medium border-b-2 border-indigo-200'>Pay per day</h3> */}
+                                                        {/* <p className='text-sm pb-6'>
                                                             Experience the freedom of renting cars by the day with secure payments through Mercado Pago. This option gives you absolute flexibility for spontaneous trips or daily plans, with fast and secure transactions. By opting for daily rentals, you will have the freedom to adjust your mobility according to your schedule, without prolonged time ties. With varied and hassle-free payment methods, you can enjoy the convenience of flexible travel planning.
-                                                        </p>
+                                                        </p> */}
 
                                                         {/* Calculate price and days */}
                                                         <fieldset className="flex w-full h-full justify-center border-2 rounded-xl p-4 sm:p-6 bg-slate-200">
@@ -205,7 +206,7 @@ function CarDetails({ car, isOpen, closeModal, styleDetails, stripePrices }: Car
                                                                     .filter(([key]) => key !== 'model' && key !== 'make' && key !== 'order_id' && key !== 'id' && key !== 'car_id' && key !== 'rented' && key !== 'liked')
                                                                     .map(([key, value]) => (
                                                                         <div className="flex justify-between w-full text-right" key={key}>
-                                                                            <h4 className="capitalize text-gray-400 text-xs sm:text-sm">
+                                                                            <h4 className="capitalize text-gray-600 text-xs sm:text-sm">
                                                                                 {
                                                                                     key === 'year' ? key = 'Year Launched'
                                                                                         : key.split("_").join(" ")
