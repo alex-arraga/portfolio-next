@@ -40,26 +40,10 @@ function HomePage() {
               <Projects />
             </Box>
           </ContainerBoxes>
-
-
-          {/* My age, English Level, Certicates */}
-          <ContainerBoxes className="flex w-full h-full gap-2 md:gap-4 mb-2 md:mb-4">
-            <Box className="box-english select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
-              <MyEnglish />
-            </Box>
-
-            <Box className="box-age select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
-              <MyAge />
-            </Box>
-
-            <Box className="relative border-2 border-violet-300 bg-red-200 w-1/2 rounded-2xl">
-              <Certificates />
-            </Box>
-          </ContainerBoxes>
-
+          
 
           {/* Work Experience, Personality, Skills */}
-          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-8">
+          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full md:mb-4 mb-8">
             <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-8 rounded-2xl">
               <Skills />
             </Box>
@@ -75,6 +59,21 @@ function HomePage() {
             </div>
           </ContainerBoxes>
 
+
+          {/* My age, English Level, Certicates */}
+          <ContainerBoxes className="flex w-full h-full gap-2 md:gap-4 mb-8">
+            <Box className="box-english select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
+              <MyEnglish />
+            </Box>
+
+            <Box className="box-age select-none w-1/2 relative flex flex-col gap-6 justify-center items-center p-4 md:p-6 xl:p-8 rounded-2xl">
+              <MyAge />
+            </Box>
+
+            <Box className="relative border-2 border-violet-300 bg-red-200 w-1/2 rounded-2xl">
+              <Certificates />
+            </Box>
+          </ContainerBoxes>
         </main>
       </div>
     </div>
