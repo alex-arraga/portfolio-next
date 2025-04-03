@@ -14,6 +14,7 @@ export type ProjectsCardProps = {
     styleImage?: string
     urlClick?: string
     type?: string
+    typeProject?: string
     urlIcon?: string
     altIcon?: string
     styleIcon?: string

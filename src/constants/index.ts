@@ -169,19 +169,19 @@ export const otherTools = [
         title: 'Postman',
         name: 'postman',
         img: '/postman-logo.webp',
-        alt: 'postman' 
+        alt: 'postman'
     },
     {
         title: 'Notion',
         name: 'notion',
         img: '/notion.png',
-        alt: 'notion' 
+        alt: 'notion'
     },
     {
         title: 'Jira',
         name: 'jira',
         img: '/jira-1.svg',
-        alt: 'jira' 
+        alt: 'jira'
     },
     {
         title: 'Whimsical',
@@ -337,29 +337,32 @@ export const footerLinks = [
 
 export const personalCodeProjects = [
     {
-        title: "CarHub",
-        text: "Una pagina que te permite comprar y rentar los mejores autos a partir del modelo 2015, encontrá marcas y vehiculos que se ajusten a tus necesidades segun la ocasion y el destino a donde apuntes. Nosotros te damos el medio, mientras que vos disfrutas el camino",
-        relevantDescription: "Te brindamos la posibilidad de alquilar autos por día o suscribirte a uno de nuestros planes mensuales. Cambiá de coche hasta 3 veces por mes a un coste mucho menor",
-        urlIcon: "/car-icon-project.png",
-        urlImage: "/carhub.png",
-        altImage: "carhub",
-        urlClick: `${baseClientProjectsURL}/cars-store`,
-        github_repo: "https://github.com/alex-arraga/portfolio-next/blob/main/src/app/projects/cars-store/page.tsx"
+        title: "Web Scraper - Golang",
+        text: "Es una aplicación en Go que realiza web scraping de fuentes RSS, permitiendo almacenar y gestionar artículos en una base de datos. Utiliza Chi para manejar rutas, sqlc para generar código de Go a partir de consultas SQL, pq como driver de PostgreSQL y goose para la gestión de migraciones.",
+        relevantDescription: "Las fuentes RSS (Really Simple Syndication) son archivos en formato XML que contienen información actualizada de un sitio web, como noticias, artículos de blogs o episodios de podcasts.",
+        typeProject: "Backend",
+        urlIcon: "/golang.png",
+        urlImage: "/go-scraping.png",
+        altImage: "go rss scraper",
+        urlClick: "https://github.com/alex-arraga/rss_scraper",
+        github_repo: "https://github.com/alex-arraga/rss_scraper"
     },
     {
-        title: "Go API",
-        text: "Una app creada con diversas tecnologías, un Backend creado con Go utilizando Fiber como framework, un Frontend con Next.js, una base de datos No SQL - MongoDB y deployada utilizando Docker",
-        relevantDescription: "¡Crea productos, agrégales un precio y ve su renderización en el lado del cliente!",
-        urlIcon: "/goapp-icon.png",
-        urlImage: "/go-app.png",
-        altImage: "go api app",
-        urlClick: "https://docker-go-mongo-frontend.onrender.com/",
-        github_repo: "https://github.com/alex-arraga/docker-go-mongo"
+        title: "Teslo Shop",
+        text: "Teslo Shop es una tienda en línea que vende ropa deportiva inspirada en Tesla. Su catálogo incluye camisetas, sudaderas, gorras y accesorios con diseños relacionados con la marca y la tecnología eléctrica.",
+        relevantDescription: "Ofrece envíos internacionales y podes pagar utilizando PayPal",
+        typeProject: "Fullstack",
+        urlIcon: "/clothes.png",
+        urlImage: "/T1-tesloshop.png",
+        altImage: "teslo shop",
+        urlClick: "https://teslo-shop-aaaaq2z00-alexs-projects-f57d95e3.vercel.app/",
+        github_repo: "https://github.com/alex-arraga/next-teslo-shop"
     },
     {
         title: "Calculadora",
         text: "Una calculadora que permite realizar cálculos básicos y cálculos logarítmicos. Esta diseñada y programada para que todas las operaciones junto a sus respectivos resultados, queden almacenados en un historial de registros. ",
         relevantDescription: "¡Podes recuperar las operaciones cuando vos quieras, tanto las expresiones como sus resultados!",
+        typeProject: "Fullstack",
         urlIcon: "/calculator-icon.png",
         urlImage: "/calculator.png",
         altImage: "calculator",
@@ -370,6 +373,7 @@ export const personalCodeProjects = [
         title: "To Do",
         text: 'No podría faltar el clasíco y mítico To Do en un buen portfolio, una lista de tareas con Responsive Design que de manera sencilla y rápida te permite anotar tareas pendientes a realizar y marcarlas como completadas una vez que la cumplas.',
         relevantDescription: '¡Utiliza una Base de Datos relacional para almacenar cada tarea y además permite realizar un check a cada una, guardandolas en una nueva sección llamada "completadas"!',
+        typeProject: "Fullstack",
         urlIcon: "/tasks-icon.png",
         urlImage: "/to-do.png",
         altImage: "tasks",

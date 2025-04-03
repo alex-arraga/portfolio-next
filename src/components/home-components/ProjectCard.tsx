@@ -13,6 +13,7 @@ function ProjectCard({ className,
     text,
     urlClick,
     type,
+    typeProject,
     altIcon,
     styleIcon,
     urlIcon,
@@ -58,6 +59,7 @@ function ProjectCard({ className,
                                     className={`w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] md:w-[40px] md:h-[40px] xl:w-[50px] xl:h-[50px] ${styleIcon}`}
                                 />
                                 <h3 className="text-base md:text-xl xl:text-2xl font-semibold text-white">{title}</h3>
+                                <p className="bg-red-500">{typeProject}</p>
                             </div>
 
                             <p className="leading-5 text-xs md:text-sm xl:text-base mr-6 text-gray-300 mb-2 md:mb-4">{text}</p>
