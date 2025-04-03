@@ -4,7 +4,7 @@ function Personality() {
     return (
         <>
             {/* Personality */}
-            <section className="flex-col rounded-xl">
+            <section className="flex-col rounded-xl mb-6">
                 <div className='flex justify-between items-center mb-6'>
                     <h2 className="text-xl md:text-3xl xl:text-4xl font-medium text-gray-100">
                         Personalidad

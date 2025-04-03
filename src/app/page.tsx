@@ -49,11 +49,11 @@ function HomePage() {
             </Box>
 
             <div className="flex flex-wrap gap-2 md:gap-4 w-full md:w-1/2">
-              <Box className="box-work_experience w-full relative h-[65%] p-4 md:p-6 xl:p-8 rounded-2xl">
+              <Box className="box-work_experience w-full relative h-[55%] p-4 md:p-6 xl:p-8 rounded-2xl">
                 <WorkExperience />
               </Box>
 
-              <Box className="box-personality w-full relative h-[33%] p-4 md:p-6 xl:p-8 rounded-2xl">
+              <Box className="box-personality w-full relative h-[43%] p-4 md:p-6 xl:p-8 rounded-2xl">
                 <Personality />
               </Box>
             </div>

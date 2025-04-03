@@ -17,28 +17,33 @@ function WorkExperience() {
             </div>
             <ul className="flex flex-col gap-6 text-xs md:text-sm xl:text-base text-gray-300">
                 <li>
-                    <h3 className="font-semibold text-gray-100">1 año - Freelance, Diseñador UX/UI | <span className="text-orange-200">2023</span></h3>
+                    <div className="w-full flex justify-between">
+                        <h3 className="font-semibold text-gray-100">Diseñador UX/UI - Ajenda</h3>
+                        <span className="text-gray-300">01/02/2023 - 30/05/2023</span>
+                    </div>
                     <p className="leading-5 text-xs xl:text-sm">
-                        <br /> - Research y comprensión de las necesidades de los usuarios.
-                        <br /> - Desarrollo de interfaces utilizando Figma, Whimsical y Adobe Photoshop.
-                        <br /> - Proyecto de redesign en coparticipación con Wordpress Dev. para Hotel Yacanto - Cordoba
+                        <br /> - Diseño de componentes e interfaces
+                        <br /> - Colaboración con desarrolladores
                     </p>
                 </li>
                 <li>
-                    <h3 className="font-semibold text-gray-100">4 años - Vendedor de Automoviles | <span className="text-orange-200">2018 - 2022</span></h3>
+                    <div className="w-full flex justify-between">
+                        <h3 className="font-semibold text-gray-100">Diseñador UX/UI - Freelance</h3>
+                        <span className="text-gray-300">01/08/2022 - 27/01/2023</span>
+                    </div>
                     <p className="leading-5 text-xs xl:text-sm">
-                        <br /> - Venta de automóviles usados y 0km.
-                        <br /> - Asesoramiento a clientes sobre las características y beneficios de los vehículos.
-                        <br /> - Negociación de precios y condiciones de venta.
-                        <br /> - Tramitación de créditos prendarios.
+                        <br /> - Rediseño completo para la pagina oficial del Hotel Yacanto
+                        <br /> - Comunicación y trabajo en equipo con una WordPress Designer
                     </p>
                 </li>
                 <li>
-                    <h3 className="font-semibold text-gray-100">1 año - Atención comercial en Perfumería | <span className="text-orange-200">2017</span></h3>
+                    <div className="w-full flex justify-between">
+                        <h3 className="font-semibold text-gray-100">Vendedor de autos - Berman Automotores</h3>
+                        <span className="text-gray-300">01/10/2018 - 15/05/2022</span>
+                    </div>
                     <p className="leading-5 text-xs xl:text-sm">
-                        <br /> - Venta y asesoramiento sobre productos de la tienda.
-                        <br /> - Manejo de caja y facturación cuando los encargados se ausentaban.
-                        <br /> - Reposición de stock.
+                        <br /> - Atención al público / Vendedor de autos
+                        <br /> - Asesor de créditos prendarios y financiamiento
                     </p>
                 </li>
             </ul>
