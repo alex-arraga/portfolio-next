@@ -40,10 +40,28 @@ export const diplomas = [
 
 export const backendSkills = [
     {
-        title: 'Consolas o CLIs',
-        name: 'terminal',
-        img: '/terminal.png',
-        alt: 'terminal'
+        title: 'Golang',
+        name: 'go',
+        img: '/go.png',
+        alt: 'go'
+    },
+    {
+        title: 'TypeScript',
+        name: 'typescript',
+        img: '/typescript.png',
+        alt: 'typescript'
+    },
+    {
+        title: 'Node.js',
+        name: 'node.js',
+        img: '/node.png',
+        alt: 'node'
+    },
+    {
+        title: 'Docker',
+        name: 'docker',
+        img: '/docker.png',
+        alt: 'docker'
     },
     {
         title: 'Git',
@@ -57,30 +75,6 @@ export const backendSkills = [
         img: '/github-white.svg',
         alt: 'github'
     },
-    {
-        title: 'Node.js',
-        name: 'node.js',
-        img: '/node.png',
-        alt: 'node'
-    },
-    {
-        title: 'TypeScript',
-        name: 'typescript',
-        img: '/typescript.png',
-        alt: 'typescript'
-    },
-    {
-        title: 'Golang',
-        name: 'go',
-        img: '/go.png',
-        alt: 'go'
-    },
-    {
-        title: 'Docker',
-        name: 'docker',
-        img: '/docker.png',
-        alt: 'docker'
-    }
 ]
 
 export const frontendSkills = [
@@ -157,20 +151,45 @@ export const designSkills = [
         alt: 'figma'
     },
     {
-        title: 'Whimsical',
-        name: 'whimsical',
-        img: '/whimsical.png',
-        alt: 'whimsical'
-    }
+        title: 'FigJam',
+        name: 'figjam',
+        img: '/figjam.png',
+        alt: 'figjam'
+    },
 ]
 
 export const otherTools = [
     {
+        title: 'Consolas o CLIs',
+        name: 'terminal',
+        img: '/terminal.png',
+        alt: 'terminal'
+    },
+    {
         title: 'Postman',
         name: 'postman',
-        img: '/graphql-icon.svg',
-        alt: 'graphql' 
-    }
+        img: '/postman-logo.webp',
+        alt: 'postman' 
+    },
+    {
+        title: 'Notion',
+        name: 'notion',
+        img: '/notion.png',
+        alt: 'notion' 
+    },
+    {
+        title: 'Jira',
+        name: 'jira',
+        img: '/jira-1.svg',
+        alt: 'jira' 
+    },
+    {
+        title: 'Whimsical',
+        name: 'whimsical',
+        img: '/whimsical.png',
+        alt: 'whimsical'
+    },
+
 ]
 
 export const skillsToLearn = [
