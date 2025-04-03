@@ -17,9 +17,9 @@ function WorkExperience() {
             </div>
             <ul className="flex flex-col gap-6 text-xs md:text-sm xl:text-base text-gray-300">
                 <li>
-                    <div className="w-full flex justify-between">
-                        <h3 className="font-semibold text-gray-100">Diseñador UX/UI - Ajenda</h3>
-                        <span className="text-gray-300">01/02/2023 - 30/05/2023</span>
+                    <div className="flex-col w-full bg-neutral-800 rounded-md p-2 md:p-4">
+                        <span className="text-txt_10 md:text-base text-gray-400">01/02/2023 - 30/05/2023</span>
+                        <h3 className="text-xs md:text-base w-fit font-semibold text-gray-100">Diseñador UX/UI - Ajenda</h3>
                     </div>
                     <p className="leading-5 text-xs xl:text-sm">
                         <br /> - Diseño de componentes e interfaces
@@ -27,9 +27,9 @@ function WorkExperience() {
                     </p>
                 </li>
                 <li>
-                    <div className="w-full flex justify-between">
-                        <h3 className="font-semibold text-gray-100">Diseñador UX/UI - Freelance</h3>
-                        <span className="text-gray-300">01/08/2022 - 27/01/2023</span>
+                    <div className="flex-col w-full bg-neutral-800 rounded-md p-2 md:p-4">
+                        <span className="text-txt_10 md:text-base text-gray-400">01/08/2022 - 27/01/2023</span>
+                        <h3 className="text-xs md:text-base w-fit font-semibold text-gray-100">Diseñador UX/UI - Freelance</h3>
                     </div>
                     <p className="leading-5 text-xs xl:text-sm">
                         <br /> - Rediseño completo para la pagina oficial del Hotel Yacanto
@@ -37,9 +37,9 @@ function WorkExperience() {
                     </p>
                 </li>
                 <li>
-                    <div className="w-full flex justify-between">
-                        <h3 className="font-semibold text-gray-100">Vendedor de autos - Berman Automotores</h3>
-                        <span className="text-gray-300">01/10/2018 - 15/05/2022</span>
+                    <div className="flex-col w-full bg-neutral-800 rounded-md p-2 md:p-4">
+                        <span className="text-txt_10 md:text-base text-gray-400">01/10/2018 - 15/05/2022</span>
+                        <h3 className="text-xs md:text-base w-fit font-semibold text-gray-100">Vendedor de autos - Berman Automotores</h3>
                     </div>
                     <p className="leading-5 text-xs xl:text-sm">
                         <br /> - Atención al público / Vendedor de autos
