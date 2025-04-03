@@ -99,7 +99,7 @@ export const frontendSkills = [
     {
         title: 'JavaScript',
         name: 'javascript',
-        img: '/js.png',
+        img: '/typescript.png',
         alt: 'javascript'
     },
     {
@@ -164,6 +164,15 @@ export const designSkills = [
     }
 ]
 
+export const otherTools = [
+    {
+        title: 'Postman',
+        name: 'postman',
+        img: '/graphql-icon.svg',
+        alt: 'graphql' 
+    }
+]
+
 export const skillsToLearn = [
     {
         title: 'GraphQL',
@@ -197,6 +206,12 @@ export const frameworksSkills = [
         name: 'fiber',
         img: '/fiber-go.png',
         alt: 'fiber go icon'
+    },
+    {
+        title: 'Chi - Golang',
+        name: 'chi',
+        img: '/chi-golang.png',
+        alt: 'chi framework of Go icon'
     }
 ]
 
