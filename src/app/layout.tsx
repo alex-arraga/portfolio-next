@@ -9,9 +9,9 @@ import { ClerkProvider } from '@clerk/nextjs'
 const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'Porfolio 😁💻',
+	title: 'My porfolio 💻',
 	description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
-	keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind'],
+	keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind', 'Go'],
 	creator: 'Alex Arraga',
 	metadataBase: new URL('https://alexarraga.lat/'),
 	alternates: {
