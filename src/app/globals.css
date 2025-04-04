@@ -30,10 +30,10 @@ body {
 }
 
 .box-skills {
-  border: 2px solid #AD5A5A;
+  border: 2px solid #5a9fad;
   background-image: linear-gradient(to bottom,
-      #4A001A,
-      #4A0855)
+      #007369,
+      #001643)
 }
 
 .box-work_experience {
