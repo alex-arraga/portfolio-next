@@ -64,16 +64,16 @@ export const backendSkills = [
         alt: 'docker'
     },
     {
+        title: 'Consolas o CLIs',
+        name: 'terminal',
+        img: '/terminal.png',
+        alt: 'terminal'
+    },
+    {
         title: 'Git',
         name: 'git',
         img: '/git.png',
         alt: 'git'
-    },
-    {
-        title: 'GitHub',
-        name: 'github',
-        img: '/github-white.svg',
-        alt: 'github'
     },
 ]
 
@@ -160,10 +160,10 @@ export const designSkills = [
 
 export const otherTools = [
     {
-        title: 'Consolas o CLIs',
-        name: 'terminal',
-        img: '/terminal.png',
-        alt: 'terminal'
+        title: 'GitHub',
+        name: 'github',
+        img: '/github-white.svg',
+        alt: 'github'
     },
     {
         title: 'Postman',
@@ -188,6 +188,24 @@ export const otherTools = [
         name: 'whimsical',
         img: '/whimsical.png',
         alt: 'whimsical'
+    },
+    {
+        title: 'Grafana',
+        name: 'grafana',
+        img: '/grafana.webp',
+        alt: 'grafana icon'
+    },
+    {
+        title: 'Prometheus - Grafana',
+        name: 'prometheus',
+        img: '/prometheus.png',
+        alt: 'prometheus - grafana icon'
+    },
+    {
+        title: 'Loki - Grafana',
+        name: 'loki',
+        img: '/loki.png',
+        alt: 'loki - grafana icon'
     },
 
 ]

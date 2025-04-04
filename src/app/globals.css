@@ -80,13 +80,13 @@ body {
 
 .box-proyects__pills-design {
   background-image: linear-gradient(to right,
-      #ab9534,
-      #ac32a2)
+      #253467,
+      #32a2ac)
 }
 
 .box-proyects__pills-code {
   background-image: linear-gradient(to right,
-      #2468ac,
+      #ab9534,
       #ac32a2)
 }
 
