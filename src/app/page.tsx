@@ -33,27 +33,26 @@ function HomePage() {
             </Box>
           </ContainerBoxes>
 
-
           {/* My Projects */}
           <ContainerBoxes>
             <Box className="w-full h-full rounded-2xl box-proyects p-4 md:p-6 xl:p-8 mb-2 md:mb-4">
               <Projects />
             </Box>
           </ContainerBoxes>
-          
 
+          {/* TODO: Solucionar el alto total de estos boxes, porque esta muy estirado */}
           {/* Work Experience, Personality, Skills */}
-          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full md:mb-4 mb-8">
+          <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-2 md:mb-4">
             <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-8 rounded-2xl">
               <Skills />
             </Box>
 
-            <div className="flex flex-wrap gap-2 md:gap-4 w-full md:w-1/2">
-              <Box className="box-work_experience w-full relative h-[66%] p-4 md:p-6 xl:p-8 rounded-2xl">
+            <div className="flex flex-wrap w-full gap-2 md:gap-4 md:w-1/2">
+              <Box className="box-work_experience w-full relative p-4 md:p-6 xl:p-8 rounded-2xl">
                 <WorkExperience />
               </Box>
 
-              <Box className="box-personality w-full relative h-[32%] p-4 md:p-6 xl:p-8 rounded-2xl">
+              <Box className="box-personality w-full relative p-4 md:p-6 xl:px-8 rounded-2xl">
                 <Personality />
               </Box>
             </div>
