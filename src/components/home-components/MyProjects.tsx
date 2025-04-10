@@ -37,7 +37,7 @@ function MyProjects() {
                                 title={project.title}
                                 text={project.text}
                                 relevantDescription={project.relevantDescription}
-                                typeProject={project.typeProject}
+                                tags={project.tags}
                                 urlIcon={project.urlIcon}
                                 urlImage={project.urlImage}
                                 altImage={project.altImage}

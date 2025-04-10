@@ -13,7 +13,7 @@ function ProjectCard({ className,
     text,
     urlClick,
     type,
-    typeProject,
+    tags,
     altIcon,
     styleIcon,
     urlIcon,
@@ -50,20 +50,33 @@ function ProjectCard({ className,
                     >
                         <div
                             className="flex flex-col md:w-2/3 xl:w-3/4 gap-4 md:gap-6">
-                            <div className="flex items-center justify-start gap-4 w-full">
-                                <Image
-                                    src={`${urlIcon}`}
-                                    alt={`${altIcon}`}
-                                    height={50}
-                                    width={50}
-                                    className={`w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] md:w-[40px] md:h-[40px] xl:w-[50px] xl:h-[50px] ${styleIcon}`}
-                                />
-                                <h3 className="text-base md:text-xl xl:text-2xl font-semibold text-white">{title}</h3>
-                                <p className="text-xs py-1 px-2 bg-white font-medium rounded-full text-black">{typeProject}</p>
+                            <div className="flex items-center justify-start gap-3 md:gap-4 w-full">
+                                <div className="relative w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] md:w-[40px] md:h-[40px] xl:w-[50px] xl:h-[50px]">
+                                    <Image
+                                        src={`${urlIcon}`}
+                                        alt={`${altIcon}`}
+                                        fill
+                                        className={`object-contain ${styleIcon}`}
+                                    />
+                                </div>
+                                <h3 className="text-xl xl:text-2xl font-semibold text-white">
+                                    {title}
+                                </h3>
+                                {/* <p className="hidden sm:block text-xs py-0.5 px-2 bg-white font-medium rounded-full text-black">
+                                    {typeProject}
+                                </p> */}
                             </div>
 
-                            <p className="leading-5 text-xs md:text-sm xl:text-base mr-6 text-gray-300 mb-2 md:mb-4">{text}</p>
-                            <p className="leading-5 text-xs md:text-sm xl:text-base mr-6 text-white font-medium">{relevantDescription}</p>
+                            <div className="flex w-full gap-2 md:gap-3">
+                                {tags?.map((tag) => (
+                                    <p className="font-medium text-black text-xs block w-fit sm:w-20 text-center py-0.5 sm:py-1 px-2 bg-white rounded-full">
+                                        {tag}
+                                    </p>
+                                ))}
+                            </div>
+
+                            <p className="leading-5 text-sm md:text-base mr-6 text-gray-300 mb-2 md:mb-4">{text}</p>
+                            <p className="leading-5 text-sm md:text-base mr-6 text-white font-medium">{relevantDescription}</p>
                         </div>
                         <div className="relative w-full h-24 mt-4 md:mt-0 md:absolute md:right-0 md:w-1/3 xl:w-1/4 md:h-full md:rounded-2xl">
                             <Image
