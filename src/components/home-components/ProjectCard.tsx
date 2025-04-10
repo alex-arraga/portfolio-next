@@ -69,7 +69,9 @@ function ProjectCard({ className,
 
                             <div className="flex w-full gap-2 md:gap-3">
                                 {tags?.map((tag) => (
-                                    <p className="font-medium text-black text-xs block w-fit sm:w-20 text-center py-0.5 sm:py-1 px-2 bg-white rounded-full">
+                                    <p
+                                        key={tag}
+                                        className="font-medium text-black text-xs block w-fit sm:w-20 text-center py-0.5 sm:py-1 px-2 bg-white rounded-full">
                                         {tag}
                                     </p>
                                 ))}
