@@ -134,7 +134,13 @@ export const databasesSkills = [
         name: 'prisma orm',
         img: '/prisma.svg',
         alt: 'prisma orm'
-    }
+    },
+    {
+        title: 'GORM',
+        name: 'gorm',
+        img: '/gorm.svg',
+        alt: 'gorm - golang orm'
+    },
 ]
 
 export const designSkills = [
@@ -155,6 +161,12 @@ export const designSkills = [
         name: 'figjam',
         img: '/figjam.png',
         alt: 'figjam'
+    },
+    {
+        title: 'Whimsical',
+        name: 'whimsical',
+        img: '/whimsical.png',
+        alt: 'whimsical'
     },
 ]
 
@@ -182,12 +194,6 @@ export const otherTools = [
         name: 'jira',
         img: '/jira-1.svg',
         alt: 'jira'
-    },
-    {
-        title: 'Whimsical',
-        name: 'whimsical',
-        img: '/whimsical.png',
-        alt: 'whimsical'
     },
     {
         title: 'Grafana',
