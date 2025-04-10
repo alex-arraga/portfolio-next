@@ -33,19 +33,20 @@ export function Header() {
         <>
             {
                 loadData === true ?
-                    <header className='fixed top-0 z-10 w-full border-b-2 border-indigo-500 border-opacity-20 h-10 md:h-12 xl:h-14'>
-                        <div className='flex justify-center bg-gradient-to-r from-slate-950 to-slate-900 items-center w-full h-full'>
+                    <header className='fixed top-0 z-10 w-full h-12 md:h-14 xl:h-16'>
+                        <nav className='flex justify-center bg-gradient-to-r from-slate-900 to-zinc-900 items-center w-full h-full'>
                             <div className='flex justify-between items-center w-full px-4 md:px-6 xl:px-8'>
-                                <Image
-                                    src='/header-icon.svg'
-                                    alt='page logo'
-                                    width={36}
-                                    height={36}
-                                    className='object-contain w-[22px] h-[22px] md:w-[30px] md:h-[30px] xl:w-[36px] xl:h-[36px]'
-                                />
+                                <div className='relative w-[26px] h-[26px] md:w-[30px] md:h-[30px] xl:w-[36px] xl:h-[36px]'>
+                                    <Image
+                                        src='/header-icon.svg'
+                                        alt='page logo'
+                                        fill
+                                        className='object-contain '
+                                    />
+                                </div>
 
-                                <div className='flex justify-center items-center bg-gradient-to-r from-indigo-900 to-transparent rounded-full pl-2 md:pl-4 xl:pl-6 h-full gap-2 md:gap-4'>
-                                    <p className='text-xs md:text-sm xl:text-base text-white capitalize'>
+                                <div className='flex justify-center items-center bg-gradient-to-r from-indigo-950 to-transparent rounded-full pl-2 md:pl-4 xl:pl-6 h-auto gap-2 md:gap-4'>
+                                    <p className='text-xs md:text-sm xl:text-base text-white capitalize font-normal'>
                                         {
                                             dataUser()?.name ? dataUser()?.name
                                                 : dataUser()?.username ? dataUser()?.username?.replace(/[0-9-_]+/g, ' ')
@@ -56,13 +57,14 @@ export function Header() {
                                         dataUser()?.name === undefined || dataUser()?.username === undefined ?
                                             <div className='w-full h-full'>
                                                 <button onClick={handleDialog} className='align-middle select-none'>
-                                                    <Image
-                                                        src='/internauta.svg'
-                                                        alt='internauta logo'
-                                                        height={28}
-                                                        width={28}
-                                                        className='object-contain '
-                                                    />
+                                                    <div className='relative w-[26px] h-[26px] md:w-[30px] md:h-[30px] xl:w-[36px] xl:h-[36px]'>
+                                                        <Image
+                                                            src='/internauta.svg'
+                                                            alt='internauta logo'
+                                                            fill
+                                                            className='object-contain '
+                                                        />
+                                                    </div>
                                                 </button>
 
                                                 <dialog
@@ -103,7 +105,7 @@ export function Header() {
                                     }
                                 </div>
                             </div>
-                        </div>
+                        </nav>
                     </header>
 
                     :
