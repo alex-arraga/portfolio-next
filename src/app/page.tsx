@@ -24,7 +24,7 @@ function HomePage() {
 
           {/* About me, Social Networks */}
           <ContainerBoxes className="flex flex-col-reverse sm:flex-row my-2 md:my-4 relative gap-2 md:gap-4 w-full h-full ">
-            <Box className="box-me relative w-full sm:w-[calc(80%)] rounded-2xl">
+            <Box className="box-me relative w-full sm:w-[calc(80%)] rounded-2xl p-4 md:p-6 xl:p-8">
               <AboutMe />
             </Box>
 

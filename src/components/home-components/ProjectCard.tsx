@@ -113,17 +113,17 @@ function ProjectCard({ className,
                     <Link href={urlClick!}
                         onClick={() => setCodeProjects(section ?? false)}
                         as={urlClick}
-                        className={`relative flex justify-between items-center w-full h-full p-4 md:p-6 xl:p-8 rounded-2xl ${className}`}>
-                        <div className="flex flex-col gap-2 sm:gap-4">
+                        className={`relative flex justify-between items-center w-full h-full p-4 md:p-6 rounded-2xl ${className}`}>
+                        <div className="flex flex-col gap-2">
                             <h3 className="text-base md:text-xl xl:text-2xl font-medium text-gray-100">{title}</h3>
-                            <p className="leading-5 text-xs md:text-sm xl:text-base text-gray-300">{text}</p>
+                            <p className="leading-5 text-xs sm:text-sm md:text-base text-gray-200">{text}</p>
                         </div>
                         <Image
                             src={`${urlImage}`}
                             alt={`${altImage}`}
                             width={100}
                             height={100}
-                            className={`object-contain ${styleImage} w-[60px] h-[60px] md:w-[80px] md:h-[80px] xl:w-[100px] xl:h-[100px] ml-4`}
+                            className={`object-contain ${styleImage} w-[60px] h-[60px] md:w-[80px] md:h-[80px] ml-4`}
                         />
                     </Link>
             }

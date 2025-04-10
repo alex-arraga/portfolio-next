@@ -10,8 +10,8 @@ function AboutMe() {
 
     return (
         <div className="flex justify-end w-full h-full mb-2 md:mb-6 xl:mb-10">
-            <div className="p-4 md:p-6 xl:p-8 w-full md:w-2/3">
-                <h1 className="my-4 md:my-6 xl:my-10 font-bold text-xl md:text-3xl xl:text-4xl text-gray-100" > Hola <span className="text-orange-200 capitalize">{fullNameUser ? fullNameUser : userName ? userName?.replace(/[0-9-_]+/g, ' ') : 'internauta'}</span>, <br /> soy Alex! 😁</h1>
+            <div className="w-full md:w-2/3">
+                <h1 className="mb-6 md:mb-8 xl:mb-10 font-bold text-xl md:text-3xl xl:text-4xl text-gray-100" > Hola <span className="text-orange-200 capitalize">{fullNameUser ? fullNameUser : userName ? userName?.replace(/[0-9-_]+/g, ' ') : 'internauta'}</span>, <br /> soy Alex! 😁</h1>
                 <p className="leading-6 text-sm md:text-base text-gray-300">
                     <span className="font-semibold text-white">
                         Soy Diseñador UX/UI y Fullstack Developer
