@@ -12,7 +12,17 @@ function AboutMe() {
         <div className="flex justify-end w-full h-full mb-2 md:mb-6 xl:mb-10">
             <div className="p-4 md:p-6 xl:p-8 w-full md:w-2/3">
                 <h1 className="my-4 md:my-6 xl:my-10 font-bold text-xl md:text-3xl xl:text-4xl text-gray-100" > Hola <span className="text-orange-200 capitalize">{fullNameUser ? fullNameUser : userName ? userName?.replace(/[0-9-_]+/g, ' ') : 'internauta'}</span>, <br /> soy Alex! 😁</h1>
-                <p className="leading-6 text-sm md:text-base text-gray-300">Soy Full Stack Developer y Diseñador UX/UI, <span className="font-semibold text-white">actualmente me estoy especializando en el mundo Backend, siendo desarrollador de Go</span>, ya que la lógica de negocio me resulta atrapante y Go me parece uno de los mejores lenguajes Backend en la actualidad. En un equipo de trabajo busco aportar mis conocimientos y aprender del intercambio de ideas, con el fin de cumplir los objetivos. Tengo experiencia trabajando como en atención al público e hice algunos trabajos como Diseñador UX / UI, espero que pronto podamos conocernos y trabajar juntos 😉</p>
+                <p className="leading-6 text-sm md:text-base text-gray-300">
+                    <span className="font-semibold text-white">
+                        Soy Diseñador UX/UI y Fullstack Developer
+                    </span>
+                    <span className="">
+                        , con una fuerte orientación al backend, actualmente estoy especializándome en el desarrollo de aplicaciones robustas y escalables usando Go  
+                    </span>
+                    <span>
+                        . Durante un tiempo trabajé como diseñador UX/UI, lo que me dio una fuerte base en diseño centrado en el usuario. Además, mi paso por atención al cliente me enseñó la importancia de la empatía y la resolución de problemas en equipo.
+                    </span>
+                </p>
             </div>
 
             <div className="relative hidden md:block md:w-1/3 h-full">

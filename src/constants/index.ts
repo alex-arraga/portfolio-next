@@ -239,12 +239,6 @@ export const frameworksSkills = [
         alt: 'express icon'
     },
     {
-        title: 'Fiber - Golang',
-        name: 'fiber',
-        img: '/fiber-go.png',
-        alt: 'fiber go icon'
-    },
-    {
         title: 'Chi - Golang',
         name: 'chi',
         img: '/chi-golang.png',
@@ -368,12 +362,12 @@ export const personalCodeProjects = [
     {
         title: "Teslo Shop",
         text: "Teslo Shop es una tienda en línea que vende ropa deportiva inspirada en Tesla. Su catálogo incluye camisetas, sudaderas, gorras y accesorios con diseños relacionados con la marca y la tecnología eléctrica.",
-        relevantDescription: "Ofrece envíos internacionales y podes pagar utilizando PayPal",
+        relevantDescription: "Tiene soporte para light y dark theme... ¡Podes pagar utilizando PayPal!",
         typeProject: "Fullstack",
         urlIcon: "/clothes.png",
-        urlImage: "/T1-tesloshop.png",
+        urlImage: "/t-tesloshop.png",
         altImage: "teslo shop",
-        urlClick: "https://teslo-shop-aaaaq2z00-alexs-projects-f57d95e3.vercel.app/",
+        urlClick: "https://teslo-shop-project.vercel.app/",
         github_repo: "https://github.com/alex-arraga/next-teslo-shop"
     },
     {
