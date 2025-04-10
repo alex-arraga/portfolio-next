@@ -27,6 +27,7 @@ function ProjectCard({ className,
         <>
             {type === 'code' ?
                 <div className={`relative overflow-hidden flex flex-col justify-between items-center w-full h-full border-2 border-gray-500 rounded-xl md:rounded-2xl cursor-pointer ${className}`}>
+                    {/* Github Button */}
                     <Link
                         href={github_repo!}
                         as={github_repo}
@@ -42,6 +43,7 @@ function ProjectCard({ className,
                             className="w-5 h-5 sm:w-6 sm:h-6"
                         />
                     </Link>
+                    {/* Card */}
                     <Link
                         className="relative flex flex-col md:flex-row justify-between items-center bg-gray-900 bg-opacity-70 hover:bg-slate-950 duration-500 p-4 md:p-6 xl:p-8"
                         href={urlClick!}
@@ -62,9 +64,6 @@ function ProjectCard({ className,
                                 <h3 className="text-xl xl:text-2xl font-semibold text-white">
                                     {title}
                                 </h3>
-                                {/* <p className="hidden sm:block text-xs py-0.5 px-2 bg-white font-medium rounded-full text-black">
-                                    {typeProject}
-                                </p> */}
                             </div>
 
                             <div className="flex w-full gap-2 md:gap-3">
@@ -106,11 +105,11 @@ function ProjectCard({ className,
                                     width={50}
                                     className={`w-[20px] h-[20px] sm:w-[30px] sm:h-[30px] md:w-[40px] md:h-[40px] xl:w-[50px] xl:h-[50px] ${styleIcon}`}
                                 />
-                                <h3 className="text-base md:text-xl xl:text-2xl font-semibold text-white">{title}</h3>
+                                <h3 className="text-xl xl:text-2xl font-semibold">{title}</h3>
                             </div>
 
-                            <p className="leading-5 text-xs md:text-sm xl:text-base mr-6 text-gray-300 mb-2 md:mb-4">{text}</p>
-                            <p className="leading-5 text-xs md:text-sm xl:text-base mr-6 text-white font-medium">{relevantDescription}</p>
+                            <p className="leading-5 text-sm md:text-base mr-6 text-gray-300 mb-2 md:mb-4">{text}</p>
+                            <p className="leading-5 text-sm md:text-base mr-6 text-white font-medium">{relevantDescription}</p>
                         </div>
                         <div className="relative w-full h-24 mt-4 md:mt-0 md:absolute md:right-0 md:w-1/3 xl:w-1/4 md:h-full md:rounded-2xl">
                             <Image
