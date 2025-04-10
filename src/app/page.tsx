@@ -20,7 +20,7 @@ function HomePage() {
       <Header />
 
       <div className="bg-[url('/bg-main-blur-30.png')] flex justify-center items-center w-full">
-        <main className="flex flex-col h-full max-w-[95vw] md:max-w-[90vw] mt-12 md:mt-14 xl:mt-16">
+        <main className="flex flex-col h-full max-w-[95vw] md:max-w-[90vw] mt-14 md:mt-16">
 
           {/* About me, Social Networks */}
           <ContainerBoxes className="flex flex-col-reverse sm:flex-row my-2 md:my-4 relative gap-2 md:gap-4 w-full h-full ">
