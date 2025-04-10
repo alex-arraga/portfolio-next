@@ -24,7 +24,7 @@ function Skills() {
 
             {/* Backend */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Backend</p>
-            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     backendSkills.map((skill) => (
                         <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
@@ -43,7 +43,7 @@ function Skills() {
 
             {/* Frontend */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Frontend</p>
-            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-between bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     frontendSkills.map((skill) => (
                         <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>
@@ -121,7 +121,7 @@ function Skills() {
 
             {/* Design */}
             <p className="text-xs md:text-sm xl:text-base mt-6 mb-2 text-gray-300">Diseño UX/UI</p>
-            <div className="flex relative gap-2 py-2 px-4 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
+            <div className="flex relative gap-6 px-4 py-2 md:py-3 items-center justify-start bg-slate-950 bg-opacity-80 h-10 sm:h-12 md:h-16 w-full rounded-lg">
                 {
                     designSkills.map((skill) => (
                         <div className="relative w-full max-w-[50px] md:max-w-[80px] h-full max-h-8 sm:max-h-12 md:max-h-14 hover:scale-110 duration-300" key={skill.name}>

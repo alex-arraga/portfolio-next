@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from'next/image'
 
 function Personality() {
     return (
@@ -19,7 +19,7 @@ function Personality() {
                 </div>
                 <ul className='grid grid-cols-1 gap-4'>
                     <li className="flex justify-start items-center gap-3 sm:gap-4">
-                        <div className='relative w-5 h-5 md:h-6 md:w-6'>
+                        <div className='relative w-5 h-5'>
                             <Image
                                 src='/diamon-icon.svg'
                                 alt="diamond"
@@ -28,11 +28,11 @@ function Personality() {
                             />
                         </div>
                         <p className='text-gray-300 text-sm md:text-base'>
-                            Perseguidor de la excelencia
+                            Perseguidor de la excelencia.
                         </p>
                     </li>
                     <li className="flex justify-start items-center gap-3 sm:gap-4">
-                        <div className='relative w-5 h-5 md:h-6 md:w-6'>
+                        <div className='relative w-5 h-5'>
                             <Image
                                 src='/team-icon.svg'
                                 alt="diamond"
@@ -41,11 +41,11 @@ function Personality() {
                             />
                         </div>
                         <p className='text-gray-300 text-sm md:text-base'>
-                            Busco consenso en equipo sobre posibles alternativas
+                            Busco consenso en equipo sobre posibles alternativas.
                         </p>
                     </li>
                     <li className="flex justify-start items-center gap-3 sm:gap-4">
-                        <div className='relative w-5 h-5 md:h-6 md:w-6'>
+                        <div className='relative w-5 h-5'>
                             <Image
                                 src='/brain-icon.svg'
                                 alt="diamond"
@@ -54,11 +54,11 @@ function Personality() {
                             />
                         </div>
                         <p className='text-gray-300 text-sm md:text-base'>
-                            Cauteloso y racional tomando decisiones
+                            Cauteloso y racional tomando decisiones.
                         </p>
                     </li>
                     <li className="flex justify-start items-center gap-3 sm:gap-4">
-                        <div className='relative w-5 h-5 md:h-6 md:w-6'>
+                        <div className='relative w-5 h-5'>
                             <Image
                                 src='/brain-icon-2.svg'
                                 alt="diamond"
@@ -67,7 +67,7 @@ function Personality() {
                             />
                         </div>
                         <p className='text-gray-300 text-sm md:text-base'>
-                            Me gusta indagar y estar en constante aprendizaje
+                            Me gusta indagar y estar en constante aprendizaje.
                         </p>
                     </li>
                 </ul>
