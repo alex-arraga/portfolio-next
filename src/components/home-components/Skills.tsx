@@ -14,13 +14,13 @@ function Skills() {
         <>
             <div className="flex justify-between items-center">
                 <h2 className="text-xl md:text-3xl xl:text-4xl font-medium text-gray-100">Habilidades</h2>
-                <Image
+                {/* <Image
                     src='/dev.png'
                     alt="developer"
                     width={500}
                     height={500}
                     className="object-contain h-[40px] w-[40px] md:h-[60px] md:w-[60px]"
-                />
+                /> */}
             </div>
 
             {/* Backend */}
