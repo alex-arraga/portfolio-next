@@ -40,7 +40,6 @@ function HomePage() {
             </Box>
           </ContainerBoxes>
 
-          {/* TODO: Solucionar el alto total de estos boxes, porque esta muy estirado */}
           {/* Work Experience, Personality, Skills */}
           <ContainerBoxes className="flex flex-col md:flex-row relative gap-2 md:gap-4 w-full mb-2 md:mb-4">
             <Box className="box-skills w-full md:w-1/2 p-4 md:p-6 xl:p-8 rounded-2xl">
