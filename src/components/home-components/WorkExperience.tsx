@@ -22,7 +22,7 @@ function WorkExperience() {
                         <h3 className="text-sm md:text-base w-fit font-semibold text-gray-100">
                             Diseñador UX/UI - Ajenda
                         </h3>
-                        <p className="leading-5 text-xs md:text-sm">
+                        <p className="leading-5 text-xs md:text-sm text-gray-400">
                             <br /> - Diseño de componentes e interfaces.
                             <br /> - Colaboración con desarrolladores.
                         </p>
@@ -34,7 +34,7 @@ function WorkExperience() {
                         <h3 className="text-sm md:text-base w-fit font-semibold text-gray-100">
                             Diseñador UX/UI - Freelance
                         </h3>
-                        <p className="leading-5 text-xs md:text-sm">
+                        <p className="leading-5 text-xs md:text-sm text-gray-400">
                             <br /> - Rediseño completo para la pagina oficial del Hotel Yacanto.
                             <br /> - Comunicación y trabajo en equipo con una WordPress Designer.
                         </p>
@@ -46,7 +46,7 @@ function WorkExperience() {
                         <h3 className="text-sm md:text-base w-fit font-semibold text-gray-100">
                             Vendedor de autos - Berman Automotores
                         </h3>
-                        <p className="leading-5 text-xs md:text-sm">
+                        <p className="leading-5 text-xs md:text-sm text-gray-400">
                             <br /> - Atención al público / Vendedor de autos.
                             <br /> - Asesor de créditos prendarios y financiamiento.
                         </p>

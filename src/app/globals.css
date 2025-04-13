@@ -29,11 +29,17 @@ body {
       rgba(56, 0, 82, .5));
 }
 
-.box-skills {
+/* 
   border: 2px solid #5a9fad;
   background-image: linear-gradient(to bottom,
       #007369,
       #001643)
+*/
+.box-skills {
+  border: 2px solid #414141;
+  background-image: linear-gradient(to bottom,
+      #202020,
+      #050505)
 }
 
 .box-work_experience {
@@ -44,7 +50,7 @@ body {
 }
 
 .box-work_experience {
-    border: 2px solid #616161;
+  border: 2px solid #414141;
   background-image: linear-gradient(to bottom,
       #202020,
       #050505)
@@ -86,8 +92,8 @@ body {
 
 .box-proyects__pills-code {
   background-image: linear-gradient(to right,
-      #ab9534,
-      #ac32a2)
+      #3460ab,
+      #4032ac)
 }
 
 .box-proyects__pills-design:hover {
