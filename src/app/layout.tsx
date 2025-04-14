@@ -10,7 +10,7 @@ const poppinsFont = Poppins({ weight: ['200', '300', '400', '500', '600'], subse
 
 export const metadata: Metadata = {
 	title: 'My porfolio 💻',
-	description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
+	description: '¡Explora mi portfolio 🚀 como Diseñador UX/UI y Desarrollador Web! Descubre mis proyectos y conoce más sobre mis habilidades técnicas y cualidades personales.',
 	keywords: ['Portfolio', 'Personal', 'Web Developer', 'Next.js', 'React', 'JavaScript', 'UX/UI Designer', 'Backend', 'Frontend', 'SQL', 'Node.js', 'TypeScript', 'Tailwind', 'Go'],
 	creator: 'Alex Arraga',
 	metadataBase: new URL('https://alexarraga.lat/'),
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		title: 'Alex Arraga - Web developer portfolio 💻',
-		description: '¡Embárcate en un emocionante viaje 🚀 para explorar mi portfolio como Diseñador UX/UI y Desarrollador Web! Descubre proyectos innovadores y conoce más sobre mis habilidades técnicas y cualidades personales.',
+		description: '¡Explora mi portfolio 🚀 como Diseñador UX/UI y Desarrollador Web! Descubre mis proyectos y conoce más sobre mis habilidades técnicas y cualidades personales.',
 		images: '/opengraph-image.png',
 		countryName: 'Argentina',
 		type: 'website'
